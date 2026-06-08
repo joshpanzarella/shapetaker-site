@@ -135,7 +135,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
         </span>
         <h2 key={readoutTitle} style={{ display: 'flex', gap: '0px' }}>
           {readoutTitle.split("").map((char, i) => {
-            const speeds = [1.8, 2.4, 1.5, 2.8, 2.0, 2.6];
+            const speeds = [1.2, 1.6, 1.0, 1.8, 1.4, 1.7];
             const isCW = i % 2 === 0;
             return (
               <span 
