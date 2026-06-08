@@ -163,8 +163,8 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
                   {activeControl.type === "switch" ? (
                     <div className="control-diagram__switch">
                       <div 
-                        className="control-diagram__switch-toggle" 
-                        style={{ transform: `translateY(${diagram.state === 'up' ? -8 : 8}px)` }} 
+                        className="control-diagram__switch-bat" 
+                        style={{ transform: `rotate(${diagram.state === 'up' ? 0 : 180}deg)` }} 
                       />
                     </div>
                   ) : (
