@@ -1355,6 +1355,10 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .project-preview {
+    min-height: 380px;
+  }
+
   .panel-stage {
     grid-template-rows: 16px minmax(460px, 72vh) 16px;
     min-height: 500px;
@@ -1383,7 +1387,8 @@ h3 {
   .home-hero h1,
   .page-heading h1,
   .module-page__intro h1 {
-    font-size: clamp(3.2rem, 18vw, 5.2rem);
+    font-size: clamp(2rem, 11vw, 4rem);
+    letter-spacing: 0.04em;
   }
 
   .panel-stage {
@@ -1393,5 +1398,9 @@ h3 {
 
   .button {
     width: 100%;
+  }
+
+  .project-strip {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 }
