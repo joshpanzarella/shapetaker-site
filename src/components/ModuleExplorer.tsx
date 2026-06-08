@@ -4,7 +4,9 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import { MousePointer2, Settings2 } from "lucide-react";
+import * as LucideIcons from "lucide-react";
 import type { Hotspot, ModuleExplorerData } from "@/data/modules";
+import { MorphingTitle } from "@/components/MorphingTitle";
 
 type ModuleExplorerProps = {
   module: ModuleExplorerData;
@@ -132,10 +134,33 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
           <ReadoutIcon size={16} aria-hidden="true" />
           {isContextMode ? "context menu" : "control focus"}
         </span>
-        <h2 key={readoutTitle} className="spin-in">{readoutTitle}</h2>
+        <MorphingTitle as="h2" key={readoutTitle} title={readoutTitle} />
         <p>{readoutDescription}</p>
         {isContextMode && activeContextItem.values ? (
           <p className="context-values">{activeContextItem.values.join(" / ")}</p>
+        ) : null}
+        
+        {!isContextMode && activeControl?.diagrams && activeControl.diagrams.length > 0 ? (
+          <div className="control-diagrams">
+            {activeControl.diagrams.map((diagram) => {
+              const IconComponent = (LucideIcons as Record<string, React.ElementType>)[diagram.icon] || LucideIcons.Circle;
+              
+              return (
+                <div key={diagram.id} className="control-diagram">
+                  <div className="control-diagram__knob">
+                    <div 
+                      className="control-diagram__knob-indicator" 
+                      style={{ transform: `rotate(${diagram.rotation}deg)` }} 
+                    />
+                  </div>
+                  <div className="control-diagram__content">
+                    <IconComponent size={28} className="control-diagram__icon" />
+                    <span className="control-diagram__label">{diagram.label}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         ) : null}
       </aside>
     </section>

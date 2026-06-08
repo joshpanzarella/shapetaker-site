@@ -703,7 +703,7 @@ h3 {
   min-height: 38px;
   border: 0;
   background: transparent;
-  color: rgba(247, 242, 232, 0.68);
+  color: #000;
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0.04em;
@@ -715,7 +715,7 @@ h3 {
 .readout-segment button:focus-visible,
 .readout-segment button.is-active {
   background: rgba(215, 181, 109, 0.14);
-  color: var(--paper);
+  color: var(--ink);
   outline: 0;
 }
 
@@ -1418,4 +1418,91 @@ h3 {
   .project-strip {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
+}
+
+.control-diagrams {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--line);
+}
+
+.control-diagram {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.control-diagram__knob {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-diagram__knob-indicator {
+  position: absolute;
+  width: 3px;
+  height: 50%;
+  background: var(--ink);
+  top: 0;
+  transform-origin: bottom center;
+}
+
+.control-diagram__content {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--ink-soft);
+}
+
+.control-diagram__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.control-diagram__icon {
+  color: var(--teal);
+}
+
+@keyframes spookyWave {
+  0% { transform: translateY(8px) rotate(-4deg); filter: blur(6px); opacity: 0; letter-spacing: -0.05em; }
+  40% { transform: translateY(-2px) rotate(2deg); filter: blur(2px); opacity: 0.6; }
+  70% { transform: translateY(1px) rotate(-1deg); filter: blur(0px); opacity: 0.9; }
+  100% { transform: translateY(0) rotate(0); filter: blur(0); opacity: 1; letter-spacing: normal; }
+}
+
+.spooky-wavy {
+  animation: spookyWave 0.8s ease-out forwards;
+  display: inline-block;
+}
+
+@keyframes spinTitle {
+  0% { transform: rotate(-360deg); opacity: 0; filter: blur(4px); }
+  100% { transform: rotate(0deg); opacity: 1; filter: blur(0px); }
+}
+
+.spin-title {
+  animation: spinTitle 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  display: inline-block;
+  transform-origin: center;
+}
+
+@keyframes crossfadeOut {
+  0%, 45% { opacity: 1; filter: blur(0px); }
+  85%, 100% { opacity: 0; filter: blur(4px); }
+}
+
+@keyframes crossfadeIn {
+  0%, 45% { opacity: 0; filter: blur(4px); }
+  85%, 100% { opacity: 1; filter: blur(0px); }
 }

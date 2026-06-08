@@ -1,6 +1,4 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+import blogData from "@/data/blog-posts.json";
 
 export type BlogPostFrontmatter = {
   title: string;
@@ -15,46 +13,22 @@ export type BlogPost = {
   content: string;
 };
 
-const blogDir = path.join(process.cwd(), "src/content/blog");
-
 export function getBlogPosts(): Omit<BlogPost, "content">[] {
-  if (!fs.existsSync(blogDir)) {
-    return [];
-  }
-
-  const files = fs.readdirSync(blogDir);
-  const posts = files
-    .filter((file) => file.endsWith(".mdx") || file.endsWith(".md"))
-    .map((file) => {
-      const filePath = path.join(blogDir, file);
-      const fileContent = fs.readFileSync(filePath, "utf-8");
-      const { data } = matter(fileContent);
-
-      return {
-        slug: file.replace(/\.mdx?$/, ""),
-        frontmatter: data as BlogPostFrontmatter
-      };
-    });
-
-  return posts.sort((a, b) => (a.frontmatter.date > b.frontmatter.date ? -1 : 1));
+  return blogData.map((post) => ({
+    slug: post.slug,
+    frontmatter: post.frontmatter as BlogPostFrontmatter
+  }));
 }
 
 export function getBlogPost(slug: string): BlogPost | null {
-  try {
-    const fullPathMDX = path.join(blogDir, `${slug}.mdx`);
-    const fullPathMD = path.join(blogDir, `${slug}.md`);
-
-    const filePath = fs.existsSync(fullPathMDX) ? fullPathMDX : fullPathMD;
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-
-    const { data, content } = matter(fileContent);
-
-    return {
-      slug,
-      frontmatter: data as BlogPostFrontmatter,
-      content
-    };
-  } catch (error) {
+  const post = blogData.find((p) => p.slug === slug);
+  if (!post) {
     return null;
   }
+  
+  return {
+    slug: post.slug,
+    frontmatter: post.frontmatter as BlogPostFrontmatter,
+    content: post.content
+  };
 }

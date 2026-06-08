@@ -10,6 +10,12 @@ export type Hotspot = {
   size: number;
   description: string;
   tip: string;
+  diagrams?: Array<{
+    id: string;
+    label: string;
+    icon: string;
+    rotation: number;
+  }>;
 };
 
 export type ManualSection = {
@@ -65,7 +71,7 @@ export const modules: ModuleSpec[] = [
   {
     slug: "clairaudient",
     name: "clairaudient",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
+    subtitle: "A stereo virtual analog sigmoid wave oscillator with crossfading and wave shape modulation for subtle, discordant timbre shifts. Perfect for your next séance.",
     summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
     category: "vcv rack module",
     status: "stereo oscillator",
@@ -161,6 +167,7 @@ export const modules: ModuleSpec[] = [
         description: "crossfades between the two sides of the module.",
         tip: "animate this control when you want the output to move between v and z behavior."
       },
+
       {
         id: "v-shape",
         label: "v shape",
@@ -169,7 +176,27 @@ export const modules: ModuleSpec[] = [
         y: 63.3,
         size: 13,
         description: "main shape control for the v side.",
-        tip: "use this as the primary tone-shaping control for the left signal path."
+        tip: "use this as the primary tone-shaping control for the left signal path.",
+        diagrams: [
+          {
+            id: "sawtooth",
+            label: "sawtooth wave",
+            icon: "Activity",
+            rotation: -135
+          },
+          {
+            id: "sigmoid",
+            label: "sigmoid",
+            icon: "Spline",
+            rotation: 0
+          },
+          {
+            id: "square",
+            label: "square wave",
+            icon: "Square",
+            rotation: 135
+          }
+        ]
       },
       {
         id: "z-shape",
@@ -179,7 +206,27 @@ export const modules: ModuleSpec[] = [
         y: 63.3,
         size: 13,
         description: "main shape control for the z side.",
-        tip: "use this as the primary tone-shaping control for the right signal path."
+        tip: "use this as the primary tone-shaping control for the right signal path.",
+        diagrams: [
+          {
+            id: "sawtooth",
+            label: "sawtooth wave",
+            icon: "Activity",
+            rotation: -135
+          },
+          {
+            id: "sigmoid",
+            label: "sigmoid",
+            icon: "Spline",
+            rotation: 0
+          },
+          {
+            id: "square",
+            label: "square wave",
+            icon: "Square",
+            rotation: 135
+          }
+        ]
       },
       {
         id: "v-fine-tune-cv",
@@ -501,11 +548,11 @@ export const modules: ModuleSpec[] = [
         tip: "use lower settings for softened edges and higher settings for a more forward top end."
       },
       {
-        id: "character",
-        label: "character",
+        id: "gain",
+        label: "gain",
         type: "knob",
-        x: 65,
-        y: 23,
+        x: 50,
+        y: 16,
         size: 18,
         description: "sets the intensity of the module's coloration circuit.",
         tip: "small moves are useful for glue. larger moves push the voice into a designed texture."

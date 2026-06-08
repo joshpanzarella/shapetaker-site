@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Images } from "lucide-react";
+import { Images } from "lucide-react";
 import { useMemo, useState, useEffect } from "react";
 import type { ProjectKind, ProjectSummary } from "@/lib/projects";
+import { MorphingTitle } from "@/components/MorphingTitle";
 
 type ProjectGalleryProps = {
   projects: ProjectSummary[];
@@ -24,13 +25,20 @@ const alchemicalSymbols = [
 export function ProjectGallery({ projects }: ProjectGalleryProps) {
   const [activeKind, setActiveKind] = useState<ProjectFilter>(allFilter);
   const [activeSlug, setActiveSlug] = useState(projects[0]?.slug ?? "");
-  const [symbolsLeft, setSymbolsLeft] = useState<string[]>(Array(4).fill(alchemicalSymbols[0]));
-  const [symbolsRight, setSymbolsRight] = useState<string[]>(Array(4).fill(alchemicalSymbols[1]));
-
-  useEffect(() => {
-    const shuffled = [...alchemicalSymbols].sort(() => 0.5 - Math.random());
-    setSymbolsLeft(shuffled.slice(0, 4));
-    setSymbolsRight(shuffled.slice(4, 8));
+  // Generate deterministic symbols based on activeSlug so it's a pure function
+  const { symbolsLeft, symbolsRight } = useMemo(() => {
+    let hash = 0;
+    for (let i = 0; i < activeSlug.length; i++) {
+      hash = activeSlug.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    
+    // Seeded random-like selection
+    const getSymbol = (seed: number) => alchemicalSymbols[Math.abs(hash + seed * 13) % alchemicalSymbols.length];
+    
+    return {
+      symbolsLeft: [getSymbol(1), getSymbol(2), getSymbol(3), getSymbol(4)],
+      symbolsRight: [getSymbol(5), getSymbol(6), getSymbol(7), getSymbol(8)]
+    };
   }, [activeSlug]);
 
   const kinds = useMemo(
@@ -107,23 +115,7 @@ export function ProjectGallery({ projects }: ProjectGalleryProps) {
 
         <aside className="project-detail">
           <span className="eyebrow">{activeProject.status}</span>
-          <h3 key={activeProject.title} style={{ display: 'flex', gap: '0px' }}>
-            {activeProject.title.split("").map((char, i) => {
-              const speeds = [0.6, 0.9, 0.75, 1.0, 0.65, 1.2];
-              const isCW = i % 2 === 0;
-              return (
-                <span 
-                  key={i} 
-                  className="crazy-letter-spin"
-                  style={{
-                    animation: `${isCW ? 'spinCW' : 'spinCCW'} ${speeds[i % speeds.length]}s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`
-                  }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              );
-            })}
-          </h3>
+          <MorphingTitle title={activeProject.title} />
           <p>{activeProject.summary}</p>
 
           {activeProject.audioSamples && activeProject.audioSamples.length > 0 && (
