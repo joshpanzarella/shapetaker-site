@@ -10,7 +10,7 @@ const alchemicalSymbols = [
   "🝊", "🝋", "🝌", "🝍", "🝎", "🝏", "🝐", "🝑", "🝒", "🝓", "🝔", "🝕", "🝖", "🝗", "🝘", "🝙"
 ];
 
-const speeds = [1.2, 1.6, 1.0, 1.8, 1.4, 1.7];
+const speeds = [0.9, 1.2, 0.75, 1.4, 1.0, 1.3];
 
 export function MorphingTitle({ title, as: Tag = "h3" }: { title: string; as?: "h2" | "h3" | "h4" | "div" | "span" }) {
   return (
