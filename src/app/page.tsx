@@ -54,15 +54,8 @@ export default function Home() {
       </section>
 
       <section className="content-band">
-        <div className="source-strip">
-          <div>
-            <span className="eyebrow">next steps</span>
-            <h2>bring in exact panel art, fonts, and demos.</h2>
-          </div>
-          <a className="button button--ghost" href="https://github.com/" rel="noreferrer" target="_blank">
-            <GitBranch size={18} aria-hidden="true" />
-            source ready
-          </a>
+        <div className="source-strip" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center', opacity: 0.6, fontSize: '1.5rem', letterSpacing: '0.4em', wordBreak: 'break-all', textAlign: 'center' }}>
+          🜀🜁🜂🜃🜄🜅🜆🜇🜈🜉🜊🜋🜌🜍🜎🜏🜐🜑🜒🜓🜔🜕🜖🜗🜘🜙🜚🜛🜜🜝🜞🜟🜠🜡🜢🜣🜤🜥🜦🜧🜨🜩🜪🜫🜬🜭🜮🜯🜰🜱🜲🜳🜴🜵🜶🜷🜸🜹🜺🜻🜼🜽🜾🜿
         </div>
       </section>
     </main>
