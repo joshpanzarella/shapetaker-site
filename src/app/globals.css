@@ -1316,17 +1316,22 @@ h3 {
 }
 
 .project-strip button {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 0.2rem;
   min-height: 72px;
   padding: 0.55rem;
   text-align: left;
+  font-size: clamp(0.55rem, 0.9vw, 0.9rem);
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .project-strip small {
   color: inherit;
   opacity: 0.72;
-  font-size: 0.72rem;
+  font-size: clamp(0.45rem, 0.7vw, 0.72rem);
   font-weight: 800;
 }
 
