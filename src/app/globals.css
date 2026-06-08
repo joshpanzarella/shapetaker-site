@@ -1174,6 +1174,10 @@ h3 {
   color: var(--ink-soft);
   font-weight: 900;
   cursor: pointer;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    color 160ms ease;
 }
 
 .gallery-tabs button {
@@ -1193,6 +1197,8 @@ h3 {
   border-color: var(--ink);
   background: var(--ink);
   color: var(--paper);
+  transform: translateY(-1px);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
   outline: 0;
 }
 
