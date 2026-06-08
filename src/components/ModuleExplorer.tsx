@@ -158,8 +158,6 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
         {!isContextMode && activeControl?.diagrams && activeControl.diagrams.length > 0 ? (
           <div className="control-diagrams">
             {activeControl.diagrams.map((diagram) => {
-              const IconComponent = (LucideIcons as Record<string, React.ElementType>)[diagram.icon] || LucideIcons.Circle;
-              
               return (
                 <div key={diagram.id} className="control-diagram">
                   <div className="control-diagram__knob">
@@ -169,7 +167,20 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
                     />
                   </div>
                   <div className="control-diagram__content">
-                    <IconComponent size={28} className="control-diagram__icon" />
+                    {diagram.svg ? (
+                      <svg 
+                        width="28" 
+                        height="28" 
+                        viewBox="0 0 24 24" 
+                        className="control-diagram__icon"
+                        dangerouslySetInnerHTML={{ __html: diagram.svg }}
+                      />
+                    ) : diagram.icon ? (
+                      (() => {
+                        const IconComponent = (LucideIcons as Record<string, React.ElementType>)[diagram.icon] || LucideIcons.Circle;
+                        return <IconComponent size={28} className="control-diagram__icon" />;
+                      })()
+                    ) : null}
                     <span className="control-diagram__label">{diagram.label}</span>
                   </div>
                 </div>

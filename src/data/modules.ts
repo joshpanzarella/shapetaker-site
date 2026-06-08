@@ -13,7 +13,8 @@ export type Hotspot = {
   diagrams?: Array<{
     id: string;
     label: string;
-    icon: string;
+    icon?: string;
+    svg?: string;
     rotation: number;
   }>;
 };
@@ -165,7 +166,27 @@ export const modules: ModuleSpec[] = [
         y: 45.4,
         size: 17,
         description: "crossfades between the two sides of the module.",
-        tip: "animate this control when you want the output to move between v and z behavior."
+        tip: "animate this control when you want the output to move between v and z behavior.",
+        diagrams: [
+          {
+            id: "v-side",
+            label: "v signal",
+            svg: '<path d="M5 4 L12 20 L19 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+            rotation: -135
+          },
+          {
+            id: "v-z-blend",
+            label: "v + z blended",
+            svg: '<path d="M5 4 L12 20 L19 4 M4 4 H20 L4 20 H20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+            rotation: 0
+          },
+          {
+            id: "z-side",
+            label: "z signal",
+            svg: '<path d="M4 4 H20 L4 20 H20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+            rotation: 135
+          }
+        ]
       },
 
       {
