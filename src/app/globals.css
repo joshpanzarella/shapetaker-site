@@ -1323,15 +1323,14 @@ h3 {
   min-height: 72px;
   padding: 0.55rem;
   text-align: left;
-  font-size: clamp(0.55rem, 0.9vw, 0.9rem);
-  white-space: nowrap;
-  overflow: hidden;
+  font-size: 0.82rem;
+  word-break: keep-all;
 }
 
 .project-strip small {
   color: inherit;
   opacity: 0.72;
-  font-size: clamp(0.45rem, 0.7vw, 0.72rem);
+  font-size: 0.72rem;
   font-weight: 800;
 }
 
