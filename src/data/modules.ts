@@ -459,8 +459,7 @@ export const modules: ModuleSpec[] = [
         title: "concept overview",
         body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
       }
-    ],
-    media: {}
+    ]
   },
   {
     slug: "chiaroscuro",
