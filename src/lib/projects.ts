@@ -100,5 +100,9 @@ export function getProjects(): ProjectSummary[] {
     }
   }
 
-  return Array.from(moduleProjects.values()).sort((a, b) => a.title.localeCompare(b.title));
+  return Array.from(moduleProjects.values()).sort((a, b) => {
+    if (a.slug === "clairaudient" && b.slug !== "clairaudient") return -1;
+    if (b.slug === "clairaudient" && a.slug !== "clairaudient") return 1;
+    return a.title.localeCompare(b.title);
+  });
 }

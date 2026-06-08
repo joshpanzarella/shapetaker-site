@@ -1091,8 +1091,8 @@ h3 {
   grid-template-columns: minmax(0, 0.7fr) minmax(320px, 1fr);
   gap: 1rem;
   align-items: stretch;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--palette-graphite-900);
+  color: var(--palette-graphite-50);
 }
 
 .media-dock__copy {

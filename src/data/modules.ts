@@ -695,6 +695,36 @@ export const modules: ModuleSpec[] = [
         body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
       }
     ]
+  },
+  {
+    slug: "reverie",
+    name: "reverie",
+    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.",
+    category: "vcv rack module",
+    status: "reverb",
+    accent: "#68B7C8",
+    accentSoft: "rgba(104, 183, 200, 0.2)",
+    icon: Sparkles,
+    hp: 14,
+    media: {},
+    controls: [],
+    manual: []
+  },
+  {
+    slug: "tessellation",
+    name: "tessellation",
+    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.",
+    category: "vcv rack module",
+    status: "triple delay",
+    accent: "#8c7aa3",
+    accentSoft: "rgba(140, 122, 163, 0.2)",
+    icon: Layers,
+    hp: 14,
+    media: {},
+    controls: [],
+    manual: []
   }
 ];
 
