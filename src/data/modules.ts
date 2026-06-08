@@ -46,6 +46,10 @@ export type ModuleSpec = {
   controls: Hotspot[];
   contextMenu?: ContextMenuItem[];
   manual: ManualSection[];
+  audioSamples?: {
+    title: string;
+    url: string;
+  }[];
   media: {
     audio?: string;
     video?: string;
@@ -458,6 +462,12 @@ export const modules: ModuleSpec[] = [
       {
         title: "concept overview",
         body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
+      }
+    ],
+    audioSamples: [
+      {
+        title: "Dry vs Wet Processing",
+        url: "https://www.w3schools.com/html/horse.ogg"
       }
     ]
   },

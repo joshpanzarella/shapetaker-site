@@ -14,6 +14,10 @@ export type ProjectSummary = {
     src: string;
     alt: string;
   };
+  audioSamples?: {
+    title: string;
+    url: string;
+  }[];
 };
 
 const moduleAssetNames = [
@@ -65,7 +69,8 @@ export function getProjects(): ProjectSummary[] {
             src: moduleSpec.panelImage.src,
             alt: moduleSpec.panelImage.alt
           }
-        : undefined
+        : undefined,
+      audioSamples: moduleSpec.audioSamples
     });
   }
 

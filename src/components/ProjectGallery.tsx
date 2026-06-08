@@ -125,6 +125,18 @@ export function ProjectGallery({ projects }: ProjectGalleryProps) {
             })}
           </h3>
           <p>{activeProject.summary}</p>
+
+          {activeProject.audioSamples && activeProject.audioSamples.length > 0 && (
+            <div className="project-detail__samples" style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: '0.5rem', marginBottom: '0.5rem', flex: 1 }}>
+              <strong style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--ink-soft)' }}>Sound Samples</strong>
+              {activeProject.audioSamples.map((sample, i) => (
+                <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                  <small style={{ fontSize: '0.75rem', fontWeight: 600, opacity: 0.8 }}>{sample.title}</small>
+                  <audio controls src={sample.url} style={{ height: '36px', width: '100%', borderRadius: '4px' }} />
+                </div>
+              ))}
+            </div>
+          )}
           {activeProject.href ? (
             <Link className="button button--primary" href={activeProject.href}>
               <span style={{ display: 'inline-flex', gap: '0.6rem', paddingRight: '0.6rem', alignItems: 'center' }}>
