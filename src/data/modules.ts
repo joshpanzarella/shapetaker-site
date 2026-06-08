@@ -15,7 +15,8 @@ export type Hotspot = {
     label: string;
     icon?: string;
     svg?: string;
-    rotation: number;
+    rotation?: number;
+    state?: 'up' | 'down';
   }>;
 };
 
@@ -146,7 +147,21 @@ export const modules: ModuleSpec[] = [
         y: 52.4,
         size: 9,
         description: "sync mode switch for the v side.",
-        tip: "toggle this while watching the display to hear and see the sync relationship change."
+        tip: "toggle this while watching the display to hear and see the sync relationship change.",
+        diagrams: [
+          {
+            id: "xsync-down",
+            label: "free running",
+            icon: "Unlink",
+            state: "down"
+          },
+          {
+            id: "xsync-up",
+            label: "hard sync",
+            icon: "Link",
+            state: "up"
+          }
+        ]
       },
       {
         id: "reverse-sync",
@@ -156,7 +171,21 @@ export const modules: ModuleSpec[] = [
         y: 52.4,
         size: 9,
         description: "reverse sync mode switch for the z side.",
-        tip: "use it with xsync for more aggressive locked motion."
+        tip: "use it with xsync for more aggressive locked motion.",
+        diagrams: [
+          {
+            id: "rev-down",
+            label: "forward sync",
+            icon: "ArrowRight",
+            state: "down"
+          },
+          {
+            id: "rev-up",
+            label: "reverse sync",
+            icon: "ArrowLeft",
+            state: "up"
+          }
+        ]
       },
       {
         id: "xfade",

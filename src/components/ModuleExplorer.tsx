@@ -160,12 +160,21 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
             {activeControl.diagrams.map((diagram) => {
               return (
                 <div key={diagram.id} className="control-diagram">
-                  <div className="control-diagram__knob">
-                    <div 
-                      className="control-diagram__knob-indicator" 
-                      style={{ transform: `rotate(${diagram.rotation}deg)` }} 
-                    />
-                  </div>
+                  {activeControl.type === "switch" ? (
+                    <div className="control-diagram__switch">
+                      <div 
+                        className="control-diagram__switch-toggle" 
+                        style={{ transform: `translateY(${diagram.state === 'up' ? -8 : 8}px)` }} 
+                      />
+                    </div>
+                  ) : (
+                    <div className="control-diagram__knob">
+                      <div 
+                        className="control-diagram__knob-indicator" 
+                        style={{ transform: `rotate(${diagram.rotation}deg)` }} 
+                      />
+                    </div>
+                  )}
                   <div className="control-diagram__content">
                     {diagram.svg ? (
                       <svg 
