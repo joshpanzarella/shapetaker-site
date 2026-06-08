@@ -1175,10 +1175,8 @@ h3 {
   font-weight: 900;
   cursor: pointer;
   transition:
-    transform 160ms ease,
     background 160ms ease,
-    color 160ms ease,
-    filter 160ms ease;
+    color 160ms ease;
 }
 
 .gallery-tabs button {
@@ -1189,22 +1187,15 @@ h3 {
   text-transform: uppercase;
 }
 
+.gallery-tabs button:hover,
+.gallery-tabs button:focus-visible,
 .gallery-tabs button.is-active,
+.project-strip button:hover,
+.project-strip button:focus-visible,
 .project-strip button.is-active {
   border-color: var(--ink);
   background: var(--ink);
   color: var(--paper);
-}
-
-.gallery-tabs button:hover,
-.gallery-tabs button:focus-visible,
-.project-strip button:hover,
-.project-strip button:focus-visible {
-  border-color: var(--ink);
-  background: var(--ink);
-  color: var(--paper);
-  transform: translateY(-1px);
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
   outline: 0;
 }
 
