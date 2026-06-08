@@ -118,7 +118,7 @@ html {
   background: var(--paper);
   color: var(--ink);
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -129,7 +129,7 @@ body {
   background-image: var(--body-texture);
   background-attachment: fixed;
   background-size: var(--body-texture-size);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body::selection {
