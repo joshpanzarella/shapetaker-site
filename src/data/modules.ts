@@ -176,8 +176,8 @@ export const modules: ModuleSpec[] = [
           },
           {
             id: "v-z-blend",
-            label: "v + z blended",
-            svg: '<path d="M5 4 L12 20 L19 4 M4 4 H20 L4 20 H20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+            label: "v + z blend",
+            svg: '<path d="M6 18 L18 6 M6 6 L18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
             rotation: 0
           },
           {
