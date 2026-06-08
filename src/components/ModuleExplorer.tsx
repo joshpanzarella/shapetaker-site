@@ -6,7 +6,6 @@ import type { CSSProperties } from "react";
 import { MousePointer2, Settings2 } from "lucide-react";
 import * as LucideIcons from "lucide-react";
 import type { Hotspot, ModuleExplorerData } from "@/data/modules";
-import { MorphingTitle } from "@/components/MorphingTitle";
 
 type ModuleExplorerProps = {
   module: ModuleExplorerData;
@@ -134,7 +133,23 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
           <ReadoutIcon size={16} aria-hidden="true" />
           {isContextMode ? "context menu" : "control focus"}
         </span>
-        <MorphingTitle as="h2" key={readoutTitle} title={readoutTitle} />
+        <h2 key={readoutTitle} style={{ display: 'flex', gap: '0px' }}>
+          {readoutTitle.split("").map((char, i) => {
+            const speeds = [1.8, 2.4, 1.5, 2.8, 2.0, 2.6];
+            const isCW = i % 2 === 0;
+            return (
+              <span 
+                key={i} 
+                className="crazy-letter-spin"
+                style={{
+                  animation: `${isCW ? 'spinCW' : 'spinCCW'} ${speeds[i % speeds.length]}s cubic-bezier(0.25, 1, 0.5, 1) forwards`
+                }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </span>
+            );
+          })}
+        </h2>
         <p>{readoutDescription}</p>
         {isContextMode && activeContextItem.values ? (
           <p className="context-values">{activeContextItem.values.join(" / ")}</p>
