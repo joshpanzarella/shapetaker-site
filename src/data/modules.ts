@@ -629,6 +629,12 @@ export const modules: ModuleSpec[] = [
     accentSoft: "rgba(104, 183, 200, 0.2)",
     icon: Gauge,
     hp: 4,
+    panelImage: {
+      src: "/modules/specula/panel-source.png",
+      width: 818,
+      height: 2072,
+      alt: "specula module panel art"
+    },
     media: {},
     controls: [],
     manual: [
