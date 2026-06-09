@@ -1490,15 +1490,14 @@ h3 {
 
 .scope-trace {
   stroke: #2dd4bf;
-  stroke-width: 1.5px;
+  stroke-width: 1.5;
   fill: none;
-  stroke-dasharray: 25 50;
-  animation: scopeTrace 1.2s linear infinite;
-  filter: drop-shadow(0 0 2px rgba(45, 212, 191, 0.8));
+  stroke-dasharray: 8 20;
+  animation: scopeTrace 1.5s linear infinite;
 }
 
 @keyframes scopeTrace {
-  from { stroke-dashoffset: 75; }
+  from { stroke-dashoffset: 28; }
   to { stroke-dashoffset: 0; }
 }
 

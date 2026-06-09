@@ -102,17 +102,17 @@ export const modules: ModuleSpec[] = [
           {
             id: "scope-chaotic",
             label: "chaotic (incommensurate ratio)",
-            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="#020617" /><path class="scope-trace" d="M 4 12 Q 8 4, 12 12 T 20 12 M 12 4 Q 4 8, 12 12 T 12 20 M 6 6 C 12 4, 18 12, 18 18 C 12 20, 6 12, 6 6 Z" />'
+            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="#020617" /><path fill="none" stroke="#2dd4bf" stroke-width="1.5" class="scope-trace" d="M 4 12 Q 8 4, 12 12 T 20 12 M 12 4 Q 4 8, 12 12 T 12 20 M 6 6 C 12 4, 18 12, 18 18 C 12 20, 6 12, 6 6 Z" />'
           },
           {
             id: "scope-sync",
             label: "hard synced (forced lock)",
-            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="#020617" /><path class="scope-trace" d="M 4 14 Q 8 4, 12 14 L 12 6 Q 16 6, 20 14" />'
+            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="#020617" /><path fill="none" stroke="#2dd4bf" stroke-width="1.5" class="scope-trace" d="M 4 14 Q 8 4, 12 14 L 12 6 Q 16 6, 20 14" />'
           },
           {
             id: "scope-1-1",
             label: "unison (1:1 phase lock)",
-            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="#020617" /><ellipse class="scope-trace" cx="12" cy="12" rx="6" ry="6" />'
+            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="#020617" /><ellipse fill="none" stroke="#2dd4bf" stroke-width="1.5" class="scope-trace" cx="12" cy="12" rx="6" ry="6" />'
           }
         ]
       },
@@ -394,7 +394,7 @@ export const modules: ModuleSpec[] = [
         label: "v/oct",
         type: "jack",
         x: 20.5,
-        y: 87.7,
+        y: 89,
         size: 8,
         description: "second pitch cv input for the v side.",
         tip: "use the second input when stacking or combining pitch sources."
@@ -414,7 +414,7 @@ export const modules: ModuleSpec[] = [
         label: "fine cv",
         type: "jack",
         x: 40.2,
-        y: 87.7,
+        y: 89,
         size: 8,
         description: "second fine modulation input for the v side.",
         tip: "use this for an additional fine-control modulation source."
@@ -434,7 +434,7 @@ export const modules: ModuleSpec[] = [
         label: "shape cv",
         type: "jack",
         x: 60,
-        y: 87.7,
+        y: 89,
         size: 8,
         description: "second shape modulation input.",
         tip: "use this for a second modulation lane into shape."
@@ -454,7 +454,7 @@ export const modules: ModuleSpec[] = [
         label: "right",
         type: "jack",
         x: 79.7,
-        y: 87.7,
+        y: 89,
         size: 8,
         description: "right audio output.",
         tip: "patch this to the right channel of a mixer or stereo path."
