@@ -170,7 +170,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
                       />
                     ) : diagram.icon ? (
                       (() => {
-                        const IconComponent = (LucideIcons as Record<string, React.ElementType>)[diagram.icon] || LucideIcons.Circle;
+                        const IconComponent = (LucideIcons as unknown as Record<string, React.ElementType>)[diagram.icon] || LucideIcons.Circle;
                         return <IconComponent size={28} className="control-diagram__icon" />;
                       })()
                     ) : null}
