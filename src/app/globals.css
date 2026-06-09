@@ -1091,8 +1091,8 @@ h3 {
   grid-template-columns: minmax(0, 0.7fr) minmax(320px, 1fr);
   gap: 1rem;
   align-items: stretch;
-  background: var(--palette-graphite-900);
-  color: var(--palette-graphite-50);
+  background: var(--surface-card);
+  color: var(--ink);
 }
 
 .media-dock__copy {
@@ -1112,7 +1112,7 @@ h3 {
 .media-dock__copy p {
   max-width: 540px;
   margin-top: 1rem;
-  color: rgba(247, 242, 232, 0.75);
+  color: var(--ink-soft);
   line-height: 1.6;
 }
 
