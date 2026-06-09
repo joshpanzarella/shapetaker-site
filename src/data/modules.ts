@@ -107,7 +107,14 @@ export const modules: ModuleSpec[] = [
         y: 17.2,
         size: 16,
         description: "coarse frequency control for the v side of the module.",
-        tip: "start here when tuning the left-side oscillator or processor voice."
+        tip: "start here when tuning the left-side oscillator or processor voice.",
+        diagrams: [
+          { id: "v-freq--2", label: "-2 octaves", icon: "ChevronsDown", rotation: -135 },
+          { id: "v-freq--1", label: "-1 octave", icon: "ChevronDown", rotation: -67.5 },
+          { id: "v-freq-0", label: "0 octaves", icon: "Minus", rotation: 0 },
+          { id: "v-freq-+1", label: "+1 octave", icon: "ChevronUp", rotation: 67.5 },
+          { id: "v-freq-+2", label: "+2 octaves", icon: "ChevronsUp", rotation: 135 }
+        ]
       },
       {
         id: "z-frequency",
@@ -117,7 +124,14 @@ export const modules: ModuleSpec[] = [
         y: 17.2,
         size: 16,
         description: "coarse frequency control for the z side of the module.",
-        tip: "tune this against the v side before adjusting fine or sync behavior."
+        tip: "tune this against the v side before adjusting fine or sync behavior.",
+        diagrams: [
+          { id: "z-freq--2", label: "-2 octaves", icon: "ChevronsDown", rotation: -135 },
+          { id: "z-freq--1", label: "-1 octave", icon: "ChevronDown", rotation: -67.5 },
+          { id: "z-freq-0", label: "0 octaves", icon: "Minus", rotation: 0 },
+          { id: "z-freq-+1", label: "+1 octave", icon: "ChevronUp", rotation: 67.5 },
+          { id: "z-freq-+2", label: "+2 octaves", icon: "ChevronsUp", rotation: 135 }
+        ]
       },
       {
         id: "v-fine",
@@ -127,7 +141,12 @@ export const modules: ModuleSpec[] = [
         y: 34.6,
         size: 12,
         description: "fine frequency control for the v side.",
-        tip: "use small movements here after the coarse v frequency is close."
+        tip: "use small movements here after the coarse v frequency is close.",
+        diagrams: [
+          { id: "v-fine-flat", label: "flat", icon: "Minus", rotation: -135 },
+          { id: "v-fine-center", label: "center", icon: "Circle", rotation: 0 },
+          { id: "v-fine-sharp", label: "sharp", icon: "Plus", rotation: 135 }
+        ]
       },
       {
         id: "z-fine",
@@ -137,7 +156,12 @@ export const modules: ModuleSpec[] = [
         y: 34.6,
         size: 12,
         description: "fine frequency control for the z side.",
-        tip: "use this to dial close intervals or beating against the v side."
+        tip: "use this to dial close intervals or beating against the v side.",
+        diagrams: [
+          { id: "z-fine-flat", label: "flat", icon: "Minus", rotation: -135 },
+          { id: "z-fine-center", label: "center", icon: "Circle", rotation: 0 },
+          { id: "z-fine-sharp", label: "sharp", icon: "Plus", rotation: 135 }
+        ]
       },
       {
         id: "xsync",
