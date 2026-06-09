@@ -133,23 +133,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
           <ReadoutIcon size={16} aria-hidden="true" />
           {isContextMode ? "context menu" : "control focus"}
         </span>
-        <h2 key={readoutTitle} style={{ display: 'flex', gap: '0px' }}>
-          {readoutTitle.split("").map((char, i) => {
-            const speeds = [0.9, 1.2, 0.75, 1.4, 1.0, 1.3];
-            const isCW = i % 2 === 0;
-            return (
-              <span 
-                key={i} 
-                className="crazy-letter-spin"
-                style={{
-                  animation: `${isCW ? 'spinCW' : 'spinCCW'} ${speeds[i % speeds.length]}s cubic-bezier(0.25, 1, 0.5, 1) forwards`
-                }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            );
-          })}
-        </h2>
+        <h2 key={readoutTitle}>{readoutTitle}</h2>
         <p>{readoutDescription}</p>
         {isContextMode && activeContextItem.values ? (
           <p className="context-values">{activeContextItem.values.join(" / ")}</p>
