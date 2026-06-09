@@ -90,8 +90,8 @@ export const modules: ModuleSpec[] = [
     media: {},
     controls: [
       {
-        id: "display",
-        label: "display",
+        id: "scope",
+        label: "scope",
         type: "meter",
         x: 50,
         y: 20,
@@ -101,18 +101,18 @@ export const modules: ModuleSpec[] = [
         diagrams: [
           {
             id: "scope-chaotic",
-            label: "chaotic / free",
-            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="currentColor" /><g style="transform-origin: center; animation: spinCW 8s linear infinite;"><ellipse cx="12" cy="12" rx="8" ry="3" fill="none" stroke="var(--bg)" stroke-width="1.5" /><ellipse cx="12" cy="12" rx="3" ry="8" fill="none" stroke="var(--bg)" stroke-width="1.5" /></g>'
+            label: "chaotic (incommensurate ratio)",
+            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="#020617" /><path class="scope-trace" d="M 4 12 Q 8 4, 12 12 T 20 12 M 12 4 Q 4 8, 12 12 T 12 20 M 6 6 C 12 4, 18 12, 18 18 C 12 20, 6 12, 6 6 Z" />'
           },
           {
             id: "scope-sync",
-            label: "hard synced",
-            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="currentColor" /><path d="M4 14 Q 8 4, 12 14 L 12 6 Q 16 6, 20 14" fill="none" stroke="var(--bg)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />'
+            label: "hard synced (forced lock)",
+            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="#020617" /><path class="scope-trace" d="M 4 14 Q 8 4, 12 14 L 12 6 Q 16 6, 20 14" />'
           },
           {
             id: "scope-1-1",
-            label: "locked (1:1)",
-            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="currentColor" /><ellipse cx="12" cy="12" rx="6" ry="6" fill="none" stroke="var(--bg)" stroke-width="1.5" />'
+            label: "unison (1:1 phase lock)",
+            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="#020617" /><ellipse class="scope-trace" cx="12" cy="12" rx="6" ry="6" />'
           }
         ]
       },

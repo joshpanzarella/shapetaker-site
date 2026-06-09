@@ -1488,6 +1488,20 @@ h3 {
   transform: translateX(-50%);
 }
 
+.scope-trace {
+  stroke: #2dd4bf;
+  stroke-width: 1.5px;
+  fill: none;
+  stroke-dasharray: 25 50;
+  animation: scopeTrace 1.2s linear infinite;
+  filter: drop-shadow(0 0 2px rgba(45, 212, 191, 0.8));
+}
+
+@keyframes scopeTrace {
+  from { stroke-dashoffset: 75; }
+  to { stroke-dashoffset: 0; }
+}
+
 .control-diagram__knob-indicator {
   position: absolute;
   width: 3px;
