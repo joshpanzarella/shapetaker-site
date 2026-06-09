@@ -1504,11 +1504,23 @@ h3 {
 
 .control-diagram__knob-indicator {
   position: absolute;
-  width: 3px;
-  height: 50%;
-  background: var(--ink);
+  width: 100%;
+  height: 100%;
   top: 0;
-  transform-origin: bottom center;
+  left: 0;
+  transform-origin: center center;
+}
+
+.control-diagram__knob-indicator::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--ink);
+  border-radius: 50%;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .control-diagram__content {

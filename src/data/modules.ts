@@ -512,7 +512,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "voice-character",
-        group: "analog glue",
+        group: "component tolerances",
         label: "voice character",
         kind: "slider",
         description:
