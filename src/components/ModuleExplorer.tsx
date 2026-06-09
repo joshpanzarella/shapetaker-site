@@ -161,12 +161,11 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
                   )}
                   <div className="control-diagram__content">
                     {diagram.svg ? (
-                      <svg 
-                        width={activeControl.type === "meter" ? "40" : "28"} 
-                        height={activeControl.type === "meter" ? "40" : "28"} 
-                        viewBox="0 0 24 24" 
-                        className="control-diagram__icon"
-                        dangerouslySetInnerHTML={{ __html: diagram.svg }}
+                      <span 
+                        style={{ display: 'flex' }}
+                        dangerouslySetInnerHTML={{ 
+                          __html: `<svg viewBox="0 0 24 24" width="${activeControl.type === 'meter' ? '40' : '28'}" height="${activeControl.type === 'meter' ? '40' : '28'}" class="control-diagram__icon">${diagram.svg}</svg>`
+                        }}
                       />
                     ) : diagram.icon ? (
                       (() => {
