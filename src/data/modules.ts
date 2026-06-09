@@ -118,7 +118,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "v-frequency",
-        label: "v freq",
+        label: "v coarse freq",
         type: "knob",
         x: 14.7,
         y: 17.2,
@@ -135,7 +135,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "z-frequency",
-        label: "z freq",
+        label: "z coarse freq",
         type: "knob",
         x: 85.3,
         y: 17.2,
@@ -152,7 +152,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "v-fine",
-        label: "v fine",
+        label: "v fine tune",
         type: "knob",
         x: 23,
         y: 34.6,
@@ -167,7 +167,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "z-fine",
-        label: "z fine",
+        label: "z fine tune",
         type: "knob",
         x: 77,
         y: 34.6,
@@ -182,7 +182,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "xsync",
-        label: "xsync",
+        label: "cross sync",
         type: "switch",
         x: 30,
         y: 52.4,
@@ -206,7 +206,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "reverse-sync",
-        label: "rev sync",
+        label: "reverse sync",
         type: "switch",
         x: 70,
         y: 52.4,
@@ -230,7 +230,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "xfade",
-        label: "xfade",
+        label: "crossfade",
         type: "knob",
         x: 50,
         y: 45.4,
@@ -341,7 +341,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "x-shape-cv",
-        label: "x shape cv",
+        label: "crossfade cv",
         type: "knob",
         x: 50,
         y: 59.8,
@@ -351,10 +351,10 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "x-input",
-        label: "x",
+        label: "crossfade cv",
         type: "jack",
         x: 50,
-        y: 68.8,
+        y: 69,
         size: 8,
         description: "central x patch point.",
         tip: "use this jack with the central controls to patch the cross modulation path."
@@ -381,7 +381,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "v-voct-a",
-        label: "v/oct",
+        label: "v/oct - V",
         type: "jack",
         x: 20.5,
         y: 78.6,
@@ -391,7 +391,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "v-voct-b",
-        label: "v/oct",
+        label: "v/oct - Z",
         type: "jack",
         x: 20.5,
         y: 89,
