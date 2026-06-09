@@ -143,11 +143,11 @@ export const modules: ModuleSpec[] = [
         description: "coarse frequency control for the z side of the module.",
         tip: "tune this against the v side before adjusting fine or sync behavior.",
         diagrams: [
-          { id: "z-freq--2", label: "-2 octaves", icon: "ChevronsDown", rotation: -135 },
-          { id: "z-freq--1", label: "-1 octave", icon: "ChevronDown", rotation: -67.5 },
-          { id: "z-freq-0", label: "0 octaves", icon: "Minus", rotation: 0 },
-          { id: "z-freq-+1", label: "+1 octave", icon: "ChevronUp", rotation: 67.5 },
-          { id: "z-freq-+2", label: "+2 octaves", icon: "ChevronsUp", rotation: 135 }
+          { id: "z-freq--24", label: "-24 semitones", icon: "ChevronsDown", rotation: -135 },
+          { id: "z-freq--12", label: "-12 semitones", icon: "ChevronDown", rotation: -67.5 },
+          { id: "z-freq-0", label: "0 semitones", icon: "Minus", rotation: 0 },
+          { id: "z-freq-+12", label: "+12 semitones", icon: "ChevronUp", rotation: 67.5 },
+          { id: "z-freq-+24", label: "+24 semitones", icon: "ChevronsUp", rotation: 135 }
         ]
       },
       {
