@@ -601,12 +601,6 @@ export const modules: ModuleSpec[] = [
         title: "concept overview",
         body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
       }
-    ],
-    audioSamples: [
-      {
-        title: "Dry vs Wet Processing",
-        url: "https://www.w3schools.com/html/horse.ogg"
-      }
     ]
   },
   {
@@ -845,6 +839,12 @@ export const modules: ModuleSpec[] = [
     accentSoft: "rgba(104, 183, 200, 0.2)",
     icon: Sparkles,
     hp: 14,
+    panelImage: {
+      src: "/modules/reverie/panel-source.png",
+      width: 1458,
+      height: 2056,
+      alt: "reverie hardware panel"
+    },
     media: {},
     controls: [],
     manual: []
@@ -860,6 +860,12 @@ export const modules: ModuleSpec[] = [
     accentSoft: "rgba(140, 122, 163, 0.2)",
     icon: Layers,
     hp: 14,
+    panelImage: {
+      src: "/modules/tessellation/panel-source.png",
+      width: 1458,
+      height: 2056,
+      alt: "tessellation hardware panel"
+    },
     media: {},
     controls: [],
     manual: []
