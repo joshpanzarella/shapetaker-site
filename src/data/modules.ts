@@ -160,9 +160,9 @@ export const modules: ModuleSpec[] = [
         description: "fine frequency control for the v side.",
         tip: "use small movements here after the coarse v frequency is close.",
         diagrams: [
-          { id: "v-fine-flat", label: "flat", icon: "Minus", rotation: -135 },
-          { id: "v-fine-center", label: "center", icon: "Circle", rotation: 0 },
-          { id: "v-fine-sharp", label: "sharp", icon: "Plus", rotation: 135 }
+          { id: "v-fine-flat", label: "flat (-50 cents)", icon: "Minus", rotation: -135 },
+          { id: "v-fine-center", label: "center (0 cents)", icon: "Circle", rotation: 0 },
+          { id: "v-fine-sharp", label: "sharp (+50 cents)", icon: "Plus", rotation: 135 }
         ]
       },
       {
@@ -175,9 +175,9 @@ export const modules: ModuleSpec[] = [
         description: "fine frequency control for the z side.",
         tip: "use this to dial close intervals or beating against the v side.",
         diagrams: [
-          { id: "z-fine-flat", label: "flat", icon: "Minus", rotation: -135 },
-          { id: "z-fine-center", label: "center", icon: "Circle", rotation: 0 },
-          { id: "z-fine-sharp", label: "sharp", icon: "Plus", rotation: 135 }
+          { id: "z-fine-flat", label: "flat (-50 cents)", icon: "Minus", rotation: -135 },
+          { id: "z-fine-center", label: "center (0 cents)", icon: "Circle", rotation: 0 },
+          { id: "z-fine-sharp", label: "sharp (+50 cents)", icon: "Plus", rotation: 135 }
         ]
       },
       {
