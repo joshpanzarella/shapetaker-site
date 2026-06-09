@@ -90,14 +90,31 @@ export const modules: ModuleSpec[] = [
     media: {},
     controls: [
       {
-        id: "scope",
-        label: "scope",
+        id: "display",
+        label: "display",
         type: "meter",
         x: 50,
         y: 20,
         size: 32,
         description: "central oscilloscope display for visualizing the relationship between the two signal paths.",
-        tip: "use the display to tune motion, sync, and crossfade behavior by eye while listening."
+        tip: "use the display to tune motion, sync, and crossfade behavior by eye while listening.",
+        diagrams: [
+          {
+            id: "scope-chaotic",
+            label: "chaotic / free",
+            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="currentColor" /><g style="transform-origin: center; animation: spinCW 8s linear infinite;"><ellipse cx="12" cy="12" rx="8" ry="3" fill="none" stroke="var(--bg)" stroke-width="1.5" /><ellipse cx="12" cy="12" rx="3" ry="8" fill="none" stroke="var(--bg)" stroke-width="1.5" /></g>'
+          },
+          {
+            id: "scope-sync",
+            label: "hard synced",
+            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="currentColor" /><path d="M4 14 Q 8 4, 12 14 L 12 6 Q 16 6, 20 14" fill="none" stroke="var(--bg)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />'
+          },
+          {
+            id: "scope-1-1",
+            label: "locked (1:1)",
+            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="currentColor" /><ellipse cx="12" cy="12" rx="6" ry="6" fill="none" stroke="var(--bg)" stroke-width="1.5" />'
+          }
+        ]
       },
       {
         id: "v-frequency",

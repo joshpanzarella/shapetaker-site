@@ -167,7 +167,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
                         style={{ transform: `rotate(${diagram.state === 'up' ? 0 : 180}deg)` }} 
                       />
                     </div>
-                  ) : (
+                  ) : activeControl.type === "meter" ? null : (
                     <div className="control-diagram__knob">
                       <div 
                         className="control-diagram__knob-indicator" 
@@ -178,8 +178,8 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
                   <div className="control-diagram__content">
                     {diagram.svg ? (
                       <svg 
-                        width="28" 
-                        height="28" 
+                        width={activeControl.type === "meter" ? "40" : "28"} 
+                        height={activeControl.type === "meter" ? "40" : "28"} 
                         viewBox="0 0 24 24" 
                         className="control-diagram__icon"
                         dangerouslySetInnerHTML={{ __html: diagram.svg }}
