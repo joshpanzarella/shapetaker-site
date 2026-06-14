@@ -2,10 +2,10 @@
   {
     "slug": "first-post",
     "frontmatter": {
-      "title": "My First Modular Design",
+      "title": "rambling: sample workflow",
       "date": "2026-06-14",
       "summary": "a slightly more simple approach to using samples."
     },
-    "content": "\n# Gathering and Organizing Samples for a New Workflow.\n\nDesigning a hardware module is always a journey. You start with a concept, but as soon as you hit the breadboard, things begin to mutate. The design for this module was no exception!\n\nHere are some things I focused on:\n- **Tone clarity** across the entire frequency range.\n- **Ergonomics**, because a cramped panel is never fun to play.\n- **Power efficiency**, ensuring it doesn't drag down the rest of the rack.\n\nBelow is an interactive look at the interface using the `ModuleExplorer` component! You can drop React components right into these markdown files!\n\n*(Note: Add the `<ModuleExplorer />` here once you have the data ready!)*\n\nStay tuned for more updates on my process.\n"
+    "content": "\n# Gathering and Organizing Samples for a New Workflow.\n\nRecently, I sold a Polyend Tracker Mini. I really did enjoy everything about the device and workflow outside of the input. Polyend makes an excellent product. I was jealous of the jog wheel and pads on the Tracker+, but I made my $800 bed and I was about to at least try to lay in it.\n\nHere are some things I focused on:\n- **Tone clarity** across the entire frequency range.\n- **Ergonomics**, because a cramped panel is never fun to play.\n- **Power efficiency**, ensuring it doesn't drag down the rest of the rack.\n\nBelow is an interactive look at the interface using the `ModuleExplorer` component! You can drop React components right into these markdown files!\n\n*(Note: Add the `<ModuleExplorer />` here once you have the data ready!)*\n\nStay tuned for more updates on my process.\n"
   }
 ]
