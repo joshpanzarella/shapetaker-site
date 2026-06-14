@@ -23,7 +23,7 @@ export default function Home() {
         <div className="home-hero__intro">
           <h1 className="brand-title" aria-label="SHAPETAKER">
             <span aria-hidden="true">
-              SHAPETAKE<span className="brand-alt-r">&#xf02e;</span>
+              SHAPETA<span className="brand-alt-glyph">&#xf02d;</span>E<span className="brand-alt-glyph">&#xf02e;</span>
             </span>
           </h1>
         </div>

@@ -7,7 +7,7 @@ export function SiteHeader() {
     <header className="site-header">
       <Link className="brand-mark" href="/" aria-label="SHAPETAKER home">
         <span aria-hidden="true">
-          SHAPETAKE<span className="brand-alt-r">&#xf02e;</span>
+          SHAPETA<span className="brand-alt-glyph">&#xf02d;</span>E<span className="brand-alt-glyph">&#xf02e;</span>
         </span>
       </Link>
       <nav className="site-nav" aria-label="primary navigation">

@@ -200,6 +200,7 @@ code {
     0px 1px 1px var(--text-recess-highlight);
 }
 
+.brand-alt-glyph,
 .brand-alt-r {
   font-family: var(--font-brand);
   font-weight: 600;
