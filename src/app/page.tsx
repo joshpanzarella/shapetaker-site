@@ -5,13 +5,7 @@ import { ProjectGallery } from "@/components/ProjectGallery";
 import { getModuleExplorerData, modules, stackHighlights } from "@/data/modules";
 import { getProjects } from "@/lib/projects";
 
-const alchemicalSymbols = [
-  "🜀", "🜁", "🜂", "🜃", "🜄", "🜅", "🜆", "🜇", "🜈", "🜉", "🜊", "🜋", "🜌", "🜍", "🜎", "🜏",
-  "🜐", "🜑", "🜒", "🜓", "🜔", "🜕", "🜖", "🜗", "🜘", "🜙", "🜚", "🜛", "🜜", "🜝", "🜞", "🜟",
-  "🜠", "🜡", "🜢", "🜣", "🜤", "🜥", "🜦", "🜧", "🜨", "🜩", "🜪", "🜫", "🜬", "🜭", "🜮", "🜯",
-  "🜰", "🜱", "🜲", "🜳", "🜴", "🜵", "🜶", "🜷", "🜸", "🜹", "🜺", "🜻", "🜼", "🜽", "🜾", "🜿",
-  "🝊", "🝋", "🝌", "🝍", "🝎", "🝏", "🝐", "🝑", "🝒", "🝓", "🝔", "🝕", "🝖", "🝗", "🝘", "🝙"
-];
+import { RandomSymbols } from "@/components/RandomSymbols";
 
 export default function Home() {
   const featuredModule = modules.find((module) => module.panelImage) ?? modules[0];
@@ -62,15 +56,7 @@ export default function Home() {
       </section>
 
       <section className="content-band">
-        <div className="source-strip" style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center', opacity: 0.6, fontSize: '1.2rem', lineHeight: 1 }}>
-          {Array.from({ length: Math.floor(alchemicalSymbols.length / 9) }).map((_, blockIdx) => (
-            <div key={blockIdx} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.4rem' }}>
-              {alchemicalSymbols.slice(blockIdx * 9, blockIdx * 9 + 9).map((sym, i) => (
-                <span key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '1.5rem', height: '1.5rem' }}>{sym}</span>
-              ))}
-            </div>
-          ))}
-        </div>
+        <RandomSymbols />
       </section>
     </main>
   );

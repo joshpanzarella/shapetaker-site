@@ -74,7 +74,7 @@ export const modules: ModuleSpec[] = [
     slug: "clairaudient",
     name: "clairaudient",
     subtitle: "A stereo virtual analog sigmoid wave oscillator with crossfading and wave shape modulation for subtle, discordant timbre shifts. Perfect for your next séance.",
-    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+    summary: "Unveil hidden sonic dimensions with Clairaudient. This dual-voice oscillator weaves intricate stereo textures through sigmoid wave shaping and cross-modulation. Whether you seek crystalline chimes, spectral drones, or untamed chaos, Clairaudient acts as your vessel to the unknown, blurring the line between analog warmth and ethereal discord.",
     category: "vcv rack module",
     status: "stereo oscillator",
     accent: "#68B7C8",
@@ -235,7 +235,7 @@ export const modules: ModuleSpec[] = [
         x: 50,
         y: 45.4,
         size: 17,
-        description: "crossfades between the two sides of the module.",
+        description: "The crossfade circuit routes the V and Z signal paths to the outputs based on the 'crossfade curve' context menu setting. In 'equal-power' mode, it blends the signals using a constant-power trigonometric curve to prevent volume dips at the center position. In 'stereo swap' mode, the knob behaves as a dual panner: at minimum, V is panned left and Z is right; at center, both are mixed equally; at maximum, the stereo image inverts (V right, Z left). This enables complex spatial manipulation when modulated via CV.",
         tip: "animate this control when you want the output to move between v and z behavior.",
         diagrams: [
           {
