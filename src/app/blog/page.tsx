@@ -11,8 +11,8 @@ export default function Blog() {
     <main>
       <section className="page-shell" style={{ paddingBottom: "2rem" }}>
         <div className="page-heading" style={{ marginBottom: "1rem" }}>
-          <span className="eyebrow">development log</span>
-          <h1 className="brand-title">blog</h1>
+          <span className="eyebrow">notes</span>
+          <h1 className="brand-title">field notes</h1>
           <p>
             updates, deep dives, and build notes on current modular designs and experiments.
           </p>
@@ -21,7 +21,7 @@ export default function Blog() {
 
       <section className="content-band content-band--dark" style={{ paddingTop: "3rem" }}>
         <div className="section-heading">
-          <span className="eyebrow">latest posts</span>
+          <span className="eyebrow">latest notes</span>
           <h2>read the log.</h2>
         </div>
 
@@ -49,13 +49,13 @@ export default function Blog() {
               <span className="eyebrow" style={{ marginBottom: '0.8rem', fontSize: '0.65rem' }}>{post.frontmatter.date}</span>
               <p style={{ flex: 1, marginBottom: '1.2rem' }}>{post.frontmatter.summary}</p>
               <Link className="inline-link" href={`/blog/${post.slug}`} style={{ marginTop: 'auto' }}>
-                read post
+                read note
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </article>
           ))}
           {posts.length === 0 && (
-            <p style={{ color: "var(--ink-soft)" }}>No posts found yet.</p>
+            <p style={{ color: "var(--ink-soft)" }}>No notes found yet.</p>
           )}
         </div>
 

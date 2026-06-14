@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/generate-blog-data.mjs",
-    "dev": "next dev",
+    "dev": "node scripts/dev-with-content-watch.mjs",
+    "dev:next": "next dev",
     "prebuild": "node scripts/generate-blog-data.mjs",
     "build": "next build",
     "preview": "npx serve@latest out",

@@ -1,38 +1,11 @@
 [
   {
-    "slug": "incantation-dsp",
-    "frontmatter": {
-      "title": "DSP: Filtering and Resonance in Incantation",
-      "date": "2024-05-20",
-      "summary": "A deep dive into the resonant filter bank architecture of Incantation, exploring how cascading bandpass filters create spectral peaks."
-    },
-    "content": "\n# Filtering in Incantation\n\nIncantation is built around a resonant filter bank. Rather than relying on a single state-variable filter, it splits the incoming signal into dozens of discrete frequency bands, allowing the user to precisely sculpt the harmonic structure.\n\nThis approach introduces significant DSP challenges, especially regarding phase cancellation and CPU overhead in VCV Rack. This post covers the optimization techniques I used to keep the module lightweight.\n"
-  },
-  {
     "slug": "first-post",
     "frontmatter": {
       "title": "My First Modular Design",
-      "date": "2024-05-12",
-      "summary": "A brief look into how I designed my very first hardware module from scratch."
+      "date": "2026-06-14",
+      "summary": "a slightly more simple approach to using samples."
     },
-    "content": "\n# Building the Foundation\n\nDesigning a hardware module is always a journey. You start with a concept, but as soon as you hit the breadboard, things begin to mutate. The design for this module was no exception!\n\nHere are some things I focused on:\n- **Tone clarity** across the entire frequency range.\n- **Ergonomics**, because a cramped panel is never fun to play.\n- **Power efficiency**, ensuring it doesn't drag down the rest of the rack.\n\nBelow is an interactive look at the interface using the `ModuleExplorer` component! You can drop React components right into these markdown files!\n\n*(Note: Add the `<ModuleExplorer />` here once you have the data ready!)*\n\nStay tuned for more updates on my process.\n"
-  },
-  {
-    "slug": "shapetaker-aesthetic",
-    "frontmatter": {
-      "title": "Designing the Shapetaker Aesthetic",
-      "date": "2024-04-02",
-      "summary": "How drafting paper, vintage test equipment, and powder-coated aluminum inspired the dark, mechanical UI of the Shapetaker ecosystem."
-    },
-    "content": "\n# Designing the Aesthetic\n\nWhen building the Shapetaker website, I wanted the digital experience to feel exactly like the physical hardware it represents. I pulled references from old oscilloscopes, mechanical pencils on graph paper, and deep matte aluminum. \n\nWe used a fractal noise SVG overlay to simulate the tactile feel of a powder-coated panel, while keeping the UI stark and highly functional.\n"
-  },
-  {
-    "slug": "transmutation-v1",
-    "frontmatter": {
-      "title": "Transmutation v1: Phase Modulation Experiments",
-      "date": "2024-03-15",
-      "summary": "Documenting the early breadboard tests and digital DSP prototyping of the Transmutation module's phase distortion core."
-    },
-    "content": "\n# Transmutation v1\n\nThe earliest versions of Transmutation focused on raw phase manipulation. By taking a standard sine wave and wrapping it through a series of mathematical folds, I was able to generate complex, metallic timbres that felt alive.\n\nThis post will eventually dive into the code behind the phase distortion algorithms and provide some audio examples of the very first hardware tests.\n"
+    "content": "\n# Gathering and Organizing Samples for a New Workflow.\n\nDesigning a hardware module is always a journey. You start with a concept, but as soon as you hit the breadboard, things begin to mutate. The design for this module was no exception!\n\nHere are some things I focused on:\n- **Tone clarity** across the entire frequency range.\n- **Ergonomics**, because a cramped panel is never fun to play.\n- **Power efficiency**, ensuring it doesn't drag down the rest of the rack.\n\nBelow is an interactive look at the interface using the `ModuleExplorer` component! You can drop React components right into these markdown files!\n\n*(Note: Add the `<ModuleExplorer />` here once you have the data ready!)*\n\nStay tuned for more updates on my process.\n"
   }
 ]

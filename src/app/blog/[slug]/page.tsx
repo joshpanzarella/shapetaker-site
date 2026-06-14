@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!post) {
     return {
-      title: "post not found | shapetaker"
+      title: "note not found | shapetaker"
     };
   }
 
@@ -46,7 +46,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="module-page__intro">
           <Link className="back-link" href="/blog">
             <ArrowLeft size={16} aria-hidden="true" />
-            blog index
+            notes index
           </Link>
           <span className="eyebrow">{post.frontmatter.date}</span>
           <h1 style={{ marginTop: "1rem" }}>{post.frontmatter.title}</h1>
