@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import { modules } from "@/data/modules";
 
-export type ProjectKind = "vcv rack module" | "audio" | "software" | "visual" | "other";
+export type ProjectKind = "vcv rack modules" | "audio" | "software" | "visual" | "other";
 
 export type ProjectSummary = {
   slug: string;
@@ -60,7 +60,7 @@ export function getProjects(): ProjectSummary[] {
     moduleProjects.set(moduleSpec.slug, {
       slug: moduleSpec.slug,
       title: moduleSpec.name,
-      kind: "vcv rack module",
+      kind: "vcv rack modules",
       status: moduleSpec.status,
       summary: moduleSpec.summary,
       href: `/modules/${moduleSpec.slug}`,
@@ -89,7 +89,7 @@ export function getProjects(): ProjectSummary[] {
       moduleProjects.set(slug, {
         slug,
         title: existingProject?.title ?? titleFromSlug(slug),
-        kind: "vcv rack module",
+        kind: "vcv rack modules",
         status: existingProject?.status ?? "asset added",
         summary:
           existingProject?.summary ??

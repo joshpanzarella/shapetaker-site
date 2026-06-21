@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getBlogPosts } from "@/lib/blog";
@@ -30,7 +31,13 @@ export default function Blog() {
             <article className="stack-tile" key={post.slug} style={{ display: 'flex', flexDirection: 'column' }}>
               {post.frontmatter.image ? (
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', marginBottom: '1.2rem', clipPath: 'var(--chamfer-sm)', overflow: 'hidden', border: '1px solid var(--line)' }}>
-                  <img src={post.frontmatter.image} alt={post.frontmatter.title} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+                  <Image
+                    src={post.frontmatter.image}
+                    alt={post.frontmatter.title}
+                    fill
+                    sizes="(max-width: 860px) calc(100vw - 2rem), 33vw"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
               ) : (
                 <span 

@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { micromark } from "micromark";
 
 const blogDir = path.join(process.cwd(), "src/content/blog");
 const outputFile = path.join(process.cwd(), "src/data/blog-posts.json");
@@ -23,7 +24,8 @@ function generateBlogData() {
       return {
         slug: file.replace(/\.mdx?$/, ""),
         frontmatter: data,
-        content
+        content,
+        contentHtml: micromark(content)
       };
     });
 

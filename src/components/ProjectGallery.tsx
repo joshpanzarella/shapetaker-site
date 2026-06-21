@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Images } from "lucide-react";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import type { ProjectKind, ProjectSummary } from "@/lib/projects";
 import { MorphingTitle } from "@/components/MorphingTitle";
 

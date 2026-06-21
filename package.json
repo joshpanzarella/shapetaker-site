@@ -13,8 +13,8 @@
   "dependencies": {
     "gray-matter": "^4.0.3",
     "lucide-react": "latest",
+    "micromark": "^4.0.2",
     "next": "latest",
-    "next-mdx-remote": "^6.0.0",
     "react": "latest",
     "react-dom": "latest"
   },

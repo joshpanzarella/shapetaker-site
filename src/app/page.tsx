@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, GitBranch } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ModuleExplorer } from "@/components/ModuleExplorer";
 import { ProjectGallery } from "@/components/ProjectGallery";
 import { getModuleExplorerData, modules, stackHighlights } from "@/data/modules";

@@ -73,8 +73,8 @@
   --font-display: "Neokurat", var(--font-plex-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-brand: "Neokurat", var(--font-plex-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-text: var(--font-plex-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --chamfer: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
-  --chamfer-sm: polygon(4px 0, calc(100% - 4px) 0, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0 calc(100% - 4px), 0 4px);
+  --chamfer: inset(0);
+  --chamfer-sm: inset(0);
   --panel-filter: none;
   --brand-fill: var(--palette-graphite-900);
 }
@@ -193,7 +193,7 @@ code {
   font-kerning: normal;
   font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
   letter-spacing: 0.08em;
-  margin-right: -0.08em;
+  padding-left: 0.08em;
   color: var(--brand-fill);
   text-shadow: 
     0px -1px 2px var(--text-recess-shadow),
@@ -407,7 +407,7 @@ h3 {
 }
 
 .module-explorer[data-orientation="vertical"] {
-  grid-template-columns: minmax(280px, 420px) minmax(260px, 1fr);
+  grid-template-columns: 420px minmax(260px, 460px);
 }
 
 .module-explorer[data-orientation="horizontal"] {
@@ -425,7 +425,7 @@ h3 {
   filter: drop-shadow(0 28px 36px rgba(25, 24, 22, 0.22));
 }
 
-.panel-stage--image {
+.panel-stage.panel-stage--image {
   grid-template-rows: auto;
   align-self: start;
   min-height: 0;
@@ -1186,6 +1186,91 @@ h3 {
   line-height: 1.62;
 }
 
+.blog-post-body {
+  min-height: calc(100vh - 58px);
+}
+
+.blog-post-content {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+.blog-post-article {
+  min-height: clamp(520px, 68vh, 900px);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  font-size: clamp(1.08rem, 1.4vw, 1.22rem);
+  line-height: 1.8;
+}
+
+.blog-post-article > * {
+  max-width: 840px;
+}
+
+.blog-post-article > * + * {
+  margin-top: 1.05rem;
+}
+
+.blog-post-article h1,
+.blog-post-article h2,
+.blog-post-article h3 {
+  max-width: 960px;
+}
+
+.blog-post-article h1 {
+  font-size: clamp(2.2rem, 5vw, 5.6rem);
+  line-height: 0.95;
+}
+
+.blog-post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  max-width: 960px;
+  margin-top: clamp(1.25rem, 3vw, 2.25rem);
+  padding-bottom: clamp(1.25rem, 3vw, 2.25rem);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.blog-post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blog-post-tags li {
+  padding: 0.22rem 0.5rem;
+  border: 1px solid var(--line);
+  clip-path: var(--chamfer-sm);
+  background: var(--surface-muted);
+}
+
+.blog-post-copy {
+  margin-top: clamp(1.6rem, 4vw, 3rem);
+}
+
+.blog-post-copy > * {
+  max-width: 840px;
+}
+
+.blog-post-copy > * + * {
+  margin-top: 1.05rem;
+}
+
+.blog-post-article ul,
+.blog-post-article ol {
+  padding-left: 1.25rem;
+  color: var(--ink-soft);
+}
+
 .media-dock {
   display: grid;
   grid-template-columns: minmax(0, 0.7fr) minmax(320px, 1fr);
@@ -1459,7 +1544,6 @@ h3 {
     min-height: auto;
   }
 
-  .module-explorer,
   .media-dock,
   .profile-hero,
   .profile-detail,
@@ -1519,6 +1603,16 @@ h3 {
 
   .project-strip {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .module-explorer[data-orientation="vertical"] {
+    grid-template-columns: 1fr;
+  }
+
+  .module-explorer[data-orientation="vertical"] .panel-stage--image {
+    max-width: 420px;
   }
 }
 

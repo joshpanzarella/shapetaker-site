@@ -1,8 +1,24 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { getBlogPosts, getBlogPost } from "@/lib/blog";
+
+function splitFirstHeading(contentHtml: string) {
+  const match = contentHtml.match(/^<h1>(.*?)<\/h1>\n?([\s\S]*)$/);
+
+  return match
+    ? { headingHtml: match[1], bodyHtml: match[2] }
+    : { headingHtml: null, bodyHtml: contentHtml };
+}
+
+function formatPostDate(date: string) {
+  return new Intl.DateTimeFormat("en", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC"
+  }).format(new Date(`${date}T00:00:00Z`));
+}
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -27,11 +43,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-// Optional: define custom components for MDX here
-const components = {
-  // Add custom components like ModuleExplorer here later!
-};
-
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getBlogPost(slug);
@@ -39,6 +50,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!post) {
     notFound();
   }
+
+  const { headingHtml, bodyHtml } = splitFirstHeading(post.contentHtml);
+  const tags = post.frontmatter.tags ?? [];
 
   return (
     <main className="module-page">
@@ -53,10 +67,26 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
-      <section className="manual-body">
-        <div className="manual-sections" style={{ maxWidth: "760px" }}>
-          <article className="manual-section" style={{ fontSize: "1.1rem", lineHeight: 1.8 }}>
-            <MDXRemote source={post.content} components={components} />
+      <section className="manual-body blog-post-body">
+        <div className="blog-post-content">
+          <article className="manual-section blog-post-article">
+            {headingHtml ? (
+              <h1 dangerouslySetInnerHTML={{ __html: headingHtml }} />
+            ) : null}
+            <div className="blog-post-meta">
+              <span>posted {formatPostDate(post.frontmatter.date)}</span>
+              {tags.length > 0 ? (
+                <ul className="blog-post-tags" aria-label="post tags">
+                  {tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+            <div
+              className="blog-post-copy"
+              dangerouslySetInnerHTML={{ __html: bodyHtml }}
+            />
           </article>
         </div>
       </section>
