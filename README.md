@@ -7,7 +7,7 @@ Portfolio, module showcase, and manual site for Shapetaker VCV Rack modules.
 - Next.js App Router with TypeScript
 - React client components for interactive module panels
 - Tailwind CSS v4 plus a global design layer
-- Static export via `next.config.ts`, which writes deployable files to `out`
+- Next.js production build for Cloudflare/OpenNext deployment
 - Module/manual content currently lives in `src/data/modules.ts`
 
 ## Commands
@@ -47,4 +47,4 @@ Run:
 npm run build
 ```
 
-Upload the generated `out` directory to static hosting for `shapetaker.com`.
+Cloudflare should build from `main` with the configured Next/OpenNext deployment. A successful GitHub push only updates production after the Cloudflare deployment for that commit completes.

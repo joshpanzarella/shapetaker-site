@@ -7,7 +7,7 @@
     "dev:next": "next dev",
     "prebuild": "node scripts/generate-blog-data.mjs",
     "build": "next build",
-    "preview": "npx serve@latest out",
+    "preview": "next start",
     "lint": "eslint ."
   },
   "dependencies": {
