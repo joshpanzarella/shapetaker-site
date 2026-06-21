@@ -112,7 +112,7 @@ export type ModuleSpec = {
 
 export type ModuleExplorerData = Pick<
   ModuleSpec,
-  "name" | "accent" | "controls" | "panelImage" | "contextMenu"
+  "name" | "accent" | "controls" | "panelImage" | "contextMenu" | "subtitle" | "summary" | "status"
 >;
 
 export const modules: ModuleSpec[] = [
@@ -628,45 +628,45 @@ export const modules: ModuleSpec[] = [
         title: "harmonic stereo drift",
         description: "Two oscillator voices tuned a fifth apart, with a slow LFO sweeping the crossfade between them to animate the stereo field from V to Z and back.",
         difficulty: "beginner",
-        viewBox: "0 0 640 305",
+        viewBox: "0 0 620 280",
         nodes: [
           {
             id: "keyboard",
             label: "Keyboard",
             sublabel: "or Sequencer",
-            x: 20, y: 65, width: 140, height: 100,
+            x: 20, y: 55, width: 140, height: 100,
             ports: [
-              { id: "voct-out", label: "V/Oct", side: "right", offsetY: 54 }
+              { id: "voct-out", label: "V/Oct", side: "right", offsetY: 78 }
             ]
           },
           {
             id: "lfo",
             label: "LFO",
-            x: 20, y: 215, width: 140, height: 80,
+            x: 20, y: 175, width: 140, height: 90,
             ports: [
-              { id: "out", label: "Out", side: "right", offsetY: 54 }
+              { id: "out", label: "Out", side: "right", offsetY: 73 }
             ]
           },
           {
             id: "clairaudient",
             label: "Clairaudient",
-            x: 230, y: 20, width: 160, height: 270,
+            x: 200, y: 20, width: 170, height: 240,
             ports: [
-              { id: "voct-v", label: "V/Oct V", side: "left", offsetY: 62 },
-              { id: "voct-z", label: "V/Oct Z", side: "left", offsetY: 92 },
-              { id: "x-in",   label: "X Input",  side: "left", offsetY: 192 },
-              { id: "left-out",  label: "Left Out",  side: "right", offsetY: 62 },
-              { id: "right-out", label: "Right Out", side: "right", offsetY: 92 }
+              { id: "voct-v", label: "V/Oct V", side: "left", offsetY: 80 },
+              { id: "voct-z", label: "V/Oct Z", side: "left", offsetY: 110 },
+              { id: "x-in",   label: "X Input",  side: "left", offsetY: 210 },
+              { id: "left-out",  label: "Left Out",  side: "right", offsetY: 80 },
+              { id: "right-out", label: "Right Out", side: "right", offsetY: 110 }
             ]
           },
           {
             id: "mixer",
             label: "Mixer",
             sublabel: "or Interface",
-            x: 460, y: 65, width: 150, height: 100,
+            x: 410, y: 55, width: 140, height: 110,
             ports: [
-              { id: "left-in",  label: "Left In",  side: "left", offsetY: 54 },
-              { id: "right-in", label: "Right In", side: "left", offsetY: 78 }
+              { id: "left-in",  label: "Left In",  side: "left", offsetY: 76 },
+              { id: "right-in", label: "Right In", side: "left", offsetY: 96 }
             ]
           }
         ],
@@ -728,6 +728,190 @@ export const modules: ModuleSpec[] = [
             detail: "The Z-side voice is dominant on the right. Together the two outputs create a wide stereo field that drifts with the LFO.",
             cableIds: ["audio-right"]
           }
+        ]
+      },
+      {
+        id: "dissonant-drone",
+        title: "dissonant drone",
+        description: "A slow, evolving, and slightly dissonant drone using extreme cross-modulation.",
+        difficulty: "intermediate",
+        viewBox: "0 0 620 280",
+        nodes: [
+          {
+            id: "lfo-1",
+            label: "LFO 1",
+            sublabel: "Slow Triangle",
+            x: 20, y: 55, width: 140, height: 100,
+            ports: [
+              { id: "out", label: "Out", side: "right", offsetY: 78 }
+            ]
+          },
+          {
+            id: "lfo-2",
+            label: "LFO 2",
+            sublabel: "Slow Sine",
+            x: 20, y: 175, width: 140, height: 90,
+            ports: [
+              { id: "out", label: "Out", side: "right", offsetY: 73 }
+            ]
+          },
+          {
+            id: "clairaudient",
+            label: "Clairaudient",
+            x: 200, y: 20, width: 170, height: 240,
+            ports: [
+              { id: "v-shape-cv", label: "V Shape CV", side: "left", offsetY: 140 },
+              { id: "z-shape-cv", label: "Z Shape CV", side: "left", offsetY: 170 },
+              { id: "left-out",  label: "Left Out",  side: "right", offsetY: 80 },
+              { id: "right-out", label: "Right Out", side: "right", offsetY: 110 }
+            ]
+          },
+          {
+            id: "mixer",
+            label: "Mixer",
+            sublabel: "or Interface",
+            x: 410, y: 55, width: 140, height: 110,
+            ports: [
+              { id: "left-in",  label: "Left In",  side: "left", offsetY: 76 },
+              { id: "right-in", label: "Right In", side: "left", offsetY: 96 }
+            ]
+          }
+        ],
+        cables: [
+          {
+            id: "lfo-v",
+            fromNode: "lfo-1", fromPort: "out",
+            toNode: "clairaudient", toPort: "v-shape-cv",
+            color: "#a78bfa"
+          },
+          {
+            id: "lfo-z",
+            fromNode: "lfo-2", fromPort: "out",
+            toNode: "clairaudient", toPort: "z-shape-cv",
+            color: "#ec4899"
+          },
+          {
+            id: "audio-left",
+            fromNode: "clairaudient", fromPort: "left-out",
+            toNode: "mixer", toPort: "left-in",
+            color: "#D7B56D"
+          },
+          {
+            id: "audio-right",
+            fromNode: "clairaudient", fromPort: "right-out",
+            toNode: "mixer", toPort: "right-in",
+            color: "#D7B56D"
+          }
+        ],
+        steps: [
+          {
+            instruction: "Connect LFO 1 to the V Shape CV input.",
+            detail: "This will slowly modulate the shape of the V oscillator. Set the V Shape Attenuverter to about 50%.",
+            cableIds: ["lfo-v"]
+          },
+          {
+            instruction: "Connect LFO 2 to the Z Shape CV input.",
+            detail: "Use a different, very slow speed for LFO 2 to create complex polymetric motion between the voices.",
+            cableIds: ["lfo-z"]
+          },
+          {
+            instruction: "Connect Left Out and Right Out to your mixer.",
+            detail: "Detune the oscillators slightly to introduce a slow beating effect across the stereo field.",
+            cableIds: ["audio-left", "audio-right"]
+          }
+        ]
+      },
+      {
+        id: "fm-bassline",
+        title: "fm bassline",
+        description: "A classic frequency modulated bass patch utilizing Clairaudient's complex cross-modulation.",
+        difficulty: "intermediate",
+        viewBox: "0 0 620 280",
+        nodes: [
+          {
+            id: "sequencer", label: "Sequencer", x: 20, y: 55, width: 140, height: 100,
+            ports: [ { id: "cv", label: "Pitch CV", side: "right", offsetY: 78 } ]
+          },
+          {
+            id: "clairaudient", label: "Clairaudient", x: 200, y: 20, width: 170, height: 240,
+            ports: [
+              { id: "voct-v", label: "V/Oct V", side: "left", offsetY: 80 },
+              { id: "left-out", label: "Left Out", side: "right", offsetY: 80 }
+            ]
+          },
+          {
+            id: "mixer", label: "Mixer", x: 410, y: 55, width: 140, height: 110,
+            ports: [ { id: "in", label: "Input", side: "left", offsetY: 76 } ]
+          }
+        ],
+        cables: [
+          { id: "seq-pitch", fromNode: "sequencer", fromPort: "cv", toNode: "clairaudient", toPort: "voct-v", color: "#5ec2ab" },
+          { id: "audio-out", fromNode: "clairaudient", fromPort: "left-out", toNode: "mixer", toPort: "in", color: "#D7B56D" }
+        ],
+        steps: [
+          { instruction: "Connect Sequencer Pitch CV to V/Oct V.", cableIds: ["seq-pitch"] },
+          { instruction: "Connect Left Out to Mixer Input.", cableIds: ["audio-out"] }
+        ]
+      },
+      {
+        id: "vocal-formants",
+        title: "vocal formants",
+        description: "Modulating the shape parameters to synthesize vocal vowel-like textures.",
+        difficulty: "advanced",
+        viewBox: "0 0 620 280",
+        nodes: [
+          {
+            id: "lfo-fast", label: "Fast LFO", x: 20, y: 55, width: 140, height: 100,
+            ports: [ { id: "out", label: "Out", side: "right", offsetY: 78 } ]
+          },
+          {
+            id: "clairaudient", label: "Clairaudient", x: 200, y: 20, width: 170, height: 240,
+            ports: [
+              { id: "v-shape-cv", label: "V Shape CV", side: "left", offsetY: 140 },
+              { id: "left-out", label: "Left Out", side: "right", offsetY: 80 }
+            ]
+          },
+          {
+            id: "mixer", label: "Mixer", x: 410, y: 55, width: 140, height: 110,
+            ports: [ { id: "in", label: "Input", side: "left", offsetY: 76 } ]
+          }
+        ],
+        cables: [
+          { id: "lfo-shape", fromNode: "lfo-fast", fromPort: "out", toNode: "clairaudient", toPort: "v-shape-cv", color: "#a78bfa" },
+          { id: "audio-out", fromNode: "clairaudient", fromPort: "left-out", toNode: "mixer", toPort: "in", color: "#D7B56D" }
+        ],
+        steps: [
+          { instruction: "Connect Fast LFO to V Shape CV.", cableIds: ["lfo-shape"] },
+          { instruction: "Connect Left Out to Mixer.", cableIds: ["audio-out"] }
+        ]
+      },
+      {
+        id: "self-patched-chaos",
+        title: "self patched chaos",
+        description: "A chaotic feedback loop utilizing the module's own outputs as modulation sources.",
+        difficulty: "advanced",
+        viewBox: "0 0 620 280",
+        nodes: [
+          {
+            id: "clairaudient", label: "Clairaudient", x: 200, y: 20, width: 170, height: 240,
+            ports: [
+              { id: "v-shape-cv", label: "V Shape CV", side: "left", offsetY: 140 },
+              { id: "right-out", label: "Right Out", side: "right", offsetY: 110 },
+              { id: "left-out", label: "Left Out", side: "right", offsetY: 80 }
+            ]
+          },
+          {
+            id: "mixer", label: "Mixer", x: 410, y: 55, width: 140, height: 110,
+            ports: [ { id: "in", label: "Input", side: "left", offsetY: 76 } ]
+          }
+        ],
+        cables: [
+          { id: "feedback", fromNode: "clairaudient", fromPort: "right-out", toNode: "clairaudient", toPort: "v-shape-cv", color: "#ec4899" },
+          { id: "audio-out", fromNode: "clairaudient", fromPort: "left-out", toNode: "mixer", toPort: "in", color: "#D7B56D" }
+        ],
+        steps: [
+          { instruction: "Patch Right Out back into V Shape CV for chaotic feedback.", cableIds: ["feedback"] },
+          { instruction: "Connect Left Out to Mixer to hear the result.", cableIds: ["audio-out"] }
         ]
       }
     ]
@@ -1055,6 +1239,9 @@ export function getModuleExplorerData(module: ModuleSpec): ModuleExplorerData {
     accent: module.accent,
     panelImage: module.panelImage,
     contextMenu: module.contextMenu,
-    controls: module.controls
+    controls: module.controls,
+    subtitle: module.subtitle,
+    summary: module.summary,
+    status: module.status
   };
 }

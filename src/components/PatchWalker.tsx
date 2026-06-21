@@ -6,9 +6,11 @@ import type { SuggestedPatch, PatchNode, PatchPort } from "@/data/modules";
 
 type PatchWalkerProps = {
   patches: SuggestedPatch[];
+  mainModuleId?: string;
+  mainModuleName?: string;
 };
 
-export function PatchWalker({ patches }: PatchWalkerProps) {
+export function PatchWalker({ patches, mainModuleId, mainModuleName }: PatchWalkerProps) {
   const [patchIndex, setPatchIndex] = useState(0);
   const [started, setStarted] = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
@@ -20,8 +22,20 @@ export function PatchWalker({ patches }: PatchWalkerProps) {
   const isComplete = started && stepIndex >= totalSteps;
 
   const cableStepMap = new Map<string, number>();
+  const nodeStepMap = new Map<string, number>();
   patch.steps.forEach((step, i) => {
-    step.cableIds.forEach((id) => cableStepMap.set(id, i));
+    step.cableIds.forEach((id) => {
+      cableStepMap.set(id, i);
+      const cable = patch.cables.find((c) => c.id === id);
+      if (cable) {
+        if (!nodeStepMap.has(cable.fromNode) || nodeStepMap.get(cable.fromNode)! > i) {
+          nodeStepMap.set(cable.fromNode, i);
+        }
+        if (!nodeStepMap.has(cable.toNode) || nodeStepMap.get(cable.toNode)! > i) {
+          nodeStepMap.set(cable.toNode, i);
+        }
+      }
+    });
   });
 
   function getCableState(cableId: string): "complete" | "active" | "upcoming" {
@@ -30,6 +44,17 @@ export function PatchWalker({ patches }: PatchWalkerProps) {
     if (isComplete || cableStep < stepIndex) return "complete";
     if (cableStep === stepIndex) return "active";
     return "upcoming";
+  }
+
+  function getNodeState(node: PatchNode): "visible" | "hidden" {
+    if (mainModuleId && node.id.toLowerCase() === mainModuleId.toLowerCase()) return "visible";
+    if (mainModuleName && node.label.toLowerCase() === mainModuleName.toLowerCase()) return "visible";
+
+    if (!started) return "hidden";
+    if (isComplete) return "visible";
+    const minStep = nodeStepMap.get(node.id);
+    if (minStep === undefined) return "hidden";
+    return minStep <= stepIndex ? "visible" : "hidden";
   }
 
   function getPortPos(nodeId: string, portId: string): [number, number] | null {
@@ -89,7 +114,7 @@ export function PatchWalker({ patches }: PatchWalkerProps) {
         <div className="patch-walker__diagram" aria-label={`${patch.title} patch diagram`}>
           <svg viewBox={patch.viewBox} aria-hidden="true">
             {patch.nodes.map((node) => (
-              <NodeShape key={node.id} node={node} />
+              <NodeShape key={node.id} node={node} state={getNodeState(node)} />
             ))}
             {patch.cables.map((cable) => {
               const fromPos = getPortPos(cable.fromNode, cable.fromPort);
@@ -180,10 +205,10 @@ export function PatchWalker({ patches }: PatchWalkerProps) {
   );
 }
 
-function NodeShape({ node }: { node: PatchNode }) {
-  const HEADER_HEIGHT = 44;
+function NodeShape({ node, state }: { node: PatchNode; state: "visible" | "hidden" }) {
+  const HEADER_HEIGHT = 56;
   return (
-    <g>
+    <g className={`patch-node-group patch-node-group--${state}`}>
       <rect
         x={node.x}
         y={node.y}
@@ -201,7 +226,7 @@ function NodeShape({ node }: { node: PatchNode }) {
       />
       <text
         x={node.x + node.width / 2}
-        y={node.y + 17}
+        y={node.y + 26}
         textAnchor="middle"
         className="patch-node__label"
       >
@@ -210,7 +235,7 @@ function NodeShape({ node }: { node: PatchNode }) {
       {node.sublabel && (
         <text
           x={node.x + node.width / 2}
-          y={node.y + 31}
+          y={node.y + 44}
           textAnchor="middle"
           className="patch-node__sublabel"
         >

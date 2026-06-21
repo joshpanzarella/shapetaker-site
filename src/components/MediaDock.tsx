@@ -12,7 +12,7 @@ export function MediaDock({ module }: MediaDockProps) {
   return (
     <section className="media-dock" aria-label={`${module.name} media`}>
       <div className="media-dock__copy">
-        <span className="eyebrow">demo media</span>
+        <span className="eyebrow">demos</span>
         <h2>short explainers live beside the manual.</h2>
         <p>
           a focused audio or video walkthrough can sit with each module so the

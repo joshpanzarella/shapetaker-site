@@ -81,14 +81,14 @@ export default async function ModulePage({ params }: ModulePageProps) {
 
       {moduleSpec.suggestedPatches && moduleSpec.suggestedPatches.length > 0 && (
         <section className="content-band">
-          <div className="section-heading">
+          <div className="section-heading section-heading--nowrap">
             <span className="eyebrow">
               <Cable size={15} aria-hidden="true" />
               suggested patches
             </span>
-            <h2>start with these building blocks.</h2>
+            <h2>experiment from here.</h2>
           </div>
-          <PatchWalker patches={moduleSpec.suggestedPatches} />
+          <PatchWalker patches={moduleSpec.suggestedPatches} mainModuleId={moduleSpec.slug} mainModuleName={moduleSpec.name} />
         </section>
       )}
 

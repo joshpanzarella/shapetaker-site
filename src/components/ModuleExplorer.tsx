@@ -181,6 +181,13 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
           </div>
         ) : null}
       </aside>
+
+      <aside className="module-overview" aria-hidden={isVertical ? "false" : "true"}>
+        <span className="overview-eyebrow">{module.status}</span>
+        <h3 className="overview-title">{module.name}</h3>
+        <p className="overview-subtitle">{module.subtitle}</p>
+        <p className="overview-summary">{module.summary}</p>
+      </aside>
     </section>
   );
 }
