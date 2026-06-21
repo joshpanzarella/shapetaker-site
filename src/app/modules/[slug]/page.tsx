@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BookOpen } from "lucide-react";
+import { ArrowLeft, BookOpen, Cable } from "lucide-react";
 import { MediaDock } from "@/components/MediaDock";
 import { ModuleExplorer } from "@/components/ModuleExplorer";
+import { PatchWalker } from "@/components/PatchWalker";
 import { getModule, getModuleExplorerData, modules } from "@/data/modules";
 
 type ModulePageProps = {
@@ -77,6 +78,19 @@ export default async function ModulePage({ params }: ModulePageProps) {
           ))}
         </div>
       </section>
+
+      {moduleSpec.suggestedPatches && moduleSpec.suggestedPatches.length > 0 && (
+        <section className="content-band">
+          <div className="section-heading">
+            <span className="eyebrow">
+              <Cable size={15} aria-hidden="true" />
+              suggested patches
+            </span>
+            <h2>start with these building blocks.</h2>
+          </div>
+          <PatchWalker patches={moduleSpec.suggestedPatches} />
+        </section>
+      )}
 
       <MediaDock module={moduleSpec} />
     </main>

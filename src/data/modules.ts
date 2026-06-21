@@ -34,6 +34,51 @@ export type ContextMenuItem = {
   description: string;
 };
 
+export type PatchPort = {
+  id: string;
+  label: string;
+  side: "left" | "right";
+  offsetY: number;
+};
+
+export type PatchNode = {
+  id: string;
+  label: string;
+  sublabel?: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  ports: PatchPort[];
+};
+
+export type PatchCable = {
+  id: string;
+  fromNode: string;
+  fromPort: string;
+  toNode: string;
+  toPort: string;
+  color: string;
+};
+
+export type PatchStep = {
+  instruction: string;
+  detail?: string;
+  cableIds: string[];
+};
+
+export type SuggestedPatch = {
+  id: string;
+  title: string;
+  description: string;
+  difficulty: "beginner" | "intermediate" | "advanced";
+  audioUrl?: string;
+  viewBox: string;
+  nodes: PatchNode[];
+  cables: PatchCable[];
+  steps: PatchStep[];
+};
+
 export type ModuleSpec = {
   slug: string;
   name: string;
@@ -62,6 +107,7 @@ export type ModuleSpec = {
     audio?: string;
     video?: string;
   };
+  suggestedPatches?: SuggestedPatch[];
 };
 
 export type ModuleExplorerData = Pick<
@@ -341,7 +387,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "x-shape-cv",
-        label: "crossfade cv",
+        label: "crossfade attenuverter",
         type: "knob",
         x: 50,
         y: 59.8,
@@ -351,7 +397,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "x-input",
-        label: "crossfade cv",
+        label: "crossfade attenuverter",
         type: "jack",
         x: 50,
         y: 69,
@@ -361,7 +407,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "v-shape-cv",
-        label: "v shape cv",
+        label: "v shape attenuverter",
         type: "knob",
         x: 31.5,
         y: 69.2,
@@ -371,7 +417,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "z-shape-cv",
-        label: "z shape cv",
+        label: "z shape attenuverter",
         type: "knob",
         x: 68.5,
         y: 69.2,
@@ -381,7 +427,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "v-voct-a",
-        label: "v/oct - V",
+        label: "V - v/oct in",
         type: "jack",
         x: 20.5,
         y: 78.6,
@@ -391,7 +437,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "v-voct-b",
-        label: "v/oct - Z",
+        label: "Z - v/oct in",
         type: "jack",
         x: 20.5,
         y: 89,
@@ -574,6 +620,115 @@ export const modules: ModuleSpec[] = [
       {
         title: "patch ideas",
         body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
+      }
+    ],
+    suggestedPatches: [
+      {
+        id: "harmonic-stereo-drift",
+        title: "harmonic stereo drift",
+        description: "Two oscillator voices tuned a fifth apart, with a slow LFO sweeping the crossfade between them to animate the stereo field from V to Z and back.",
+        difficulty: "beginner",
+        viewBox: "0 0 640 305",
+        nodes: [
+          {
+            id: "keyboard",
+            label: "Keyboard",
+            sublabel: "or Sequencer",
+            x: 20, y: 65, width: 140, height: 100,
+            ports: [
+              { id: "voct-out", label: "V/Oct", side: "right", offsetY: 54 }
+            ]
+          },
+          {
+            id: "lfo",
+            label: "LFO",
+            x: 20, y: 215, width: 140, height: 80,
+            ports: [
+              { id: "out", label: "Out", side: "right", offsetY: 54 }
+            ]
+          },
+          {
+            id: "clairaudient",
+            label: "Clairaudient",
+            x: 230, y: 20, width: 160, height: 270,
+            ports: [
+              { id: "voct-v", label: "V/Oct V", side: "left", offsetY: 62 },
+              { id: "voct-z", label: "V/Oct Z", side: "left", offsetY: 92 },
+              { id: "x-in",   label: "X Input",  side: "left", offsetY: 192 },
+              { id: "left-out",  label: "Left Out",  side: "right", offsetY: 62 },
+              { id: "right-out", label: "Right Out", side: "right", offsetY: 92 }
+            ]
+          },
+          {
+            id: "mixer",
+            label: "Mixer",
+            sublabel: "or Interface",
+            x: 460, y: 65, width: 150, height: 100,
+            ports: [
+              { id: "left-in",  label: "Left In",  side: "left", offsetY: 54 },
+              { id: "right-in", label: "Right In", side: "left", offsetY: 78 }
+            ]
+          }
+        ],
+        cables: [
+          {
+            id: "pitch-v",
+            fromNode: "keyboard", fromPort: "voct-out",
+            toNode: "clairaudient", toPort: "voct-v",
+            color: "#5ec2ab"
+          },
+          {
+            id: "pitch-z",
+            fromNode: "keyboard", fromPort: "voct-out",
+            toNode: "clairaudient", toPort: "voct-z",
+            color: "#5ec2ab"
+          },
+          {
+            id: "lfo-x",
+            fromNode: "lfo", fromPort: "out",
+            toNode: "clairaudient", toPort: "x-in",
+            color: "#a78bfa"
+          },
+          {
+            id: "audio-left",
+            fromNode: "clairaudient", fromPort: "left-out",
+            toNode: "mixer", toPort: "left-in",
+            color: "#D7B56D"
+          },
+          {
+            id: "audio-right",
+            fromNode: "clairaudient", fromPort: "right-out",
+            toNode: "mixer", toPort: "right-in",
+            color: "#D7B56D"
+          }
+        ],
+        steps: [
+          {
+            instruction: "Connect your keyboard or sequencer's V/Oct output to V/Oct-V.",
+            detail: "This sets the pitch of the V-side oscillator. Start with the V Coarse Freq knob at center (0 semitones).",
+            cableIds: ["pitch-v"]
+          },
+          {
+            instruction: "Connect the same V/Oct source to V/Oct-Z.",
+            detail: "Both voices now track the same pitch. Set the Z Coarse Freq knob up to +7 semitones (a perfect fifth) for a harmonic relationship.",
+            cableIds: ["pitch-z"]
+          },
+          {
+            instruction: "Connect an LFO output to the X Input.",
+            detail: "X controls the crossfade between V and Z. A slow sine or triangle LFO at 0.1–0.3 Hz makes the stereo image breathe between the two voices.",
+            cableIds: ["lfo-x"]
+          },
+          {
+            instruction: "Connect Left Out to the left channel of your mixer or interface.",
+            detail: "The V-side voice is dominant on the left output when the crossfade favors V.",
+            cableIds: ["audio-left"]
+          },
+          {
+            instruction: "Connect Right Out to the right channel of your mixer or interface.",
+            detail: "The Z-side voice is dominant on the right. Together the two outputs create a wide stereo field that drifts with the LFO.",
+            cableIds: ["audio-right"]
+          }
+        ]
       }
     ]
   },
