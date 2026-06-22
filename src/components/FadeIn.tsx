@@ -2,15 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 
-interface FadeInProps {
+interface FadeInProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   delay?: number;
   direction?: "up" | "down" | "left" | "right" | "none";
   className?: string;
   duration?: number;
+  as?: React.ElementType;
 }
 
-export function FadeIn({ children, delay = 0, direction = "up", className = "", duration = 1.35 }: FadeInProps) {
+export function FadeIn({ children, delay = 0, direction = "up", className = "", duration = 1.35, as: Component = "div", ...props }: FadeInProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -18,7 +19,9 @@ export function FadeIn({ children, delay = 0, direction = "up", className = "", 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
+          setTimeout(() => {
+            setIsVisible(true);
+          }, 50);
           observer.unobserve(entry.target);
         }
       },
@@ -46,7 +49,7 @@ export function FadeIn({ children, delay = 0, direction = "up", className = "", 
   if (direction === "none") transformStr = "none";
 
   return (
-    <div
+    <Component
       ref={ref}
       className={className}
       style={{
@@ -57,8 +60,9 @@ export function FadeIn({ children, delay = 0, direction = "up", className = "", 
         transitionDelay: `${delay}ms`,
         willChange: "opacity, transform, filter",
       }}
+      {...props}
     >
       {children}
-    </div>
+    </Component>
   );
 }

@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import type { CSSProperties } from "react";
 import { MousePointer2, Settings2 } from "lucide-react";
 import * as LucideIcons from "lucide-react";
 import type { Hotspot, ModuleExplorerData } from "@/data/modules";
+import { FadeIn } from "./FadeIn";
 
 type ModuleExplorerProps = {
   module: ModuleExplorerData;
@@ -16,6 +17,14 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
   const [readoutMode, setReadoutMode] = useState<"controls" | "context">("controls");
   const [activeContextId, setActiveContextId] = useState(module.contextMenu?.[0]?.id ?? "");
   const hasContextMenu = Boolean(module.contextMenu?.length);
+
+  const ALCHEMICAL_SYMBOLS = ["☿", "♄", "♃", "♁", "☉", "☽", "♀", "♂", "♆", "♅", "♇", "🜍", "🜔", "🜕", "🜖", "🜞", "🜚", "🜛", "🜹", "🜺", "🜻"];
+  const [symbols, setSymbols] = useState(["☿", "♄"]);
+
+  useEffect(() => {
+    const shuffled = [...ALCHEMICAL_SYMBOLS].sort(() => 0.5 - Math.random());
+    setSymbols([shuffled[0], shuffled[1]]);
+  }, []);
 
   const activeControl = useMemo(
     () => module.controls.find((control) => control.id === activeId) ?? module.controls[0],
@@ -48,8 +57,11 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
       data-orientation={isVertical ? "vertical" : "horizontal"}
       aria-label={`${module.name} interactive controls`}
     >
-      <div className={`panel-stage${module.panelImage ? " panel-stage--image" : ""}`}>
-        <div className="rack-rail rack-rail--top" aria-hidden="true" />
+      <span className="alchemical-symbol" style={{ "--glow-color": "var(--focus-purple)", left: "210px", top: "50%" } as React.CSSProperties} aria-hidden="true">{symbols[0]}</span>
+      <span className="alchemical-symbol" style={{ "--glow-color": "#8af5dc", right: "20%", top: "45%" } as React.CSSProperties} aria-hidden="true">{symbols[1]}</span>
+
+      <FadeIn direction="right" delay={1400} duration={3.0} className={`panel-stage${module.panelImage ? " panel-stage--image" : ""}`}>
+          <div className="rack-rail rack-rail--top" aria-hidden="true" />
         <div
           className={`rack-panel${module.panelImage ? " rack-panel--image" : ""}`}
           style={
@@ -91,9 +103,9 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
           ))}
         </div>
         <div className="rack-rail rack-rail--bottom" aria-hidden="true" />
-      </div>
+      </FadeIn>
 
-      <aside className="control-readout" aria-live="polite">
+      <FadeIn as="aside" direction="left" delay={1800} duration={3.0} className="control-readout" aria-live="polite">
         {hasContextMenu ? (
           <div className="readout-tools" aria-label={`${module.name} readout mode`}>
             <div className="readout-segment">
@@ -180,14 +192,14 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
             })}
           </div>
         ) : null}
-      </aside>
+      </FadeIn>
 
-      <aside className="module-overview" aria-hidden={isVertical ? "false" : "true"}>
+      <FadeIn as="aside" direction="left" delay={2200} duration={3.0} className="module-overview" aria-hidden={isVertical ? "false" : "true"}>
         <span className="overview-eyebrow">{module.status}</span>
         <h3 className="overview-title">{module.name}</h3>
         <p className="overview-subtitle">{module.subtitle}</p>
         <p className="overview-summary">{module.summary}</p>
-      </aside>
+      </FadeIn>
     </section>
   );
 }
