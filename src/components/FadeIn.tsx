@@ -56,7 +56,7 @@ export function FadeIn({ children, delay = 0, direction = "up", className = "", 
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "none" : transformStr,
         filter: isVisible ? "blur(0px)" : "blur(8px)",
-        transition: `opacity ${duration}s cubic-bezier(0.16, 1, 0.3, 1), transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1), filter ${duration}s cubic-bezier(0.16, 1, 0.3, 1)`,
+        transition: `opacity ${duration * 0.4}s cubic-bezier(0.16, 1, 0.3, 1), transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1), filter ${duration * 0.4}s cubic-bezier(0.16, 1, 0.3, 1)`,
         transitionDelay: `${delay}ms`,
         willChange: "opacity, transform, filter",
       }}

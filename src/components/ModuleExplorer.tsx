@@ -58,9 +58,9 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
       aria-label={`${module.name} interactive controls`}
     >
       <span className="alchemical-symbol" style={{ "--glow-color": "var(--focus-purple)", left: "210px", top: "50%" } as React.CSSProperties} aria-hidden="true">{symbols[0]}</span>
-      <span className="alchemical-symbol" style={{ "--glow-color": "#8af5dc", right: "20%", top: "45%" } as React.CSSProperties} aria-hidden="true">{symbols[1]}</span>
+      <span className="alchemical-symbol" style={{ "--glow-color": "#8af5dc", right: "130px", top: "45%" } as React.CSSProperties} aria-hidden="true">{symbols[1]}</span>
 
-      <FadeIn direction="right" delay={1400} duration={3.0} className={`panel-stage${module.panelImage ? " panel-stage--image" : ""}`}>
+      <FadeIn direction="right" delay={1150} duration={3.0} className={`panel-stage${module.panelImage ? " panel-stage--image" : ""}`}>
           <div className="rack-rail rack-rail--top" aria-hidden="true" />
         <div
           className={`rack-panel${module.panelImage ? " rack-panel--image" : ""}`}
@@ -105,7 +105,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
         <div className="rack-rail rack-rail--bottom" aria-hidden="true" />
       </FadeIn>
 
-      <FadeIn as="aside" direction="left" delay={1800} duration={3.0} className="control-readout" aria-live="polite">
+      <FadeIn as="aside" direction="left" delay={1550} duration={3.0} className="control-readout" aria-live="polite">
         {hasContextMenu ? (
           <div className="readout-tools" aria-label={`${module.name} readout mode`}>
             <div className="readout-segment">
@@ -194,7 +194,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
         ) : null}
       </FadeIn>
 
-      <FadeIn as="aside" direction="left" delay={2200} duration={3.0} className="module-overview" aria-hidden={isVertical ? "false" : "true"}>
+      <FadeIn as="aside" direction="left" delay={1950} duration={3.0} className="module-overview" aria-hidden={isVertical ? "false" : "true"}>
         <span className="overview-eyebrow">{module.status}</span>
         <h3 className="overview-title">{module.name}</h3>
         <p className="overview-subtitle">{module.subtitle}</p>
