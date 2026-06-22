@@ -22,8 +22,12 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
   const [symbols, setSymbols] = useState(["☿", "♄"]);
 
   useEffect(() => {
-    const shuffled = [...ALCHEMICAL_SYMBOLS].sort(() => 0.5 - Math.random());
-    setSymbols([shuffled[0], shuffled[1]]);
+    const idx1 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
+    let idx2 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
+    while (idx2 === idx1) {
+      idx2 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
+    }
+    setSymbols([ALCHEMICAL_SYMBOLS[idx1], ALCHEMICAL_SYMBOLS[idx2]]);
   }, []);
 
   const activeControl = useMemo(
@@ -58,7 +62,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
       aria-label={`${module.name} interactive controls`}
     >
       <span className="alchemical-symbol" style={{ "--glow-color": "var(--focus-purple)", left: "210px", top: "50%" } as React.CSSProperties} aria-hidden="true">{symbols[0]}</span>
-      <span className="alchemical-symbol" style={{ "--glow-color": "#8af5dc", right: "130px", top: "45%" } as React.CSSProperties} aria-hidden="true">{symbols[1]}</span>
+      <span className="alchemical-symbol" style={{ "--glow-color": "#8af5dc", right: "20%", top: "45%" } as React.CSSProperties} aria-hidden="true">{symbols[1]}</span>
 
       <FadeIn direction="right" delay={1150} duration={3.0} className={`panel-stage${module.panelImage ? " panel-stage--image" : ""}`}>
           <div className="rack-rail rack-rail--top" aria-hidden="true" />
