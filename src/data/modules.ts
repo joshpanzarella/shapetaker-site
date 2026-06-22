@@ -106,8 +106,7 @@ export type ModuleSpec = {
     url: string;
   }[];
   media: {
-    audio?: string;
-    audioDescription?: string;
+    audioDemos?: { title: string; src: string; description?: string }[];
     video?: string;
   };
   suggestedPatches?: SuggestedPatch[];
@@ -137,8 +136,18 @@ export const modules: ModuleSpec[] = [
       alt: "clairaudient vcv rack module panel"
     },
     media: {
-      audio: "/modules/clairaudient/clair-demo-1.wav",
-      audioDescription: "Two voices tuned a fifth apart, crossfading slowly through the V Shape range while the Z oscillator drifts via an LFO on Z Shape CV.",
+      audioDemos: [
+        {
+          title: "harmonic drift",
+          src: "/modules/clairaudient/clair-demo-1.wav",
+          description: "Two voices tuned a fifth apart, crossfading slowly through the V Shape range while the Z oscillator drifts via an LFO on Z Shape CV.",
+        },
+        {
+          title: "bass scream",
+          src: "/modules/clairaudient/clair-bass-scream.wav",
+          description: "",
+        },
+      ],
     },
     controls: [
       {

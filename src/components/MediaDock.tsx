@@ -1,4 +1,4 @@
-import { Headphones, Play } from "lucide-react";
+import { Headphones } from "lucide-react";
 import type { ModuleSpec } from "@/data/modules";
 import { AudioPlayer } from "@/components/AudioPlayer";
 
@@ -8,7 +8,7 @@ type MediaDockProps = {
 
 export function MediaDock({ module }: MediaDockProps) {
   const hasVideo = Boolean(module.media.video);
-  const hasAudio = Boolean(module.media.audio);
+  const hasAudio = Boolean(module.media.audioDemos?.length);
 
   return (
     <section className="media-dock" aria-label={`${module.name} media`}>
@@ -21,20 +21,12 @@ export function MediaDock({ module }: MediaDockProps) {
         </p>
       </div>
       <div className="media-dock__players">
-        {hasVideo ? (
-          <video controls src={module.media.video} />
-        ) : (
-          <div className="media-placeholder">
-            <Play size={22} aria-hidden="true" />
-            <span>video slot</span>
-          </div>
-        )}
+        {hasVideo && <video controls src={module.media.video} />}
         {hasAudio ? (
           <AudioPlayer
-            src={module.media.audio!}
+            demos={module.media.audioDemos!}
             moduleName={module.name}
             moduleStatus={module.status}
-            description={module.media.audioDescription}
           />
         ) : (
           <div className="audio-placeholder">

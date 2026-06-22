@@ -3,11 +3,12 @@
 import { useState, useRef, useEffect } from "react";
 import { Play, Pause, Headphones } from "lucide-react";
 
+type Demo = { title: string; src: string; description?: string };
+
 type AudioPlayerProps = {
-  src: string;
+  demos: Demo[];
   moduleName: string;
   moduleStatus: string;
-  description?: string;
 };
 
 function formatTime(seconds: number): string {
@@ -17,13 +18,18 @@ function formatTime(seconds: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
-export function AudioPlayer({ src, moduleName, moduleStatus, description }: AudioPlayerProps) {
+export function AudioPlayer({ demos, moduleName, moduleStatus }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const rafRef = useRef<number>(0);
+  const pendingPlayRef = useRef(false);
+
+  const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const activeDemo = demos[activeIndex];
 
   function startRaf() {
     const audio = audioRef.current;
@@ -43,14 +49,22 @@ export function AudioPlayer({ src, moduleName, moduleStatus, description }: Audi
     const audio = audioRef.current;
     if (!audio) return;
 
-    const onMetadata = () => { if (isFinite(audio.duration)) { setDuration(audio.duration); setIsLoaded(true); } };
+    const onMetadata = () => {
+      if (isFinite(audio.duration)) { setDuration(audio.duration); setIsLoaded(true); }
+    };
+    const onCanPlay = () => {
+      setIsLoaded(true);
+      if (pendingPlayRef.current) {
+        pendingPlayRef.current = false;
+        audio.play().then(() => { setIsPlaying(true); startRaf(); }).catch(() => {});
+      }
+    };
     const onEnded = () => { setIsPlaying(false); stopRaf(); };
-    const onCanPlay = () => setIsLoaded(true);
 
     audio.addEventListener("loadedmetadata", onMetadata);
     audio.addEventListener("durationchange", onMetadata);
-    audio.addEventListener("ended", onEnded);
     audio.addEventListener("canplay", onCanPlay);
+    audio.addEventListener("ended", onEnded);
 
     if (audio.readyState >= 1 && isFinite(audio.duration)) {
       setDuration(audio.duration);
@@ -62,11 +76,22 @@ export function AudioPlayer({ src, moduleName, moduleStatus, description }: Audi
     return () => {
       audio.removeEventListener("loadedmetadata", onMetadata);
       audio.removeEventListener("durationchange", onMetadata);
-      audio.removeEventListener("ended", onEnded);
       audio.removeEventListener("canplay", onCanPlay);
+      audio.removeEventListener("ended", onEnded);
       stopRaf();
     };
   }, []);
+
+  function selectDemo(index: number) {
+    if (index === activeIndex) return;
+    pendingPlayRef.current = isPlaying;
+    stopRaf();
+    setIsPlaying(false);
+    setCurrentTime(0);
+    setDuration(0);
+    setIsLoaded(false);
+    setActiveIndex(index);
+  }
 
   function togglePlay() {
     const audio = audioRef.current;
@@ -92,7 +117,8 @@ export function AudioPlayer({ src, moduleName, moduleStatus, description }: Audi
 
   return (
     <div className="audio-player">
-      <audio ref={audioRef} src={src} preload="metadata" />
+      <audio ref={audioRef} src={activeDemo.src} preload="metadata" />
+
       <div className="audio-player__header">
         <span className="audio-player__eyebrow">
           <Headphones size={12} aria-hidden="true" />
@@ -100,8 +126,30 @@ export function AudioPlayer({ src, moduleName, moduleStatus, description }: Audi
         </span>
         <span className="audio-player__status">{moduleStatus}</span>
       </div>
+
       <div className="audio-player__title">{moduleName}</div>
-      {description && <p className="audio-player__description">{description}</p>}
+
+      {demos.length > 1 && (
+        <div className="audio-player__demos" role="listbox" aria-label="demo tracks">
+          {demos.map((demo, i) => (
+            <button
+              key={demo.src}
+              role="option"
+              aria-selected={i === activeIndex}
+              className={`audio-player__demo-row${i === activeIndex ? " is-active" : ""}`}
+              onClick={() => selectDemo(i)}
+            >
+              <span className="audio-player__demo-dot" aria-hidden="true" />
+              {demo.title}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {activeDemo.description && (
+        <p className="audio-player__description">{activeDemo.description}</p>
+      )}
+
       <div className="audio-player__controls">
         <button
           className={`audio-player__btn${isPlaying ? " is-playing" : ""}`}
