@@ -160,14 +160,14 @@ export function ProjectGallery({ projects }: ProjectGalleryProps) {
             <span className="jitter-text">
               {project.title.split("").map((char, i) => {
                 const speeds = [2.0, 3.2, 2.4, 3.8, 2.6, 4.0];
-                const dirs = ["normal", "reverse", "reverse", "normal", "reverse", "normal"];
+                const signs = [1, -1, -1, 1, -1, 1];
                 return (
                   <span 
                     key={i} 
                     className="jitter-char"
                     style={{
-                      '--spin-speed': `${speeds[i % speeds.length]}s`,
-                      '--spin-dir': dirs[i % dirs.length]
+                      '--spin-speed': speeds[i % speeds.length],
+                      '--spin-sign': signs[i % signs.length]
                     } as React.CSSProperties}
                   >
                     {char === " " ? "\u00A0" : char}

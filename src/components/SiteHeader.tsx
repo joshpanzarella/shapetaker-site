@@ -32,6 +32,8 @@ export function SiteHeader() {
       style={{
         transform: isVisible ? "translateY(0)" : "translateY(-100%)",
         transition: "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+        willChange: "transform",
+        backfaceVisibility: "hidden",
       }}
     >
       <Link className="brand-mark" href="/" aria-label="SHAPETAKER home">
