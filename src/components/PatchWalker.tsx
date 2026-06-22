@@ -88,6 +88,10 @@ export function PatchWalker({ patches, mainModuleId, mainModuleName }: PatchWalk
   const currentStep = patch.steps[stepIndex];
   const activeCableIds = new Set(currentStep?.cableIds ?? []);
 
+  const allSettings = patch.nodes.flatMap((n) => 
+    n.settings?.map((s) => ({ ...s, nodeLabel: n.label })) ?? []
+  );
+
   return (
     <div className="patch-walker">
       {patches.length > 1 && (
@@ -141,11 +145,22 @@ export function PatchWalker({ patches, mainModuleId, mainModuleName }: PatchWalk
         </div>
 
         <div className="patch-walker__panel">
+          {allSettings.length > 0 && (
+            <div className="patch-panel-settings">
+              <h4>Control Settings</h4>
+              <ul>
+                {allSettings.map((s, i) => (
+                  <li key={i}>
+                    <span className="setting-node">{s.nodeLabel}</span>
+                    <span className="setting-label">{s.label}:</span>
+                    <span className="setting-val">{s.value}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {!started ? (
             <>
-              <span className={`patch-difficulty patch-difficulty--${patch.difficulty}`}>
-                {patch.difficulty}
-              </span>
               <h3 className="patch-title">{patch.title}</h3>
               <p className="patch-description">{patch.description}</p>
               <button className="patch-start-btn" onClick={handleStart}>
@@ -254,12 +269,34 @@ function PortShape({ node, port }: { node: PatchNode; port: PatchPort }) {
   const py = node.y + port.offsetY;
   const labelX = port.side === "right" ? px - 8 : px + 8;
   const anchor = port.side === "right" ? "end" : "start";
+  
+  const iconX = node.x + 20;
+
   return (
     <g>
       <circle cx={px} cy={py} r={4} className="patch-port" />
       <text x={labelX} y={py + 4} textAnchor={anchor} className="patch-port__label">
         {port.label}
       </text>
+      {port.icon && <WaveIcon type={port.icon} cx={iconX} cy={py} />}
     </g>
   );
+}
+
+function WaveIcon({ type, cx, cy }: { type: string; cx: number; cy: number }) {
+  const stroke = "rgba(215, 181, 109, 0.8)";
+  const props = { fill: "none", stroke, strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  
+  switch (type) {
+    case "triangle":
+      return <path d={`M ${cx - 6} ${cy + 4} L ${cx} ${cy - 4} L ${cx + 6} ${cy + 4}`} {...props} />;
+    case "sine":
+      return <path d={`M ${cx - 6} ${cy} C ${cx - 3} ${cy - 6}, ${cx} ${cy - 6}, ${cx} ${cy} C ${cx} ${cy + 6}, ${cx + 3} ${cy + 6}, ${cx + 6} ${cy}`} {...props} />;
+    case "saw":
+      return <path d={`M ${cx - 6} ${cy + 4} L ${cx + 6} ${cy - 4} L ${cx + 6} ${cy + 4}`} {...props} />;
+    case "square":
+      return <path d={`M ${cx - 6} ${cy + 4} L ${cx - 6} ${cy - 4} L ${cx} ${cy - 4} L ${cx} ${cy + 4} L ${cx + 6} ${cy + 4}`} {...props} />;
+    default:
+      return null;
+  }
 }

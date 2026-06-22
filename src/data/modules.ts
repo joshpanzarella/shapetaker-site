@@ -39,6 +39,7 @@ export type PatchPort = {
   label: string;
   side: "left" | "right";
   offsetY: number;
+  icon?: "triangle" | "sine" | "square" | "saw";
 };
 
 export type PatchNode = {
@@ -50,6 +51,7 @@ export type PatchNode = {
   width: number;
   height: number;
   ports: PatchPort[];
+  settings?: { label: string; value: string | number }[];
 };
 
 export type PatchCable = {
@@ -644,13 +646,17 @@ export const modules: ModuleSpec[] = [
             label: "LFO",
             x: 20, y: 175, width: 140, height: 90,
             ports: [
-              { id: "out", label: "Out", side: "right", offsetY: 73 }
+              { id: "out", label: "Out", side: "right", offsetY: 73, icon: "triangle" }
             ]
           },
           {
             id: "clairaudient",
             label: "Clairaudient",
             x: 200, y: 20, width: 170, height: 240,
+            settings: [
+              { label: "V Coarse", value: "0" },
+              { label: "Z Coarse", value: "+7" }
+            ],
             ports: [
               { id: "voct-v", label: "V/Oct V", side: "left", offsetY: 80 },
               { id: "voct-z", label: "V/Oct Z", side: "left", offsetY: 110 },
@@ -743,7 +749,7 @@ export const modules: ModuleSpec[] = [
             sublabel: "Slow Triangle",
             x: 20, y: 55, width: 140, height: 100,
             ports: [
-              { id: "out", label: "Out", side: "right", offsetY: 78 }
+              { id: "out", label: "Out", side: "right", offsetY: 78, icon: "triangle" }
             ]
           },
           {
@@ -752,13 +758,16 @@ export const modules: ModuleSpec[] = [
             sublabel: "Slow Sine",
             x: 20, y: 175, width: 140, height: 90,
             ports: [
-              { id: "out", label: "Out", side: "right", offsetY: 73 }
+              { id: "out", label: "Out", side: "right", offsetY: 73, icon: "sine" }
             ]
           },
           {
             id: "clairaudient",
             label: "Clairaudient",
             x: 200, y: 20, width: 170, height: 240,
+            settings: [
+              { label: "Rev. Sync", value: "ON" }
+            ],
             ports: [
               { id: "v-shape-cv", label: "V Shape CV", side: "left", offsetY: 140 },
               { id: "z-shape-cv", label: "Z Shape CV", side: "left", offsetY: 170 },
@@ -862,7 +871,7 @@ export const modules: ModuleSpec[] = [
         nodes: [
           {
             id: "lfo-fast", label: "Fast LFO", x: 20, y: 55, width: 140, height: 100,
-            ports: [ { id: "out", label: "Out", side: "right", offsetY: 78 } ]
+            ports: [ { id: "out", label: "Out", side: "right", offsetY: 78, icon: "triangle" } ]
           },
           {
             id: "clairaudient", label: "Clairaudient", x: 200, y: 20, width: 170, height: 240,

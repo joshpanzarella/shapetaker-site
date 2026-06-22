@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen, Cable } from "lucide-react";
 import { MediaDock } from "@/components/MediaDock";
 import { ModuleExplorer } from "@/components/ModuleExplorer";
+import { MorphingTitle } from "@/components/MorphingTitle";
 import { PatchWalker } from "@/components/PatchWalker";
 import { getModule, getModuleExplorerData, modules } from "@/data/modules";
 
@@ -51,7 +52,7 @@ export default async function ModulePage({ params }: ModulePageProps) {
             manuals
           </Link>
           <span className="eyebrow">{moduleSpec.category}</span>
-          <h1>{moduleSpec.name}</h1>
+          <MorphingTitle title={moduleSpec.name} as="h1" />
           <p>{moduleSpec.subtitle}</p>
           <div className="spec-row" aria-label={`${moduleSpec.name} specifications`}>
             <span>{moduleSpec.hp} hp</span>

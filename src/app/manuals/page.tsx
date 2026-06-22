@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { MorphingTitle } from "@/components/MorphingTitle";
 import { modules } from "@/data/modules";
 
 export const metadata = {
@@ -11,7 +12,7 @@ export default function ManualsPage() {
     <main className="page-shell">
       <section className="page-heading">
         <span className="eyebrow">manual library</span>
-        <h1>vcv rack module manuals</h1>
+        <MorphingTitle title="vcv rack module manuals" as="h1" />
         <p>each module page combines reference material, control notes, and demo media.</p>
       </section>
 

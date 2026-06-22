@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Comments } from "@/components/Comments";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { getBlogPosts, getBlogPost } from "@/lib/blog";
@@ -87,6 +88,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               className="blog-post-copy"
               dangerouslySetInnerHTML={{ __html: bodyHtml }}
             />
+            <Comments />
           </article>
         </div>
       </section>

@@ -1,3 +1,4 @@
+import { MorphingTitle } from "@/components/MorphingTitle";
 import { ProjectGallery } from "@/components/ProjectGallery";
 import { getProjects } from "@/lib/projects";
 
@@ -12,7 +13,7 @@ export default function ProjectsPage() {
     <main className="page-shell">
       <section className="page-heading">
         <span className="eyebrow">project library</span>
-        <h1>select a project.</h1>
+        <MorphingTitle title="select a project." as="h1" />
         <p>
           browse module panel renders, manuals, and future audio or software projects from one place.
         </p>
