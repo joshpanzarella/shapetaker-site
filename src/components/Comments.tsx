@@ -17,10 +17,10 @@ export function Comments() {
       <h3 className="text-2xl font-bold mb-6 text-[var(--teal)] font-display">Comments</h3>
       <Giscus
         id="comments"
-        repo="[YOUR_GITHUB_USERNAME]/[YOUR_REPO_NAME]"
-        repoId="[ENTER_REPO_ID_HERE]"
+        repo="joshpanzarella/shapetaker-site"
+        repoId="R_kgDOSz-yRA"
         category="Announcements"
-        categoryId="[ENTER_CATEGORY_ID_HERE]"
+        categoryId="DIC_kwDOSz-yRM4C_pjx"
         mapping="pathname"
         term="Welcome to @giscus/react component!"
         reactionsEnabled="1"

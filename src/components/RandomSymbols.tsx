@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const alchemicalSymbols = [
   "🜀", "🜁", "🜂", "🜃", "🜄", "🜅", "🜆", "🜇", "🜈", "🜉", "🜊", "🜋", "🜌", "🜍", "🜎", "🜏",
@@ -10,64 +10,42 @@ const alchemicalSymbols = [
   "🝊", "🝋", "🝌", "🝍", "🝎", "🝏", "🝐", "🝑", "🝒", "🝓", "🝔", "🝕", "🝖", "🝗", "🝘", "🝙"
 ];
 
+function countForWidth(width: number) {
+  return Math.max(3, Math.floor((width - 64) / 56));
+}
+
 export function RandomSymbols() {
-  const [symbols, setSymbols] = useState<string[]>([]);
+  // poolRef holds a large stable bank of symbols generated once on mount.
+  // On resize we only change how many we show — never re-randomize.
+  const poolRef = useRef<string[]>([]);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    function generateSymbols() {
-      // Calculate how many fit based on window width.
-      // Assuming ~3.5rem (56px) space per symbol and 4rem (64px) total horizontal padding
-      const availableWidth = window.innerWidth - 64; 
-      const count = Math.max(3, Math.floor(availableWidth / 56));
-      
-      const randomSymbols = Array.from({ length: count }).map(
-        () => alchemicalSymbols[Math.floor(Math.random() * alchemicalSymbols.length)]
-      );
-      setSymbols(randomSymbols);
-    }
+    const maxCount = countForWidth(window.innerWidth);
+    // Generate a pool larger than we'll ever need so extending never requires new picks.
+    const pool = Array.from({ length: 80 }, () =>
+      alchemicalSymbols[Math.floor(Math.random() * alchemicalSymbols.length)]
+    );
+    poolRef.current = pool;
+    setCount(maxCount);
 
-    generateSymbols();
-    
-    // Re-calculate when the window is resized
-    let timeoutId: ReturnType<typeof setTimeout>;
+    let rafId: number;
     const handleResize = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(generateSymbols, 150);
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => setCount(countForWidth(window.innerWidth)));
     };
-    
-    window.addEventListener('resize', handleResize);
+
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
-      clearTimeout(timeoutId);
+      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
-  // Return a stable placeholder of the same height during server render to prevent layout shift
-  if (symbols.length === 0) {
-    return <div className="source-strip" style={{ minHeight: '3.4rem', padding: '1rem 2rem' }} />;
-  }
-
   return (
-    <div 
-      className="source-strip" 
-      aria-hidden="true" 
-      style={{ 
-        display: 'flex', 
-        flexDirection: 'row', 
-        flexWrap: 'nowrap', 
-        justifyContent: 'space-between', 
-        opacity: 0.6, 
-        fontSize: '1.4rem', 
-        lineHeight: 1, 
-        overflow: 'hidden', 
-        width: '100%', 
-        padding: '1rem 2rem' 
-      }}
-    >
-      {symbols.map((sym, i) => (
-        <span key={i} style={{ flexShrink: 0, display: 'inline-flex', justifyContent: 'center' }}>
-          {sym}
-        </span>
+    <div className="source-strip" aria-hidden="true">
+      {poolRef.current.slice(0, count).map((sym, i) => (
+        <span key={i}>{sym}</span>
       ))}
     </div>
   );

@@ -51,18 +51,33 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
     : (activeControl?.description ?? "Interactive hotspots have not been added to this panel yet.");
   const ReadoutIcon = isContextMode ? Settings2 : MousePointer2;
   
-  const isVertical = module.panelImage 
-    ? module.panelImage.height > module.panelImage.width 
+  const isVertical = module.panelImage
+    ? module.panelImage.height > module.panelImage.width
     : true;
 
+  const [isNarrow, setIsNarrow] = useState(false);
+  useEffect(() => {
+    const check = () => setIsNarrow(window.innerWidth <= 1180);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
-    <section 
-      className="module-explorer" 
+    <section
+      className="module-explorer"
       data-orientation={isVertical ? "vertical" : "horizontal"}
+      style={
+        {
+          "--panel-ratio": module.panelImage
+            ? `${module.panelImage.height / module.panelImage.width}`
+            : undefined
+        } as React.CSSProperties
+      }
       aria-label={`${module.name} interactive controls`}
     >
-      <span className="alchemical-symbol" style={{ "--glow-color": "var(--focus-purple)", left: "210px", top: "50%" } as React.CSSProperties} aria-hidden="true">{symbols[0]}</span>
-      <span className="alchemical-symbol" style={{ "--glow-color": "#8af5dc", right: "20%", top: "45%" } as React.CSSProperties} aria-hidden="true">{symbols[1]}</span>
+      <span className="alchemical-symbol alchemical-symbol--readout" style={{ "--glow-color": "var(--symbol-purple)" } as React.CSSProperties} aria-hidden="true">{symbols[0]}</span>
+      <span className="alchemical-symbol alchemical-symbol--overview" style={{ "--glow-color": "var(--symbol-teal)", ...(isNarrow ? { display: "block", gridColumn: "1 / 2", gridRow: "1" } : {}) } as React.CSSProperties} aria-hidden="true">{symbols[1]}</span>
 
       <FadeIn direction="right" delay={1150} duration={3.0} className={`panel-stage${module.panelImage ? " panel-stage--image" : ""}`}>
           <div className="rack-rail rack-rail--top" aria-hidden="true" />
@@ -150,52 +165,54 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
           {isContextMode ? "context menu" : "control focus"}
         </span>
         <h2 key={readoutTitle}>{readoutTitle}</h2>
-        <p>{readoutDescription}</p>
-        {isContextMode && activeContextItem.values ? (
-          <p className="context-values">{activeContextItem.values.join(" / ")}</p>
-        ) : null}
-        
-        {!isContextMode && activeControl?.diagrams && activeControl.diagrams.length > 0 ? (
-          <div className="control-diagrams">
-            {activeControl.diagrams.map((diagram) => {
-              return (
-                <div key={diagram.id} className="control-diagram">
-                  {activeControl.type === "switch" ? (
-                    <div className="control-diagram__switch">
-                      <div 
-                        className="control-diagram__switch-bat" 
-                        style={{ transform: `rotate(${diagram.state === 'up' ? 0 : 180}deg)` }} 
-                      />
+        <div className="readout-scroll">
+          <p>{readoutDescription}</p>
+          {isContextMode && activeContextItem.values ? (
+            <p className="context-values">{activeContextItem.values.join(" / ")}</p>
+          ) : null}
+          
+          {!isContextMode && activeControl?.diagrams && activeControl.diagrams.length > 0 ? (
+            <div className="control-diagrams">
+              {activeControl.diagrams.map((diagram) => {
+                return (
+                  <div key={diagram.id} className="control-diagram">
+                    {activeControl.type === "switch" ? (
+                      <div className="control-diagram__switch">
+                        <div 
+                          className="control-diagram__switch-bat" 
+                          style={{ transform: `rotate(${diagram.state === 'up' ? 0 : 180}deg)` }} 
+                        />
+                      </div>
+                    ) : activeControl.type === "meter" ? null : (
+                      <div className="control-diagram__knob">
+                        <div 
+                          className="control-diagram__knob-indicator" 
+                          style={{ transform: `rotate(${diagram.rotation}deg)` }} 
+                        />
+                      </div>
+                    )}
+                    <div className="control-diagram__content">
+                      {diagram.svg ? (
+                        <span 
+                          style={{ display: 'flex' }}
+                          dangerouslySetInnerHTML={{ 
+                            __html: `<svg viewBox="0 0 24 24" width="${activeControl.type === 'meter' ? '40' : '28'}" height="${activeControl.type === 'meter' ? '40' : '28'}" class="control-diagram__icon">${diagram.svg}</svg>`
+                          }}
+                        />
+                      ) : diagram.icon ? (
+                        (() => {
+                          const IconComponent = (LucideIcons as unknown as Record<string, React.ElementType>)[diagram.icon] || LucideIcons.Circle;
+                          return <IconComponent size={28} className="control-diagram__icon" />;
+                        })()
+                      ) : null}
+                      <span className="control-diagram__label">{diagram.label}</span>
                     </div>
-                  ) : activeControl.type === "meter" ? null : (
-                    <div className="control-diagram__knob">
-                      <div 
-                        className="control-diagram__knob-indicator" 
-                        style={{ transform: `rotate(${diagram.rotation}deg)` }} 
-                      />
-                    </div>
-                  )}
-                  <div className="control-diagram__content">
-                    {diagram.svg ? (
-                      <span 
-                        style={{ display: 'flex' }}
-                        dangerouslySetInnerHTML={{ 
-                          __html: `<svg viewBox="0 0 24 24" width="${activeControl.type === 'meter' ? '40' : '28'}" height="${activeControl.type === 'meter' ? '40' : '28'}" class="control-diagram__icon">${diagram.svg}</svg>`
-                        }}
-                      />
-                    ) : diagram.icon ? (
-                      (() => {
-                        const IconComponent = (LucideIcons as unknown as Record<string, React.ElementType>)[diagram.icon] || LucideIcons.Circle;
-                        return <IconComponent size={28} className="control-diagram__icon" />;
-                      })()
-                    ) : null}
-                    <span className="control-diagram__label">{diagram.label}</span>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        ) : null}
+                );
+              })}
+            </div>
+          ) : null}
+        </div>
       </FadeIn>
 
       <FadeIn as="aside" direction="left" delay={1950} duration={3.0} className="module-overview" aria-hidden={isVertical ? "false" : "true"}>
@@ -229,7 +246,6 @@ function HotspotButton({ control, isActive, onActivate }: HotspotButtonProps) {
       aria-label={`${control.label}: ${control.description}`}
       onClick={onActivate}
       onFocus={onActivate}
-      onMouseEnter={onActivate}
     >
       <span className="hotspot__pulse" aria-hidden="true" />
     </button>
