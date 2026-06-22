@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import { modules } from "@/data/modules";
 
-export type ProjectKind = "vcv rack modules" | "audio" | "software" | "visual" | "other";
+export type ProjectKind = "vcv rack modules" | "audio" | "software" | "publication" | "visual" | "other";
 
 export type ProjectSummary = {
   slug: string;
@@ -52,6 +52,25 @@ function findProjectImage(publicDir: string, publicPath: string) {
   return undefined;
 }
 
+const staticProjects: ProjectSummary[] = [
+  {
+    slug: "understanding-sound-field",
+    title: "understanding sound field",
+    kind: "publication",
+    status: "coming soon",
+    summary: "A field manual for sound in physical space — room acoustics, microphone placement, and practical application.",
+    href: "/projects/understanding-sound-field",
+  },
+  {
+    slug: "patch-base",
+    title: "patch base",
+    kind: "software",
+    status: "in development",
+    summary: "Preset manager for VCV Rack. Save, organize, and recall complete patch states. Never lose a sound again.",
+    href: "/projects/patch-base",
+  },
+];
+
 export function getProjects(): ProjectSummary[] {
   const publicModulesDir = `${process.cwd()}/public/modules`;
   const moduleProjects = new Map<string, ProjectSummary>();
@@ -100,9 +119,11 @@ export function getProjects(): ProjectSummary[] {
     }
   }
 
-  return Array.from(moduleProjects.values()).sort((a, b) => {
+  const moduleList = Array.from(moduleProjects.values()).sort((a, b) => {
     if (a.slug === "clairaudient" && b.slug !== "clairaudient") return -1;
     if (b.slug === "clairaudient" && a.slug !== "clairaudient") return 1;
     return a.title.localeCompare(b.title);
   });
+
+  return [...moduleList, ...staticProjects];
 }
