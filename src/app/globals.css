@@ -417,16 +417,23 @@ h3 {
   transform: translate(-50%, -50%);
   mix-blend-mode: multiply;
   color: var(--glow-color);
-  animation: ambient-pulse 4s infinite alternate ease-in-out;
+  animation: tv-flicker 4s cubic-bezier(0.4, 0, 0.2, 1) 2.8s infinite alternate backwards;
 }
 
 :root[data-theme="dark"] .alchemical-symbol {
   mix-blend-mode: color-dodge;
 }
 
-@keyframes ambient-pulse {
-  0%   { opacity: 0.4; text-shadow: 0 0 40px var(--glow-color), 0 0 100px var(--glow-color), 0 0 200px var(--glow-color); filter: blur(3px) brightness(0.9); }
-  100% { opacity: 1.0; text-shadow: 0 0 80px var(--glow-color), 0 0 200px var(--glow-color), 0 0 400px var(--glow-color), 0 0 600px var(--glow-color); filter: blur(0px) brightness(1.6); }
+@keyframes tv-flicker {
+  0%   { opacity: 0.5; text-shadow: 0 0 30px var(--glow-color), 0 0 100px var(--glow-color), 0 0 200px var(--glow-color); filter: blur(2px) brightness(1.0); }
+  10%  { opacity: 0.8; text-shadow: 0 0 50px var(--glow-color), 0 0 150px var(--glow-color), 0 0 250px var(--glow-color), 0 0 350px var(--glow-color); filter: blur(1px) brightness(1.2); }
+  12%  { opacity: 0.3; text-shadow: 0 0 20px var(--glow-color), 0 0 80px var(--glow-color), 0 0 150px var(--glow-color); filter: blur(4px) brightness(0.8); }
+  14%  { opacity: 0.7; text-shadow: 0 0 50px var(--glow-color), 0 0 150px var(--glow-color), 0 0 250px var(--glow-color); filter: blur(2px) brightness(1.1); }
+  40%  { opacity: 0.6; text-shadow: 0 0 40px var(--glow-color), 0 0 120px var(--glow-color), 0 0 220px var(--glow-color); filter: blur(3px) brightness(1.0); }
+  42%  { opacity: 0.9; text-shadow: 0 0 60px var(--glow-color), 0 0 180px var(--glow-color), 0 0 350px var(--glow-color), 0 0 500px var(--glow-color); filter: blur(0px) brightness(1.3); }
+  46%  { opacity: 0.4; text-shadow: 0 0 30px var(--glow-color), 0 0 100px var(--glow-color), 0 0 200px var(--glow-color); filter: blur(3px) brightness(0.9); }
+  70%  { opacity: 0.7; text-shadow: 0 0 40px var(--glow-color), 0 0 140px var(--glow-color), 0 0 280px var(--glow-color); filter: blur(2px) brightness(1.1); }
+  100% { opacity: 0.5; text-shadow: 0 0 30px var(--glow-color), 0 0 100px var(--glow-color), 0 0 200px var(--glow-color); filter: blur(2px) brightness(1.0); }
 }
 
 .module-explorer[data-orientation="vertical"] {
