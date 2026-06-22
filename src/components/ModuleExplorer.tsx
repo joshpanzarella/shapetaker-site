@@ -18,16 +18,23 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
   const [activeContextId, setActiveContextId] = useState(module.contextMenu?.[0]?.id ?? "");
   const hasContextMenu = Boolean(module.contextMenu?.length);
 
-  const ALCHEMICAL_SYMBOLS = ["☿", "♄", "♃", "♁", "☉", "☽", "♀", "♂", "♆", "♅", "♇", "🜍", "🜔", "🜕", "🜖", "🜞", "🜚", "🜛", "🜹", "🜺", "🜻"];
-  const [symbols, setSymbols] = useState(["☿", "♄"]);
+  const ALCHEMICAL_SYMBOLS = [
+    "☿", "♄", "♃", "♁", "☉", "☽", "♀", "♂", "♆", "♅", "♇",
+    "🜀", "🜁", "🜂", "🜃", "🜄", "🜅", "🜆", "🜇", "🜈", "🜉", "🜊", "🜋", "🜌", "🜍", "🜎", "🜏",
+    "🜐", "🜑", "🜒", "🜓", "🜔", "🜕", "🜖", "🜗", "🜘", "🜙", "🜚", "🜛", "🜜", "🜝", "🜞", "🜟",
+    "🜠", "🜡", "🜢", "🜣", "🜤", "🜥", "🜦", "🜧", "🜨", "🜩", "🜪", "🜫", "🜬", "🜭", "🜮", "🜯",
+    "🜰", "🜱", "🜲", "🜳", "🜴", "🜵", "🜶", "🜷", "🜸", "🜹", "🜺", "🜻", "🜼", "🜽", "🜾", "🜿",
+    "🝊", "🝋", "🝌", "🝍", "🝎", "🝏", "🝐", "🝑", "🝒", "🝓", "🝔", "🝕", "🝖", "🝗", "🝘", "🝙",
+  ];
+  const [symbols, setSymbols] = useState(["☿", "♄", "♁"]);
 
   useEffect(() => {
     const idx1 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
     let idx2 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
-    while (idx2 === idx1) {
-      idx2 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
-    }
-    setSymbols([ALCHEMICAL_SYMBOLS[idx1], ALCHEMICAL_SYMBOLS[idx2]]);
+    while (idx2 === idx1) idx2 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
+    let idx3 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
+    while (idx3 === idx1 || idx3 === idx2) idx3 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
+    setSymbols([ALCHEMICAL_SYMBOLS[idx1], ALCHEMICAL_SYMBOLS[idx2], ALCHEMICAL_SYMBOLS[idx3]]);
   }, []);
 
   const activeControl = useMemo(
@@ -55,14 +62,6 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
     ? module.panelImage.height > module.panelImage.width
     : true;
 
-  const [isNarrow, setIsNarrow] = useState(false);
-  useEffect(() => {
-    const check = () => setIsNarrow(window.innerWidth <= 1180);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
   return (
     <section
       className="module-explorer"
@@ -76,8 +75,9 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
       }
       aria-label={`${module.name} interactive controls`}
     >
+      <span className="alchemical-symbol alchemical-symbol--panel" style={{ "--glow-color": "var(--symbol-white)" } as React.CSSProperties} aria-hidden="true">{symbols[2]}</span>
       <span className="alchemical-symbol alchemical-symbol--readout" style={{ "--glow-color": "var(--symbol-purple)" } as React.CSSProperties} aria-hidden="true">{symbols[0]}</span>
-      <span className="alchemical-symbol alchemical-symbol--overview" style={{ "--glow-color": "var(--symbol-teal)", ...(isNarrow ? { display: "block", gridColumn: "1 / 2", gridRow: "1" } : {}) } as React.CSSProperties} aria-hidden="true">{symbols[1]}</span>
+      <span className="alchemical-symbol alchemical-symbol--overview" style={{ "--glow-color": "var(--symbol-teal)" } as React.CSSProperties} aria-hidden="true">{symbols[1]}</span>
 
       <FadeIn direction="right" delay={1150} duration={3.0} className={`panel-stage${module.panelImage ? " panel-stage--image" : ""}`}>
           <div className="rack-rail rack-rail--top" aria-hidden="true" />

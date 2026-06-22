@@ -138,6 +138,7 @@ export function PatchWalker({ patches, mainModuleId, mainModuleName }: PatchWalk
                   strokeLinecap="round"
                   className={`patch-cable patch-cable--${state}`}
                   data-active={activeCableIds.has(cable.id) ? "true" : undefined}
+                  style={{ "--cable-color": cable.color } as React.CSSProperties}
                 />
               );
             })}

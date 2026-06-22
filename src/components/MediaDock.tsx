@@ -1,5 +1,6 @@
 import { Headphones, Play } from "lucide-react";
 import type { ModuleSpec } from "@/data/modules";
+import { AudioPlayer } from "@/components/AudioPlayer";
 
 type MediaDockProps = {
   module: ModuleSpec;
@@ -29,7 +30,11 @@ export function MediaDock({ module }: MediaDockProps) {
           </div>
         )}
         {hasAudio ? (
-          <audio controls src={module.media.audio} />
+          <AudioPlayer
+            src={module.media.audio!}
+            moduleName={module.name}
+            moduleStatus={module.status}
+          />
         ) : (
           <div className="audio-placeholder">
             <Headphones size={18} aria-hidden="true" />

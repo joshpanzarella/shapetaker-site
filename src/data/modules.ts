@@ -135,7 +135,7 @@ export const modules: ModuleSpec[] = [
       height: 2014,
       alt: "clairaudient vcv rack module panel"
     },
-    media: {},
+    media: { audio: "/modules/clairaudient/demo.mp3" },
     controls: [
       {
         id: "scope",

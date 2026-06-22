@@ -73,6 +73,7 @@
   --focus-purple: var(--palette-purple-700);
   --symbol-teal: #0d5961;
   --symbol-purple: #321447;
+  --symbol-white: #b8b0a6;
   --body-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.12'/%3E%3C/svg%3E");
   --body-texture-size: 256px 256px;
   --font-display: "Neokurat", var(--font-plex-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -112,6 +113,7 @@
   --focus-purple: var(--palette-purple-500);
   --symbol-teal: #8af5dc;
   --symbol-purple: var(--palette-purple-500);
+  --symbol-white: #f0ece6;
   --body-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.25'/%3E%3C/svg%3E");
   --body-texture-size: 256px 256px;
   --panel-filter: none;
@@ -407,9 +409,13 @@ h3 {
 }
 
 .module-explorer {
+  --module-gap: clamp(1rem, 3vw, 1.5rem);
+  --stack-panel-width: min(calc(100vw - 2rem), 420px);
+  --stack-panel-height: calc(var(--stack-panel-width) * var(--panel-ratio, 1.333333));
+  --stack-readout-height: calc(420px * var(--panel-ratio, 1.333333));
   display: grid;
   align-items: start;
-  gap: clamp(1rem, 3vw, 1.5rem);
+  gap: var(--module-gap);
   width: 100%;
   max-width: 1400px;
   position: relative;
@@ -437,6 +443,14 @@ h3 {
 /* Each symbol is an absolutely-positioned grid child; specifying grid-column/row
    makes the browser use that grid area as the containing block, so left/top 50%
    centers the symbol exactly over its card column. */
+.module-explorer[data-orientation="vertical"] .alchemical-symbol--panel {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+}
+
 .module-explorer[data-orientation="vertical"] .alchemical-symbol--readout {
   grid-column: 2 / 3;
   grid-row: 1;
@@ -550,6 +564,7 @@ h3 {
   min-height: 560px;
   clip-path: var(--chamfer-sm);
   filter: drop-shadow(0 28px 36px rgba(25, 24, 22, 0.22));
+  z-index: 1;
 }
 
 .panel-stage.panel-stage--image {
@@ -1492,8 +1507,7 @@ h3 {
   gap: 0.75rem;
 }
 
-.media-dock video,
-.media-dock audio {
+.media-dock video {
   width: 100%;
 }
 
@@ -1518,6 +1532,136 @@ h3 {
 .audio-placeholder {
   min-height: 66px;
   grid-template-columns: auto auto;
+}
+
+/* ── Custom audio player ── */
+
+.audio-player {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--surface-card);
+  border: 1px solid rgba(94, 194, 171, 0.2);
+  clip-path: var(--chamfer);
+  box-shadow: var(--surface-shadow);
+}
+
+.audio-player__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.audio-player__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+.audio-player__status {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0.6;
+}
+
+.audio-player__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.audio-player__controls {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.3rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+}
+
+.audio-player__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--teal);
+  color: var(--paper);
+  border: none;
+  clip-path: var(--chamfer-sm);
+  cursor: pointer;
+  transition: opacity 140ms, transform 140ms;
+  flex-shrink: 0;
+}
+
+.audio-player__btn:hover {
+  opacity: 0.85;
+  transform: scale(1.06);
+}
+
+.audio-player__btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.audio-player__progress {
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+.audio-player__track {
+  position: relative;
+  height: 2px;
+  background: rgba(94, 194, 171, 0.18);
+}
+
+.audio-player__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--teal);
+  transition: width 80ms linear;
+}
+
+.audio-player__head {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--teal);
+  transform: translate(-50%, -50%);
+  clip-path: var(--chamfer-sm);
+  transition: left 80ms linear;
+}
+
+.audio-player__time {
+  display: flex;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  font-family: 'Courier New', Courier, monospace;
+  white-space: nowrap;
+}
+
+.audio-player__sep {
+  opacity: 0.35;
 }
 
 .project-gallery {
@@ -1732,8 +1876,16 @@ h3 {
     display: none;
   }
 
-  .alchemical-symbol--overview {
+  .module-explorer[data-orientation="vertical"] .alchemical-symbol--panel {
     display: none;
+  }
+
+  .module-explorer[data-orientation="vertical"] .alchemical-symbol--overview {
+    display: block;
+    grid-column: 1 / 2;
+    grid-row: 1;
+    left: 50%;
+    top: 50%;
   }
 }
 
@@ -1753,6 +1905,13 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .module-explorer,
+  .module-explorer[data-orientation="vertical"] {
+    grid-template-columns: minmax(0, 460px);
+    justify-content: center;
+    justify-items: center;
+  }
+
   .project-preview {
     min-height: 380px;
   }
@@ -1770,12 +1929,35 @@ h3 {
   }
 
   .module-explorer .alchemical-symbol {
-    display: none;
+    display: block;
+    font-size: clamp(10rem, 42vw, 18rem);
+  }
+
+  .module-explorer[data-orientation="vertical"] .alchemical-symbol--overview {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    left: 50%;
+    top: calc(var(--stack-panel-height) * 0.5);
+  }
+
+  .module-explorer[data-orientation="vertical"] .alchemical-symbol--readout {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    left: 50%;
+    top: calc(var(--stack-panel-height) + var(--module-gap) + (var(--stack-readout-height) * 0.5));
+  }
+
+  .module-explorer[data-orientation="vertical"] .panel-stage--image {
+    width: min(100%, 420px);
+    max-width: 420px;
+    justify-self: center;
   }
 
   .module-explorer[data-orientation="vertical"] .control-readout {
-    height: auto;
-    max-height: none;
+    width: min(100%, 460px);
+    height: var(--stack-readout-height);
+    max-height: var(--stack-readout-height);
+    justify-self: center;
   }
 
   .manual-index__item,
@@ -1824,10 +2006,11 @@ h3 {
 
 @media (max-width: 760px) {
   .module-explorer[data-orientation="vertical"] {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 460px);
   }
 
   .module-explorer[data-orientation="vertical"] .panel-stage--image {
+    width: min(100%, 420px);
     max-width: 420px;
   }
 }
@@ -2207,10 +2390,12 @@ h3 {
 }
 
 .patch-cable--active {
-  stroke-width: 3.5;
+  stroke-width: 6;
   opacity: 1;
-  stroke-dasharray: 6 4;
-  animation: cableFlow 1s linear infinite;
+  stroke-dasharray: 14 7;
+  stroke-linecap: round;
+  animation: cableFlow 0.65s linear infinite;
+  filter: drop-shadow(0 0 5px var(--cable-color, currentColor));
 }
 
 .patch-cable--complete {
@@ -2219,7 +2404,7 @@ h3 {
 }
 
 @keyframes cableFlow {
-  from { stroke-dashoffset: 20; }
+  from { stroke-dashoffset: 42; }
   to { stroke-dashoffset: 0; }
 }
 
@@ -2234,7 +2419,7 @@ h3 {
   border: 1px solid rgba(94, 194, 171, 0.2);
   clip-path: var(--chamfer);
   overflow-y: auto;
-  min-height: 440px;
+  height: 460px;
 }
 
 .patch-difficulty {
@@ -2441,5 +2626,10 @@ h3 {
 @media (max-width: 760px) {
   .patch-walker__body {
     grid-template-columns: 1fr;
+  }
+
+  .patch-walker__panel {
+    height: auto;
+    min-height: 320px;
   }
 }
