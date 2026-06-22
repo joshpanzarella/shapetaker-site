@@ -7,6 +7,7 @@ type AudioPlayerProps = {
   src: string;
   moduleName: string;
   moduleStatus: string;
+  description?: string;
 };
 
 function formatTime(seconds: number): string {
@@ -16,31 +17,54 @@ function formatTime(seconds: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
-export function AudioPlayer({ src, moduleName, moduleStatus }: AudioPlayerProps) {
+export function AudioPlayer({ src, moduleName, moduleStatus, description }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const rafRef = useRef<number>(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  function startRaf() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const tick = () => {
+      setCurrentTime(audio.currentTime);
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+  }
+
+  function stopRaf() {
+    cancelAnimationFrame(rafRef.current);
+  }
+
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    const onTimeUpdate = () => setCurrentTime(audio.currentTime);
-    const onDurationChange = () => { setDuration(audio.duration); setIsLoaded(true); };
-    const onEnded = () => setIsPlaying(false);
+    const onMetadata = () => { if (isFinite(audio.duration)) { setDuration(audio.duration); setIsLoaded(true); } };
+    const onEnded = () => { setIsPlaying(false); stopRaf(); };
     const onCanPlay = () => setIsLoaded(true);
 
-    audio.addEventListener("timeupdate", onTimeUpdate);
-    audio.addEventListener("durationchange", onDurationChange);
+    audio.addEventListener("loadedmetadata", onMetadata);
+    audio.addEventListener("durationchange", onMetadata);
     audio.addEventListener("ended", onEnded);
     audio.addEventListener("canplay", onCanPlay);
+
+    if (audio.readyState >= 1 && isFinite(audio.duration)) {
+      setDuration(audio.duration);
+      setIsLoaded(true);
+    } else if (audio.readyState >= 3) {
+      setIsLoaded(true);
+    }
+
     return () => {
-      audio.removeEventListener("timeupdate", onTimeUpdate);
-      audio.removeEventListener("durationchange", onDurationChange);
+      audio.removeEventListener("loadedmetadata", onMetadata);
+      audio.removeEventListener("durationchange", onMetadata);
       audio.removeEventListener("ended", onEnded);
       audio.removeEventListener("canplay", onCanPlay);
+      stopRaf();
     };
   }, []);
 
@@ -50,9 +74,9 @@ export function AudioPlayer({ src, moduleName, moduleStatus }: AudioPlayerProps)
     if (isPlaying) {
       audio.pause();
       setIsPlaying(false);
+      stopRaf();
     } else {
-      audio.play();
-      setIsPlaying(true);
+      audio.play().then(() => { setIsPlaying(true); startRaf(); }).catch(() => {});
     }
   }
 
@@ -77,6 +101,7 @@ export function AudioPlayer({ src, moduleName, moduleStatus }: AudioPlayerProps)
         <span className="audio-player__status">{moduleStatus}</span>
       </div>
       <div className="audio-player__title">{moduleName}</div>
+      {description && <p className="audio-player__description">{description}</p>}
       <div className="audio-player__controls">
         <button
           className={`audio-player__btn${isPlaying ? " is-playing" : ""}`}

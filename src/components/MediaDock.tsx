@@ -34,6 +34,7 @@ export function MediaDock({ module }: MediaDockProps) {
             src={module.media.audio!}
             moduleName={module.name}
             moduleStatus={module.status}
+            description={module.media.audioDescription}
           />
         ) : (
           <div className="audio-placeholder">

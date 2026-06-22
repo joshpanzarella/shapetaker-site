@@ -107,6 +107,7 @@ export type ModuleSpec = {
   }[];
   media: {
     audio?: string;
+    audioDescription?: string;
     video?: string;
   };
   suggestedPatches?: SuggestedPatch[];
@@ -135,7 +136,10 @@ export const modules: ModuleSpec[] = [
       height: 2014,
       alt: "clairaudient vcv rack module panel"
     },
-    media: { audio: "/modules/clairaudient/demo.mp3" },
+    media: {
+      audio: "/modules/clairaudient/clair-demo-1.wav",
+      audioDescription: "Two voices tuned a fifth apart, crossfading slowly through the V Shape range while the Z oscillator drifts via an LFO on Z Shape CV.",
+    },
     controls: [
       {
         id: "scope",
