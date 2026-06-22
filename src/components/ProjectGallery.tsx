@@ -6,6 +6,7 @@ import { Images } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { ProjectKind, ProjectSummary } from "@/lib/projects";
 import { MorphingTitle } from "@/components/MorphingTitle";
+import { alchemicalSymbols } from "@/lib/symbols";
 
 type ProjectGalleryProps = {
   projects: ProjectSummary[];
@@ -13,14 +14,6 @@ type ProjectGalleryProps = {
 
 const allFilter = "all";
 type ProjectFilter = ProjectKind | typeof allFilter;
-
-const alchemicalSymbols = [
-  "🜀", "🜁", "🜂", "🜃", "🜄", "🜅", "🜆", "🜇", "🜈", "🜉", "🜊", "🜋", "🜌", "🜍", "🜎", "🜏",
-  "🜐", "🜑", "🜒", "🜓", "🜔", "🜕", "🜖", "🜗", "🜘", "🜙", "🜚", "🜛", "🜜", "🜝", "🜞", "🜟",
-  "🜠", "🜡", "🜢", "🜣", "🜤", "🜥", "🜦", "🜧", "🜨", "🜩", "🜪", "🜫", "🜬", "🜭", "🜮", "🜯",
-  "🜰", "🜱", "🜲", "🜳", "🜴", "🜵", "🜶", "🜷", "🜸", "🜹", "🜺", "🜻", "🜼", "🜽", "🜾", "🜿",
-  "🝊", "🝋", "🝌", "🝍", "🝎", "🝏", "🝐", "🝑", "🝒", "🝓", "🝔", "🝕", "🝖", "🝗", "🝘", "🝙"
-];
 
 export function ProjectGallery({ projects }: ProjectGalleryProps) {
   const [activeKind, setActiveKind] = useState<ProjectFilter>(allFilter);

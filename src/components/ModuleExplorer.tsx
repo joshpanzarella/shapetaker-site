@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useMemo, useState, useEffect } from "react";
 import type { CSSProperties } from "react";
+import { alchemicalSymbols } from "@/lib/symbols";
 import { MousePointer2, Settings2 } from "lucide-react";
 import * as LucideIcons from "lucide-react";
 import type { Hotspot, ModuleExplorerData } from "@/data/modules";
@@ -18,23 +19,15 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
   const [activeContextId, setActiveContextId] = useState(module.contextMenu?.[0]?.id ?? "");
   const hasContextMenu = Boolean(module.contextMenu?.length);
 
-  const ALCHEMICAL_SYMBOLS = [
-    "☿", "♄", "♃", "♁", "☉", "☽", "♀", "♂", "♆", "♅", "♇",
-    "🜀", "🜁", "🜂", "🜃", "🜄", "🜅", "🜆", "🜇", "🜈", "🜉", "🜊", "🜋", "🜌", "🜍", "🜎", "🜏",
-    "🜐", "🜑", "🜒", "🜓", "🜔", "🜕", "🜖", "🜗", "🜘", "🜙", "🜚", "🜛", "🜜", "🜝", "🜞", "🜟",
-    "🜠", "🜡", "🜢", "🜣", "🜤", "🜥", "🜦", "🜧", "🜨", "🜩", "🜪", "🜫", "🜬", "🜭", "🜮", "🜯",
-    "🜰", "🜱", "🜲", "🜳", "🜴", "🜵", "🜶", "🜷", "🜸", "🜹", "🜺", "🜻", "🜼", "🜽", "🜾", "🜿",
-    "🝊", "🝋", "🝌", "🝍", "🝎", "🝏", "🝐", "🝑", "🝒", "🝓", "🝔", "🝕", "🝖", "🝗", "🝘", "🝙",
-  ];
   const [symbols, setSymbols] = useState(["☿", "♄", "♁"]);
 
   useEffect(() => {
-    const idx1 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
-    let idx2 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
-    while (idx2 === idx1) idx2 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
-    let idx3 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
-    while (idx3 === idx1 || idx3 === idx2) idx3 = Math.floor(Math.random() * ALCHEMICAL_SYMBOLS.length);
-    setSymbols([ALCHEMICAL_SYMBOLS[idx1], ALCHEMICAL_SYMBOLS[idx2], ALCHEMICAL_SYMBOLS[idx3]]);
+    const idx1 = Math.floor(Math.random() * alchemicalSymbols.length);
+    let idx2 = Math.floor(Math.random() * alchemicalSymbols.length);
+    while (idx2 === idx1) idx2 = Math.floor(Math.random() * alchemicalSymbols.length);
+    let idx3 = Math.floor(Math.random() * alchemicalSymbols.length);
+    while (idx3 === idx1 || idx3 === idx2) idx3 = Math.floor(Math.random() * alchemicalSymbols.length);
+    setSymbols([alchemicalSymbols[idx1], alchemicalSymbols[idx2], alchemicalSymbols[idx3]]);
   }, []);
 
   const activeControl = useMemo(
