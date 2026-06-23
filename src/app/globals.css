@@ -915,6 +915,40 @@ h3 {
   outline: 0;
 }
 
+.context-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.context-options button {
+  padding: 0.28rem 0.7rem;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  clip-path: var(--chamfer-sm);
+  cursor: pointer;
+  transition: background 100ms ease, color 100ms ease, border-color 100ms ease;
+}
+
+.context-options button:hover,
+.context-options button:focus-visible {
+  background: var(--surface-muted);
+  color: var(--ink);
+  outline: 0;
+}
+
+.context-options button.is-active {
+  background: rgba(215, 181, 109, 0.15);
+  color: var(--gold);
+  border-color: rgba(215, 181, 109, 0.45);
+}
+
 .readout-kicker {
   display: inline-flex;
   align-items: center;

@@ -17,7 +17,28 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
   const [activeId, setActiveId] = useState(module.controls[0]?.id ?? "");
   const [readoutMode, setReadoutMode] = useState<"controls" | "context">("controls");
   const [activeContextId, setActiveContextId] = useState(module.contextMenu?.[0]?.id ?? "");
+  const [activeGroup, setActiveGroup] = useState(module.contextMenu?.[0]?.group ?? "");
   const hasContextMenu = Boolean(module.contextMenu?.length);
+
+  const contextGroups = useMemo(() => {
+    if (!module.contextMenu) return [];
+    const seen = new Set<string>();
+    const groups: string[] = [];
+    for (const item of module.contextMenu) {
+      if (!seen.has(item.group)) { seen.add(item.group); groups.push(item.group); }
+    }
+    return groups;
+  }, [module.contextMenu]);
+
+  const groupItems = useMemo(
+    () => module.contextMenu?.filter((item) => item.group === activeGroup) ?? [],
+    [module.contextMenu, activeGroup]
+  );
+
+  useEffect(() => {
+    const first = module.contextMenu?.find((item) => item.group === activeGroup);
+    if (first) setActiveContextId(first.id);
+  }, [activeGroup, module.contextMenu]);
 
   const [symbols, setSymbols] = useState(["☿", "♄", "♁"]);
 
@@ -137,19 +158,31 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
               </button>
             </div>
             {readoutMode === "context" ? (
-              <label className="context-select">
-                <span>right-click menu item</span>
-                <select
-                  value={activeContextItem?.id}
-                  onChange={(event) => setActiveContextId(event.target.value)}
-                >
-                  {module.contextMenu?.map((item) => (
-                    <option key={item.id} value={item.id}>
-                      {item.group} - {item.label}
-                    </option>
+              <>
+                <label className="context-select">
+                  <span>right-click item</span>
+                  <select
+                    value={activeGroup}
+                    onChange={(e) => setActiveGroup(e.target.value)}
+                  >
+                    {contextGroups.map((group) => (
+                      <option key={group} value={group}>{group}</option>
+                    ))}
+                  </select>
+                </label>
+                <div className="context-options">
+                  {groupItems.map((item) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      className={activeContextId === item.id ? "is-active" : ""}
+                      onClick={() => setActiveContextId(item.id)}
+                    >
+                      {item.label}
+                    </button>
                   ))}
-                </select>
-              </label>
+                </div>
+              </>
             ) : null}
           </div>
         ) : null}
@@ -160,9 +193,6 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
         <h2 key={readoutTitle}>{readoutTitle}</h2>
         <div className="readout-scroll">
           <p>{readoutDescription}</p>
-          {isContextMode && activeContextItem.values ? (
-            <p className="context-values">{activeContextItem.values.join(" / ")}</p>
-          ) : null}
           
           {!isContextMode && activeControl?.diagrams && activeControl.diagrams.length > 0 ? (
             <div className="control-diagrams">

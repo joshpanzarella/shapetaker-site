@@ -121,14 +121,14 @@ export const modules: ModuleSpec[] = [
   {
     slug: "clairaudient",
     name: "clairaudient",
-    subtitle: "A stereo virtual analog sigmoid wave oscillator with crossfading and wave shape modulation for subtle, discordant timbre shifts. Perfect for your next séance.",
-    summary: "Unveil hidden sonic dimensions with Clairaudient. This dual-voice oscillator weaves intricate stereo textures through sigmoid wave shaping and cross-modulation. Whether you seek crystalline chimes, spectral drones, or untamed chaos, Clairaudient acts as your vessel to the unknown, blurring the line between analog warmth and ethereal discord.",
+    subtitle: "polyphonic dual oscillator with sigmoid-saw or PWM waveforms, symmetric detuned pairs, two sync modes, and equal-power or stereo-swap crossfade",
+    summary: "Clairaudient is a polyphonic stereo dual oscillator built around two independent signal paths: V and Z. Each path runs a symmetrically detuned sub-oscillator pair (A and B) in either sigmoid-saw or PWM mode, producing a natural stereo spread without external processing. A central crossfader blends the two paths with a constant-power curve or a stereo-swap mode that inverts the image as it sweeps. Cross sync and reverse sync add rhythmic harmonic locking between V and Z. All synthesis parameters accept polyphonic CV with attenuverters.",
     category: "vcv rack modules",
     status: "stereo oscillator",
     accent: "#68B7C8",
     accentSoft: "rgba(104, 183, 200, 0.2)",
     icon: AudioLines,
-    hp: 10,
+    hp: 16,
     panelImage: {
       src: "/modules/clairaudient/panel-source.png",
       width: 1268,
@@ -152,13 +152,13 @@ export const modules: ModuleSpec[] = [
     controls: [
       {
         id: "scope",
-        label: "scope",
+        label: "oscilloscope",
         type: "meter",
-        x: 50,
-        y: 20,
-        size: 32,
-        description: "central oscilloscope display for visualizing the relationship between the two signal paths.",
-        tip: "use the display to tune motion, sync, and crossfade behavior by eye while listening.",
+        x: 50.3,
+        y: 22.6,
+        size: 30,
+        description: "36.3mm vintage-style oscilloscope display showing the stereo output in real time. The buffer holds 1024 samples at adaptive downsampling to show approximately 1.5 cycles of the dominant oscillator — whichever of V or Z the crossfader is currently favoring. When V and Z are at a simple ratio and sync is active, the display locks into a stable Lissajous-style figure. Four visual themes available in the context menu: phosphor, ice, solar, and amber.",
+        tip: "watch the display change shape as you adjust the crossfader, sync switches, or V/Z ratio — it shows the stereo relationship, not just amplitude.",
         diagrams: [
           {
             id: "scope-chaotic",
@@ -179,346 +179,295 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "v-frequency",
-        label: "v coarse freq",
+        label: "v octave",
         type: "knob",
-        x: 14.7,
-        y: 17.2,
-        size: 16,
-        description: "coarse frequency control for the v side of the module.",
-        tip: "start here when tuning the left-side oscillator or processor voice.",
+        x: 16.5,
+        y: 19.8,
+        size: 18,
+        description: "V oscillator coarse frequency. Sets the base octave offset for both V sub-oscillators (A and B), relative to middle C (261.626 Hz at 0). Range is ±2 octaves in 5 steps. Snaps to whole octaves by default — disable snapping via Settings in the context menu for continuous tuning. Combined with V/Oct input and V Fine tune to determine the final pitch.",
+        tip: "set this first when placing V in a register, then tune Z relative to it.",
         diagrams: [
           { id: "v-freq--2", label: "-2 octaves", icon: "ChevronsDown", rotation: -135 },
           { id: "v-freq--1", label: "-1 octave", icon: "ChevronDown", rotation: -67.5 },
-          { id: "v-freq-0", label: "0 octaves", icon: "Minus", rotation: 0 },
+          { id: "v-freq-0", label: "0 oct (middle C)", icon: "Minus", rotation: 0 },
           { id: "v-freq-+1", label: "+1 octave", icon: "ChevronUp", rotation: 67.5 },
           { id: "v-freq-+2", label: "+2 octaves", icon: "ChevronsUp", rotation: 135 }
         ]
       },
       {
         id: "z-frequency",
-        label: "z coarse freq",
+        label: "z semitone",
         type: "knob",
-        x: 85.3,
-        y: 17.2,
-        size: 16,
-        description: "coarse frequency control for the z side of the module.",
-        tip: "tune this against the v side before adjusting fine or sync behavior.",
+        x: 84.1,
+        y: 20.0,
+        size: 18,
+        description: "Z oscillator coarse frequency. Sets the semitone offset for both Z sub-oscillators, relative to middle C. Range is ±24 semitones (4 octaves) in 49 steps. Snaps to semitone steps by default — disable via Settings for continuous tuning. When no Z V/Oct cable is patched, Z shares the V/Oct input and this offset is applied on top of the V pitch.",
+        tip: "tuning Z to a harmonic interval of V (5th = +7st, octave = +12st) produces stable sync relationships.",
         diagrams: [
-          { id: "z-freq--24", label: "-24 semitones", icon: "ChevronsDown", rotation: -135 },
-          { id: "z-freq--12", label: "-12 semitones", icon: "ChevronDown", rotation: -67.5 },
-          { id: "z-freq-0", label: "0 semitones", icon: "Minus", rotation: 0 },
-          { id: "z-freq-+12", label: "+12 semitones", icon: "ChevronUp", rotation: 67.5 },
-          { id: "z-freq-+24", label: "+24 semitones", icon: "ChevronsUp", rotation: 135 }
+          { id: "z-freq--24", label: "-24 semitones (−2 oct)", icon: "ChevronsDown", rotation: -135 },
+          { id: "z-freq--12", label: "-12 semitones (−1 oct)", icon: "ChevronDown", rotation: -67.5 },
+          { id: "z-freq-0", label: "0 semitones (unison)", icon: "Minus", rotation: 0 },
+          { id: "z-freq-+12", label: "+12 semitones (+1 oct)", icon: "ChevronUp", rotation: 67.5 },
+          { id: "z-freq-+24", label: "+24 semitones (+2 oct)", icon: "ChevronsUp", rotation: 135 }
         ]
       },
       {
         id: "v-fine",
         label: "v fine tune",
         type: "knob",
-        x: 23,
-        y: 34.6,
-        size: 12,
-        description: "fine frequency control for the v side.",
-        tip: "use small movements here after the coarse v frequency is close.",
+        x: 23.4,
+        y: 35.7,
+        size: 14,
+        description: "V oscillator fine tune. Controls symmetric detuning between the two V sub-oscillators. The total detuning range is ±20 cents — the value is split evenly, so sub-oscillator A goes flat by half and B goes sharp by half. At the maximum, A is 10 cents flat and B is 10 cents sharp, placing them 20 cents apart. This produces beating and natural chorus when the oscillators are close together in pitch. Accepts CV via V Fine CV input and attenuverter.",
+        tip: "small amounts (2–5 cents) create a subtle natural chorus; larger amounts produce audible beating.",
         diagrams: [
-          { id: "v-fine-flat", label: "flat (-50 cents)", icon: "Minus", rotation: -135 },
-          { id: "v-fine-center", label: "center (0 cents)", icon: "Circle", rotation: 0 },
-          { id: "v-fine-sharp", label: "sharp (+50 cents)", icon: "Plus", rotation: 135 }
+          { id: "v-fine-flat", label: "flat (−20 cents total)", icon: "Minus", rotation: -135 },
+          { id: "v-fine-center", label: "no detuning (0 cents)", icon: "Circle", rotation: 0 },
+          { id: "v-fine-sharp", label: "sharp (+20 cents total)", icon: "Plus", rotation: 135 }
         ]
       },
       {
         id: "z-fine",
         label: "z fine tune",
         type: "knob",
-        x: 77,
-        y: 34.6,
-        size: 12,
-        description: "fine frequency control for the z side.",
-        tip: "use this to dial close intervals or beating against the v side.",
+        x: 77.2,
+        y: 35.7,
+        size: 14,
+        description: "Z oscillator fine tune. Same symmetric detuning behavior as V fine tune, applied to the Z sub-oscillator pair. ±20 cents total range, split ±10 cents per sub-oscillator. Useful for close microtuning intervals against V, or for a separate beating rate on the Z side of the crossfade.",
+        tip: "detuning Z slightly relative to V creates an evolving beat frequency that changes with the crossfader.",
         diagrams: [
-          { id: "z-fine-flat", label: "flat (-50 cents)", icon: "Minus", rotation: -135 },
-          { id: "z-fine-center", label: "center (0 cents)", icon: "Circle", rotation: 0 },
-          { id: "z-fine-sharp", label: "sharp (+50 cents)", icon: "Plus", rotation: 135 }
+          { id: "z-fine-flat", label: "flat (−20 cents total)", icon: "Minus", rotation: -135 },
+          { id: "z-fine-center", label: "no detuning (0 cents)", icon: "Circle", rotation: 0 },
+          { id: "z-fine-sharp", label: "sharp (+20 cents total)", icon: "Plus", rotation: 135 }
         ]
+      },
+      {
+        id: "v-fine-att",
+        label: "v fine cv att",
+        type: "knob",
+        x: 14.8,
+        y: 48.1,
+        size: 10,
+        description: "Attenuverter for the V Fine CV input. Center (noon) is zero — no modulation passes. Clockwise adds positive scaling; counter-clockwise inverts. A ±10V CV source with the attenuverter at full covers the entire ±20 cent fine tune range.",
+        tip: "use inverted scaling with an LFO to create a natural vibrato that goes flat-then-sharp."
+      },
+      {
+        id: "z-fine-att",
+        label: "z fine cv att",
+        type: "knob",
+        x: 85.7,
+        y: 48.1,
+        size: 10,
+        description: "Attenuverter for the Z Fine CV input. Center (noon) is zero. Same scaling as V Fine CV attenuverter: a ±10V swing with full attenuverter covers the entire ±20 cent range.",
+        tip: "patch the same LFO to both V and Z fine CV with opposite attenuverter settings for a stereo-widening vibrato."
       },
       {
         id: "xsync",
         label: "cross sync",
         type: "switch",
-        x: 30,
-        y: 52.4,
-        size: 9,
-        description: "sync mode switch for the v side.",
-        tip: "toggle this while watching the display to hear and see the sync relationship change.",
+        x: 32.0,
+        y: 51.9,
+        size: 10,
+        description: "Hard sync switch. When engaged, each time V's leading sub-oscillator (A) completes a full cycle, both Z sub-oscillators have their phase reset to match V's current phase position. This forces Z into a harmonic or subharmonic relationship with V determined by their frequency ratio. Enables only when Cross Sync is on — if both Cross Sync and Reverse Sync are active, Cross Sync takes priority.",
+        tip: "hard sync + a slow Z V/Oct sweep creates classic sync sweep sounds.",
         diagrams: [
-          {
-            id: "xsync-down",
-            label: "free running",
-            icon: "Unlink",
-            state: "down"
-          },
-          {
-            id: "xsync-up",
-            label: "hard sync",
-            icon: "Link",
-            state: "up"
-          }
+          { id: "xsync-off", label: "free running", icon: "Unlink", state: "down" as const },
+          { id: "xsync-on",  label: "hard sync (V resets Z)", icon: "Link", state: "up" as const }
         ]
       },
       {
         id: "reverse-sync",
         label: "reverse sync",
         type: "switch",
-        x: 70,
-        y: 52.4,
-        size: 9,
-        description: "reverse sync mode switch for the z side.",
-        tip: "use it with xsync for more aggressive locked motion.",
+        x: 68.5,
+        y: 51.9,
+        size: 10,
+        description: "Phase-reversal sync. When engaged, each time V's leading sub-oscillator completes a cycle, the Z sub-oscillators' phase direction flips — forward becomes backward, and backward becomes forward. This produces an unusual sweeping/reversing motion distinct from hard sync. Only active when Cross Sync is off (Cross Sync takes priority if both switches are up).",
+        tip: "reverse sync with Z tuned a fifth above V produces an irregular stuttering pulse character.",
         diagrams: [
-          {
-            id: "rev-down",
-            label: "forward sync",
-            icon: "ArrowRight",
-            state: "down"
-          },
-          {
-            id: "rev-up",
-            label: "reverse sync",
-            icon: "ArrowLeft",
-            state: "up"
-          }
+          { id: "rev-off", label: "free running", icon: "ArrowRight", state: "down" as const },
+          { id: "rev-on",  label: "phase reversal on V cycle", icon: "Repeat", state: "up" as const }
         ]
       },
       {
         id: "xfade",
         label: "crossfade",
         type: "knob",
-        x: 50,
-        y: 45.4,
-        size: 17,
-        description: "The crossfade circuit routes the V and Z signal paths to the outputs based on the 'crossfade curve' context menu setting. In 'equal-power' mode, it blends the signals using a constant-power trigonometric curve to prevent volume dips at the center position. In 'stereo swap' mode, the knob behaves as a dual panner: at minimum, V is panned left and Z is right; at center, both are mixed equally; at maximum, the stereo image inverts (V right, Z left). This enables complex spatial manipulation when modulated via CV.",
-        tip: "animate this control when you want the output to move between v and z behavior.",
+        x: 50.3,
+        y: 44.4,
+        size: 18,
+        description: "Blends V and Z signal paths to both outputs. In Equal-Power mode (default): L = V_A×cos(θ) + Z_A×sin(θ), R = V_B×cos(θ) + Z_B×sin(θ), where θ = knob × π/2. The constant-power trig curve maintains perceived loudness across the full sweep — no volume dip at center. In Stereo-Swap mode: the blend routes V_A to L with Z_B, and V_B to R with Z_A, with a widening crossfeed that peaks at center and inverts the stereo field at full throw.",
+        tip: "in stereo-swap mode, center position produces the widest stereo field; modulate it slowly for a sweeping spatial effect.",
         diagrams: [
           {
             id: "v-side",
-            label: "v signal",
+            label: "V only",
             svg: '<path d="M5 4 L12 20 L19 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
             rotation: -135
           },
           {
             id: "v-z-blend",
-            label: "v + z blend",
+            label: "V + Z blend",
             svg: '<path d="M6 18 L18 6 M6 6 L18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
             rotation: 0
           },
           {
             id: "z-side",
-            label: "z signal",
+            label: "Z only",
             svg: '<path d="M4 4 H20 L4 20 H20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
             rotation: 135
           }
         ]
       },
-
+      {
+        id: "xfade-att",
+        label: "crossfade cv att",
+        type: "knob",
+        x: 50.0,
+        y: 59.1,
+        size: 10,
+        description: "Attenuverter for the Crossfade CV input. Center is zero. At full throw with a ±5V CV source, the modulation spans the entire 0–1 crossfade range. Inverted scaling (counter-clockwise) reverses the sweep direction.",
+        tip: "slow LFO here creates gentle, continuous motion between the two oscillator characters."
+      },
       {
         id: "v-shape",
         label: "v shape",
         type: "knob",
-        x: 13.1,
-        y: 63.3,
-        size: 13,
-        description: "main shape control for the v side.",
-        tip: "use this as the primary tone-shaping control for the left signal path.",
+        x: 16.5,
+        y: 62.1,
+        size: 14,
+        description: "V oscillator waveform shape. In Sigmoid Saw mode (default): at minimum, produces a sawtooth-like wave; as the knob advances, a sigmoid curve is applied with increasing steepness (range parameter: 3 + emphasizedShape × 10), smoothing toward a square-like wave at maximum. In PWM mode: controls pulse width (clamped 5%–95%), producing a square wave at center and increasingly narrow pulses toward either extreme. Applied equally to both V sub-oscillators (A and B).",
+        tip: "in sigmoid mode, slow CV modulation of shape produces a gradual character shift without abrupt timbral jumps.",
         diagrams: [
-          {
-            id: "sawtooth",
-            label: "sawtooth wave",
-            icon: "Activity",
-            rotation: -135
-          },
-          {
-            id: "sigmoid",
-            label: "sigmoid",
-            icon: "Spline",
-            rotation: 0
-          },
-          {
-            id: "square",
-            label: "square wave",
-            icon: "Square",
-            rotation: 135
-          }
+          { id: "v-saw",     label: "sawtooth (sigmoid at min)", icon: "Activity",  rotation: -135 },
+          { id: "v-sigmoid", label: "sigmoid curve (mid)",       icon: "Spline",    rotation: 0 },
+          { id: "v-square",  label: "square-like (sigmoid at max / PWM 50%)", icon: "Square", rotation: 135 }
         ]
       },
       {
         id: "z-shape",
         label: "z shape",
         type: "knob",
-        x: 87,
-        y: 63.3,
-        size: 13,
-        description: "main shape control for the z side.",
-        tip: "use this as the primary tone-shaping control for the right signal path.",
+        x: 84.1,
+        y: 62.1,
+        size: 14,
+        description: "Z oscillator waveform shape. Same sigmoid-saw or PWM behavior as V Shape, applied to the Z sub-oscillator pair (A and B). Moving V and Z shape independently creates timbral contrast between the two paths before they reach the crossfader.",
+        tip: "set V and Z shape to different values before crossfading — the blend will shift character, not just level.",
         diagrams: [
-          {
-            id: "sawtooth",
-            label: "sawtooth wave",
-            icon: "Activity",
-            rotation: -135
-          },
-          {
-            id: "sigmoid",
-            label: "sigmoid",
-            icon: "Spline",
-            rotation: 0
-          },
-          {
-            id: "square",
-            label: "square wave",
-            icon: "Square",
-            rotation: 135
-          }
+          { id: "z-saw",     label: "sawtooth (sigmoid at min)", icon: "Activity",  rotation: -135 },
+          { id: "z-sigmoid", label: "sigmoid curve (mid)",       icon: "Spline",    rotation: 0 },
+          { id: "z-square",  label: "square-like (sigmoid at max / PWM 50%)", icon: "Square", rotation: 135 }
         ]
       },
       {
-        id: "v-fine-tune-cv",
-        label: "v fine tune cv",
+        id: "v-shape-att",
+        label: "v shape cv att",
         type: "knob",
-        x: 13.2,
-        y: 45.5,
+        x: 27.6,
+        y: 72.4,
         size: 10,
-        description: "cv amount control for v-side fine tune modulation.",
-        tip: "set this around center for subtle movement, then increase for more animated pitch changes."
+        description: "Attenuverter for the V Shape CV input. Center is zero. At full throw, a ±5V CV source spans the entire 0–1 shape range. Inverted scaling creates the opposite sweep direction — useful for running both V and Z from the same LFO with mirror motion.",
+        tip: "patch an envelope here to push into a sharper waveform on note attack and release back to saw."
       },
       {
-        id: "z-fine-tune-cv",
-        label: "z fine tune cv",
+        id: "z-shape-att",
+        label: "z shape cv att",
         type: "knob",
-        x: 87,
-        y: 45.5,
+        x: 72.4,
+        y: 72.4,
         size: 10,
-        description: "cv amount control for z-side fine tune modulation.",
-        tip: "use this to scale how strongly incoming modulation affects the z fine tune control."
+        description: "Attenuverter for the Z Shape CV input. Same scaling behavior as V Shape attenuverter. Running both shape attenuverters from a common modulation source with different values creates independent shape motion per side.",
+        tip: "opposite attenuverter polarity on V and Z shape CVs from the same LFO creates a seesaw timbral sweep."
       },
       {
-        id: "x-shape-cv",
-        label: "crossfade attenuverter",
-        type: "knob",
-        x: 50,
-        y: 59.8,
-        size: 10,
-        description: "cv amount control for the central x shape input.",
-        tip: "patch modulation into x, then trim the amount here."
-      },
-      {
-        id: "x-input",
-        label: "crossfade attenuverter",
+        id: "xfade-cv",
+        label: "crossfade cv",
         type: "jack",
-        x: 50,
-        y: 69,
-        size: 8,
-        description: "central x patch point.",
-        tip: "use this jack with the central controls to patch the cross modulation path."
+        x: 50.0,
+        y: 70.1,
+        size: 10,
+        description: "CV input for the Crossfade parameter. Scaled by the Crossfade attenuverter above. Supports polyphonic cables — each voice's crossfade position can be modulated independently.",
+        tip: "sequencer gate with a slewed crossfade CV creates rapid automated V/Z switching."
+      },
+      {
+        id: "v-voct",
+        label: "v v/oct",
+        type: "jack",
+        x: 29.2,
+        y: 82.3,
+        size: 10,
+        description: "V oscillator V/Oct pitch input. The pitch CV stacks with the V Octave knob and V Fine tune. Supports polyphonic cables — up to 16 voices, each running independent V and Z oscillator instances. When only V V/Oct is patched, Z uses the same pitch input.",
+        tip: "patch a polyphonic sequencer here for independent per-voice tuning of the V oscillator."
+      },
+      {
+        id: "v-fine-cv",
+        label: "v fine cv",
+        type: "jack",
+        x: 47.2,
+        y: 82.3,
+        size: 10,
+        description: "V Fine Tune CV input. Scaled by the V Fine CV attenuverter. Polyphonic — each voice can have independent fine-tune modulation. Stacks additively with the V Fine tune knob value.",
+        tip: "patch vibrato LFO here for per-voice pitch modulation depth controlled by the attenuverter."
       },
       {
         id: "v-shape-cv",
-        label: "v shape attenuverter",
-        type: "knob",
-        x: 31.5,
-        y: 69.2,
+        label: "v shape cv",
+        type: "jack",
+        x: 65.1,
+        y: 82.3,
         size: 10,
-        description: "cv amount control for v-side shape modulation.",
-        tip: "patch modulation into the v shape input, then use this control to set the modulation depth."
+        description: "V Shape CV input. Scaled by the V Shape attenuverter. Modulates V oscillator waveform shape in real time. Polyphonic — each voice can shift shape independently.",
+        tip: "an envelope here with moderate attenuverter creates a natural shape attack and decay on V."
+      },
+      {
+        id: "z-voct",
+        label: "z v/oct",
+        type: "jack",
+        x: 29.2,
+        y: 89.1,
+        size: 10,
+        description: "Z oscillator V/Oct pitch input. When patched, Z tracks this independently from V. When unpatched, Z shares the V V/Oct input and the Z Semitone knob offset is applied on top. Polyphonic — each voice controls its Z oscillator independently.",
+        tip: "patch a second sequencer pitch output here to independently melodize the Z oscillator."
+      },
+      {
+        id: "z-fine-cv",
+        label: "z fine cv",
+        type: "jack",
+        x: 47.2,
+        y: 89.1,
+        size: 10,
+        description: "Z Fine Tune CV input. Scaled by the Z Fine CV attenuverter. Stacks additively with the Z Fine tune knob. Polyphonic.",
+        tip: "a slow random (S&H) source here with low attenuverter adds subtle detuning variation per note."
       },
       {
         id: "z-shape-cv",
-        label: "z shape attenuverter",
-        type: "knob",
-        x: 68.5,
-        y: 69.2,
+        label: "z shape cv",
+        type: "jack",
+        x: 65.1,
+        y: 89.1,
         size: 10,
-        description: "cv amount control for z-side shape modulation.",
-        tip: "patch modulation into the z shape input, then use this control to set the modulation depth."
+        description: "Z Shape CV input. Scaled by the Z Shape attenuverter. Independent of V Shape CV, so V and Z can be modulated on separate lanes or from the same source with different scaling.",
+        tip: "running the same modulation source into V and Z shape CVs with opposite attenuverters creates a mirror shape sweep."
       },
       {
-        id: "v-voct-a",
-        label: "V - v/oct in",
+        id: "output-l",
+        label: "output L",
         type: "jack",
-        x: 20.5,
-        y: 78.6,
-        size: 8,
-        description: "pitch cv input for the v side.",
-        tip: "patch sequencer pitch or keyboard cv here."
+        x: 82.9,
+        y: 82.3,
+        size: 10,
+        description: "Left stereo output. Carries the processed signal after the full chain: oversampled waveshaping → anti-alias filter → crossfade blend → output tanh soft-clip (±5V peak) → DC block → voice character pan → output color saturation → high-cut filter (if enabled). Polyphonic — carries all active voices.",
+        tip: "patch L and R to a stereo mixer or directly into left/right inputs of an effects chain."
       },
       {
-        id: "v-voct-b",
-        label: "Z - v/oct in",
+        id: "output-r",
+        label: "output R",
         type: "jack",
-        x: 20.5,
-        y: 89,
-        size: 8,
-        description: "second pitch cv input for the v side.",
-        tip: "use the second input when stacking or combining pitch sources."
-      },
-      {
-        id: "v-fine-cv-a",
-        label: "fine cv",
-        type: "jack",
-        x: 40.2,
-        y: 78.6,
-        size: 8,
-        description: "fine modulation input for the v side.",
-        tip: "patch small pitch movements, vibrato, or slow drift here."
-      },
-      {
-        id: "v-fine-cv-b",
-        label: "fine cv",
-        type: "jack",
-        x: 40.2,
-        y: 89,
-        size: 8,
-        description: "second fine modulation input for the v side.",
-        tip: "use this for an additional fine-control modulation source."
-      },
-      {
-        id: "shape-cv-a",
-        label: "shape cv",
-        type: "jack",
-        x: 60,
-        y: 78.6,
-        size: 8,
-        description: "shape modulation input.",
-        tip: "patch envelopes or lfos here to animate timbre."
-      },
-      {
-        id: "shape-cv-b",
-        label: "shape cv",
-        type: "jack",
-        x: 60,
-        y: 89,
-        size: 8,
-        description: "second shape modulation input.",
-        tip: "use this for a second modulation lane into shape."
-      },
-      {
-        id: "left-output",
-        label: "left",
-        type: "jack",
-        x: 79.7,
-        y: 78.6,
-        size: 8,
-        description: "left audio output.",
-        tip: "patch this to the left channel of a mixer or stereo path."
-      },
-      {
-        id: "right-output",
-        label: "right",
-        type: "jack",
-        x: 79.7,
-        y: 89,
-        size: 8,
-        description: "right audio output.",
-        tip: "patch this to the right channel of a mixer or stereo path."
+        x: 82.9,
+        y: 89.1,
+        size: 10,
+        description: "Right stereo output. The stereo image comes from the detuned sub-oscillator pairs: V_A feeds the left crossfade input, V_B feeds the right. Z_A and Z_B follow the same pattern. In equal-power mode the spread is subtle; in stereo-swap mode it inverts at full throw.",
+        tip: "summing L and R to mono is safe — the sub-oscillator pairs are complementary and cancel cross-correlation at the blend points."
       }
     ],
     contextMenu: [
@@ -528,7 +477,7 @@ export const modules: ModuleSpec[] = [
         label: "v oscillator quantized",
         kind: "toggle",
         description:
-          "sets whether the v oscillator coarse frequency control snaps to quantized pitch steps."
+          "When enabled, the V Octave knob snaps to discrete whole-octave steps (−2, −1, 0, +1, +2). When disabled, tuning is continuous — useful for glide-style pitch or microtonal intervals. Default is on."
       },
       {
         id: "z-oscillator-quantized",
@@ -536,7 +485,7 @@ export const modules: ModuleSpec[] = [
         label: "z oscillator quantized",
         kind: "toggle",
         description:
-          "sets whether the z oscillator coarse frequency control snaps to quantized pitch steps."
+          "When enabled, the Z Semitone knob snaps to discrete semitone steps across a ±24 semitone (4 octave) range (49 positions total). When disabled, tuning is continuous. Default is on."
       },
       {
         id: "oscilloscope-theme",
@@ -545,7 +494,7 @@ export const modules: ModuleSpec[] = [
         kind: "choice",
         values: ["phosphor", "ice", "solar", "amber"],
         description:
-          "changes the visual theme of the central oscilloscope display without changing the audio path."
+          "Selects the color palette for the vintage oscilloscope display. Phosphor is a warm green phosphor CRT look; Ice is a cool blue-white; Solar is a warm amber-red; Amber is a golden amber phosphor. A 'follow shared theme' toggle in the context menu lets all Shapetaker oscilloscope displays share a single theme setting."
       },
       {
         id: "oscillator-noise",
@@ -553,7 +502,7 @@ export const modules: ModuleSpec[] = [
         label: "noise",
         kind: "slider",
         description:
-          "adds oscillator noise and microscopic phase jitter for a gritty, hardware-like noise floor."
+          "Adds two simultaneous noise effects scaled together: per-sample phase jitter (scale 0.00005, scaled by this amount) and an audible white noise floor (peak ±0.45V, added post-waveshaping). Both follow a perceptual shaping curve (exponent 0.65) so low amounts are nearly inaudible — the noise appears gradually as you increase the slider. Default is 0% (off)."
       },
       {
         id: "drift",
@@ -561,7 +510,7 @@ export const modules: ModuleSpec[] = [
         label: "drift",
         kind: "slider",
         description:
-          "introduces slow pitch wandering to simulate vintage temperature instability."
+          "Introduces slow, independent pitch wandering per sub-oscillator via a random walk algorithm. The walk speed is proportional to the amount — at full, the pitch of each sub-oscillator wanders up to approximately ±1.2 cents from its nominal pitch. Drift updates at 1/64 of the sample rate for CPU efficiency. Default is 0% (off)."
       },
       {
         id: "drift-cohesion",
@@ -569,15 +518,15 @@ export const modules: ModuleSpec[] = [
         label: "drift cohesion",
         kind: "slider",
         description:
-          "controls whether polyphonic voices drift independently or move together like a shared power supply sag."
+          "Controls whether polyphonic voices drift independently or together. At zero, each voice has its own drift trajectory. At full, all voices share a single drift source — simulating a common power supply sag or shared thermal environment. Intermediate values blend between independent and shared drift, useful for achieving that 'slight ensemble but not totally random' character."
       },
       {
         id: "voice-character",
-        group: "component tolerances",
+        group: "analog glue",
         label: "voice character",
         kind: "slider",
         description:
-          "adds stable per-voice differences in pitch, shape, level, and panning so each voice has its own character."
+          "Adds stable, deterministic per-voice offsets in four dimensions: pitch (±0.25% at full), shape (±2.5%), level (±3.5%), and stereo pan (±2.5%). The offsets are seeded from the voice index and never change between patches — voice 1 always has the same character, voice 2 another, and so on. This creates the consistent voice-to-voice variation of an analog polysynth with component tolerances."
       },
       {
         id: "output-color",
@@ -585,7 +534,7 @@ export const modules: ModuleSpec[] = [
         label: "output color",
         kind: "slider",
         description:
-          "adds subtle bus coloration and stereo crosstalk to glue the oscillators together at the output."
+          "Applies a tanh-based soft saturation and stereo crosstalk to the output bus. At full: 2.5% of each channel bleeds into the other (crosstalk), and the signal is driven by up to 0.25× extra and re-normalized through tanh. The result glues the two oscillators together sonically and softens harsh transients. Wet/dry blends linearly from 0% (off) to 100% (fully colored). Default is 0%."
       },
       {
         id: "high-cut-enabled",
@@ -593,7 +542,7 @@ export const modules: ModuleSpec[] = [
         label: "high cut enabled",
         kind: "toggle",
         description:
-          "engages a gentle high-cut filter to soften harsh digital highs."
+          "Engages a one-pole low-pass filter at 14,500 Hz on both output channels. Applied post-waveshaping and post-output-color. Softens the top end of harsh digital content from extreme shape settings or high-drive oversampled processing. Default is off."
       },
       {
         id: "oversampling",
@@ -602,7 +551,7 @@ export const modules: ModuleSpec[] = [
         kind: "choice",
         values: ["1x off", "2x", "4x", "8x"],
         description:
-          "selects the oversampling factor used to reduce aliasing during extreme shape modulation or sync."
+          "Sets the internal oversampling factor for the waveshaping engine. At 1×: no oversampling, no anti-alias filtering — lowest CPU. At 2×/4×/8×: the engine runs at 2/4/8× the system sample rate; a two-stage cascaded one-pole anti-alias filter (cutoff 0.45× system rate) reduces aliasing artifacts before decimation back down. Default is 4×. 8× is recommended for extreme shape CV modulation or hard sync at high pitches."
       },
       {
         id: "waveform-mode",
@@ -611,7 +560,7 @@ export const modules: ModuleSpec[] = [
         kind: "choice",
         values: ["sigmoid saw", "pwm"],
         description:
-          "chooses between the sigmoid saw topology and pulse-width modulation behavior for the oscillator shapes."
+          "Selects the waveform algorithm for both V and Z oscillators. Sigmoid Saw (default): a sawtooth wave shaped through a sigmoid function whose steepness is controlled by the Shape knob, ranging from near-sawtooth to near-square. PWM: a pulse wave whose duty cycle is controlled by Shape (5%–95%), with PolyBLEP anti-aliasing applied at the discontinuities. The mode switch applies to all voices."
       },
       {
         id: "crossfade-curve",
@@ -620,21 +569,21 @@ export const modules: ModuleSpec[] = [
         kind: "choice",
         values: ["equal-power", "stereo swap"],
         description:
-          "sets whether the crossfader behaves as an equal-power blend or a wide stereo swap between v and z."
+          "Sets the crossfader behavior. Equal-Power (default): uses a constant-power trigonometric curve (cos/sin) so perceived loudness stays consistent as you sweep from V to Z — no volume dip at center. Stereo Swap: routes V_A to L with Z_B, and V_B to R with Z_A, with an out-of-phase crossfeed that peaks at the center position (gain 0.35 × sin(xfade × π)) and inverts the stereo field at full throw."
       }
     ],
     manual: [
       {
         title: "overview",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
+        body: "Clairaudient is a polyphonic stereo oscillator built around two independent synthesis voices: V and Z. Each voice runs a symmetrically detuned sub-oscillator pair (A and B) in either sigmoid-saw or PWM mode. The slight detuning between A and B within each voice generates a natural stereo spread without external processing. A central crossfader blends V and Z together, either with a constant-power equal-power curve or a stereo-swap mode that moves V and Z between channels as it sweeps. Polyphony up to 16 voices — each voice runs fully independent V and Z oscillator instances with separate phase, drift, and voice character offsets."
       },
       {
-        title: "controls",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
+        title: "signal flow",
+        body: "V/Oct input → V Octave offset + Fine tune (symmetric detuning: A flat by half, B sharp by half) → drift (optional random walk) + phase noise (optional) → sigmoid-saw or PWM waveshaper (oversampled at 1×–8×) → 2-stage cascaded one-pole anti-alias filter → crossfade blend (L = V_A×cos + Z_A×sin, R = V_B×cos + Z_B×sin) → output tanh soft-clip (±5V peak) → DC block (~10 Hz high-pass) → voice character panning → output color saturation + crosstalk (optional) → high-cut filter at 14.5 kHz (optional) → L/R outputs. The Z path follows the same chain in parallel. When Z V/Oct is unpatched, Z inherits the V pitch and adds the Z Semitone offset."
       },
       {
-        title: "patch ideas",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
+        title: "sync and crossfade",
+        body: "Cross Sync and Reverse Sync are mutually exclusive: Cross Sync takes priority if both switches are up. Cross Sync resets Z's phase to V's current position each time V completes a cycle — classic hard sync, producing harmonic relationships that depend on the V:Z frequency ratio. Reverse Sync flips Z's phase direction on each V cycle completion instead, producing a sweeping/reversing character unlike standard hard sync. The crossfader behavior is set via the context menu: Equal-Power is a constant-loudness blend; Stereo Swap routes sub-oscillators to opposite channels and adds out-of-phase crossfeed that peaks at center (STEREO_SWAP_WIDTH_GAIN = 0.35), creating a wide stereo inversion effect as it sweeps."
       }
     ],
     suggestedPatches: [
