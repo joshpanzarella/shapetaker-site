@@ -31,7 +31,7 @@ export default function Home() {
         <FadeIn direction="up">
           <div className="section-heading">
             <span className="eyebrow">interactive manual</span>
-            <h2>explore the featured module.</h2>
+            <h2>select a control:</h2>
           </div>
         </FadeIn>
         <FadeIn delay={200} direction="up">
