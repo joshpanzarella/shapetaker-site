@@ -1973,7 +1973,7 @@ h3 {
 
 .project-preview {
   position: relative;
-  min-height: min(68vh, 720px);
+  height: clamp(380px, 52vw, 640px);
   overflow: hidden;
   border: 1px solid var(--line);
   background-color: var(--surface-card);
@@ -2122,7 +2122,7 @@ h3 {
   }
 
   .project-preview {
-    min-height: 380px;
+    height: 380px;
   }
 
   .panel-stage {

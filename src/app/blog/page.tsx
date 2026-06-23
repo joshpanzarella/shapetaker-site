@@ -23,7 +23,6 @@ export default function Blog() {
       <section className="content-band content-band--dark" style={{ paddingTop: "3rem" }}>
         <div className="section-heading">
           <span className="eyebrow">latest notes</span>
-          <h2>read the log.</h2>
         </div>
 
         <div className="stack-grid" style={{ marginBottom: "2rem" }}>
