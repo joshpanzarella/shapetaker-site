@@ -47,7 +47,7 @@ export function SiteHeader() {
             {item.labelParts
               ? item.labelParts.map((part, i) =>
                   part.glyph
-                    ? <span key={i} className="nav-alch-glyph">{part.text}</span>
+                    ? <span key={i} className="nav-alch-glyph" style={part.fontSize ? { fontSize: part.fontSize } : undefined}>{part.text}</span>
                     : part.text
                 )
               : item.label}

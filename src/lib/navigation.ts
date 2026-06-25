@@ -1,11 +1,18 @@
 export type NavItem = {
   href: string;
   label: string;
-  labelParts?: Array<{ text: string; glyph?: boolean }>;
+  labelParts?: Array<{ text: string; glyph?: boolean; fontSize?: string }>;
 };
 
 export const siteNav: NavItem[] = [
-  { href: "/", label: "home" },
+  {
+    href: "/",
+    label: "home",
+    labelParts: [
+      { text: "♄", glyph: true, fontSize: "1.44em" },
+      { text: "ome" },
+    ],
+  },
   { href: "/projects", label: "projects" },
   {
     href: "/manuals",

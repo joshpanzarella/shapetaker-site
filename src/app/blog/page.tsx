@@ -12,7 +12,7 @@ export default function Blog() {
     <main>
       <section className="page-shell" style={{ paddingBottom: "2rem" }}>
         <div className="page-heading" style={{ marginBottom: "1rem" }}>
-          <span className="eyebrow">notes</span>
+          <span className="eyebrow">record</span>
           <h1 className="brand-title">field notes</h1>
           <p>
             updates, deep dives, and build notes on current modular designs and experiments.
