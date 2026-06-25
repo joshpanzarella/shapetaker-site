@@ -7,8 +7,6 @@ type Demo = { title: string; src: string; description?: string };
 
 type AudioPlayerProps = {
   demos: Demo[];
-  moduleName: string;
-  moduleStatus: string;
 };
 
 function formatTime(seconds: number): string {
@@ -18,7 +16,7 @@ function formatTime(seconds: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
-export function AudioPlayer({ demos, moduleName, moduleStatus }: AudioPlayerProps) {
+export function AudioPlayer({ demos }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const rafRef = useRef<number>(0);
   const pendingPlayRef = useRef(false);
@@ -124,10 +122,7 @@ export function AudioPlayer({ demos, moduleName, moduleStatus }: AudioPlayerProp
           <Headphones size={12} aria-hidden="true" />
           demo recording
         </span>
-        <span className="audio-player__status">{moduleStatus}</span>
       </div>
-
-      <div className="audio-player__title">{moduleName}</div>
 
       {demos.length > 1 && (
         <div className="audio-player__demos" role="listbox" aria-label="demo tracks">

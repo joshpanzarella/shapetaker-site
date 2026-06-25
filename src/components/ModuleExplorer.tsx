@@ -84,7 +84,8 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
         {
           "--panel-ratio": module.panelImage
             ? `${module.panelImage.height / module.panelImage.width}`
-            : undefined
+            : undefined,
+          "--module-hp": module.hp ?? 12
         } as React.CSSProperties
       }
       aria-label={`${module.name} interactive controls`}
@@ -192,7 +193,13 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
         </span>
         <h2 key={readoutTitle}>{readoutTitle}</h2>
         <div className="readout-scroll">
-          <p>{readoutDescription}</p>
+          {Array.isArray(readoutDescription) ? (
+            <ul className="readout-bullets">
+              {readoutDescription.map((item, i) => <li key={i}>{item}</li>)}
+            </ul>
+          ) : (
+            <p>{readoutDescription}</p>
+          )}
           
           {!isContextMode && activeControl?.diagrams && activeControl.diagrams.length > 0 ? (
             <div className="control-diagrams">
@@ -215,19 +222,18 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
                       </div>
                     )}
                     <div className="control-diagram__content">
-                      {diagram.svg ? (
-                        <span 
+                      {diagram.svg && (
+                        <span
                           style={{ display: 'flex' }}
-                          dangerouslySetInnerHTML={{ 
-                            __html: `<svg viewBox="0 0 24 24" width="${activeControl.type === 'meter' ? '40' : '28'}" height="${activeControl.type === 'meter' ? '40' : '28'}" class="control-diagram__icon">${diagram.svg}</svg>`
+                          dangerouslySetInnerHTML={{
+                            __html: `<svg viewBox="0 0 24 24" width="28" height="28" class="control-diagram__icon">${diagram.svg}</svg>`
                           }}
                         />
-                      ) : diagram.icon ? (
-                        (() => {
-                          const IconComponent = (LucideIcons as unknown as Record<string, React.ElementType>)[diagram.icon] || LucideIcons.Circle;
-                          return <IconComponent size={28} className="control-diagram__icon" />;
-                        })()
-                      ) : null}
+                      )}
+                      {diagram.icon && (() => {
+                        const IconComponent = (LucideIcons as unknown as Record<string, React.ElementType>)[diagram.icon] || LucideIcons.Circle;
+                        return <IconComponent size={28} className="control-diagram__icon" />;
+                      })()}
                       <span className="control-diagram__label">{diagram.label}</span>
                     </div>
                   </div>

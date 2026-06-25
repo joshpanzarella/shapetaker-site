@@ -216,6 +216,14 @@ code {
   font-feature-settings: "kern" 1, "aalt" 1;
 }
 
+.brand-alch-glyph {
+  font-family: "Noto Sans Symbols 2", "Segoe UI Symbol", "Apple Symbols", sans-serif;
+  font-weight: 300;
+  font-size: 1.1em;
+  vertical-align: 0.12em;
+  letter-spacing: 0;
+}
+
 .site-nav {
   display: flex;
   align-items: center;
@@ -410,6 +418,7 @@ h3 {
 
 .module-explorer {
   --module-gap: clamp(1rem, 3vw, 1.5rem);
+  --hp-panel-width: calc(var(--module-hp, 12) * 35px);
   --stack-panel-width: min(calc(100vw - 2rem), 420px);
   --stack-panel-height: calc(var(--stack-panel-width) * var(--panel-ratio, 1.333333));
   --stack-readout-height: calc(420px * var(--panel-ratio, 1.333333));
@@ -481,12 +490,12 @@ h3 {
 }
 
 .module-explorer[data-orientation="vertical"] {
-  grid-template-columns: 420px minmax(260px, 460px) minmax(260px, 1fr);
+  grid-template-columns: var(--hp-panel-width) minmax(260px, 460px) minmax(260px, 1fr);
 }
 
 .module-explorer[data-orientation="vertical"] .control-readout {
-  height: calc(420px * var(--panel-ratio, 1.333333));
-  max-height: calc(420px * var(--panel-ratio, 1.333333));
+  height: calc(var(--hp-panel-width) * var(--panel-ratio, 1.333333));
+  max-height: calc(var(--hp-panel-width) * var(--panel-ratio, 1.333333));
 }
 
 .fade-wrapper-stretch {
@@ -674,15 +683,27 @@ h3 {
   display: none;
 }
 
+/* prospective selection on image panel — teal dot */
 .rack-panel--image .hotspot:hover::before,
-.rack-panel--image .hotspot:focus-visible::before,
-.rack-panel--image .hotspot.is-active::before {
+.rack-panel--image .hotspot:focus-visible::before {
   border-color: rgba(244, 240, 232, 0.95);
-  background: color-mix(in srgb, var(--module-accent) 92%, white);
+  background: color-mix(in srgb, var(--teal) 92%, white);
   box-shadow:
     0 0 0 3px rgba(8, 8, 7, 0.55),
-    0 0 0 9px color-mix(in srgb, var(--module-accent) 28%, transparent),
-    0 0 26px color-mix(in srgb, var(--module-accent) 85%, transparent);
+    0 0 0 9px color-mix(in srgb, var(--teal) 28%, transparent),
+    0 0 26px color-mix(in srgb, var(--teal) 85%, transparent);
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.18);
+}
+
+/* selected control on image panel — purple dot */
+.rack-panel--image .hotspot.is-active::before {
+  border-color: rgba(244, 240, 232, 0.95);
+  background: color-mix(in srgb, var(--focus-purple) 92%, white);
+  box-shadow:
+    0 0 0 3px rgba(8, 8, 7, 0.55),
+    0 0 0 9px color-mix(in srgb, var(--focus-purple) 28%, transparent),
+    0 0 26px color-mix(in srgb, var(--focus-purple) 85%, transparent);
   opacity: 1;
   transform: translate(-50%, -50%) scale(1.18);
 }
@@ -798,22 +819,40 @@ h3 {
   outline: 0;
 }
 
+/* prospective selection — teal */
 .hotspot:hover::before,
-.hotspot:focus-visible::before,
-.hotspot.is-active::before {
-  border-color: color-mix(in srgb, var(--module-accent) 86%, var(--palette-graphite-50));
+.hotspot:focus-visible::before {
+  border-color: color-mix(in srgb, var(--teal) 86%, var(--palette-graphite-50));
   box-shadow:
     inset 0 0 0 5px rgba(0, 0, 0, 0.24),
-    0 0 0 4px color-mix(in srgb, var(--module-accent) 24%, transparent),
+    0 0 0 4px color-mix(in srgb, var(--teal) 24%, transparent),
     0 14px 28px rgba(0, 0, 0, 0.38);
   transform: scale(1.04);
 }
 
 .hotspot:hover .hotspot__pulse,
-.hotspot:focus-visible .hotspot__pulse,
+.hotspot:focus-visible .hotspot__pulse {
+  animation: none;
+  opacity: 1;
+  border-color: color-mix(in srgb, var(--teal) 74%, var(--palette-graphite-50));
+  transform: scale(1.05);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+/* selected control — purple */
+.hotspot.is-active::before {
+  border-color: color-mix(in srgb, var(--focus-purple) 90%, var(--palette-graphite-50));
+  box-shadow:
+    inset 0 0 0 5px rgba(0, 0, 0, 0.24),
+    0 0 0 4px color-mix(in srgb, var(--focus-purple) 28%, transparent),
+    0 14px 28px rgba(0, 0, 0, 0.38);
+  transform: scale(1.04);
+}
+
 .hotspot.is-active .hotspot__pulse {
   animation: none;
   opacity: 1;
+  border-color: color-mix(in srgb, var(--focus-purple) 74%, var(--palette-graphite-50));
   transform: scale(1.05);
   transition: opacity 160ms ease, transform 160ms ease;
 }
@@ -989,6 +1028,31 @@ h3 {
   color: var(--ink-soft);
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.readout-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.readout-bullets li {
+  color: var(--ink-soft);
+  font-size: 0.97rem;
+  line-height: 1.45;
+  padding-left: 1.1em;
+  position: relative;
+}
+
+.readout-bullets li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
 }
 
 .context-values {
@@ -1550,7 +1614,6 @@ h3 {
 }
 
 .manual-section {
-  min-height: 240px;
   padding: 1.2rem;
   border: 1px solid var(--line);
   clip-path: var(--chamfer-sm);
@@ -2112,7 +2175,7 @@ h3 {
   }
 
   .module-explorer[data-orientation="vertical"] {
-    grid-template-columns: 420px minmax(260px, 460px);
+    grid-template-columns: var(--hp-panel-width) minmax(260px, 460px);
   }
 
   .module-overview {
@@ -2258,8 +2321,8 @@ h3 {
 }
 
 .control-diagrams {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
   margin-top: 2rem;
   padding-top: 1.5rem;

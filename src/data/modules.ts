@@ -8,7 +8,7 @@ export type Hotspot = {
   x: number;
   y: number;
   size: number;
-  description: string;
+  description: string | string[];
   tip: string;
   diagrams?: Array<{
     id: string;
@@ -114,7 +114,7 @@ export type ModuleSpec = {
 
 export type ModuleExplorerData = Pick<
   ModuleSpec,
-  "name" | "accent" | "controls" | "panelImage" | "contextMenu" | "subtitle" | "summary" | "status"
+  "name" | "accent" | "controls" | "panelImage" | "contextMenu" | "subtitle" | "summary" | "status" | "hp"
 >;
 
 export const modules: ModuleSpec[] = [
@@ -154,10 +154,14 @@ export const modules: ModuleSpec[] = [
         id: "scope",
         label: "oscilloscope",
         type: "meter",
-        x: 50.3,
-        y: 22.6,
+        x: 50.0,
+        y: 19.73,
         size: 30,
-        description: "36.3mm vintage-style oscilloscope display showing the stereo output in real time. The buffer holds 1024 samples at adaptive downsampling to show approximately 1.5 cycles of the dominant oscillator — whichever of V or Z the crossfader is currently favoring. When V and Z are at a simple ratio and sync is active, the display locks into a stable Lissajous-style figure. Four visual themes available in the context menu: phosphor, ice, solar, and amber.",
+        description: [
+          "shows the live stereo output — the shape reflects how V and Z are blending at the crossfader",
+          "when sync is on and V:Z are at a simple ratio, the trace locks into a stable figure",
+          "choose a color theme (phosphor, ice, solar, amber) in the context menu",
+        ],
         tip: "watch the display change shape as you adjust the crossfader, sync switches, or V/Z ratio — it shows the stereo relationship, not just amplitude.",
         diagrams: [
           {
@@ -181,10 +185,14 @@ export const modules: ModuleSpec[] = [
         id: "v-frequency",
         label: "v octave",
         type: "knob",
-        x: 16.5,
-        y: 19.8,
+        x: 15.0,
+        y: 16.9,
         size: 18,
-        description: "V oscillator coarse frequency. Sets the base octave offset for both V sub-oscillators (A and B), relative to middle C (261.626 Hz at 0). Range is ±2 octaves in 5 steps. Snaps to whole octaves by default — disable snapping via Settings in the context menu for continuous tuning. Combined with V/Oct input and V Fine tune to determine the final pitch.",
+        description: [
+          "sets the register for the V oscillator in whole-octave steps (−2 to +2)",
+          "snaps to octaves by default — turn off quantization in the context menu for continuous tuning",
+          "set this first to place V in the right octave, then fine-tune from there",
+        ],
         tip: "set this first when placing V in a register, then tune Z relative to it.",
         diagrams: [
           { id: "v-freq--2", label: "-2 octaves", icon: "ChevronsDown", rotation: -135 },
@@ -198,10 +206,14 @@ export const modules: ModuleSpec[] = [
         id: "z-frequency",
         label: "z semitone",
         type: "knob",
-        x: 84.1,
-        y: 20.0,
+        x: 85.0,
+        y: 16.9,
         size: 18,
-        description: "Z oscillator coarse frequency. Sets the semitone offset for both Z sub-oscillators, relative to middle C. Range is ±24 semitones (4 octaves) in 49 steps. Snaps to semitone steps by default — disable via Settings for continuous tuning. When no Z V/Oct cable is patched, Z shares the V/Oct input and this offset is applied on top of the V pitch.",
+        description: [
+          "offsets Z from V's pitch in semitones (±24 semitones across 4 octaves)",
+          "snaps to semitone steps by default — disable quantization in the context menu for continuous tuning",
+          "when Z V/Oct is unpatched, Z follows V's pitch and this knob adds the interval on top",
+        ],
         tip: "tuning Z to a harmonic interval of V (5th = +7st, octave = +12st) produces stable sync relationships.",
         diagrams: [
           { id: "z-freq--24", label: "-24 semitones (−2 oct)", icon: "ChevronsDown", rotation: -135 },
@@ -215,10 +227,14 @@ export const modules: ModuleSpec[] = [
         id: "v-fine",
         label: "v fine tune",
         type: "knob",
-        x: 23.4,
-        y: 35.7,
+        x: 23.41,
+        y: 34.52,
         size: 14,
-        description: "V oscillator fine tune. Controls symmetric detuning between the two V sub-oscillators. The total detuning range is ±20 cents — the value is split evenly, so sub-oscillator A goes flat by half and B goes sharp by half. At the maximum, A is 10 cents flat and B is 10 cents sharp, placing them 20 cents apart. This produces beating and natural chorus when the oscillators are close together in pitch. Accepts CV via V Fine CV input and attenuverter.",
+        description: [
+          "detunes the two V sub-oscillators symmetrically — one goes flat, the other goes sharp",
+          "small amounts give subtle chorus; larger amounts produce audible beating",
+          "the beating speed changes with the note pitch, which sounds natural",
+        ],
         tip: "small amounts (2–5 cents) create a subtle natural chorus; larger amounts produce audible beating.",
         diagrams: [
           { id: "v-fine-flat", label: "flat (−20 cents total)", icon: "Minus", rotation: -135 },
@@ -230,10 +246,13 @@ export const modules: ModuleSpec[] = [
         id: "z-fine",
         label: "z fine tune",
         type: "knob",
-        x: 77.2,
-        y: 35.7,
+        x: 76.59,
+        y: 34.52,
         size: 14,
-        description: "Z oscillator fine tune. Same symmetric detuning behavior as V fine tune, applied to the Z sub-oscillator pair. ±20 cents total range, split ±10 cents per sub-oscillator. Useful for close microtuning intervals against V, or for a separate beating rate on the Z side of the crossfade.",
+        description: [
+          "detunes the two Z sub-oscillators symmetrically, the same way V fine tune works",
+          "detuning Z at a different amount than V creates a second, independent beat rate on the Z side",
+        ],
         tip: "detuning Z slightly relative to V creates an evolving beat frequency that changes with the crossfader.",
         diagrams: [
           { id: "z-fine-flat", label: "flat (−20 cents total)", icon: "Minus", rotation: -135 },
@@ -245,30 +264,40 @@ export const modules: ModuleSpec[] = [
         id: "v-fine-att",
         label: "v fine cv att",
         type: "knob",
-        x: 14.8,
-        y: 48.1,
+        x: 13.34,
+        y: 45.7,
         size: 10,
-        description: "Attenuverter for the V Fine CV input. Center (noon) is zero — no modulation passes. Clockwise adds positive scaling; counter-clockwise inverts. A ±10V CV source with the attenuverter at full covers the entire ±20 cent fine tune range.",
+        description: [
+          "scales the CV going into V fine tune — noon is off, clockwise is positive, counter-clockwise inverts",
+          "use an inverted LFO to create a vibrato that goes flat before it goes sharp",
+        ],
         tip: "use inverted scaling with an LFO to create a natural vibrato that goes flat-then-sharp."
       },
       {
         id: "z-fine-att",
         label: "z fine cv att",
         type: "knob",
-        x: 85.7,
-        y: 48.1,
+        x: 86.66,
+        y: 45.7,
         size: 10,
-        description: "Attenuverter for the Z Fine CV input. Center (noon) is zero. Same scaling as V Fine CV attenuverter: a ±10V swing with full attenuverter covers the entire ±20 cent range.",
+        description: [
+          "scales the CV going into Z fine tune — same behavior as V fine CV attenuverter",
+          "patch the same LFO into both V and Z fine CVs with opposite polarities for a stereo vibrato",
+        ],
         tip: "patch the same LFO to both V and Z fine CV with opposite attenuverter settings for a stereo-widening vibrato."
       },
       {
         id: "xsync",
         label: "cross sync",
         type: "switch",
-        x: 32.0,
-        y: 51.9,
+        x: 30.03,
+        y: 51.79,
         size: 10,
-        description: "Hard sync switch. When engaged, each time V's leading sub-oscillator (A) completes a full cycle, both Z sub-oscillators have their phase reset to match V's current phase position. This forces Z into a harmonic or subharmonic relationship with V determined by their frequency ratio. Enables only when Cross Sync is on — if both Cross Sync and Reverse Sync are active, Cross Sync takes priority.",
+        description: [
+          "forces Z to restart its cycle each time V completes one — classic hard sync",
+          "tune Z above V and sweep the Z pitch for the signature sync-sweep sound",
+          "cross sync takes priority if both sync switches are up at the same time",
+        ],
         tip: "hard sync + a slow Z V/Oct sweep creates classic sync sweep sounds.",
         diagrams: [
           { id: "xsync-off", label: "free running", icon: "Unlink", state: "down" as const },
@@ -279,10 +308,14 @@ export const modules: ModuleSpec[] = [
         id: "reverse-sync",
         label: "reverse sync",
         type: "switch",
-        x: 68.5,
-        y: 51.9,
+        x: 69.97,
+        y: 51.79,
         size: 10,
-        description: "Phase-reversal sync. When engaged, each time V's leading sub-oscillator completes a cycle, the Z sub-oscillators' phase direction flips — forward becomes backward, and backward becomes forward. This produces an unusual sweeping/reversing motion distinct from hard sync. Only active when Cross Sync is off (Cross Sync takes priority if both switches are up).",
+        description: [
+          "flips the direction Z is running each time V completes a cycle — not standard hard sync, but a different kind of locking",
+          "produces an irregular, reversing texture that changes character with the V:Z ratio",
+          "only active when cross sync is off; cross sync overrides it if both are up",
+        ],
         tip: "reverse sync with Z tuned a fifth above V produces an irregular stuttering pulse character.",
         diagrams: [
           { id: "rev-off", label: "free running", icon: "ArrowRight", state: "down" as const },
@@ -293,10 +326,14 @@ export const modules: ModuleSpec[] = [
         id: "xfade",
         label: "crossfade",
         type: "knob",
-        x: 50.3,
-        y: 44.4,
+        x: 50.0,
+        y: 45.8,
         size: 18,
-        description: "Blends V and Z signal paths to both outputs. In Equal-Power mode (default): L = V_A×cos(θ) + Z_A×sin(θ), R = V_B×cos(θ) + Z_B×sin(θ), where θ = knob × π/2. The constant-power trig curve maintains perceived loudness across the full sweep — no volume dip at center. In Stereo-Swap mode: the blend routes V_A to L with Z_B, and V_B to R with Z_A, with a widening crossfeed that peaks at center and inverts the stereo field at full throw.",
+        description: [
+          "blends between the V and Z oscillator paths — fully left is V only, fully right is Z only",
+          "equal-power mode (default) keeps volume consistent throughout the sweep",
+          "in stereo-swap mode, center position gives the widest image; sweeping through it flips the stereo field",
+        ],
         tip: "in stereo-swap mode, center position produces the widest stereo field; modulate it slowly for a sweeping spatial effect.",
         diagrams: [
           {
@@ -324,19 +361,26 @@ export const modules: ModuleSpec[] = [
         label: "crossfade cv att",
         type: "knob",
         x: 50.0,
-        y: 59.1,
+        y: 59.83,
         size: 10,
-        description: "Attenuverter for the Crossfade CV input. Center is zero. At full throw with a ±5V CV source, the modulation spans the entire 0–1 crossfade range. Inverted scaling (counter-clockwise) reverses the sweep direction.",
+        description: [
+          "scales the CV going into the crossfader — noon is off, clockwise is positive, counter-clockwise inverts",
+          "a slow LFO here with a small attenuverter setting creates gentle, continuous motion between V and Z",
+        ],
         tip: "slow LFO here creates gentle, continuous motion between the two oscillator characters."
       },
       {
         id: "v-shape",
         label: "v shape",
         type: "knob",
-        x: 16.5,
-        y: 62.1,
+        x: 13.12,
+        y: 63.07,
         size: 14,
-        description: "V oscillator waveform shape. In Sigmoid Saw mode (default): at minimum, produces a sawtooth-like wave; as the knob advances, a sigmoid curve is applied with increasing steepness (range parameter: 3 + emphasizedShape × 10), smoothing toward a square-like wave at maximum. In PWM mode: controls pulse width (clamped 5%–95%), producing a square wave at center and increasingly narrow pulses toward either extreme. Applied equally to both V sub-oscillators (A and B).",
+        description: [
+          "changes the V waveform from sawtooth-like at minimum toward a square-like shape at maximum",
+          "in PWM mode, controls pulse width instead — center is a square wave, extremes are thin pulses",
+          "modulate slowly with CV for a gradual timbral shift without abrupt jumps",
+        ],
         tip: "in sigmoid mode, slow CV modulation of shape produces a gradual character shift without abrupt timbral jumps.",
         diagrams: [
           { id: "v-saw",     label: "sawtooth (sigmoid at min)", icon: "Activity",  rotation: -135 },
@@ -348,10 +392,13 @@ export const modules: ModuleSpec[] = [
         id: "z-shape",
         label: "z shape",
         type: "knob",
-        x: 84.1,
-        y: 62.1,
+        x: 86.88,
+        y: 63.07,
         size: 14,
-        description: "Z oscillator waveform shape. Same sigmoid-saw or PWM behavior as V Shape, applied to the Z sub-oscillator pair (A and B). Moving V and Z shape independently creates timbral contrast between the two paths before they reach the crossfader.",
+        description: [
+          "same shape control as V but applied to Z's waveform independently",
+          "set V and Z to different shapes before crossfading — the blend will shift timbre, not just level",
+        ],
         tip: "set V and Z shape to different values before crossfading — the blend will shift character, not just level.",
         diagrams: [
           { id: "z-saw",     label: "sawtooth (sigmoid at min)", icon: "Activity",  rotation: -135 },
@@ -363,20 +410,26 @@ export const modules: ModuleSpec[] = [
         id: "v-shape-att",
         label: "v shape cv att",
         type: "knob",
-        x: 27.6,
-        y: 72.4,
+        x: 32.02,
+        y: 69.31,
         size: 10,
-        description: "Attenuverter for the V Shape CV input. Center is zero. At full throw, a ±5V CV source spans the entire 0–1 shape range. Inverted scaling creates the opposite sweep direction — useful for running both V and Z from the same LFO with mirror motion.",
+        description: [
+          "scales the CV going into V shape — noon is off, counter-clockwise inverts the direction",
+          "patch an envelope here to push V into a brighter shape on note attack, then fall back to saw",
+        ],
         tip: "patch an envelope here to push into a sharper waveform on note attack and release back to saw."
       },
       {
         id: "z-shape-att",
         label: "z shape cv att",
         type: "knob",
-        x: 72.4,
-        y: 72.4,
+        x: 67.98,
+        y: 69.31,
         size: 10,
-        description: "Attenuverter for the Z Shape CV input. Same scaling behavior as V Shape attenuverter. Running both shape attenuverters from a common modulation source with different values creates independent shape motion per side.",
+        description: [
+          "scales the CV going into Z shape — same behavior as V shape attenuverter",
+          "opposite polarity on V and Z from the same LFO creates a seesaw timbral sweep between the two sides",
+        ],
         tip: "opposite attenuverter polarity on V and Z shape CVs from the same LFO creates a seesaw timbral sweep."
       },
       {
@@ -384,89 +437,116 @@ export const modules: ModuleSpec[] = [
         label: "crossfade cv",
         type: "jack",
         x: 50.0,
-        y: 70.1,
+        y: 69.25,
         size: 10,
-        description: "CV input for the Crossfade parameter. Scaled by the Crossfade attenuverter above. Supports polyphonic cables — each voice's crossfade position can be modulated independently.",
+        description: [
+          "CV input for the crossfader, scaled by the attenuverter above it",
+          "polyphonic — each voice can sit at a different crossfade position for layered stereo textures",
+        ],
         tip: "sequencer gate with a slewed crossfade CV creates rapid automated V/Z switching."
       },
       {
         id: "v-voct",
         label: "v v/oct",
         type: "jack",
-        x: 29.2,
-        y: 82.3,
+        x: 20.29,
+        y: 78.93,
         size: 10,
-        description: "V oscillator V/Oct pitch input. The pitch CV stacks with the V Octave knob and V Fine tune. Supports polyphonic cables — up to 16 voices, each running independent V and Z oscillator instances. When only V V/Oct is patched, Z uses the same pitch input.",
+        description: [
+          "pitch input for the V oscillator — stacks with the octave knob and fine tune",
+          "polyphonic up to 16 voices; when Z V/Oct is unpatched, Z follows this input too",
+        ],
         tip: "patch a polyphonic sequencer here for independent per-voice tuning of the V oscillator."
       },
       {
         id: "v-fine-cv",
         label: "v fine cv",
         type: "jack",
-        x: 47.2,
-        y: 82.3,
+        x: 40.02,
+        y: 78.93,
         size: 10,
-        description: "V Fine Tune CV input. Scaled by the V Fine CV attenuverter. Polyphonic — each voice can have independent fine-tune modulation. Stacks additively with the V Fine tune knob value.",
+        description: [
+          "modulates V fine tune via CV, scaled by the attenuverter",
+          "polyphonic — each voice gets independent fine-tune modulation for per-voice vibrato or spread",
+        ],
         tip: "patch vibrato LFO here for per-voice pitch modulation depth controlled by the attenuverter."
       },
       {
         id: "v-shape-cv",
         label: "v shape cv",
         type: "jack",
-        x: 65.1,
-        y: 82.3,
+        x: 59.59,
+        y: 78.93,
         size: 10,
-        description: "V Shape CV input. Scaled by the V Shape attenuverter. Modulates V oscillator waveform shape in real time. Polyphonic — each voice can shift shape independently.",
+        description: [
+          "modulates V waveform shape via CV, scaled by the attenuverter",
+          "polyphonic — patch a polyphonic envelope here to give each voice its own shape contour",
+        ],
         tip: "an envelope here with moderate attenuverter creates a natural shape attack and decay on V."
       },
       {
         id: "z-voct",
         label: "z v/oct",
         type: "jack",
-        x: 29.2,
-        y: 89.1,
+        x: 20.29,
+        y: 89.11,
         size: 10,
-        description: "Z oscillator V/Oct pitch input. When patched, Z tracks this independently from V. When unpatched, Z shares the V V/Oct input and the Z Semitone knob offset is applied on top. Polyphonic — each voice controls its Z oscillator independently.",
+        description: [
+          "pitch input for the Z oscillator — when patched, Z follows this independently from V",
+          "when unpatched, Z inherits V's pitch and adds the semitone knob offset on top",
+        ],
         tip: "patch a second sequencer pitch output here to independently melodize the Z oscillator."
       },
       {
         id: "z-fine-cv",
         label: "z fine cv",
         type: "jack",
-        x: 47.2,
-        y: 89.1,
+        x: 40.02,
+        y: 89.11,
         size: 10,
-        description: "Z Fine Tune CV input. Scaled by the Z Fine CV attenuverter. Stacks additively with the Z Fine tune knob. Polyphonic.",
+        description: [
+          "modulates Z fine tune via CV, scaled by the attenuverter",
+          "try a slow random or S&H source with a low attenuverter for subtle per-note detuning variation",
+        ],
         tip: "a slow random (S&H) source here with low attenuverter adds subtle detuning variation per note."
       },
       {
         id: "z-shape-cv",
         label: "z shape cv",
         type: "jack",
-        x: 65.1,
-        y: 89.1,
+        x: 59.59,
+        y: 89.11,
         size: 10,
-        description: "Z Shape CV input. Scaled by the Z Shape attenuverter. Independent of V Shape CV, so V and Z can be modulated on separate lanes or from the same source with different scaling.",
+        description: [
+          "modulates Z waveform shape via CV, scaled by the attenuverter",
+          "run V and Z shape CVs from the same source with opposite attenuverters for a mirror shape sweep",
+        ],
         tip: "running the same modulation source into V and Z shape CVs with opposite attenuverters creates a mirror shape sweep."
       },
       {
         id: "output-l",
         label: "output L",
         type: "jack",
-        x: 82.9,
-        y: 82.3,
+        x: 79.16,
+        y: 78.93,
         size: 10,
-        description: "Left stereo output. Carries the processed signal after the full chain: oversampled waveshaping → anti-alias filter → crossfade blend → output tanh soft-clip (±5V peak) → DC block → voice character pan → output color saturation → high-cut filter (if enabled). Polyphonic — carries all active voices.",
+        description: [
+          "left stereo output carrying all active polyphonic voices",
+          "connect L and R to a stereo mixer or effects chain",
+        ],
         tip: "patch L and R to a stereo mixer or directly into left/right inputs of an effects chain."
       },
       {
         id: "output-r",
         label: "output R",
         type: "jack",
-        x: 82.9,
-        y: 89.1,
+        x: 79.16,
+        y: 89.11,
         size: 10,
-        description: "Right stereo output. The stereo image comes from the detuned sub-oscillator pairs: V_A feeds the left crossfade input, V_B feeds the right. Z_A and Z_B follow the same pattern. In equal-power mode the spread is subtle; in stereo-swap mode it inverts at full throw.",
+        description: [
+          "right stereo output — the spread between L and R comes from the detuned sub-oscillator pairs",
+          "summing L and R to mono is safe and won't cause phase cancellation",
+        ],
         tip: "summing L and R to mono is safe — the sub-oscillator pairs are complementary and cancel cross-correlation at the blend points."
       }
     ],
@@ -575,15 +655,15 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "overview",
-        body: "Clairaudient is a polyphonic stereo oscillator built around two independent synthesis voices: V and Z. Each voice runs a symmetrically detuned sub-oscillator pair (A and B) in either sigmoid-saw or PWM mode. The slight detuning between A and B within each voice generates a natural stereo spread without external processing. A central crossfader blends V and Z together, either with a constant-power equal-power curve or a stereo-swap mode that moves V and Z between channels as it sweeps. Polyphony up to 16 voices — each voice runs fully independent V and Z oscillator instances with separate phase, drift, and voice character offsets."
+        body: "Two synthesis voices — V and Z — blend together to build a polyphonic stereo oscillator. Each voice generates its own natural stereo spread internally. A crossfader sweeps between them with adjustable curve behavior."
       },
       {
         title: "signal flow",
-        body: "V/Oct input → V Octave offset + Fine tune (symmetric detuning: A flat by half, B sharp by half) → drift (optional random walk) + phase noise (optional) → sigmoid-saw or PWM waveshaper (oversampled at 1×–8×) → 2-stage cascaded one-pole anti-alias filter → crossfade blend (L = V_A×cos + Z_A×sin, R = V_B×cos + Z_B×sin) → output tanh soft-clip (±5V peak) → DC block (~10 Hz high-pass) → voice character panning → output color saturation + crosstalk (optional) → high-cut filter at 14.5 kHz (optional) → L/R outputs. The Z path follows the same chain in parallel. When Z V/Oct is unpatched, Z inherits the V pitch and adds the Z Semitone offset."
+        body: "Pitch in → per-voice tuning and drift → waveshaper → crossfade blend → soft clip and DC block → L/R outputs. V and Z run in parallel; when Z has no pitch input, it inherits V's pitch plus its semitone offset."
       },
       {
         title: "sync and crossfade",
-        body: "Cross Sync and Reverse Sync are mutually exclusive: Cross Sync takes priority if both switches are up. Cross Sync resets Z's phase to V's current position each time V completes a cycle — classic hard sync, producing harmonic relationships that depend on the V:Z frequency ratio. Reverse Sync flips Z's phase direction on each V cycle completion instead, producing a sweeping/reversing character unlike standard hard sync. The crossfader behavior is set via the context menu: Equal-Power is a constant-loudness blend; Stereo Swap routes sub-oscillators to opposite channels and adds out-of-phase crossfeed that peaks at center (STEREO_SWAP_WIDTH_GAIN = 0.35), creating a wide stereo inversion effect as it sweeps."
+        body: "Cross Sync locks Z's phase to V's cycle — classic hard sync. Reverse Sync flips Z's direction each cycle for a sweeping, reversing character. The two modes are mutually exclusive. Crossfade mode (set in the context menu) controls whether the blend is constant-loudness or swaps voices between channels."
       }
     ],
     suggestedPatches: [
@@ -939,7 +1019,10 @@ export const modules: ModuleSpec[] = [
         x: 15.4,
         y: 14.8,
         size: 9,
-        description: "Teal LED tracking effective VCA gain including CV. Brightness follows a square-root curve for better visibility at low values. Fully lit means maximum gain (2×).",
+        description: [
+          "shows the current VCA gain level including any CV — fully lit is 2× gain",
+          "watch this while patching VCA CV to confirm modulation is arriving at the gain stage",
+        ],
         tip: "watch this while patching VCA CV to confirm modulation is reaching the gain stage.",
       },
       {
@@ -949,15 +1032,18 @@ export const modules: ModuleSpec[] = [
         x: 85.3,
         y: 14.8,
         size: 9,
-        description: "RGB LED whose color codes the active distortion algorithm and whose brightness reflects the combined product of Dist %, Drive, and Mix. Dim at rest, bright under heavy processing.",
+        description: [
+          "shows which distortion algorithm is active via color, and how hard it's working via brightness",
+          "watch the color shift when you move the type selector knob",
+        ],
         tip: "a quick visual read of how aggressively the signal is being shaped — the color shifts when you move the type selector.",
         diagrams: [
-          { id: "led-hard-clip",   label: "hard clip — teal",          svg: '<circle cx="12" cy="12" r="9" fill="#0d3330"/><circle cx="12" cy="12" r="5" fill="#176155"/>' },
-          { id: "led-tube-sat",    label: "tube sat — aqua",           svg: '<circle cx="12" cy="12" r="9" fill="#0d3333"/><circle cx="12" cy="12" r="5" fill="#156060"/>' },
-          { id: "led-wave-fold",   label: "wave fold — cyan blue",     svg: '<circle cx="12" cy="12" r="9" fill="#0d1f3a"/><circle cx="12" cy="12" r="5" fill="#1a3d72"/>' },
-          { id: "led-bit-crush",   label: "bit crush — deep blue",     svg: '<circle cx="12" cy="12" r="9" fill="#0a1232"/><circle cx="12" cy="12" r="5" fill="#152472"/>' },
-          { id: "led-destroy",     label: "destroy — violet",          svg: '<circle cx="12" cy="12" r="9" fill="#160d35"/><circle cx="12" cy="12" r="5" fill="#2e1572"/>' },
-          { id: "led-ring-mod",    label: "ring mod — magenta purple", svg: '<circle cx="12" cy="12" r="9" fill="#1a0a32"/><circle cx="12" cy="12" r="5" fill="#481272"/>' },
+          { id: "led-hard-clip",   label: "hard clip",    icon: "Minus",     svg: '<circle cx="12" cy="12" r="9" fill="#0d3330"/><circle cx="12" cy="12" r="5" fill="#176155"/>' },
+          { id: "led-tube-sat",    label: "tube sat",     icon: "Activity",  svg: '<circle cx="12" cy="12" r="9" fill="#0d3333"/><circle cx="12" cy="12" r="5" fill="#156060"/>' },
+          { id: "led-wave-fold",   label: "wave fold",    icon: "Waves",     svg: '<circle cx="12" cy="12" r="9" fill="#0d1f3a"/><circle cx="12" cy="12" r="5" fill="#1a3d72"/>' },
+          { id: "led-bit-crush",   label: "bit crush",    icon: "Grid3x3",   svg: '<circle cx="12" cy="12" r="9" fill="#0a1232"/><circle cx="12" cy="12" r="5" fill="#152472"/>' },
+          { id: "led-destroy",     label: "destroy",      icon: "Zap",       svg: '<circle cx="12" cy="12" r="9" fill="#160d35"/><circle cx="12" cy="12" r="5" fill="#2e1572"/>' },
+          { id: "led-ring-mod",    label: "ring mod",     icon: "RefreshCw", svg: '<circle cx="12" cy="12" r="9" fill="#1a0a32"/><circle cx="12" cy="12" r="5" fill="#481272"/>' },
         ],
       },
       {
@@ -967,7 +1053,11 @@ export const modules: ModuleSpec[] = [
         x: 50.4,
         y: 15.9,
         size: 22,
-        description: "Primary gain control for the VCA stage. Signal passes through this before the distortion engine. Range is 0–2×, so noon is unity gain. Supports polyphonic CV at the VCA CV input — each cable channel controls its corresponding voice independently. At high gains with a hot input, the module adds subtle drive-like coloring.",
+        description: [
+          "controls the output level before signal reaches the distortion engine — noon is unity gain",
+          "set this around unity first, then use the VCA CV input for envelope-controlled dynamics",
+          "pushing above unity with a hot input adds a subtle drive-like coloring",
+        ],
         tip: "set this around unity (noon) first, then use CV for dynamics.",
         diagrams: [
           { id: "vca-off",   label: "closed (0×)",   icon: "VolumeX", rotation: -135 },
@@ -983,7 +1073,11 @@ export const modules: ModuleSpec[] = [
         x: 50.4,
         y: 30.6,
         size: 14,
-        description: "Six-position blade selector that chooses the distortion algorithm. Positions: hard clip, tube saturation, wave fold, bit crush, destroy, ring modulation. The dist LED color codes the active algorithm. Transitions between types are cross-faded over ~12ms to avoid clicks. The Type CV input allows voltage-controlled selection.",
+        description: [
+          "selects the distortion algorithm: hard clip, tube sat, wave fold, bit crush, destroy, or ring mod",
+          "transitions between types are crossfaded so switching won't cause clicks",
+          "each algorithm responds differently to the Drive and Dist % settings — try them while listening",
+        ],
         tip: "move this while listening — each algorithm responds differently to the Drive and Dist % settings.",
         diagrams: [
           { id: "type-hard-clip", label: "hard clip",       icon: "Minus",     rotation: -135 },
@@ -1001,7 +1095,10 @@ export const modules: ModuleSpec[] = [
         x: 15.4,
         y: 27.9,
         size: 10,
-        description: "When engaged, the right audio input mirrors the left — both channels receive the same source. Both outputs carry independently processed versions of the same mono input. Use this when processing a single source and sending the output to two destinations.",
+        description: [
+          "when on, the right channel mirrors the left input so you can send one source to two outputs",
+          "leave it off when processing a true stereo pair",
+        ],
         tip: "leave unlinked when processing a true stereo pair.",
         diagrams: [
           { id: "link-off", label: "independent L + R", icon: "Unlink", state: "down" as const },
@@ -1015,7 +1112,10 @@ export const modules: ModuleSpec[] = [
         x: 85.3,
         y: 27.9,
         size: 10,
-        description: "Switches the VCA gain curve between linear and exponential. Linear maps CV voltage directly to gain — equal voltage steps produce equal gain steps. Exponential squares the gain value, following perceptual loudness more closely and making fader-style control feel more natural.",
+        description: [
+          "switches the VCA between linear and exponential gain response",
+          "exponential follows how we perceive loudness, making envelope fades feel more natural",
+        ],
         tip: "use exponential when driving from an ADSR for more musical fade behavior.",
         diagrams: [
           { id: "resp-linear", label: "linear response",      icon: "TrendingUp", state: "down" as const },
@@ -1029,7 +1129,11 @@ export const modules: ModuleSpec[] = [
         x: 17.5,
         y: 41.2,
         size: 14,
-        description: "Sets how deeply the selected algorithm shapes the signal. At zero the distortion engine is bypassed entirely. As the value increases, the algorithm progressively sculpts the waveform. Works alongside Drive — Drive sets how hard the signal hits, Dist % sets how far into the algorithm it goes.",
+        description: [
+          "controls how deeply the algorithm shapes the signal — at zero the distortion engine is bypassed",
+          "most algorithms show their character before the knob reaches halfway",
+          "works together with Drive: drive sets how hard the signal hits, dist % sets how far in it goes",
+        ],
         tip: "start low and increase slowly — most algorithms reveal their character before the knob reaches halfway.",
         diagrams: [
           { id: "dist-off",    label: "bypass (0%)",  icon: "Minus",    rotation: -135 },
@@ -1045,7 +1149,11 @@ export const modules: ModuleSpec[] = [
         x: 50.4,
         y: 41.2,
         size: 14,
-        description: "Controls how hard the signal hits the distortion stage by scaling pre-gain before the algorithm. Higher values add harmonic complexity without changing the wet/dry ratio. Drive scales with Dist % internally — Drive at maximum with Dist % at zero has no audible effect.",
+        description: [
+          "sets how hard the signal hits the distortion algorithm — higher values add harmonic complexity",
+          "set drive before dist % to dial in the character you want first",
+          "drive has no effect if dist % is at zero",
+        ],
         tip: "set drive before Dist % — the character you want comes from how hard the signal hits the algorithm.",
         diagrams: [
           { id: "drive-off",    label: "no drive",    icon: "Minus",    rotation: -135 },
@@ -1061,7 +1169,11 @@ export const modules: ModuleSpec[] = [
         x: 83.2,
         y: 41.2,
         size: 14,
-        description: "Blends the clean VCA signal with the processed wet path. At minimum only the clean signal passes; at maximum only the distorted signal is heard. Adaptive makeup gain automatically tracks the clean-to-wet level ratio and compensates to keep perceived loudness consistent as you move this control.",
+        description: [
+          "blends the clean signal with the distorted signal — fully left is dry, fully right is wet",
+          "adaptive makeup gain keeps the volume consistent as you sweep, so you can focus on character",
+          "parallel distortion at noon is a useful starting point",
+        ],
         tip: "parallel distortion at noon is a useful starting point — character without loss of the original source.",
         diagrams: [
           { id: "mix-dry",   label: "dry (clean only)", icon: "Volume2", rotation: -135 },
@@ -1076,7 +1188,10 @@ export const modules: ModuleSpec[] = [
         x: 17.5,
         y: 54.6,
         size: 10,
-        description: "Scales and optionally inverts the CV patched into Dist CV. Center (noon) is zero — no CV influence. Clockwise adds positive scaling; counter-clockwise inverts. Allows any CV range to map cleanly to the Dist % parameter without external attenuation.",
+        description: [
+          "scales the CV going into dist % — noon is off, clockwise is positive, counter-clockwise inverts",
+          "set this before the CV source to control how much modulation range you want",
+        ],
         tip: "set this before the CV source — dial how much range you want the modulation to cover.",
         diagrams: [
           { id: "datt-inv",   label: "full inversion", icon: "Minus",  rotation: -135 },
@@ -1091,7 +1206,10 @@ export const modules: ModuleSpec[] = [
         x: 50.4,
         y: 54.6,
         size: 10,
-        description: "Scales and optionally inverts the CV patched into Drive CV. Controls pre-gain into the distortion algorithm. Modulating drive with an envelope or LFO creates expressive dynamics on the harmonic character.",
+        description: [
+          "scales the CV going into drive — noon is off, counter-clockwise inverts",
+          "a slow LFO with a small attenuverter setting gives gradual harmonic texture shifts",
+        ],
         tip: "a slow LFO on drive with a low attenuverter setting gives gradual texture shifts.",
         diagrams: [
           { id: "dratt-inv",   label: "full inversion", icon: "Minus",  rotation: -135 },
@@ -1106,7 +1224,10 @@ export const modules: ModuleSpec[] = [
         x: 83.2,
         y: 54.6,
         size: 10,
-        description: "Scales and optionally inverts the CV patched into Mix CV. Controls the wet/dry blend. Inverse scaling (counter-clockwise) with a sidechain envelope gives a ducking-style blend on the distortion.",
+        description: [
+          "scales the CV going into mix — noon is off, counter-clockwise inverts the blend direction",
+          "inverted with a gate envelope gives a ducking effect — distortion pulls back when the gate fires",
+        ],
         tip: "use inverted scaling from a gate envelope to pull the wet signal back on silence.",
         diagrams: [
           { id: "matt-inv",   label: "full inversion", icon: "Minus",  rotation: -135 },
@@ -1121,7 +1242,10 @@ export const modules: ModuleSpec[] = [
         x: 17.5,
         y: 69.0,
         size: 10,
-        description: "CV input for the Dist % parameter, scaled by the Dist CV attenuverter. Expects modular-level CV (±5V or 0–10V). Patch an envelope here to tie distortion depth to dynamics, or an LFO for evolving texture.",
+        description: [
+          "CV input for dist %, scaled by the attenuverter above it",
+          "patch an envelope here to push into distortion only at note peaks",
+        ],
         tip: "a slow envelope with moderate attenuverter scaling pushes into distortion only at note peaks.",
       },
       {
@@ -1131,7 +1255,10 @@ export const modules: ModuleSpec[] = [
         x: 50.4,
         y: 69.0,
         size: 10,
-        description: "CV input for the Drive parameter, scaled by the Drive CV attenuverter. Controls pre-gain into the distortion algorithm. A fast envelope here adds harmonic punch on transients without affecting steady-state character.",
+        description: [
+          "CV input for drive, scaled by the attenuverter above it",
+          "a fast attack envelope here adds harmonic punch on transients without changing the sustain character",
+        ],
         tip: "with the drive attenuverter at a low setting, transients hit the algorithm harder than the sustain.",
       },
       {
@@ -1141,7 +1268,10 @@ export const modules: ModuleSpec[] = [
         x: 83.2,
         y: 69.0,
         size: 10,
-        description: "CV input for the Mix parameter, scaled by the Mix CV attenuverter. Controls the wet/dry blend in real time. Patch a slow envelope or LFO here to fade in and out of the distorted signal dynamically.",
+        description: [
+          "CV input for mix, scaled by the attenuverter above it",
+          "a rising envelope here gradually fades in distortion over the course of a note",
+        ],
         tip: "a rising envelope brings in distortion gradually over the course of a note.",
       },
       {
@@ -1151,7 +1281,10 @@ export const modules: ModuleSpec[] = [
         x: 17.5,
         y: 79.0,
         size: 10,
-        description: "CV input for the VCA gain stage. A ±10V range maps to the full 0–2× gain window. Unlike the other CV inputs there is no attenuverter — patch a full-range envelope directly. Supports polyphony: each cable channel modulates its corresponding audio voice independently.",
+        description: [
+          "CV input for VCA gain — no attenuverter, so patch a full-range envelope directly",
+          "polyphonic: each channel controls its own voice level independently",
+        ],
         tip: "patch directly from an ADSR envelope without attenuation for standard VCA dynamics.",
       },
       {
@@ -1161,7 +1294,10 @@ export const modules: ModuleSpec[] = [
         x: 50.4,
         y: 79.0,
         size: 10,
-        description: "CV input for the Dist Type selector. A 0–10V range spans all six algorithm positions (~1.67V per step). Transitions between types are cross-faded to avoid clicks, allowing smooth or stepped voltage-controlled algorithm selection.",
+        description: [
+          "CV input for the distortion type selector — 0–10V spans all six algorithm positions",
+          "transitions are crossfaded so switching won't click; quantize to 6 steps for clean stepping from a sequencer",
+        ],
         tip: "quantize to 6 steps for clean algorithm switching from a sequencer.",
       },
       {
@@ -1171,7 +1307,11 @@ export const modules: ModuleSpec[] = [
         x: 83.2,
         y: 79.0,
         size: 10,
-        description: "Sidechain audio input for the envelope follower (10ms attack, 200ms release). The detected level modulates the distortion path according to the active sidechain mode selected in the context menu: enhancement, ducking, or direct control. Operates independently of the main audio path.",
+        description: [
+          "audio input that drives the sidechain envelope follower",
+          "the sidechain can trigger distortion, duck it, or replace the dist % knob entirely — set the mode in the context menu",
+          "patch a kick or snare here to sync distortion behavior with the rest of your mix",
+        ],
         tip: "patch a kick drum or submix send here to trigger or duck distortion in sync with the rest of the mix.",
       },
       {
@@ -1181,7 +1321,10 @@ export const modules: ModuleSpec[] = [
         x: 17.5,
         y: 89.1,
         size: 10,
-        description: "Left audio input. Supports polyphonic cables — each channel is processed through its own VCA gain and distortion voice independently. When Link L/R is active, this input feeds both processing channels.",
+        description: [
+          "left audio input — polyphonic, each voice gets its own VCA and distortion processing",
+          "when link L/R is on, this input feeds both channels",
+        ],
         tip: "patch a polyphonic oscillator here for per-voice independent processing.",
       },
       {
@@ -1191,7 +1334,10 @@ export const modules: ModuleSpec[] = [
         x: 39.4,
         y: 89.1,
         size: 10,
-        description: "Right audio input for true stereo processing. When unpatched with Link L/R off, the right channel mirrors the left. When patched, the two channels process independently through separate distortion engine instances.",
+        description: [
+          "right audio input for true stereo processing",
+          "when unpatched with link L/R off, the right channel mirrors the left",
+        ],
         tip: "patch a second signal here for independent stereo processing of two different sources.",
       },
       {
@@ -1201,7 +1347,10 @@ export const modules: ModuleSpec[] = [
         x: 61.3,
         y: 89.1,
         size: 10,
-        description: "Left processed audio output. Carries the signal after VCA, distortion, wet/dry blend, adaptive makeup gain, output soft clip, and type transition crossfade. Polyphonic when the input is polyphonic.",
+        description: [
+          "left processed output after VCA, distortion, wet/dry blend, and makeup gain",
+          "polyphonic when the input is polyphonic",
+        ],
         tip: "follow with a stereo mixer or panner to position the output in the mix.",
       },
       {
@@ -1211,7 +1360,10 @@ export const modules: ModuleSpec[] = [
         x: 83.2,
         y: 89.1,
         size: 10,
-        description: "Right processed audio output. Mirrors the left when Link L/R is active. When the right input is patched and Link L/R is off, this carries the independently processed right channel.",
+        description: [
+          "right processed output — mirrors the left when link L/R is active",
+          "use L and R together for a stereo insert on a bus or voice pair",
+        ],
         tip: "use with audio-out-l for a stereo insert on a bus or voice pair.",
       },
     ],
@@ -1291,14 +1443,14 @@ export const modules: ModuleSpec[] = [
   {
     slug: "evocation",
     name: "evocation",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
-    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+    subtitle: "gesture envelope recorder with four independent polyphonic playback outputs and ADSR mode",
+    summary: "Evocation records touch-strip gestures as envelopes and plays them back through four independent polyphonic voice engines. Each of the four outputs has its own speed, phase offset, loop toggle, and invert toggle, making it possible to run the same gesture as a layered texture, a rhythmic pump, or a slow evolving shape simultaneously. A second mode switches to ADSR, using the touch strip as a combined gate and stage parameter editor.",
     category: "vcv rack module",
     status: "gesture envelope",
     accent: "#68B7C8",
     accentSoft: "rgba(104, 183, 200, 0.2)",
     icon: Activity,
-    hp: 14,
+    hp: 20,
     panelImage: {
       src: "/modules/evocation/panel-source.png",
       width: 1626,
@@ -1306,11 +1458,501 @@ export const modules: ModuleSpec[] = [
       alt: "evocation hardware panel"
     },
     media: {},
-    controls: [],
+    controls: [
+      {
+        id: "touch-strip",
+        label: "touch strip",
+        type: "meter",
+        x: 20.2,
+        y: 39.6,
+        size: 18,
+        description: [
+          "in gesture mode: press and drag to draw an envelope, release to begin playback through all four outputs",
+          "the bottom of the strip is always 0V — start and end your gesture there for clean rest positions",
+          "in ADSR mode: touching the strip while sustain or release is selected edits those stages directly",
+        ],
+        tip: ""
+      },
+      {
+        id: "oled",
+        label: "oled display",
+        type: "meter",
+        x: 20.2,
+        y: 82.9,
+        size: 13,
+        description: [
+          "shows the recorded envelope shape with a scanline for each active voice's playback position",
+          "displays speed, duration, and phase offset at the top — a parameter banner appears when you adjust controls",
+          "choose a color theme in the context menu: phosphor, ice, solar, or amber",
+        ],
+        tip: ""
+      },
+      {
+        id: "env-speed",
+        label: "speed / stage time",
+        type: "knob",
+        x: 48.3,
+        y: 13.8,
+        size: 5.5,
+        description: [
+          "sets playback speed for the selected envelope output (0–8×)",
+          "most of the knob travel covers fine 0–2× control — push past that for faster playback",
+          "in ADSR mode, sets the time or level of the selected stage (attack, decay, sustain, or release)",
+        ],
+        tip: "",
+        diagrams: [
+          { id: "sp-half", label: "0.5× (half speed)", rotation: -65 },
+          { id: "sp-unity", label: "1× (unity)", rotation: -39 },
+          { id: "sp-double", label: "2× (double)", rotation: 52 },
+          { id: "sp-max", label: "8× (max)", rotation: 130 }
+        ]
+      },
+      {
+        id: "env-phase",
+        label: "phase / contour",
+        type: "knob",
+        x: 72.0,
+        y: 13.9,
+        size: 5.5,
+        description: [
+          "in gesture mode: shifts where the playback starts in the envelope (0–360°, wrapping)",
+          "at 180° the output begins halfway through the gesture — useful for layered stagger effects",
+          "in ADSR mode: sets the curve shape for the selected stage, from logarithmic through linear to exponential",
+        ],
+        tip: "",
+        diagrams: [
+          { id: "ph-0", label: "0° / LOG", rotation: -130 },
+          { id: "ph-90", label: "90° / linear start", rotation: -43 },
+          { id: "ph-180", label: "180° / LIN", rotation: 10 },
+          { id: "ph-360", label: "360° / EXP", rotation: 130 }
+        ]
+      },
+      {
+        id: "loop",
+        label: "loop",
+        type: "switch",
+        x: 72.0,
+        y: 27.7,
+        size: 3.5,
+        description: [
+          "when on, the selected output restarts automatically at the end of each cycle — works like an LFO",
+          "in ADSR mode, the loop waits for gate release before re-triggering",
+          "each output has its own loop state — select the output with the Env buttons before toggling",
+        ],
+        tip: "",
+        diagrams: [
+          { id: "loop-off", label: "off", state: "up" },
+          { id: "loop-on", label: "loop active", state: "down" }
+        ]
+      },
+      {
+        id: "invert",
+        label: "invert",
+        type: "switch",
+        x: 48.3,
+        y: 27.7,
+        size: 3.5,
+        description: [
+          "flips the output voltage on the selected channel — a rising gesture becomes a falling one",
+          "combine with loop for an inverted LFO shape from the same recorded gesture",
+          "each output has its own invert state — select the output before toggling",
+        ],
+        tip: "",
+        diagrams: [
+          { id: "inv-off", label: "normal", state: "up" },
+          { id: "inv-on", label: "inverted", state: "down" }
+        ]
+      },
+      {
+        id: "trim-lead",
+        label: "trim lead",
+        type: "switch",
+        x: 90.8,
+        y: 13.3,
+        size: 3.5,
+        description: [
+          "removes the silent pause at the start of your recorded gesture",
+          "use this after recording if the envelope takes a moment before it starts moving",
+        ],
+        tip: ""
+      },
+      {
+        id: "trim-tail",
+        label: "trim tail",
+        type: "switch",
+        x: 90.8,
+        y: 26.6,
+        size: 3.5,
+        description: [
+          "removes the flat tail at the end of your recorded gesture",
+          "use this after recording if you lifted your finger slowly and left a dead zone at the end",
+        ],
+        tip: ""
+      },
+      {
+        id: "trigger-btn",
+        label: "manual trigger",
+        type: "switch",
+        x: 90.8,
+        y: 39.9,
+        size: 3.5,
+        description: [
+          "manually fires a trigger to start playback without a CV input patched",
+          "fires alongside any connected gate or trigger CV — it won't interrupt those channels",
+        ],
+        tip: ""
+      },
+      {
+        id: "gate-in",
+        label: "gate input",
+        type: "jack",
+        x: 49.1,
+        y: 39.9,
+        size: 4.5,
+        description: [
+          "starts the envelope on the rising edge and releases it on the falling edge",
+          "in ADSR mode: holds the sustain stage as long as the gate is high, then triggers release",
+          "polyphonic — up to 16 channels, each voice runs independently through all four outputs",
+        ],
+        tip: ""
+      },
+      {
+        id: "trigger-in",
+        label: "trigger input",
+        type: "jack",
+        x: 72.0,
+        y: 39.9,
+        size: 4.5,
+        description: [
+          "fires a one-shot envelope each time it receives a trigger pulse — no hold, just start to end",
+          "polyphonic — each of the 16 channels runs its own voice through all four outputs",
+        ],
+        tip: ""
+      },
+      {
+        id: "env-select-1",
+        label: "env 1 / attack select",
+        type: "switch",
+        x: 47.2,
+        y: 49.7,
+        size: 3.5,
+        description: [
+          "selects envelope output 1 (or the Attack stage in ADSR mode) for editing",
+          "the speed, phase, loop, and invert controls all target whichever output is selected",
+          "LED brightness shows the current output voltage across active voices",
+        ],
+        tip: ""
+      },
+      {
+        id: "env-select-2",
+        label: "env 2 / decay select",
+        type: "switch",
+        x: 61.8,
+        y: 49.7,
+        size: 3.5,
+        description: [
+          "selects envelope output 2 (or the Decay stage in ADSR mode) for editing",
+          "the speed, phase, loop, and invert controls all target this output while it is selected",
+        ],
+        tip: ""
+      },
+      {
+        id: "env-select-3",
+        label: "env 3 / sustain select",
+        type: "switch",
+        x: 76.3,
+        y: 49.7,
+        size: 3.5,
+        description: [
+          "selects envelope output 3 (or the Sustain stage in ADSR mode) for editing",
+          "in ADSR mode: touch the strip while this is selected to set the sustain level directly",
+        ],
+        tip: ""
+      },
+      {
+        id: "env-select-4",
+        label: "env 4 / release select",
+        type: "switch",
+        x: 90.8,
+        y: 49.7,
+        size: 3.5,
+        description: [
+          "selects envelope output 4 (or the Release stage in ADSR mode) for editing",
+          "in ADSR mode: touch the strip while this is selected to edit release time and contour directly",
+        ],
+        tip: ""
+      },
+      {
+        id: "phase-cv-1",
+        label: "phase CV 1",
+        type: "jack",
+        x: 47.2,
+        y: 59.6,
+        size: 4.5,
+        description: [
+          "shifts where output 1 starts in the envelope, per voice — great for fan or stagger effects",
+          "in ADSR mode, adds a rhythmic delay offset before the envelope starts (quantized to 1/16 by default)",
+        ],
+        tip: ""
+      },
+      {
+        id: "phase-cv-2",
+        label: "phase CV 2",
+        type: "jack",
+        x: 61.8,
+        y: 59.6,
+        size: 4.5,
+        description: [
+          "shifts where output 2 starts in the envelope, per voice — independent from output 1's phase CV",
+        ],
+        tip: ""
+      },
+      {
+        id: "phase-cv-3",
+        label: "phase CV 3",
+        type: "jack",
+        x: 76.3,
+        y: 59.6,
+        size: 4.5,
+        description: [
+          "shifts where output 3 starts in the envelope, per voice — independent from the other phase CVs",
+        ],
+        tip: ""
+      },
+      {
+        id: "phase-cv-4",
+        label: "phase CV 4",
+        type: "jack",
+        x: 90.8,
+        y: 59.6,
+        size: 4.5,
+        description: [
+          "shifts where output 4 starts in the envelope, per voice — independent from the other phase CVs",
+        ],
+        tip: ""
+      },
+      {
+        id: "eoc-1",
+        label: "EOC 1 output",
+        type: "jack",
+        x: 47.2,
+        y: 69.5,
+        size: 4.5,
+        description: [
+          "fires a short pulse when envelope 1 completes a cycle — fires on every loop iteration too",
+          "use this to chain modules, advance a sequence, or clock other envelopes in sync",
+        ],
+        tip: ""
+      },
+      {
+        id: "eoc-2",
+        label: "EOC 2 output",
+        type: "jack",
+        x: 61.8,
+        y: 69.5,
+        size: 4.5,
+        description: [
+          "fires a short pulse when envelope 2 completes a cycle — polyphonic, one pulse per voice",
+        ],
+        tip: ""
+      },
+      {
+        id: "eoc-3",
+        label: "EOC 3 output",
+        type: "jack",
+        x: 76.3,
+        y: 69.5,
+        size: 4.5,
+        description: [
+          "fires a short pulse when envelope 3 completes a cycle — polyphonic, one pulse per voice",
+        ],
+        tip: ""
+      },
+      {
+        id: "eoc-4",
+        label: "EOC 4 output",
+        type: "jack",
+        x: 90.8,
+        y: 69.5,
+        size: 4.5,
+        description: [
+          "fires a short pulse when envelope 4 completes a cycle — polyphonic, one pulse per voice",
+        ],
+        tip: ""
+      },
+      {
+        id: "gate-out-1",
+        label: "gate output 1",
+        type: "jack",
+        x: 47.2,
+        y: 79.4,
+        size: 4.5,
+        description: [
+          "stays high while envelope 1 is playing, drops to zero when it finishes",
+          "polyphonic — each voice has its own gate state",
+        ],
+        tip: ""
+      },
+      {
+        id: "gate-out-2",
+        label: "gate output 2",
+        type: "jack",
+        x: 61.8,
+        y: 79.4,
+        size: 4.5,
+        description: [
+          "stays high while envelope 2 is playing, drops to zero when it finishes — polyphonic",
+        ],
+        tip: ""
+      },
+      {
+        id: "gate-out-3",
+        label: "gate output 3",
+        type: "jack",
+        x: 76.3,
+        y: 79.4,
+        size: 4.5,
+        description: [
+          "stays high while envelope 3 is playing, drops to zero when it finishes — polyphonic",
+        ],
+        tip: ""
+      },
+      {
+        id: "gate-out-4",
+        label: "gate output 4",
+        type: "jack",
+        x: 90.8,
+        y: 79.4,
+        size: 4.5,
+        description: [
+          "stays high while envelope 4 is playing, drops to zero when it finishes — polyphonic",
+        ],
+        tip: ""
+      },
+      {
+        id: "env-out-1",
+        label: "envelope output 1",
+        type: "jack",
+        x: 47.2,
+        y: 89.3,
+        size: 4.5,
+        description: [
+          "main envelope CV output (0–10V) for playback engine 1",
+          "plays the recorded gesture at the speed, phase, loop, and invert settings configured for this output",
+          "polyphonic — up to 16 voices play simultaneously",
+        ],
+        tip: ""
+      },
+      {
+        id: "env-out-2",
+        label: "envelope output 2",
+        type: "jack",
+        x: 61.8,
+        y: 89.3,
+        size: 4.5,
+        description: [
+          "same recorded gesture as output 1, played at its own independent speed, phase, loop, and invert settings",
+          "use phase CV offsets across outputs 1–4 to create layered staggered textures",
+        ],
+        tip: ""
+      },
+      {
+        id: "env-out-3",
+        label: "envelope output 3",
+        type: "jack",
+        x: 76.3,
+        y: 89.3,
+        size: 4.5,
+        description: [
+          "same recorded gesture as the other outputs, with fully independent playback settings",
+          "configure speed, phase, loop, and invert using the Env 3 Select button",
+        ],
+        tip: ""
+      },
+      {
+        id: "env-out-4",
+        label: "envelope output 4",
+        type: "jack",
+        x: 90.8,
+        y: 89.3,
+        size: 4.5,
+        description: [
+          "same recorded gesture as the other outputs, with fully independent playback settings",
+          "with all four outputs at different speeds and phases, one gesture can fill a whole patch with evolving CV",
+        ],
+        tip: ""
+      }
+    ],
+    contextMenu: [
+      {
+        id: "mode-gesture",
+        group: "mode",
+        label: "gesture",
+        kind: "choice",
+        description: "Envelope is drawn by touch. Press and drag the touch strip to record a custom shape up to 5 seconds long. The module samples at approximately 960 Hz with a 0.2% minimum Y-delta filter. On release, the recorded gesture plays through all four outputs at their individual speeds, phases, loop states, and invert states. Trim Lead and Trim Tail buttons remove silence from the start and end of the recording. Phase CV inputs add polyphonic per-voice phase offsets (0–10V = 0–360°, wrapping)."
+      },
+      {
+        id: "mode-adsr",
+        group: "mode",
+        label: "adsr",
+        kind: "choice",
+        description: "Classic four-stage envelope with touch strip interaction. Use the Env 1–4 Select buttons to choose A/D/S/R stages. Speed knob sets time or level for the selected stage (Attack: 0.001–5.0s, Decay: 0.001–2.0s, Sustain: 0–1 level, Release: 0.001–5.0s). Phase knob sets contour shape (0=LOG, 0.5=LIN, 1=EXP). Touching the strip while Sustain is selected sets sustain level; touching while Release is selected edits release time and contour. Gate input tracks voice hold; Trigger input fires one-shot envelopes. Phase CV inputs in this mode add rhythmic delay offsets (quantized to 1/16 by default)."
+      },
+      {
+        id: "theme-follow",
+        group: "screen theme",
+        label: "follow shared",
+        kind: "choice",
+        description: "The OLED display synchronizes its color palette with the global screen theme set in the Shapetaker plugin preferences. When other Shapetaker modules change their shared theme, Evocation updates automatically."
+      },
+      {
+        id: "theme-phosphor",
+        group: "screen theme",
+        label: "phosphor",
+        kind: "choice",
+        description: "Sets the OLED to the Phosphor theme — bright green on black, evoking vintage monochrome CRT phosphor displays."
+      },
+      {
+        id: "theme-ice",
+        group: "screen theme",
+        label: "ice",
+        kind: "choice",
+        description: "Sets the OLED to the Ice theme — cool cyan and blue-white tones."
+      },
+      {
+        id: "theme-solar",
+        group: "screen theme",
+        label: "solar",
+        kind: "choice",
+        description: "Sets the OLED to the Solar theme — warm yellow-gold tones."
+      },
+      {
+        id: "theme-amber",
+        group: "screen theme",
+        label: "amber",
+        kind: "choice",
+        description: "Sets the OLED to the Amber theme — deep amber on black, evoking vintage amber-phosphor terminal displays."
+      },
+      {
+        id: "quantize-phase",
+        group: "adsr phase",
+        label: "quantize phase CV",
+        kind: "toggle",
+        description: "When enabled (default on), Phase CV inputs in ADSR mode are quantized to 1/16-note increments: the incoming voltage is floored to the nearest multiple of 1/16 (floor(cv × 16) / 16). This creates rhythmically-aligned staggered envelope entries across the four outputs rather than arbitrary fractional offsets — useful for polyrhythmic structures. Disable for continuous unquantized phase delay (useful when feeding slow LFO or per-voice portamento sources)."
+      }
+    ],
     manual: [
       {
-        title: "concept overview",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
+        title: "overview",
+        body: "Evocation is a dual-mode envelope generator built around a large vertical touch strip. In Gesture mode, you draw an envelope shape by dragging your finger on the strip; the module records the gesture at high resolution (up to 5 seconds, approximately 960 Hz sample rate), then plays it back through four independent output channels simultaneously. Each output has its own playback speed, phase offset, loop state, and invert state. The OLED display below the touch strip shows the envelope waveform, playback scanlines for active voices, and a parameter banner on any control interaction. In ADSR mode, the touch strip becomes a combined gate input and stage editor, while the Env 1–4 Select buttons select the A/D/S/R stages for parameter editing."
+      },
+      {
+        title: "gesture recording and editing",
+        body: "Press and drag on the touch strip to record. The module samples the Y position at approximately 960 Hz, applying a 0.2% minimum Y-delta filter that only records motion above the noise floor — flat sections are automatically skipped, keeping the stored envelope compact. The bottom 8% of the strip is a dead zone that always records as 0V, giving a reliable clean rest position at the bottom of gestures. Release the strip to end recording and begin playback across all four outputs. Use Trim Lead to remove leading silence (scans forward from the start, drops everything at or below 1% of full scale), and Trim Tail to remove trailing silence (scans backward from the end). Both buttons rescale the remaining envelope to fill the full 0–1 time range and update the stored duration proportionally."
+      },
+      {
+        title: "four-output playback and signal flow",
+        body: "All four outputs play the same recorded envelope simultaneously, each through its own independent playback engine. Use the Env 1–4 Select buttons to bring an output's parameters onto the controls: Speed sets playback rate (0–8×, non-linear — 70% of knob travel covers 0–2× for fine control, the remaining 30% covers 2–8×); Phase sets the starting offset (0–360°, wrapping); Loop restarts playback immediately at end of cycle; Invert flips the output voltage (10V minus original). Phase CV inputs add per-voice phase offsets (0–10V = 0–360°). In ADSR mode, Phase CV adds quantized delay offsets (1/16-note increments by default; disable via context menu). Trigger input fires one-shot envelopes per polyphonic voice channel; Gate input holds sustain in ADSR mode or controls the release fade in Gesture mode (exponential decay, 8–35ms). EOC outputs fire a 1ms pulse at end of each cycle; Gate outputs remain high while the envelope is active."
       }
     ]
   },
@@ -1488,6 +2130,7 @@ export function getModuleExplorerData(module: ModuleSpec): ModuleExplorerData {
   return {
     name: module.name,
     accent: module.accent,
+    hp: module.hp,
     panelImage: module.panelImage,
     contextMenu: module.contextMenu,
     controls: module.controls,

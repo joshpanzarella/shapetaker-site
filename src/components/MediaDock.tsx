@@ -23,11 +23,7 @@ export function MediaDock({ module }: MediaDockProps) {
       <div className="media-dock__players">
         {hasVideo && <video controls src={module.media.video} />}
         {hasAudio ? (
-          <AudioPlayer
-            demos={module.media.audioDemos!}
-            moduleName={module.name}
-            moduleStatus={module.status}
-          />
+          <AudioPlayer demos={module.media.audioDemos!} />
         ) : (
           <div className="audio-placeholder">
             <Headphones size={18} aria-hidden="true" />
