@@ -1,11 +1,16 @@
 import Link from "next/link";
 import { siteNav } from "@/lib/navigation";
+import { RandomSymbols } from "@/components/RandomSymbols";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="site-footer">
+      <div className="site-footer__strip">
+        <RandomSymbols />
+      </div>
+
       <div className="site-footer__body">
         <div className="site-footer__brand">
           <Link className="site-footer__wordmark" href="/" aria-label="shapetaker home">

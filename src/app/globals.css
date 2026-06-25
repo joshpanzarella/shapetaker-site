@@ -225,6 +225,7 @@ code {
 }
 
 .site-footer {
+  margin-top: clamp(2rem, 5vw, 4rem);
   border-top: 1px solid var(--line-strong);
   background: var(--surface-header);
 }
@@ -282,6 +283,12 @@ code {
 .site-footer__nav a:hover,
 .site-footer__contact a:hover {
   color: var(--ink);
+}
+
+.site-footer__strip {
+  width: min(100%, 1280px);
+  margin: 0 auto;
+  padding: 0.5rem 2rem 0;
 }
 
 .site-footer__bar {
@@ -533,26 +540,27 @@ h3 {
 
 /* Each symbol is an absolutely-positioned grid child; specifying grid-column/row
    makes the browser use that grid area as the containing block, so left/top 50%
-   centers the symbol exactly over its card column. */
+   centers the symbol exactly over its card column. Symbols start near the top
+   (--reveal-progress: 0) and slide to center (--reveal-progress: 1) on scroll. */
 .module-explorer[data-orientation="vertical"] .alchemical-symbol--panel {
   grid-column: 1 / 2;
   grid-row: 1;
   left: 50%;
-  top: 50%;
+  top: calc(10% + 40% * var(--reveal-progress, 0));
 }
 
 .module-explorer[data-orientation="vertical"] .alchemical-symbol--readout {
   grid-column: 2 / 3;
   grid-row: 1;
   left: 50%;
-  top: 50%;
+  top: calc(10% + 40% * var(--reveal-progress, 0));
 }
 
 .module-explorer[data-orientation="vertical"] .alchemical-symbol--overview {
   grid-column: 3 / 4;
   grid-row: 1;
   left: 50%;
-  top: 50%;
+  top: calc(10% + 40% * var(--reveal-progress, 0));
 }
 
 .module-explorer[data-orientation="horizontal"] .alchemical-symbol {
@@ -609,6 +617,48 @@ h3 {
 
 .module-explorer[data-orientation="horizontal"] .module-overview {
   display: none;
+}
+
+/* Scroll-driven card entrance — hidden until .is-revealed is added by scroll tracker */
+.module-explorer .panel-stage,
+.module-explorer .control-readout,
+.module-explorer .module-overview {
+  opacity: 0;
+  filter: blur(8px);
+  transition:
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 3.0s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.module-explorer .panel-stage {
+  transform: translateX(-24px);
+}
+
+.module-explorer .control-readout,
+.module-explorer .module-overview {
+  transform: translateX(24px);
+}
+
+.module-explorer.is-revealed .panel-stage {
+  opacity: 1;
+  transform: none;
+  filter: blur(0px);
+  transition-delay: 1400ms;
+}
+
+.module-explorer.is-revealed .control-readout {
+  opacity: 1;
+  transform: none;
+  filter: blur(0px);
+  transition-delay: 1900ms;
+}
+
+.module-explorer.is-revealed .module-overview {
+  opacity: 1;
+  transform: none;
+  filter: blur(0px);
+  transition-delay: 2400ms;
 }
 
 .overview-eyebrow {
@@ -2274,7 +2324,7 @@ h3 {
     grid-column: 1 / 2;
     grid-row: 1;
     left: 50%;
-    top: 50%;
+    top: calc(10% + 40% * var(--reveal-progress, 0));
   }
 }
 

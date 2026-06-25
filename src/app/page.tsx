@@ -5,7 +5,6 @@ import { ProjectGallery } from "@/components/ProjectGallery";
 import { getModuleExplorerData, modules, stackHighlights } from "@/data/modules";
 import { getProjects } from "@/lib/projects";
 
-import { RandomSymbols } from "@/components/RandomSymbols";
 import { FadeIn } from "@/components/FadeIn";
 
 export default function Home() {
@@ -34,9 +33,7 @@ export default function Home() {
             <h2>select a control:</h2>
           </div>
         </FadeIn>
-        <FadeIn delay={200} direction="up">
-          <ModuleExplorer module={getModuleExplorerData(featuredModule)} />
-        </FadeIn>
+        <ModuleExplorer module={getModuleExplorerData(featuredModule)} />
       </section>
 
       <section className="content-band content-band--dark">
@@ -68,11 +65,6 @@ export default function Home() {
         </FadeIn>
       </section>
 
-      <section className="content-band">
-        <FadeIn delay={200} direction="none">
-          <RandomSymbols />
-        </FadeIn>
-      </section>
     </main>
   );
 }

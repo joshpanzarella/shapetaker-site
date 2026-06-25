@@ -1,19 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 import { alchemicalSymbols } from "@/lib/symbols";
 import { MousePointer2, Settings2 } from "lucide-react";
 import * as LucideIcons from "lucide-react";
 import type { Hotspot, ModuleExplorerData } from "@/data/modules";
-import { FadeIn } from "./FadeIn";
 
 type ModuleExplorerProps = {
   module: ModuleExplorerData;
 };
 
 export function ModuleExplorer({ module }: ModuleExplorerProps) {
+  const sectionRef = useRef<HTMLElement>(null);
   const [activeId, setActiveId] = useState(module.controls[0]?.id ?? "");
   const [readoutMode, setReadoutMode] = useState<"controls" | "context">("controls");
   const [activeContextId, setActiveContextId] = useState(module.contextMenu?.[0]?.id ?? "");
@@ -51,6 +51,71 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
     setSymbols([alchemicalSymbols[idx1], alchemicalSymbols[idx2], alchemicalSymbols[idx3]]);
   }, []);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const windowH = window.innerHeight;
+
+    // Mobile: reveal immediately, symbols stay at CSS-defined positions
+    if (window.innerWidth <= 860) {
+      section.style.setProperty("--reveal-progress", "1");
+      section.classList.add("is-revealed");
+      return;
+    }
+
+    // Hero position check — done ONCE at mount so it doesn't fire mid-scroll on homepage.
+    // If the section is already well into the viewport (e.g. module detail hero), snap straight
+    // to revealed and skip the scroll animation entirely.
+    const initialRect = section.getBoundingClientRect();
+    if (initialRect.top < windowH * 0.55) {
+      section.style.setProperty("--reveal-progress", "1");
+      section.classList.add("is-revealed");
+      return;
+    }
+
+    let revealedCards = false;
+    let targetProgress = 0;
+    let displayProgress = 0;
+    let rafId: number | null = null;
+
+    // Max step per 60fps frame — descent takes ~2.5s regardless of scroll speed
+    const MAX_STEP = 0.007;
+
+    const tick = () => {
+      const diff = targetProgress - displayProgress;
+      if (Math.abs(diff) < 0.001) {
+        displayProgress = targetProgress;
+        rafId = null;
+      } else {
+        displayProgress += Math.min(Math.abs(diff), MAX_STEP) * Math.sign(diff);
+        rafId = requestAnimationFrame(tick);
+      }
+
+      section.style.setProperty("--reveal-progress", String(displayProgress));
+
+      if (displayProgress >= 1 && !revealedCards) {
+        revealedCards = true;
+        section.classList.add("is-revealed");
+      }
+    };
+
+    const handleScroll = () => {
+      const rect = section.getBoundingClientRect();
+      const moveStart = windowH * 0.55;
+      const moveEnd = windowH * 0.30;
+      targetProgress = Math.max(0, Math.min(1, (moveStart - rect.top) / (moveStart - moveEnd)));
+      if (rafId === null) rafId = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   const activeControl = useMemo(
     () => module.controls.find((control) => control.id === activeId) ?? module.controls[0],
     [activeId, module.controls]
@@ -78,6 +143,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
 
   return (
     <section
+      ref={sectionRef}
       className="module-explorer"
       data-orientation={isVertical ? "vertical" : "horizontal"}
       style={
@@ -94,7 +160,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
       <span className="alchemical-symbol alchemical-symbol--readout" style={{ "--glow-color": "var(--symbol-purple)" } as React.CSSProperties} aria-hidden="true">{symbols[0]}</span>
       <span className="alchemical-symbol alchemical-symbol--overview" style={{ "--glow-color": "var(--symbol-teal)" } as React.CSSProperties} aria-hidden="true">{symbols[1]}</span>
 
-      <FadeIn direction="right" delay={1400} duration={3.0} className={`panel-stage${module.panelImage ? " panel-stage--image" : ""}`}>
+      <div className={`panel-stage${module.panelImage ? " panel-stage--image" : ""}`}>
           <div className="rack-rail rack-rail--top" aria-hidden="true" />
         <div
           className={`rack-panel${module.panelImage ? " rack-panel--image" : ""}`}
@@ -137,9 +203,9 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
           ))}
         </div>
         <div className="rack-rail rack-rail--bottom" aria-hidden="true" />
-      </FadeIn>
+      </div>
 
-      <FadeIn as="aside" direction="left" delay={1900} duration={3.0} className="control-readout" aria-live="polite">
+      <aside className="control-readout" aria-live="polite">
         {hasContextMenu ? (
           <div className="readout-tools" aria-label={`${module.name} readout mode`}>
             <div className="readout-segment">
@@ -242,14 +308,14 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
             </div>
           ) : null}
         </div>
-      </FadeIn>
+      </aside>
 
-      <FadeIn as="aside" direction="left" delay={2400} duration={3.0} className="module-overview" aria-hidden={isVertical ? "false" : "true"}>
+      <aside className="module-overview" aria-hidden={isVertical ? "false" : "true"}>
         <span className="overview-eyebrow">{module.status}</span>
         <h3 className="overview-title">{module.name}</h3>
         <p className="overview-subtitle">{module.subtitle}</p>
         <p className="overview-summary">{module.summary}</p>
-      </FadeIn>
+      </aside>
     </section>
   );
 }
