@@ -112,7 +112,7 @@
   --green: #5ec2ab;
   --focus-purple: var(--palette-purple-500);
   --symbol-teal: #8af5dc;
-  --symbol-purple: var(--palette-purple-500);
+  --symbol-purple: #c084fc;
   --symbol-white: #f0ece6;
   --body-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.25'/%3E%3C/svg%3E");
   --body-texture-size: 256px 256px;
@@ -2467,7 +2467,7 @@ h3 {
 
 .control-diagrams {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1.25rem;
   margin-top: 2rem;
   padding-top: 1.5rem;

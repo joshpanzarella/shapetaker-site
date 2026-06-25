@@ -56,6 +56,8 @@ export function SiteHeader() {
                             ...(part.top ? { top: part.top } : {}),
                             ...(part.marginLeft ? { marginLeft: part.marginLeft } : {}),
                             ...(part.marginRight ? { marginRight: part.marginRight } : {}),
+                            ...(part.fontFamily ? { fontFamily: part.fontFamily } : {}),
+                            ...(part.fontWeight ? { fontWeight: part.fontWeight } : {}),
                           }}
                         >
                           {part.text}

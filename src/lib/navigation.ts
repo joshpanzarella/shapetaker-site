@@ -1,7 +1,7 @@
 export type NavItem = {
   href: string;
   label: string;
-  labelParts?: Array<{ text: string; glyph?: boolean; fontSize?: string; top?: string; marginLeft?: string; marginRight?: string }>;
+  labelParts?: Array<{ text: string; glyph?: boolean; fontSize?: string; top?: string; marginLeft?: string; marginRight?: string; fontFamily?: string; fontWeight?: string }>;
 };
 
 export const siteNav: NavItem[] = [
@@ -9,7 +9,7 @@ export const siteNav: NavItem[] = [
     href: "/",
     label: "home",
     labelParts: [
-      { text: "♄", glyph: true, fontSize: "1.64em", top: "-0.19em" },
+      { text: "♄", glyph: true, fontSize: "1.64em", top: "-0.07em", fontFamily: '"Noto Sans Symbols 2", "Segoe UI Symbol", "Apple Symbols", sans-serif', fontWeight: "300" },
       { text: "ome" },
     ],
   },
