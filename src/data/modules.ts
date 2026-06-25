@@ -15,6 +15,7 @@ export type Hotspot = {
     label: string;
     icon?: string;
     svg?: string;
+    color?: string;
     rotation?: number;
     state?: 'up' | 'down';
   }>;
@@ -1080,12 +1081,12 @@ export const modules: ModuleSpec[] = [
         ],
         tip: "move this while listening — each algorithm responds differently to the Drive and Dist % settings.",
         diagrams: [
-          { id: "type-hard-clip", label: "hard clip",       icon: "Minus",     rotation: -135 },
-          { id: "type-tube-sat",  label: "tube saturation", icon: "Activity",  rotation: -81 },
-          { id: "type-wave-fold", label: "wave fold",       icon: "Waves",     rotation: -27 },
-          { id: "type-bit-crush", label: "bit crush",       icon: "Grid3x3",   rotation: 27 },
-          { id: "type-destroy",   label: "destroy",         icon: "Zap",       rotation: 81 },
-          { id: "type-ring-mod",  label: "ring modulation", icon: "RefreshCw", rotation: 135 },
+          { id: "type-hard-clip", label: "hard clip",       icon: "Minus",     color: "#2dd4bf" },
+          { id: "type-tube-sat",  label: "tube saturation", icon: "Activity",  color: "#38bdf8" },
+          { id: "type-wave-fold", label: "wave fold",       icon: "Waves",     color: "#60a5fa" },
+          { id: "type-bit-crush", label: "bit crush",       icon: "Grid3x3",   color: "#818cf8" },
+          { id: "type-destroy",   label: "destroy",         icon: "Zap",       color: "#a78bfa" },
+          { id: "type-ring-mod",  label: "ring modulation", icon: "RefreshCw", color: "#e879f9" },
         ],
       },
       {

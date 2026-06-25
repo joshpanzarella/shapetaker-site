@@ -227,9 +227,9 @@ code {
 .site-nav {
   display: flex;
   align-items: center;
-  gap: clamp(0.5rem, 2vw, 1.2rem);
+  gap: clamp(0.5rem, 2vw, 1.5rem);
   color: var(--ink-soft);
-  font-size: 0.92rem;
+  font-size: 1.05rem;
 }
 
 .theme-toggle {
@@ -254,6 +254,13 @@ code {
   border-color: var(--focus-purple);
   color: var(--ink);
   outline: 0;
+}
+
+.nav-alch-glyph {
+  display: inline-block;
+  position: relative;
+  margin-left: -0.05em;
+  margin-right: -0.05em;
 }
 
 .site-nav a {
@@ -1614,6 +1621,7 @@ h3 {
 }
 
 .manual-section {
+  min-height: 160px;
   padding: 1.2rem;
   border: 1px solid var(--line);
   clip-path: var(--chamfer-sm);
@@ -2334,6 +2342,10 @@ h3 {
   grid-template-columns: 40px 1fr;
   gap: 1.25rem;
   align-items: center;
+}
+
+.control-diagram--meter {
+  grid-template-columns: 1fr;
 }
 
 .control-diagram__knob {

@@ -94,7 +94,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
       <span className="alchemical-symbol alchemical-symbol--readout" style={{ "--glow-color": "var(--symbol-purple)" } as React.CSSProperties} aria-hidden="true">{symbols[0]}</span>
       <span className="alchemical-symbol alchemical-symbol--overview" style={{ "--glow-color": "var(--symbol-teal)" } as React.CSSProperties} aria-hidden="true">{symbols[1]}</span>
 
-      <FadeIn direction="right" delay={1150} duration={3.0} className={`panel-stage${module.panelImage ? " panel-stage--image" : ""}`}>
+      <FadeIn direction="right" delay={1400} duration={3.0} className={`panel-stage${module.panelImage ? " panel-stage--image" : ""}`}>
           <div className="rack-rail rack-rail--top" aria-hidden="true" />
         <div
           className={`rack-panel${module.panelImage ? " rack-panel--image" : ""}`}
@@ -139,7 +139,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
         <div className="rack-rail rack-rail--bottom" aria-hidden="true" />
       </FadeIn>
 
-      <FadeIn as="aside" direction="left" delay={1550} duration={3.0} className="control-readout" aria-live="polite">
+      <FadeIn as="aside" direction="left" delay={1900} duration={3.0} className="control-readout" aria-live="polite">
         {hasContextMenu ? (
           <div className="readout-tools" aria-label={`${module.name} readout mode`}>
             <div className="readout-segment">
@@ -205,22 +205,22 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
             <div className="control-diagrams">
               {activeControl.diagrams.map((diagram) => {
                 return (
-                  <div key={diagram.id} className="control-diagram">
+                  <div key={diagram.id} className={`control-diagram${activeControl.type === "meter" ? " control-diagram--meter" : ""}`}>
                     {activeControl.type === "switch" ? (
                       <div className="control-diagram__switch">
-                        <div 
-                          className="control-diagram__switch-bat" 
-                          style={{ transform: `rotate(${diagram.state === 'up' ? 0 : 180}deg)` }} 
+                        <div
+                          className="control-diagram__switch-bat"
+                          style={{ transform: `rotate(${diagram.state === 'up' ? 0 : 180}deg)` }}
                         />
                       </div>
-                    ) : activeControl.type === "meter" ? null : (
+                    ) : diagram.rotation !== undefined ? (
                       <div className="control-diagram__knob">
-                        <div 
-                          className="control-diagram__knob-indicator" 
-                          style={{ transform: `rotate(${diagram.rotation}deg)` }} 
+                        <div
+                          className="control-diagram__knob-indicator"
+                          style={{ transform: `rotate(${diagram.rotation}deg)` }}
                         />
                       </div>
-                    )}
+                    ) : null}
                     <div className="control-diagram__content">
                       {diagram.svg && (
                         <span
@@ -232,7 +232,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
                       )}
                       {diagram.icon && (() => {
                         const IconComponent = (LucideIcons as unknown as Record<string, React.ElementType>)[diagram.icon] || LucideIcons.Circle;
-                        return <IconComponent size={28} className="control-diagram__icon" />;
+                        return <IconComponent size={28} className="control-diagram__icon" style={diagram.color ? { color: diagram.color } : undefined} />;
                       })()}
                       <span className="control-diagram__label">{diagram.label}</span>
                     </div>
@@ -244,7 +244,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
         </div>
       </FadeIn>
 
-      <FadeIn as="aside" direction="left" delay={1950} duration={3.0} className="module-overview" aria-hidden={isVertical ? "false" : "true"}>
+      <FadeIn as="aside" direction="left" delay={2400} duration={3.0} className="module-overview" aria-hidden={isVertical ? "false" : "true"}>
         <span className="overview-eyebrow">{module.status}</span>
         <h3 className="overview-title">{module.name}</h3>
         <p className="overview-subtitle">{module.subtitle}</p>

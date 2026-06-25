@@ -38,13 +38,19 @@ export function SiteHeader() {
     >
       <Link className="brand-mark" href="/" aria-label="SHAPETAKER home">
         <span aria-hidden="true">
-          SH<span className="brand-alch-glyph">🜂</span>PET<span className="brand-alch-glyph" style={{ marginLeft: "-0.15em" }}>🜂</span><span className="brand-alt-glyph">&#xf02d;</span>E<span className="brand-alt-glyph">&#xf02e;</span>
+          SHAPET<span className="brand-alch-glyph" style={{ marginLeft: "-0.18em" }}>🜂</span><span className="brand-alt-glyph">&#xf02d;</span>E<span className="brand-alt-glyph">&#xf02e;</span>
         </span>
       </Link>
       <nav className="site-nav" aria-label="primary navigation">
         {siteNav.map((item) => (
           <Link key={item.href} href={item.href}>
-            {item.label}
+            {item.labelParts
+              ? item.labelParts.map((part, i) =>
+                  part.glyph
+                    ? <span key={i} className="nav-alch-glyph">{part.text}</span>
+                    : part.text
+                )
+              : item.label}
           </Link>
         ))}
         <ThemeToggle />
