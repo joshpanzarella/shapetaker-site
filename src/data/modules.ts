@@ -85,6 +85,7 @@ export type SuggestedPatch = {
 export type ModuleSpec = {
   slug: string;
   name: string;
+  hidden?: boolean;
   subtitle: string;
   summary: string;
   category: string;
@@ -970,6 +971,7 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "transmutation",
+    hidden: true,
     name: "transmutation",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
     summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
@@ -1959,6 +1961,7 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "involution",
+    hidden: true,
     name: "involution",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
     summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
@@ -1985,6 +1988,7 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "specula",
+    hidden: true,
     name: "specula",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
     summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
@@ -2011,6 +2015,7 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "incantation",
+    hidden: true,
     name: "incantation",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
     summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
@@ -2037,6 +2042,7 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "torsion",
+    hidden: true,
     name: "torsion",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
     summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
@@ -2063,6 +2069,7 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "reverie",
+    hidden: true,
     name: "reverie",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.",
@@ -2084,6 +2091,7 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "tessellation",
+    hidden: true,
     name: "tessellation",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.",
@@ -2122,6 +2130,10 @@ export const stackHighlights = [
     icon: Sparkles
   }
 ];
+
+export function getVisibleModules() {
+  return modules.filter((module) => !module.hidden);
+}
 
 export function getModule(slug: string) {
   return modules.find((module) => module.slug === slug);

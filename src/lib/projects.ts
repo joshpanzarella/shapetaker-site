@@ -73,9 +73,10 @@ const staticProjects: ProjectSummary[] = [
 
 export function getProjects(): ProjectSummary[] {
   const publicModulesDir = `${process.cwd()}/public/modules`;
+  const hiddenSlugs = new Set(modules.filter((m) => m.hidden).map((m) => m.slug));
   const moduleProjects = new Map<string, ProjectSummary>();
 
-  for (const moduleSpec of modules) {
+  for (const moduleSpec of modules.filter((m) => !m.hidden)) {
     moduleProjects.set(moduleSpec.slug, {
       slug: moduleSpec.slug,
       title: moduleSpec.name,
@@ -100,6 +101,7 @@ export function getProjects(): ProjectSummary[] {
       .map((entry) => entry.name);
 
     for (const slug of moduleFolders) {
+      if (hiddenSlugs.has(slug)) continue;
       const folderPath = `${publicModulesDir}/${slug}`;
       const publicPath = `/modules/${slug}`;
       const existingProject = moduleProjects.get(slug);

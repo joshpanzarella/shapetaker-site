@@ -68,7 +68,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
     // If the section is already well into the viewport (e.g. module detail hero), snap straight
     // to revealed and skip the scroll animation entirely.
     const initialRect = section.getBoundingClientRect();
-    if (initialRect.top < windowH * 0.55) {
+    if (initialRect.top < windowH * 0.68) {
       section.style.setProperty("--reveal-progress", "1");
       section.classList.add("is-revealed");
       return;
@@ -78,6 +78,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
     let targetProgress = 0;
     let displayProgress = 0;
     let rafId: number | null = null;
+    let descentStarted = false;
 
     // Max step per 60fps frame — descent takes ~2.5s regardless of scroll speed
     const MAX_STEP = 0.007;
@@ -102,9 +103,12 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
 
     const handleScroll = () => {
       const rect = section.getBoundingClientRect();
-      const moveStart = windowH * 0.55;
-      const moveEnd = windowH * 0.30;
-      targetProgress = Math.max(0, Math.min(1, (moveStart - rect.top) / (moveStart - moveEnd)));
+      const moveStart = windowH * 0.68;
+      const moveEnd = windowH * 0.43;
+      const scrollProgress = Math.max(0, Math.min(1, (moveStart - rect.top) / (moveStart - moveEnd)));
+      // Once descent begins, latch to 1 — symbol always reaches its terminal position
+      if (scrollProgress > 0) descentStarted = true;
+      targetProgress = descentStarted ? 1 : 0;
       if (rafId === null) rafId = requestAnimationFrame(tick);
     };
 

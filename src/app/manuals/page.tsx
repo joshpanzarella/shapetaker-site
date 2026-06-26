@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { MorphingTitle } from "@/components/MorphingTitle";
-import { modules } from "@/data/modules";
+import { getVisibleModules } from "@/data/modules";
 
 export const metadata = {
   title: "manuals | shapetaker"
@@ -17,7 +17,7 @@ export default function ManualsPage() {
       </section>
 
       <section className="manual-index" aria-label="manual index">
-        {modules.map((module) => (
+        {getVisibleModules().map((module) => (
           <article className="manual-index__item" key={module.slug}>
             <div>
               <span className="eyebrow">{module.status}</span>
