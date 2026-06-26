@@ -312,6 +312,22 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
             </div>
           ) : null}
         </div>
+        {module.typeplate && (
+          <dl className="module-typeplate" aria-label="module identification">
+            <div className="module-typeplate__row">
+              <dt>unit</dt>
+              <dd>{module.typeplate.unit}</dd>
+            </div>
+            <div className="module-typeplate__row">
+              <dt>type</dt>
+              <dd>{module.typeplate.type}</dd>
+            </div>
+            <div className="module-typeplate__row">
+              <dt>alt</dt>
+              <dd>{module.typeplate.alt}</dd>
+            </div>
+          </dl>
+        )}
       </aside>
 
       <aside className="module-overview" aria-hidden={isVertical ? "false" : "true"}>

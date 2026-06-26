@@ -112,11 +112,16 @@ export type ModuleSpec = {
     video?: string;
   };
   suggestedPatches?: SuggestedPatch[];
+  typeplate?: {
+    unit: string;
+    type: string;
+    alt: string;
+  };
 };
 
 export type ModuleExplorerData = Pick<
   ModuleSpec,
-  "name" | "accent" | "controls" | "panelImage" | "contextMenu" | "subtitle" | "summary" | "status" | "hp"
+  "name" | "accent" | "controls" | "panelImage" | "contextMenu" | "subtitle" | "summary" | "status" | "hp" | "typeplate"
 >;
 
 export const modules: ModuleSpec[] = [
@@ -967,7 +972,12 @@ export const modules: ModuleSpec[] = [
           { instruction: "Connect Left Out to Mixer to hear the result.", cableIds: ["audio-out"] }
         ]
       }
-    ]
+    ],
+    typeplate: {
+      unit: "ST-01",
+      type: "DUAL POLYPHONIC OSCILLATOR",
+      alt: "CLAIRAUDIENT VCO MK.I",
+    },
   },
   {
     slug: "transmutation",
@@ -2149,6 +2159,7 @@ export function getModuleExplorerData(module: ModuleSpec): ModuleExplorerData {
     controls: module.controls,
     subtitle: module.subtitle,
     summary: module.summary,
-    status: module.status
+    status: module.status,
+    typeplate: module.typeplate,
   };
 }
