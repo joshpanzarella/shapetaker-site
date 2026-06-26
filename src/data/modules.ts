@@ -974,7 +974,7 @@ export const modules: ModuleSpec[] = [
       }
     ],
     typeplate: {
-      unit: "ST-01",
+      unit: "00218",
       type: "DUAL POLYPHONIC OSCILLATOR",
       alt: "CLAIRAUDIENT VCO MK.I",
     },

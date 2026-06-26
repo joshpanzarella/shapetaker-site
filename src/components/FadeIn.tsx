@@ -13,6 +13,7 @@ interface FadeInProps extends React.HTMLAttributes<HTMLElement> {
 
 export function FadeIn({ children, delay = 0, direction = "up", className = "", duration = 1.35, as: Component = "div", ...props }: FadeInProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isDone, setIsDone] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -42,6 +43,12 @@ export function FadeIn({ children, delay = 0, direction = "up", className = "", 
     };
   }, []);
 
+  useEffect(() => {
+    if (!isVisible) return;
+    const timeout = setTimeout(() => setIsDone(true), delay + duration * 1000 + 200);
+    return () => clearTimeout(timeout);
+  }, [isVisible, delay, duration]);
+
   let transformStr = "translateY(24px)";
   if (direction === "down") transformStr = "translateY(-24px)";
   if (direction === "left") transformStr = "translateX(24px)";
@@ -55,10 +62,9 @@ export function FadeIn({ children, delay = 0, direction = "up", className = "", 
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "none" : transformStr,
-        filter: isVisible ? "blur(0px)" : "blur(8px)",
-        transition: `opacity ${duration * 0.4}s cubic-bezier(0.16, 1, 0.3, 1), transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1), filter ${duration * 0.4}s cubic-bezier(0.16, 1, 0.3, 1)`,
+        transition: `opacity ${duration * 0.4}s cubic-bezier(0.16, 1, 0.3, 1), transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1)`,
         transitionDelay: `${delay}ms`,
-        willChange: "opacity, transform, filter",
+        willChange: isDone ? "auto" : "opacity, transform",
       }}
       {...props}
     >
