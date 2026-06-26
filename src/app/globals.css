@@ -348,7 +348,10 @@ code {
 }
 
 .site-nav a {
-  padding: 0.48rem 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  height: 2.2rem;
+  padding: 0 0.25rem;
   letter-spacing: 0.02em;
   border-bottom: 1px solid transparent;
 }
@@ -1187,14 +1190,7 @@ h3 {
 }
 
 .module-typeplate__row dt {
-  font-family: "Courier New", "Courier", monospace;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(215, 181, 109, 0.55);
-  width: 2.4rem;
-  flex-shrink: 0;
+  display: none;
 }
 
 .module-typeplate__row dd {

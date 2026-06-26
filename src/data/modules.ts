@@ -129,7 +129,7 @@ export const modules: ModuleSpec[] = [
     slug: "clairaudient",
     name: "clairaudient",
     subtitle: "polyphonic dual oscillator with sigmoid-saw or PWM waveforms, symmetric detuned pairs, two sync modes, and equal-power or stereo-swap crossfade",
-    summary: "Clairaudient is a polyphonic stereo dual oscillator built around two independent signal paths: V and Z. Each path runs a symmetrically detuned sub-oscillator pair (A and B) in either sigmoid-saw or PWM mode, producing a natural stereo spread without external processing. A central crossfader blends the two paths with a constant-power curve or a stereo-swap mode that inverts the image as it sweeps. Cross sync and reverse sync add rhythmic harmonic locking between V and Z. All synthesis parameters accept polyphonic CV with attenuverters.",
+    summary: "Clairaudient is a polyphonic, stereo, dual oscillator. Each voice (V and Z) has two oscillators that you can tune via the FREQ knobs. A central crossfader blends V/Z with a constant-power curve or a stereo-swap mode that inverts the image as it sweeps. Cross-sync and reverse-sync add rhythmic harmonic locking between V and Z.",
     category: "vcv rack modules",
     status: "stereo oscillator",
     accent: "#68B7C8",
@@ -204,7 +204,7 @@ export const modules: ModuleSpec[] = [
         diagrams: [
           { id: "v-freq--2", label: "-2 octaves", icon: "ChevronsDown", rotation: -135 },
           { id: "v-freq--1", label: "-1 octave", icon: "ChevronDown", rotation: -67.5 },
-          { id: "v-freq-0", label: "0 oct (middle C)", icon: "Minus", rotation: 0 },
+          { id: "v-freq-0", label: "0 oct", icon: "Minus", rotation: 0 },
           { id: "v-freq-+1", label: "+1 octave", icon: "ChevronUp", rotation: 67.5 },
           { id: "v-freq-+2", label: "+2 octaves", icon: "ChevronsUp", rotation: 135 }
         ]
@@ -225,7 +225,7 @@ export const modules: ModuleSpec[] = [
         diagrams: [
           { id: "z-freq--24", label: "-24 semitones (−2 oct)", icon: "ChevronsDown", rotation: -135 },
           { id: "z-freq--12", label: "-12 semitones (−1 oct)", icon: "ChevronDown", rotation: -67.5 },
-          { id: "z-freq-0", label: "0 semitones (unison)", icon: "Minus", rotation: 0 },
+          { id: "z-freq-0", label: "0 semitones", icon: "Minus", rotation: 0 },
           { id: "z-freq-+12", label: "+12 semitones (+1 oct)", icon: "ChevronUp", rotation: 67.5 },
           { id: "z-freq-+24", label: "+24 semitones (+2 oct)", icon: "ChevronsUp", rotation: 135 }
         ]
@@ -244,9 +244,9 @@ export const modules: ModuleSpec[] = [
         ],
         tip: "small amounts (2–5 cents) create a subtle natural chorus; larger amounts produce audible beating.",
         diagrams: [
-          { id: "v-fine-flat", label: "flat (−20 cents total)", icon: "Minus", rotation: -135 },
+          { id: "v-fine-flat", label: "flat (−20 cents)", icon: "Minus", rotation: -135 },
           { id: "v-fine-center", label: "no detuning (0 cents)", icon: "Circle", rotation: 0 },
-          { id: "v-fine-sharp", label: "sharp (+20 cents total)", icon: "Plus", rotation: 135 }
+          { id: "v-fine-sharp", label: "sharp (+20 cents)", icon: "Plus", rotation: 135 }
         ]
       },
       {
@@ -390,9 +390,9 @@ export const modules: ModuleSpec[] = [
         ],
         tip: "in sigmoid mode, slow CV modulation of shape produces a gradual character shift without abrupt timbral jumps.",
         diagrams: [
-          { id: "v-saw",     label: "sawtooth (sigmoid at min)", icon: "Activity",  rotation: -135 },
-          { id: "v-sigmoid", label: "sigmoid curve (mid)",       icon: "Spline",    rotation: 0 },
-          { id: "v-square",  label: "square-like (sigmoid at max / PWM 50%)", icon: "Square", rotation: 135 }
+          { id: "v-saw",     label: "sawtooth", icon: "Activity",  rotation: -135 },
+          { id: "v-sigmoid", label: "sigmoid",       icon: "Spline",    rotation: 0 },
+          { id: "v-square",  label: "square", icon: "Square", rotation: 135 }
         ]
       },
       {
@@ -408,9 +408,9 @@ export const modules: ModuleSpec[] = [
         ],
         tip: "set V and Z shape to different values before crossfading — the blend will shift character, not just level.",
         diagrams: [
-          { id: "z-saw",     label: "sawtooth (sigmoid at min)", icon: "Activity",  rotation: -135 },
-          { id: "z-sigmoid", label: "sigmoid curve (mid)",       icon: "Spline",    rotation: 0 },
-          { id: "z-square",  label: "square-like (sigmoid at max / PWM 50%)", icon: "Square", rotation: 135 }
+          { id: "z-saw",     label: "sawtooth", icon: "Activity",  rotation: -135 },
+          { id: "z-sigmoid", label: "sigmoid curve",       icon: "Spline",    rotation: 0 },
+          { id: "z-square",  label: "square", icon: "Square", rotation: 135 }
         ]
       },
       {
@@ -974,9 +974,9 @@ export const modules: ModuleSpec[] = [
       }
     ],
     typeplate: {
-      unit: "00218",
-      type: "DUAL POLYPHONIC OSCILLATOR",
-      alt: "CLAIRAUDIENT VCO MK.I",
+      unit: "UNIT 00218",
+      type: "XFADE STEREO OSCILLATOR",
+      alt: "VECTOR CALIBRATED",
     },
   },
   {
