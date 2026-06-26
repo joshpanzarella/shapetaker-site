@@ -2658,10 +2658,10 @@ h3 {
 }
 
 @keyframes spookyWave {
-  0% { transform: translateY(8px) rotate(-4deg); filter: blur(6px); opacity: 0; letter-spacing: -0.05em; }
-  40% { transform: translateY(-2px) rotate(2deg); filter: blur(2px); opacity: 0.6; }
-  70% { transform: translateY(1px) rotate(-1deg); filter: blur(0px); opacity: 0.9; }
-  100% { transform: translateY(0) rotate(0); filter: blur(0); opacity: 1; letter-spacing: normal; }
+  0% { transform: translateY(8px) rotate(-4deg); opacity: 0; letter-spacing: -0.05em; }
+  40% { transform: translateY(-2px) rotate(2deg); opacity: 0.6; }
+  70% { transform: translateY(1px) rotate(-1deg); opacity: 0.9; }
+  100% { transform: translateY(0) rotate(0); opacity: 1; letter-spacing: normal; }
 }
 
 .spooky-wavy {
@@ -2670,8 +2670,8 @@ h3 {
 }
 
 @keyframes spinTitle {
-  0% { transform: rotate(-360deg); opacity: 0; filter: blur(4px); }
-  100% { transform: rotate(0deg); opacity: 1; filter: blur(0px); }
+  0% { transform: rotate(-360deg); opacity: 0; }
+  100% { transform: rotate(0deg); opacity: 1; }
 }
 
 .spin-title {
@@ -2681,13 +2681,13 @@ h3 {
 }
 
 @keyframes crossfadeOut {
-  0%, 40% { opacity: 1; filter: blur(0px); }
-  70%, 100% { opacity: 0; filter: blur(12px); transform: scale(1.1) translateY(-2px); }
+  0%, 40% { opacity: 1; }
+  70%, 100% { opacity: 0; transform: scale(1.1) translateY(-2px); }
 }
 
 @keyframes crossfadeIn {
-  0%, 40% { opacity: 0; filter: blur(12px); transform: scale(0.9) translateY(2px); }
-  70%, 100% { opacity: 1; filter: blur(0px); transform: scale(1) translateY(0); }
+  0%, 40% { opacity: 0; transform: scale(0.9) translateY(2px); }
+  70%, 100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 /* ─────────────────────────────────────────────
@@ -2879,6 +2879,20 @@ h3 {
 .setting-val {
   font-weight: bold;
   color: rgba(215, 181, 109, 1);
+}
+
+:root:not([data-theme="dark"]) .patch-panel-settings {
+  background: rgba(42, 31, 18, 0.86);
+  border-color: rgba(62, 54, 42, 0.5);
+}
+
+:root:not([data-theme="dark"]) .patch-panel-settings h4 {
+  color: rgba(200, 182, 148, 0.6);
+}
+
+:root:not([data-theme="dark"]) .patch-panel-settings li,
+:root:not([data-theme="dark"]) .setting-val {
+  color: rgba(232, 218, 192, 0.92);
 }
 
 .patch-port {

@@ -4,8 +4,16 @@ import Image from "next/image";
 import { useMemo, useState, useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 import { alchemicalSymbols } from "@/lib/symbols";
-import { MousePointer2, Settings2 } from "lucide-react";
-import * as LucideIcons from "lucide-react";
+import {
+  MousePointer2, Settings2,
+  Activity, ArrowRight, ChevronDown, ChevronUp, ChevronsDown, ChevronsUp,
+  Circle, Link, Minus, Plus, Repeat, Square, Spline, Unlink,
+} from "lucide-react";
+
+const DIAGRAM_ICONS: Record<string, React.ElementType> = {
+  Activity, ArrowRight, ChevronDown, ChevronUp, ChevronsDown, ChevronsUp,
+  Circle, Link, Minus, Plus, Repeat, Square, Spline, Unlink,
+};
 import type { Hotspot, ModuleExplorerData } from "@/data/modules";
 
 type ModuleExplorerProps = {
@@ -184,7 +192,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
               alt={module.panelImage.alt}
               fill
               sizes="(max-width: 860px) calc(100vw - 2rem), 420px"
-              priority={module.name === "clairaudient"}
+              priority={true}
             />
           ) : (
             <>
@@ -301,7 +309,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
                         />
                       )}
                       {diagram.icon && (() => {
-                        const IconComponent = (LucideIcons as unknown as Record<string, React.ElementType>)[diagram.icon] || LucideIcons.Circle;
+                        const IconComponent = DIAGRAM_ICONS[diagram.icon] ?? Circle;
                         return <IconComponent size={28} className="control-diagram__icon" style={diagram.color ? { color: diagram.color } : undefined} />;
                       })()}
                       <span className="control-diagram__label">{diagram.label}</span>
