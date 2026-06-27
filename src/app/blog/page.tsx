@@ -44,7 +44,7 @@ export default function Blog() {
                   style={{ 
                     fontSize: '1.8rem', 
                     marginBottom: '0.8rem', 
-                    color: 'var(--teal)',
+                    color: 'var(--text-accent)',
                     fontFamily: 'sans-serif'
                   }}
                 >

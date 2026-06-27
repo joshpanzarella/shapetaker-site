@@ -61,7 +61,7 @@ function MorphingChar({ targetChar, index, speedMultiplier }: { targetChar: stri
         animation: `${isCW ? 'spinCW' : 'spinCCW'} ${spinSpeed}s ease-out forwards`,
         position: "relative",
         display: "inline-flex",
-        color: "var(--teal)",
+        color: "var(--text-accent)",
         justifyContent: "center",
         alignItems: "center"
       }}

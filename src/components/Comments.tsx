@@ -14,7 +14,7 @@ export function Comments() {
 
   return (
     <div className="mt-12 pt-10 border-t border-[var(--line-invert)]">
-      <h3 className="text-2xl font-bold mb-6 text-[var(--teal)] font-display">Comments</h3>
+      <h3 className="text-2xl font-bold mb-6 text-[var(--text-accent)] font-display">Comments</h3>
       <Giscus
         id="comments"
         repo="joshpanzarella/shapetaker-site"

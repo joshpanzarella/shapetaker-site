@@ -68,9 +68,10 @@
   --band-shadow: 0 4px 14px rgba(76, 56, 28, 0.14), 0 -3px 8px rgba(76, 56, 28, 0.08);
   --gold: var(--palette-teal-700);
   --teal: var(--palette-teal-700);
-  --redwood: var(--palette-purple-700);
+  --text-accent: var(--ink);
+  --redwood: #4d277a;
   --green: var(--palette-teal-700);
-  --focus-purple: var(--palette-purple-700);
+  --focus-purple: #4d277a;
   --symbol-teal: #004d58;
   --symbol-purple: #200040;
   --symbol-white: #2a1f12;
@@ -109,6 +110,7 @@
   --band-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 -2px 8px rgba(0, 0, 0, 0.3);
   --gold: #5ec2ab;
   --teal: #5ec2ab;
+  --text-accent: var(--teal);
   --redwood: var(--palette-purple-500);
   --green: #5ec2ab;
   --focus-purple: var(--palette-purple-500);
@@ -676,7 +678,7 @@ h3 {
 }
 
 .overview-title {
-  color: var(--teal);
+  color: var(--text-accent);
   font-size: clamp(2rem, 3vw, 2.8rem);
   letter-spacing: 0.035em;
   line-height: 0.92;
@@ -1064,7 +1066,7 @@ h3 {
 }
 
 .context-select span {
-  color: var(--teal);
+  color: var(--text-accent);
   font-size: 0.68rem;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -1088,7 +1090,7 @@ h3 {
 }
 
 .context-select select:focus-visible {
-  border-color: var(--gold);
+  border-color: var(--text-accent);
   outline: 0;
 }
 
@@ -1122,7 +1124,7 @@ h3 {
 
 .context-options button.is-active {
   background: rgba(215, 181, 109, 0.15);
-  color: var(--gold);
+  color: var(--text-accent);
   border-color: rgba(215, 181, 109, 0.45);
 }
 
@@ -1139,7 +1141,7 @@ h3 {
 
 .control-readout h2 {
   margin-top: 1rem;
-  color: var(--teal);
+  color: var(--text-accent);
   font-size: clamp(2.2rem, 4vw, 3.4rem);
   letter-spacing: 0.035em;
   line-height: 0.92;
@@ -1154,7 +1156,7 @@ h3 {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--text-accent);
   border: 1px solid color-mix(in srgb, var(--teal) 38%, transparent);
   border-radius: 2px;
   opacity: 0.85;
@@ -1255,13 +1257,13 @@ h3 {
   content: "•";
   position: absolute;
   left: 0;
-  color: var(--gold);
+  color: var(--text-accent);
   font-weight: 700;
 }
 
 .context-values {
   margin-top: 1rem;
-  color: var(--gold) !important;
+  color: var(--text-accent) !important;
   font-size: 0.84rem !important;
   font-weight: 900;
 }
@@ -1302,7 +1304,7 @@ h3 {
 }
 
 .content-band--dark .section-heading .eyebrow {
-  color: var(--teal);
+  color: var(--text-accent);
 }
 
 .module-grid {
@@ -1430,7 +1432,7 @@ h3 {
 }
 
 .content-band--dark .stack-tile svg {
-  color: var(--teal);
+  color: var(--text-accent);
 }
 
 .stack-tile h2,
@@ -1457,7 +1459,7 @@ h3 {
   align-items: center;
   gap: 0.35rem;
   margin-top: 1.4rem;
-  color: var(--gold);
+  color: var(--text-accent);
   font-weight: 900;
 }
 
@@ -1524,7 +1526,7 @@ h3 {
 }
 
 .profile-card svg {
-  color: var(--teal);
+  color: var(--text-accent);
 }
 
 .profile-card h2 {
@@ -1753,7 +1755,7 @@ h3 {
 .patch-base__step-num {
   font-family: var(--font-display);
   font-size: 1.1rem;
-  color: var(--teal);
+  color: var(--text-accent);
   letter-spacing: 0.06em;
   padding-top: 0.15rem;
 }
@@ -1939,7 +1941,7 @@ h3 {
 }
 
 .media-dock__copy .eyebrow {
-  color: var(--teal);
+  color: var(--text-accent);
 }
 
 .media-dock__copy h2 {
@@ -2014,7 +2016,7 @@ h3 {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--text-accent);
 }
 
 .audio-player__status {
@@ -2681,7 +2683,7 @@ h3 {
 }
 
 .control-diagram__icon {
-  color: var(--teal);
+  color: var(--text-accent);
 }
 
 @keyframes spookyWave {
@@ -2999,7 +3001,7 @@ h3 {
 
 .patch-difficulty--beginner {
   background: rgba(94, 194, 171, 0.1);
-  color: var(--teal);
+  color: var(--text-accent);
   border: 1px solid rgba(94, 194, 171, 0.28);
 }
 
@@ -3060,7 +3062,7 @@ h3 {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--text-accent);
 }
 
 .patch-complete-label {
@@ -3068,7 +3070,7 @@ h3 {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--text-accent);
 }
 
 .patch-step__instruction {
