@@ -311,7 +311,7 @@ code {
   align-items: center;
   gap: clamp(0.5rem, 2vw, 1.5rem);
   color: var(--ink-soft);
-  font-size: 1.05rem;
+  font-size: clamp(0.82rem, 3.2vw, 1.05rem);
 }
 
 .theme-toggle {
@@ -341,7 +341,7 @@ code {
 .nav-alch-glyph {
   display: inline-block;
   position: relative;
-  vertical-align: middle;
+  vertical-align: baseline;
   line-height: 0;
   margin-left: -0.05em;
   margin-right: -0.05em;
@@ -351,6 +351,7 @@ code {
   padding: 0.48rem 0.25rem;
   letter-spacing: 0.02em;
   border-bottom: 1px solid transparent;
+  white-space: nowrap;
 }
 
 .site-nav a:hover,
@@ -2182,8 +2183,13 @@ h3 {
 .project-gallery__controls {
   display: grid;
   grid-template-columns: minmax(280px, 0.95fr) minmax(260px, 0.7fr);
-  align-items: end;
+  align-items: start;
   gap: 1rem;
+}
+
+.project-gallery__filter {
+  display: grid;
+  gap: 0.38rem;
 }
 
 .gallery-tabs {

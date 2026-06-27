@@ -66,17 +66,20 @@ export function ProjectGallery({ projects }: ProjectGalleryProps) {
   return (
     <section className="project-gallery" aria-label="project gallery">
       <div className="project-gallery__controls">
-        <div className="gallery-tabs" aria-label="project type filter">
-          {kinds.map((kind) => (
-            <button
-              key={kind}
-              className={kind === activeKind ? "is-active" : ""}
-              type="button"
-              onClick={() => selectKind(kind)}
-            >
-              {kind}
-            </button>
-          ))}
+        <div className="project-gallery__filter">
+          <span className="eyebrow">project gallery</span>
+          <div className="gallery-tabs" aria-label="project type filter">
+            {kinds.map((kind) => (
+              <button
+                key={kind}
+                className={kind === activeKind ? "is-active" : ""}
+                type="button"
+                onClick={() => selectKind(kind)}
+              >
+                {kind}
+              </button>
+            ))}
+          </div>
         </div>
         <label className="project-select">
           <span>select project</span>

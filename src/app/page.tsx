@@ -21,7 +21,7 @@ export default function Home() {
             </span>
           </h1>
         </FadeIn>
-        <FadeIn delay={300} direction="up" className="w-full">
+        <FadeIn delay={200} direction="up" className="w-full">
           <ProjectGallery projects={projects} />
         </FadeIn>
       </section>

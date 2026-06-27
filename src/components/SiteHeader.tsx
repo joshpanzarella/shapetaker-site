@@ -38,7 +38,7 @@ export function SiteHeader() {
     >
       <Link className="brand-mark" href="/" aria-label="SHAPETAKER home">
         <span aria-hidden="true">
-          SHAPET<span className="brand-alch-glyph" style={{ marginLeft: "-0.18em" }}>🜂</span><span className="brand-alt-glyph">&#xf02d;</span>E<span className="brand-alt-glyph">&#xf02e;</span>
+          SHAPETA<span className="brand-alt-glyph">&#xf02d;</span>E<span className="brand-alt-glyph">&#xf02e;</span>
         </span>
       </Link>
       <nav className="site-nav" aria-label="primary navigation">

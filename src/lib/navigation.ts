@@ -9,7 +9,7 @@ export const siteNav: NavItem[] = [
     href: "/",
     label: "home",
     labelParts: [
-      { text: "♄", glyph: true, fontSize: "1.64em", top: "-0.07em", fontFamily: '"Noto Sans Symbols 2", "Segoe UI Symbol", "Apple Symbols", sans-serif', fontWeight: "300" },
+      { text: "♄", glyph: true, fontSize: "1.45em", fontFamily: '"Noto Sans Symbols 2", "Segoe UI Symbol", "Apple Symbols", sans-serif', fontWeight: "300" },
       { text: "ome" },
     ],
   },
@@ -18,7 +18,7 @@ export const siteNav: NavItem[] = [
     label: "projects",
     labelParts: [
       { text: "projec" },
-      { text: "†", glyph: true, fontSize: "1.15em", top: "-0.06em" },
+      { text: "†", glyph: true, fontSize: "1.15em" },
       { text: "s" },
     ],
   },
@@ -36,7 +36,7 @@ export const siteNav: NavItem[] = [
     label: "notes",
     labelParts: [
       { text: "n" },
-      { text: "☉", glyph: true, fontSize: "1.35em", top: "0em", marginLeft: "-0.24em", marginRight: "-0.20em" },
+      { text: "☉", glyph: true, fontSize: "1.35em", marginLeft: "-0.24em", marginRight: "-0.20em" },
       { text: "tes" },
     ],
   },
