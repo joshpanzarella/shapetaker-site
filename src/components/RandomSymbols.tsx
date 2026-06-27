@@ -16,9 +16,12 @@ export function RandomSymbols() {
   useEffect(() => {
     const maxCount = countForWidth(window.innerWidth);
     // Generate a pool larger than we'll ever need so extending never requires new picks.
-    const pool = Array.from({ length: 80 }, () =>
-      alchemicalSymbols[Math.floor(Math.random() * alchemicalSymbols.length)]
-    );
+    const shuffled = [...alchemicalSymbols];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const pool = shuffled.slice(0, 80);
     poolRef.current = pool;
     setCount(maxCount);
 
