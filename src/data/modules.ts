@@ -33,7 +33,7 @@ export type ContextMenuItem = {
   label: string;
   kind: "toggle" | "choice" | "slider";
   values?: string[];
-  description: string;
+  description: string | string[];
 };
 
 export type PatchPort = {
@@ -377,7 +377,7 @@ export const modules: ModuleSpec[] = [
         size: 14,
         description: [
           "changes the V waveform from sawtooth toward a square shape at maximum",
-          "in PWM mode, controls pulse width instead — center is a square wave, extremes are thin pulses",
+          "PWM mode: controls pulse width",
         ],
         tip: "in sigmoid mode, slow CV modulation of shape produces a gradual character shift without abrupt timbral jumps.",
         diagrams: [
@@ -448,8 +448,8 @@ export const modules: ModuleSpec[] = [
         y: 78.93,
         size: 10,
         description: [
-          "pitch input for the V oscillator — stacks with the octave knob and fine tune",
-          "polyphonic up to 16 voices; when Z V/Oct is unpatched, Z follows this input too",
+          "pitch input for the V oscillator",
+          "when Z v/oct is unpatched, Z follows this input",
         ],
         tip: "patch a polyphonic sequencer here for independent per-voice tuning of the V oscillator.",
         voltageRange: "±10V"
@@ -475,8 +475,7 @@ export const modules: ModuleSpec[] = [
         y: 78.93,
         size: 10,
         description: [
-          "modulates V waveform shape via CV, scaled by the attenuverter",
-          "polyphonic — patch a polyphonic envelope here to give each voice its own shape contour",
+          "modulates V waveform shape",
         ],
         tip: "an envelope here with moderate attenuverter creates a natural shape attack and decay on V.",
         voltageRange: "±5V"
@@ -489,8 +488,8 @@ export const modules: ModuleSpec[] = [
         y: 89.11,
         size: 10,
         description: [
-          "pitch input for the Z oscillator — when patched, Z follows this independently from V",
-          "when unpatched, Z inherits V's pitch and adds the semitone knob offset on top",
+          "pitch input for the Z oscillator",
+          "when unpatched, Z is normalled to V's pitch",
         ],
         tip: "patch a second sequencer pitch output here to independently melodize the Z oscillator.",
         voltageRange: "±10V"
@@ -503,7 +502,7 @@ export const modules: ModuleSpec[] = [
         y: 89.11,
         size: 10,
         description: [
-          "modulates Z fine tune via CV, scaled by the attenuverter",
+          "modulates Z fine tune",
         ],
         tip: "a slow random (S&H) source here with low attenuverter adds subtle detuning variation per note.",
         voltageRange: "±5V"
@@ -516,8 +515,7 @@ export const modules: ModuleSpec[] = [
         y: 89.11,
         size: 10,
         description: [
-          "modulates Z waveform shape via CV, scaled by the attenuverter",
-          "run V and Z shape CVs from the same source with opposite attenuverters for a mirror shape sweep",
+          "modulates Z waveform shape",
         ],
         tip: "running the same modulation source into V and Z shape CVs with opposite attenuverters creates a mirror shape sweep.",
         voltageRange: "±5V"
@@ -530,8 +528,7 @@ export const modules: ModuleSpec[] = [
         y: 78.93,
         size: 10,
         description: [
-          "left stereo output carrying all active polyphonic voices",
-          "connect L and R to a stereo mixer or effects chain",
+          "left stereo output (all active polyphonic voices)",
         ],
         tip: "patch L and R to a stereo mixer or directly into left/right inputs of an effects chain.",
         voltageRange: "±5V"
@@ -544,10 +541,9 @@ export const modules: ModuleSpec[] = [
         y: 89.11,
         size: 10,
         description: [
-          "right stereo output — the spread between L and R comes from the detuned sub-oscillator pairs",
-          "summing L and R to mono is safe and won't cause phase cancellation",
+          "right stereo output (all active polyphonic voices)",
         ],
-        tip: "summing L and R to mono is safe — the sub-oscillator pairs are complementary and cancel cross-correlation at the blend points.",
+        tip: "summing L and R to mono is safe — the oscillator pairs are complementary and cancel cross-correlation at the blend points.",
         voltageRange: "±5V"
       }
     ],
@@ -557,16 +553,14 @@ export const modules: ModuleSpec[] = [
         group: "settings",
         label: "v oscillator quantized",
         kind: "toggle",
-        description:
-          "When enabled, the V Octave knob snaps to discrete whole-octave steps (−2, −1, 0, +1, +2). When disabled, tuning is continuous — useful for glide-style pitch or microtonal intervals. Default is on."
+        description: "When on, the V Tune knob snaps to whole-octave steps."
       },
       {
         id: "z-oscillator-quantized",
         group: "settings",
         label: "z oscillator quantized",
         kind: "toggle",
-        description:
-          "When enabled, the Z Semitone knob snaps to discrete semitone steps across a ±24 semitone (4 octave) range (49 positions total). When disabled, tuning is continuous. Default is on."
+        description: "When on, the Z Tune knob snaps to semitone steps across a ±24 range. Turn off for continuous pitch."
       },
       {
         id: "oscilloscope-theme",
@@ -574,56 +568,54 @@ export const modules: ModuleSpec[] = [
         label: "oscilloscope theme",
         kind: "choice",
         values: ["phosphor", "ice", "solar", "amber"],
-        description:
-          "Selects the color palette for the vintage oscilloscope display. Phosphor is a warm green phosphor CRT look; Ice is a cool blue-white; Solar is a warm amber-red; Amber is a golden amber phosphor. A 'follow shared theme' toggle in the context menu lets all Shapetaker oscilloscope displays share a single theme setting."
+        description: [
+          "phosphor — warm green, like a vintage CRT",
+          "ice — cool cyan and blue-white",
+          "solar — warm amber-red",
+          "amber — deep amber, like a classic terminal"
+        ]
       },
       {
         id: "oscillator-noise",
         group: "oscillator noise",
         label: "noise",
         kind: "slider",
-        description:
-          "Adds two simultaneous noise effects scaled together: per-sample phase jitter (scale 0.00005, scaled by this amount) and an audible white noise floor (peak ±0.45V, added post-waveshaping). Both follow a perceptual shaping curve (exponent 0.65) so low amounts are nearly inaudible — the noise appears gradually as you increase the slider. Default is 0% (off)."
+        description: "Blends phase jitter and a noise floor into the oscillators."
       },
       {
         id: "drift",
         group: "organic drift",
         label: "drift",
         kind: "slider",
-        description:
-          "Introduces slow, independent pitch wandering per sub-oscillator via a random walk algorithm. The walk speed is proportional to the amount — at full, the pitch of each sub-oscillator wanders up to approximately ±1.2 cents from its nominal pitch. Drift updates at 1/64 of the sample rate for CPU efficiency. Default is 0% (off)."
+        description: "Each oscillator pair slowly wanders in pitch at its own pace."
       },
       {
         id: "drift-cohesion",
         group: "organic drift",
         label: "drift cohesion",
         kind: "slider",
-        description:
-          "Controls whether polyphonic voices drift independently or together. At zero, each voice has its own drift trajectory. At full, all voices share a single drift source — simulating a common power supply sag or shared thermal environment. Intermediate values blend between independent and shared drift, useful for achieving that 'slight ensemble but not totally random' character."
+        description: "At zero, every voice drifts independently. At full, all voices share the same drift."
       },
       {
         id: "voice-character",
         group: "analog glue",
         label: "voice character",
         kind: "slider",
-        description:
-          "Adds stable, deterministic per-voice offsets in four dimensions: pitch (±0.25% at full), shape (±2.5%), level (±3.5%), and stereo pan (±2.5%). The offsets are seeded from the voice index and never change between patches — voice 1 always has the same character, voice 2 another, and so on. This creates the consistent voice-to-voice variation of an analog polysynth with component tolerances."
+        description: "Adds consistent per-voice differences in pitch, shape, level, and pan. (similar to component tolerances in an analog polysynth)"
       },
       {
         id: "output-color",
         group: "analog glue",
         label: "output color",
         kind: "slider",
-        description:
-          "Applies a tanh-based soft saturation and stereo crosstalk to the output bus. At full: 2.5% of each channel bleeds into the other (crosstalk), and the signal is driven by up to 0.25× extra and re-normalized through tanh. The result glues the two oscillators together sonically and softens harsh transients. Wet/dry blends linearly from 0% (off) to 100% (fully colored). Default is 0%."
+        description: "Adds soft saturation and a subtle stereo bleed between channels."
       },
       {
         id: "high-cut-enabled",
         group: "tone options",
         label: "high cut enabled",
         kind: "toggle",
-        description:
-          "Engages a one-pole low-pass filter at 14,500 Hz on both output channels. Applied post-waveshaping and post-output-color. Softens the top end of harsh digital content from extreme shape settings or high-drive oversampled processing. Default is off."
+        description: "Gentle rolloff at 14.5kHz. Useful for smoothing emergent harshness."
       },
       {
         id: "oversampling",
@@ -631,8 +623,12 @@ export const modules: ModuleSpec[] = [
         label: "oversampling",
         kind: "choice",
         values: ["1x off", "2x", "4x", "8x"],
-        description:
-          "Sets the internal oversampling factor for the waveshaping engine. At 1×: no oversampling, no anti-alias filtering — lowest CPU. At 2×/4×/8×: the engine runs at 2/4/8× the system sample rate; a two-stage cascaded one-pole anti-alias filter (cutoff 0.45× system rate) reduces aliasing artifacts before decimation back down. Default is 4×. 8× is recommended for extreme shape CV modulation or hard sync at high pitches."
+        description: [
+          "1× — no oversampling, lowest CPU cost",
+          "2× — light aliasing reduction at moderate CPU",
+          "4× — default, works well for most patches",
+          "8× — highest quality, best for hard sync or aggressive shape CV at high pitches"
+        ]
       },
       {
         id: "waveform-mode",
@@ -640,8 +636,10 @@ export const modules: ModuleSpec[] = [
         label: "waveform mode",
         kind: "choice",
         values: ["sigmoid saw", "pwm"],
-        description:
-          "Selects the waveform algorithm for both V and Z oscillators. Sigmoid Saw (default): a sawtooth wave shaped through a sigmoid function whose steepness is controlled by the Shape knob, ranging from near-sawtooth to near-square. PWM: a pulse wave whose duty cycle is controlled by Shape (5%–95%), with PolyBLEP anti-aliasing applied at the discontinuities. The mode switch applies to all voices."
+        description: [
+          "sigmoid saw — sawtooth that morphs toward a square as you raise the Shape knob",
+          "pwm — pulse wave with adjustable width; center is a square, extremes are narrow pulses"
+        ]
       },
       {
         id: "crossfade-curve",
@@ -649,8 +647,10 @@ export const modules: ModuleSpec[] = [
         label: "crossfade curve",
         kind: "choice",
         values: ["equal-power", "stereo swap"],
-        description:
-          "Sets the crossfader behavior. Equal-Power (default): uses a constant-power trigonometric curve (cos/sin) so perceived loudness stays consistent as you sweep from V to Z — no volume dip at center. Stereo Swap: routes V_A to L with Z_B, and V_B to R with Z_A, with an out-of-phase crossfeed that peaks at the center position (gain 0.35 × sin(xfade × π)) and inverts the stereo field at full throw."
+        description: [
+          "equal-power — keeps perceived loudness consistent across the full V→Z sweep",
+          "stereo swap — routes voices between channels and inverts the stereo field as you pass through center"
+        ]
       }
     ],
     manual: [
@@ -1379,7 +1379,7 @@ export const modules: ModuleSpec[] = [
         label: "1x (no oversampling)",
         kind: "choice",
         values: ["1x", "2x", "4x", "8x"],
-        description: "The distortion engine runs at the system sample rate. CPU-efficient but may introduce aliasing with aggressive algorithms on low-frequency material. Useful for CPU-limited patches where audio artifacts are acceptable.",
+        description: "Lowest CPU cost. May introduce faint aliasing at extreme drive or high pitches.",
       },
       {
         id: "oversample-2x",
@@ -1387,7 +1387,7 @@ export const modules: ModuleSpec[] = [
         label: "2x",
         kind: "choice",
         values: ["1x", "2x", "4x", "8x"],
-        description: "The engine runs at 2× the system sample rate, with a 3-pole anti-alias filter on the way back down. Reduces high-frequency fold-back artifacts at moderate CPU cost. A reasonable compromise for most patches.",
+        description: "Reduces aliasing artifacts at moderate CPU cost. A good middle ground for busy patches.",
       },
       {
         id: "oversample-4x",
@@ -1395,7 +1395,7 @@ export const modules: ModuleSpec[] = [
         label: "4x (default)",
         kind: "choice",
         values: ["1x", "2x", "4x", "8x"],
-        description: "Default setting. The engine runs at 4× the system sample rate. Each output sample is the average of four oversampled results filtered by a 3-pole decimation cascade (cascaded one-pole low-passes at 0.45×, 0.41×, and 0.38× of the oversampled rate). Aliasing is well below audible thresholds for most algorithms and drive settings.",
+        description: "Default. Aliasing is below audible thresholds for most algorithms and drive settings.",
       },
       {
         id: "oversample-8x",
@@ -1403,7 +1403,7 @@ export const modules: ModuleSpec[] = [
         label: "8x (high quality)",
         kind: "choice",
         values: ["1x", "2x", "4x", "8x"],
-        description: "Highest quality. The engine runs at 8× the sample rate with the same 3-pole decimation filter. Recommended for destroy, bit crush, and ring mod at high drive where aliasing is most audible. Significantly higher CPU cost — use when audio quality matters and headroom allows it.",
+        description: "Highest quality. Use for destroy, bit crush, and ring mod at high drive. Noticeably higher CPU — use when it matters.",
       },
       {
         id: "sidechain-enhancement",
@@ -1411,7 +1411,7 @@ export const modules: ModuleSpec[] = [
         label: "enhancement (trigger)",
         kind: "choice",
         values: ["enhancement", "ducking", "direct"],
-        description: "Sidechain signal triggers distortion intensity. When the sidechain is present, both distortion and drive scale up proportionally with the envelope follower level. Knob positions set the ceiling — a full sidechain signal reaches the knob value. Use to push into distortion on transients.",
+        description: "Sidechain pushes distortion harder when the signal is louder. Great for hitting harder on transients.",
       },
       {
         id: "sidechain-ducking",
@@ -1419,7 +1419,7 @@ export const modules: ModuleSpec[] = [
         label: "ducking (inverse)",
         kind: "choice",
         values: ["enhancement", "ducking", "direct"],
-        description: "Sidechain inversely controls distortion. When the sidechain is loud, distortion reduces. When it is quiet, the full Dist % and Drive apply. Useful for pumping effects or for keeping distortion down while a kick or snare is present.",
+        description: "Sidechain reduces distortion when loud — it swells back in during quiet moments. Useful for pumping effects or keeping distortion out of the way of a kick.",
       },
       {
         id: "sidechain-direct",
@@ -1427,7 +1427,7 @@ export const modules: ModuleSpec[] = [
         label: "direct control",
         kind: "choice",
         values: ["enhancement", "ducking", "direct"],
-        description: "Sidechain envelope follower directly replaces the Dist % knob. The knob is bypassed — distortion amount is entirely set by the incoming sidechain level. Drive and Mix remain under manual and CV control. Use when you want an audio source or envelope to take full ownership of distortion depth.",
+        description: "Sidechain level fully controls Dist % — the knob is bypassed. Drive and Mix remain yours to control.",
       },
     ],
     manual: [
@@ -1890,56 +1890,64 @@ export const modules: ModuleSpec[] = [
         group: "mode",
         label: "gesture",
         kind: "choice",
-        description: "Envelope is drawn by touch. Press and drag the touch strip to record a custom shape up to 5 seconds long. The module samples at approximately 960 Hz with a 0.2% minimum Y-delta filter. On release, the recorded gesture plays through all four outputs at their individual speeds, phases, loop states, and invert states. Trim Lead and Trim Tail buttons remove silence from the start and end of the recording. Phase CV inputs add polyphonic per-voice phase offsets (0–10V = 0–360°, wrapping)."
+        description: [
+          "press and drag the touch strip to draw a custom envelope shape",
+          "release to begin playback through all four outputs simultaneously",
+          "use Trim Lead and Trim Tail to remove silence from either end of the recording"
+        ]
       },
       {
         id: "mode-adsr",
         group: "mode",
         label: "adsr",
         kind: "choice",
-        description: "Classic four-stage envelope with touch strip interaction. Use the Env 1–4 Select buttons to choose A/D/S/R stages. Speed knob sets time or level for the selected stage (Attack: 0.001–5.0s, Decay: 0.001–2.0s, Sustain: 0–1 level, Release: 0.001–5.0s). Phase knob sets contour shape (0=LOG, 0.5=LIN, 1=EXP). Touching the strip while Sustain is selected sets sustain level; touching while Release is selected edits release time and contour. Gate input tracks voice hold; Trigger input fires one-shot envelopes. Phase CV inputs in this mode add rhythmic delay offsets (quantized to 1/16 by default)."
+        description: [
+          "classic four-stage envelope — Attack, Decay, Sustain, Release",
+          "use Env 1–4 Select to choose which output and which stage to edit",
+          "touch the strip during Sustain or Release to set level and time directly"
+        ]
       },
       {
         id: "theme-follow",
         group: "screen theme",
         label: "follow shared",
         kind: "choice",
-        description: "The OLED display synchronizes its color palette with the global screen theme set in the Shapetaker plugin preferences. When other Shapetaker modules change their shared theme, Evocation updates automatically."
+        description: "Syncs the display color with the global Shapetaker theme — updates automatically when other modules change theirs."
       },
       {
         id: "theme-phosphor",
         group: "screen theme",
         label: "phosphor",
         kind: "choice",
-        description: "Sets the OLED to the Phosphor theme — bright green on black, evoking vintage monochrome CRT phosphor displays."
+        description: "Bright green on black — vintage monochrome CRT look."
       },
       {
         id: "theme-ice",
         group: "screen theme",
         label: "ice",
         kind: "choice",
-        description: "Sets the OLED to the Ice theme — cool cyan and blue-white tones."
+        description: "Cool cyan and blue-white tones."
       },
       {
         id: "theme-solar",
         group: "screen theme",
         label: "solar",
         kind: "choice",
-        description: "Sets the OLED to the Solar theme — warm yellow-gold tones."
+        description: "Warm yellow-gold tones."
       },
       {
         id: "theme-amber",
         group: "screen theme",
         label: "amber",
         kind: "choice",
-        description: "Sets the OLED to the Amber theme — deep amber on black, evoking vintage amber-phosphor terminal displays."
+        description: "Deep amber on black — classic amber terminal look."
       },
       {
         id: "quantize-phase",
         group: "adsr phase",
         label: "quantize phase CV",
         kind: "toggle",
-        description: "When enabled (default on), Phase CV inputs in ADSR mode are quantized to 1/16-note increments: the incoming voltage is floored to the nearest multiple of 1/16 (floor(cv × 16) / 16). This creates rhythmically-aligned staggered envelope entries across the four outputs rather than arbitrary fractional offsets — useful for polyrhythmic structures. Disable for continuous unquantized phase delay (useful when feeding slow LFO or per-voice portamento sources)."
+        description: "When on, Phase CV in ADSR mode snaps to 1/16-note steps for rhythmically aligned staggered entries. Turn off for smooth, continuous offsets."
       }
     ],
     manual: [

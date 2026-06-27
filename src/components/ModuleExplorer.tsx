@@ -249,18 +249,20 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
                     ))}
                   </select>
                 </label>
-                <div className="context-options">
-                  {groupItems.map((item) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      className={activeContextId === item.id ? "is-active" : ""}
-                      onClick={() => setActiveContextId(item.id)}
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                </div>
+                {groupItems.length > 1 && (
+                  <div className="context-options">
+                    {groupItems.map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        className={activeContextId === item.id ? "is-active" : ""}
+                        onClick={() => setActiveContextId(item.id)}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </>
             ) : null}
           </div>
