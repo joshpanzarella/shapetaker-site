@@ -270,6 +270,11 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
           {isContextMode ? "context menu" : "control focus"}
         </span>
         <h2 key={readoutTitle}>{readoutTitle}</h2>
+        {!isContextMode && activeControl?.type === "jack" && activeControl.voltageRange && (
+          <span className="voltage-range-tag" aria-label={`voltage range: ${activeControl.voltageRange}`}>
+            {activeControl.voltageRange}
+          </span>
+        )}
         <div className="readout-scroll">
           {Array.isArray(readoutDescription) ? (
             <ul className="readout-bullets">

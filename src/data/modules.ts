@@ -10,6 +10,7 @@ export type Hotspot = {
   size: number;
   description: string | string[];
   tip: string;
+  voltageRange?: string;
   diagrams?: Array<{
     id: string;
     label: string;
@@ -190,15 +191,14 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "v-frequency",
-        label: "v octave",
+        label: "v tune",
         type: "knob",
         x: 15.0,
         y: 16.9,
         size: 18,
         description: [
-          "sets the register for the V oscillator in whole-octave steps (−2 to +2)",
-          "snaps to octaves by default — turn off quantization in the context menu for continuous tuning",
-          "set this first to place V in the right octave, then fine-tune from there",
+          "sets the tuning for the V oscillator pair.",
+          "snaps to octaves by default. This can be toggled off in the context menu",
         ],
         tip: "set this first when placing V in a register, then tune Z relative to it.",
         diagrams: [
@@ -211,23 +211,23 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "z-frequency",
-        label: "z semitone",
+        label: "z tune",
         type: "knob",
         x: 85.0,
         y: 16.9,
         size: 18,
         description: [
-          "offsets Z from V's pitch in semitones (±24 semitones across 4 octaves)",
-          "snaps to semitone steps by default — disable quantization in the context menu for continuous tuning",
-          "when Z V/Oct is unpatched, Z follows V's pitch and this knob adds the interval on top",
+          "sets the tuning for the Z oscillator pair.",
+          "snaps to semitone steps by default. This can be toggled off in the context menu",
+          "when Z v/oct is unpatched, Z follows V's v/oct",
         ],
         tip: "tuning Z to a harmonic interval of V (5th = +7st, octave = +12st) produces stable sync relationships.",
         diagrams: [
-          { id: "z-freq--24", label: "-24 semitones (−2 oct)", icon: "ChevronsDown", rotation: -135 },
-          { id: "z-freq--12", label: "-12 semitones (−1 oct)", icon: "ChevronDown", rotation: -67.5 },
+          { id: "z-freq--24", label: "-24 semitones", icon: "ChevronsDown", rotation: -135 },
+          { id: "z-freq--12", label: "-12 semitones", icon: "ChevronDown", rotation: -67.5 },
           { id: "z-freq-0", label: "0 semitones", icon: "Minus", rotation: 0 },
-          { id: "z-freq-+12", label: "+12 semitones (+1 oct)", icon: "ChevronUp", rotation: 67.5 },
-          { id: "z-freq-+24", label: "+24 semitones (+2 oct)", icon: "ChevronsUp", rotation: 135 }
+          { id: "z-freq-+12", label: "+12 semitones", icon: "ChevronUp", rotation: 67.5 },
+          { id: "z-freq-+24", label: "+24 semitones", icon: "ChevronsUp", rotation: 135 }
         ]
       },
       {
@@ -238,15 +238,13 @@ export const modules: ModuleSpec[] = [
         y: 34.52,
         size: 14,
         description: [
-          "detunes the two V sub-oscillators symmetrically — one goes flat, the other goes sharp",
-          "small amounts give subtle chorus; larger amounts produce audible beating",
-          "the beating speed changes with the note pitch, which sounds natural",
+          "detunes the V pair of oscillators symmetrically",
         ],
         tip: "small amounts (2–5 cents) create a subtle natural chorus; larger amounts produce audible beating.",
         diagrams: [
-          { id: "v-fine-flat", label: "flat (−20 cents)", icon: "Minus", rotation: -135 },
-          { id: "v-fine-center", label: "no detuning (0 cents)", icon: "Circle", rotation: 0 },
-          { id: "v-fine-sharp", label: "sharp (+20 cents)", icon: "Plus", rotation: 135 }
+          { id: "v-fine-flat", label: "−20 cents", icon: "Minus", rotation: -135 },
+          { id: "v-fine-center", label: "0 cents", icon: "Circle", rotation: 0 },
+          { id: "v-fine-sharp", label: "+20 cents", icon: "Plus", rotation: 135 }
         ]
       },
       {
@@ -257,39 +255,36 @@ export const modules: ModuleSpec[] = [
         y: 34.52,
         size: 14,
         description: [
-          "detunes the two Z sub-oscillators symmetrically, the same way V fine tune works",
-          "detuning Z at a different amount than V creates a second, independent beat rate on the Z side",
+          "detunes the Z pair of oscillators symmetrically",
         ],
         tip: "detuning Z slightly relative to V creates an evolving beat frequency that changes with the crossfader.",
         diagrams: [
-          { id: "z-fine-flat", label: "flat (−20 cents total)", icon: "Minus", rotation: -135 },
-          { id: "z-fine-center", label: "no detuning (0 cents)", icon: "Circle", rotation: 0 },
-          { id: "z-fine-sharp", label: "sharp (+20 cents total)", icon: "Plus", rotation: 135 }
+          { id: "z-fine-flat", label: "−20 cents total", icon: "Minus", rotation: -135 },
+          { id: "z-fine-center", label: "0 cents", icon: "Circle", rotation: 0 },
+          { id: "z-fine-sharp", label: "+20 cents total", icon: "Plus", rotation: 135 }
         ]
       },
       {
         id: "v-fine-att",
-        label: "v fine cv att",
+        label: "v fine attenuverter",
         type: "knob",
         x: 13.34,
         y: 45.7,
         size: 10,
         description: [
-          "scales the CV going into V fine tune — noon is off, clockwise is positive, counter-clockwise inverts",
-          "use an inverted LFO to create a vibrato that goes flat before it goes sharp",
+          "scales the V oscillator fine tune cv",
         ],
         tip: "use inverted scaling with an LFO to create a natural vibrato that goes flat-then-sharp."
       },
       {
         id: "z-fine-att",
-        label: "z fine cv att",
+        label: "z fine attenuverter",
         type: "knob",
         x: 86.66,
         y: 45.7,
         size: 10,
         description: [
-          "scales the CV going into Z fine tune — same behavior as V fine CV attenuverter",
-          "patch the same LFO into both V and Z fine CVs with opposite polarities for a stereo vibrato",
+          "scales the Z oscillator fine tune cv",
         ],
         tip: "patch the same LFO to both V and Z fine CV with opposite attenuverter settings for a stereo-widening vibrato."
       },
@@ -301,8 +296,7 @@ export const modules: ModuleSpec[] = [
         y: 51.79,
         size: 10,
         description: [
-          "forces Z to restart its cycle each time V completes one — classic hard sync",
-          "tune Z above V and sweep the Z pitch for the signature sync-sweep sound",
+          "forces Z to restart its cycle each time V completes one",
           "cross sync takes priority if both sync switches are up at the same time",
         ],
         tip: "hard sync + a slow Z V/Oct sweep creates classic sync sweep sounds.",
@@ -319,8 +313,7 @@ export const modules: ModuleSpec[] = [
         y: 51.79,
         size: 10,
         description: [
-          "flips the direction Z is running each time V completes a cycle — not standard hard sync, but a different kind of locking",
-          "produces an irregular, reversing texture that changes character with the V:Z ratio",
+          "flips the direction Z is running each time V completes a cycle",
           "only active when cross sync is off; cross sync overrides it if both are up",
         ],
         tip: "reverse sync with Z tuned a fifth above V produces an irregular stuttering pulse character.",
@@ -337,9 +330,9 @@ export const modules: ModuleSpec[] = [
         y: 45.8,
         size: 18,
         description: [
-          "blends between the V and Z oscillator paths — fully left is V only, fully right is Z only",
-          "equal-power mode (default) keeps volume consistent throughout the sweep",
-          "in stereo-swap mode, center position gives the widest image; sweeping through it flips the stereo field",
+          "blends between the V and Z oscillator pairs",
+          "equal-power mode keeps volume consistent throughout the sweep",
+          "stereo-swap mode gives the widest image at center, sweeping through it flips the stereo field",
         ],
         tip: "in stereo-swap mode, center position produces the widest stereo field; modulate it slowly for a sweeping spatial effect.",
         diagrams: [
@@ -365,14 +358,13 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "xfade-att",
-        label: "crossfade cv att",
+        label: "crossfade attenuverter",
         type: "knob",
         x: 50.0,
         y: 59.83,
         size: 10,
         description: [
-          "scales the CV going into the crossfader — noon is off, clockwise is positive, counter-clockwise inverts",
-          "a slow LFO here with a small attenuverter setting creates gentle, continuous motion between V and Z",
+          "scales the CV going into the crossfader",
         ],
         tip: "slow LFO here creates gentle, continuous motion between the two oscillator characters."
       },
@@ -384,9 +376,8 @@ export const modules: ModuleSpec[] = [
         y: 63.07,
         size: 14,
         description: [
-          "changes the V waveform from sawtooth-like at minimum toward a square-like shape at maximum",
+          "changes the V waveform from sawtooth toward a square shape at maximum",
           "in PWM mode, controls pulse width instead — center is a square wave, extremes are thin pulses",
-          "modulate slowly with CV for a gradual timbral shift without abrupt jumps",
         ],
         tip: "in sigmoid mode, slow CV modulation of shape produces a gradual character shift without abrupt timbral jumps.",
         diagrams: [
@@ -403,8 +394,7 @@ export const modules: ModuleSpec[] = [
         y: 63.07,
         size: 14,
         description: [
-          "same shape control as V but applied to Z's waveform independently",
-          "set V and Z to different shapes before crossfading — the blend will shift timbre, not just level",
+          "changes the Z waveform from sawtooth toward a square shape at maximum",
         ],
         tip: "set V and Z shape to different values before crossfading — the blend will shift character, not just level.",
         diagrams: [
@@ -415,27 +405,25 @@ export const modules: ModuleSpec[] = [
       },
       {
         id: "v-shape-att",
-        label: "v shape cv att",
+        label: "v shape attenverter",
         type: "knob",
         x: 32.02,
         y: 69.31,
         size: 10,
         description: [
-          "scales the CV going into V shape — noon is off, counter-clockwise inverts the direction",
-          "patch an envelope here to push V into a brighter shape on note attack, then fall back to saw",
+          "scales the CV going into V shape",
         ],
         tip: "patch an envelope here to push into a sharper waveform on note attack and release back to saw."
       },
       {
         id: "z-shape-att",
-        label: "z shape cv att",
+        label: "z shape attenuverter",
         type: "knob",
         x: 67.98,
         y: 69.31,
         size: 10,
         description: [
-          "scales the CV going into Z shape — same behavior as V shape attenuverter",
-          "opposite polarity on V and Z from the same LFO creates a seesaw timbral sweep between the two sides",
+          "scales the CV going into Z shape",
         ],
         tip: "opposite attenuverter polarity on V and Z shape CVs from the same LFO creates a seesaw timbral sweep."
       },
@@ -447,14 +435,14 @@ export const modules: ModuleSpec[] = [
         y: 69.25,
         size: 10,
         description: [
-          "CV input for the crossfader, scaled by the attenuverter above it",
-          "polyphonic — each voice can sit at a different crossfade position for layered stereo textures",
+          "input for the crossfader cv",
         ],
-        tip: "sequencer gate with a slewed crossfade CV creates rapid automated V/Z switching."
+        tip: "sequencer gate with a slewed crossfade CV creates rapid automated V/Z switching.",
+        voltageRange: "±5V"
       },
       {
         id: "v-voct",
-        label: "v v/oct",
+        label: "v - v/oct",
         type: "jack",
         x: 20.29,
         y: 78.93,
@@ -463,24 +451,25 @@ export const modules: ModuleSpec[] = [
           "pitch input for the V oscillator — stacks with the octave knob and fine tune",
           "polyphonic up to 16 voices; when Z V/Oct is unpatched, Z follows this input too",
         ],
-        tip: "patch a polyphonic sequencer here for independent per-voice tuning of the V oscillator."
+        tip: "patch a polyphonic sequencer here for independent per-voice tuning of the V oscillator.",
+        voltageRange: "±10V"
       },
       {
         id: "v-fine-cv",
-        label: "v fine cv",
+        label: "v - fine cv",
         type: "jack",
         x: 40.02,
         y: 78.93,
         size: 10,
         description: [
-          "modulates V fine tune via CV, scaled by the attenuverter",
-          "polyphonic — each voice gets independent fine-tune modulation for per-voice vibrato or spread",
+          "modulates V fine tune",
         ],
-        tip: "patch vibrato LFO here for per-voice pitch modulation depth controlled by the attenuverter."
+        tip: "patch vibrato LFO here for per-voice pitch modulation depth controlled by the attenuverter.",
+        voltageRange: "±5V"
       },
       {
         id: "v-shape-cv",
-        label: "v shape cv",
+        label: "v - shape cv",
         type: "jack",
         x: 59.59,
         y: 78.93,
@@ -489,11 +478,12 @@ export const modules: ModuleSpec[] = [
           "modulates V waveform shape via CV, scaled by the attenuverter",
           "polyphonic — patch a polyphonic envelope here to give each voice its own shape contour",
         ],
-        tip: "an envelope here with moderate attenuverter creates a natural shape attack and decay on V."
+        tip: "an envelope here with moderate attenuverter creates a natural shape attack and decay on V.",
+        voltageRange: "±5V"
       },
       {
         id: "z-voct",
-        label: "z v/oct",
+        label: "z - v/oct",
         type: "jack",
         x: 20.29,
         y: 89.11,
@@ -502,24 +492,25 @@ export const modules: ModuleSpec[] = [
           "pitch input for the Z oscillator — when patched, Z follows this independently from V",
           "when unpatched, Z inherits V's pitch and adds the semitone knob offset on top",
         ],
-        tip: "patch a second sequencer pitch output here to independently melodize the Z oscillator."
+        tip: "patch a second sequencer pitch output here to independently melodize the Z oscillator.",
+        voltageRange: "±10V"
       },
       {
         id: "z-fine-cv",
-        label: "z fine cv",
+        label: "z - fine cv",
         type: "jack",
         x: 40.02,
         y: 89.11,
         size: 10,
         description: [
           "modulates Z fine tune via CV, scaled by the attenuverter",
-          "try a slow random or S&H source with a low attenuverter for subtle per-note detuning variation",
         ],
-        tip: "a slow random (S&H) source here with low attenuverter adds subtle detuning variation per note."
+        tip: "a slow random (S&H) source here with low attenuverter adds subtle detuning variation per note.",
+        voltageRange: "±5V"
       },
       {
         id: "z-shape-cv",
-        label: "z shape cv",
+        label: "z - shape cv",
         type: "jack",
         x: 59.59,
         y: 89.11,
@@ -528,11 +519,12 @@ export const modules: ModuleSpec[] = [
           "modulates Z waveform shape via CV, scaled by the attenuverter",
           "run V and Z shape CVs from the same source with opposite attenuverters for a mirror shape sweep",
         ],
-        tip: "running the same modulation source into V and Z shape CVs with opposite attenuverters creates a mirror shape sweep."
+        tip: "running the same modulation source into V and Z shape CVs with opposite attenuverters creates a mirror shape sweep.",
+        voltageRange: "±5V"
       },
       {
         id: "output-l",
-        label: "output L",
+        label: "output left",
         type: "jack",
         x: 79.16,
         y: 78.93,
@@ -541,11 +533,12 @@ export const modules: ModuleSpec[] = [
           "left stereo output carrying all active polyphonic voices",
           "connect L and R to a stereo mixer or effects chain",
         ],
-        tip: "patch L and R to a stereo mixer or directly into left/right inputs of an effects chain."
+        tip: "patch L and R to a stereo mixer or directly into left/right inputs of an effects chain.",
+        voltageRange: "±5V"
       },
       {
         id: "output-r",
-        label: "output R",
+        label: "output right",
         type: "jack",
         x: 79.16,
         y: 89.11,
@@ -554,7 +547,8 @@ export const modules: ModuleSpec[] = [
           "right stereo output — the spread between L and R comes from the detuned sub-oscillator pairs",
           "summing L and R to mono is safe and won't cause phase cancellation",
         ],
-        tip: "summing L and R to mono is safe — the sub-oscillator pairs are complementary and cancel cross-correlation at the blend points."
+        tip: "summing L and R to mono is safe — the sub-oscillator pairs are complementary and cancel cross-correlation at the blend points.",
+        voltageRange: "±5V"
       }
     ],
     contextMenu: [
@@ -1068,7 +1062,6 @@ export const modules: ModuleSpec[] = [
         size: 22,
         description: [
           "controls the output level before signal reaches the distortion engine — noon is unity gain",
-          "set this around unity first, then use the VCA CV input for envelope-controlled dynamics",
           "pushing above unity with a hot input adds a subtle drive-like coloring",
         ],
         tip: "set this around unity (noon) first, then use CV for dynamics.",
@@ -1203,7 +1196,6 @@ export const modules: ModuleSpec[] = [
         size: 10,
         description: [
           "scales the CV going into dist % — noon is off, clockwise is positive, counter-clockwise inverts",
-          "set this before the CV source to control how much modulation range you want",
         ],
         tip: "set this before the CV source — dial how much range you want the modulation to cover.",
         diagrams: [
@@ -1567,7 +1559,6 @@ export const modules: ModuleSpec[] = [
         size: 3.5,
         description: [
           "flips the output voltage on the selected channel — a rising gesture becomes a falling one",
-          "combine with loop for an inverted LFO shape from the same recorded gesture",
           "each output has its own invert state — select the output before toggling",
         ],
         tip: "",
@@ -1585,7 +1576,6 @@ export const modules: ModuleSpec[] = [
         size: 3.5,
         description: [
           "removes the silent pause at the start of your recorded gesture",
-          "use this after recording if the envelope takes a moment before it starts moving",
         ],
         tip: ""
       },
@@ -1598,7 +1588,6 @@ export const modules: ModuleSpec[] = [
         size: 3.5,
         description: [
           "removes the flat tail at the end of your recorded gesture",
-          "use this after recording if you lifted your finger slowly and left a dead zone at the end",
         ],
         tip: ""
       },
@@ -1753,7 +1742,6 @@ export const modules: ModuleSpec[] = [
         size: 4.5,
         description: [
           "fires a short pulse when envelope 1 completes a cycle — fires on every loop iteration too",
-          "use this to chain modules, advance a sequence, or clock other envelopes in sync",
         ],
         tip: ""
       },
