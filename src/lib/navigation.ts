@@ -9,7 +9,7 @@ export const siteNav: NavItem[] = [
     href: "/",
     label: "home",
     labelParts: [
-      { text: "♄", glyph: true, fontSize: "1.45em", fontFamily: '"Noto Sans Symbols 2", "Segoe UI Symbol", "Apple Symbols", sans-serif', fontWeight: "300" },
+      { text: "♄", glyph: true, fontSize: "1.15em", top: "-0.05em", fontFamily: '"Noto Sans Symbols 2", "Segoe UI Symbol", "Apple Symbols", sans-serif' },
       { text: "ome" },
     ],
   },
