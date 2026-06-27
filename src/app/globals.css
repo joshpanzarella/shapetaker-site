@@ -443,7 +443,7 @@ h3 {
 }
 
 .home-hero .project-preview {
-  min-height: min(56vh, 620px);
+  min-height: min(72vh, 740px);
 }
 
 .hero-actions,
@@ -2317,6 +2317,7 @@ h3 {
 .project-detail {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1rem;
   padding: clamp(1.5rem, 3.5vw, 2.5rem);
   border: 1px solid var(--line);
