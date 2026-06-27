@@ -280,7 +280,14 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
         <div className="readout-scroll">
           {Array.isArray(readoutDescription) ? (
             <ul className="readout-bullets">
-              {readoutDescription.map((item, i) => <li key={i}>{item}</li>)}
+              {readoutDescription.map((item, i) => {
+                const colon = item.indexOf(': ');
+                return colon !== -1 ? (
+                  <li key={i}><strong>{item.slice(0, colon)}</strong>{': '}{item.slice(colon + 2)}</li>
+                ) : (
+                  <li key={i}>{item}</li>
+                );
+              })}
             </ul>
           ) : (
             <p>{readoutDescription}</p>

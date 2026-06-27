@@ -1245,6 +1245,11 @@ h3 {
   position: relative;
 }
 
+.readout-bullets li strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .readout-bullets li::before {
   content: "•";
   position: absolute;

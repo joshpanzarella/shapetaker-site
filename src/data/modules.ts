@@ -166,7 +166,7 @@ export const modules: ModuleSpec[] = [
         y: 19.73,
         size: 30,
         description: [
-          "shows the live stereo output — the shape reflects how V and Z are blending at the crossfader",
+          "shows the live stereo output: the shape reflects how V and Z are blending at the crossfader",
           "when sync is on and V:Z are at a simple ratio, the trace locks into a stable figure",
           "choose a color theme (phosphor, ice, solar, amber) in the context menu",
         ],
@@ -569,10 +569,10 @@ export const modules: ModuleSpec[] = [
         kind: "choice",
         values: ["phosphor", "ice", "solar", "amber"],
         description: [
-          "phosphor — warm green, like a vintage CRT",
-          "ice — cool cyan and blue-white",
-          "solar — warm amber-red",
-          "amber — deep amber, like a classic terminal"
+          "phosphor: warm green, like a vintage CRT",
+          "ice: cool cyan and blue-white",
+          "solar: warm amber-red",
+          "amber: deep amber, like a classic terminal"
         ]
       },
       {
@@ -624,10 +624,10 @@ export const modules: ModuleSpec[] = [
         kind: "choice",
         values: ["1x off", "2x", "4x", "8x"],
         description: [
-          "1× — no oversampling, lowest CPU cost",
-          "2× — light aliasing reduction at moderate CPU",
-          "4× — default, works well for most patches",
-          "8× — highest quality, best for hard sync or aggressive shape CV at high pitches"
+          "1×: no oversampling, lowest CPU cost",
+          "2×: light aliasing reduction at moderate CPU",
+          "4×: default, works well for most patches",
+          "8×: highest quality, best for hard sync or aggressive shape CV at high pitches"
         ]
       },
       {
@@ -637,8 +637,8 @@ export const modules: ModuleSpec[] = [
         kind: "choice",
         values: ["sigmoid saw", "pwm"],
         description: [
-          "sigmoid saw — sawtooth that morphs toward a square as you raise the Shape knob",
-          "pwm — pulse wave with adjustable width; center is a square, extremes are narrow pulses"
+          "sigmoid saw: sawtooth that morphs toward a square as you raise the Shape knob",
+          "pwm: pulse wave with adjustable width; center is a square, extremes are narrow pulses"
         ]
       },
       {
@@ -648,8 +648,8 @@ export const modules: ModuleSpec[] = [
         kind: "choice",
         values: ["equal-power", "stereo swap"],
         description: [
-          "equal-power — keeps perceived loudness consistent across the full V→Z sweep",
-          "stereo swap — routes voices between channels and inverts the stereo field as you pass through center"
+          "equal-power: keeps perceived loudness consistent across the full V→Z sweep",
+          "stereo swap: routes voices between channels and inverts the stereo field as you pass through center"
         ]
       }
     ],
@@ -1027,7 +1027,7 @@ export const modules: ModuleSpec[] = [
         y: 14.8,
         size: 9,
         description: [
-          "shows the current VCA gain level including any CV — fully lit is 2× gain",
+          "shows the current VCA gain level including any CV: fully lit is 2× gain",
           "watch this while patching VCA CV to confirm modulation is arriving at the gain stage",
         ],
         tip: "watch this while patching VCA CV to confirm modulation is reaching the gain stage.",
@@ -1061,7 +1061,7 @@ export const modules: ModuleSpec[] = [
         y: 15.9,
         size: 22,
         description: [
-          "controls the output level before signal reaches the distortion engine — noon is unity gain",
+          "controls the output level before signal reaches the distortion engine: noon is unity gain",
           "pushing above unity with a hot input adds a subtle drive-like coloring",
         ],
         tip: "set this around unity (noon) first, then use CV for dynamics.",
@@ -1082,7 +1082,7 @@ export const modules: ModuleSpec[] = [
         description: [
           "selects the distortion algorithm: hard clip, tube sat, wave fold, bit crush, destroy, or ring mod",
           "transitions between types are crossfaded so switching won't cause clicks",
-          "each algorithm responds differently to the Drive and Dist % settings — try them while listening",
+          "each algorithm responds differently to the Drive and Dist % settings: try them while listening",
         ],
         tip: "move this while listening — each algorithm responds differently to the Drive and Dist % settings.",
         diagrams: [
@@ -1136,7 +1136,7 @@ export const modules: ModuleSpec[] = [
         y: 41.2,
         size: 14,
         description: [
-          "controls how deeply the algorithm shapes the signal — at zero the distortion engine is bypassed",
+          "controls how deeply the algorithm shapes the signal: at zero the distortion engine is bypassed",
           "most algorithms show their character before the knob reaches halfway",
           "works together with Drive: drive sets how hard the signal hits, dist % sets how far in it goes",
         ],
@@ -1156,7 +1156,7 @@ export const modules: ModuleSpec[] = [
         y: 41.2,
         size: 14,
         description: [
-          "sets how hard the signal hits the distortion algorithm — higher values add harmonic complexity",
+          "sets how hard the signal hits the distortion algorithm: higher values add harmonic complexity",
           "set drive before dist % to dial in the character you want first",
           "drive has no effect if dist % is at zero",
         ],
@@ -1176,7 +1176,7 @@ export const modules: ModuleSpec[] = [
         y: 41.2,
         size: 14,
         description: [
-          "blends the clean signal with the distorted signal — fully left is dry, fully right is wet",
+          "blends the clean signal with the distorted signal: fully left is dry, fully right is wet",
           "adaptive makeup gain keeps the volume consistent as you sweep, so you can focus on character",
           "parallel distortion at noon is a useful starting point",
         ],
@@ -1195,7 +1195,7 @@ export const modules: ModuleSpec[] = [
         y: 54.6,
         size: 10,
         description: [
-          "scales the CV going into dist % — noon is off, clockwise is positive, counter-clockwise inverts",
+          "scales the CV going into dist %: noon is off, clockwise is positive, counter-clockwise inverts",
         ],
         tip: "set this before the CV source — dial how much range you want the modulation to cover.",
         diagrams: [
@@ -1212,7 +1212,7 @@ export const modules: ModuleSpec[] = [
         y: 54.6,
         size: 10,
         description: [
-          "scales the CV going into drive — noon is off, counter-clockwise inverts",
+          "scales the CV going into drive: noon is off, counter-clockwise inverts",
           "a slow LFO with a small attenuverter setting gives gradual harmonic texture shifts",
         ],
         tip: "a slow LFO on drive with a low attenuverter setting gives gradual texture shifts.",
@@ -1230,8 +1230,8 @@ export const modules: ModuleSpec[] = [
         y: 54.6,
         size: 10,
         description: [
-          "scales the CV going into mix — noon is off, counter-clockwise inverts the blend direction",
-          "inverted with a gate envelope gives a ducking effect — distortion pulls back when the gate fires",
+          "scales the CV going into mix: noon is off, counter-clockwise inverts the blend direction",
+          "inverted with a gate envelope gives a ducking effect: distortion pulls back when the gate fires",
         ],
         tip: "use inverted scaling from a gate envelope to pull the wet signal back on silence.",
         diagrams: [
@@ -1287,7 +1287,7 @@ export const modules: ModuleSpec[] = [
         y: 79.0,
         size: 10,
         description: [
-          "CV input for VCA gain — no attenuverter, so patch a full-range envelope directly",
+          "CV input for VCA gain: no attenuverter, so patch a full-range envelope directly",
           "polyphonic: each channel controls its own voice level independently",
         ],
         tip: "patch directly from an ADSR envelope without attenuation for standard VCA dynamics.",
@@ -1300,7 +1300,7 @@ export const modules: ModuleSpec[] = [
         y: 79.0,
         size: 10,
         description: [
-          "CV input for the distortion type selector — 0–10V spans all six algorithm positions",
+          "CV input for the distortion type selector: 0–10V spans all six algorithm positions",
           "transitions are crossfaded so switching won't click; quantize to 6 steps for clean stepping from a sequencer",
         ],
         tip: "quantize to 6 steps for clean algorithm switching from a sequencer.",
@@ -1314,7 +1314,7 @@ export const modules: ModuleSpec[] = [
         size: 10,
         description: [
           "audio input that drives the sidechain envelope follower",
-          "the sidechain can trigger distortion, duck it, or replace the dist % knob entirely — set the mode in the context menu",
+          "the sidechain can trigger distortion, duck it, or replace the dist % knob entirely: set the mode in the context menu",
           "patch a kick or snare here to sync distortion behavior with the rest of your mix",
         ],
         tip: "patch a kick drum or submix send here to trigger or duck distortion in sync with the rest of the mix.",
@@ -1327,7 +1327,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 10,
         description: [
-          "left audio input — polyphonic, each voice gets its own VCA and distortion processing",
+          "left audio input: polyphonic, each voice gets its own VCA and distortion processing",
           "when link L/R is on, this input feeds both channels",
         ],
         tip: "patch a polyphonic oscillator here for per-voice independent processing.",
@@ -1366,7 +1366,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 10,
         description: [
-          "right processed output — mirrors the left when link L/R is active",
+          "right processed output: mirrors the left when link L/R is active",
           "use L and R together for a stereo insert on a bus or voice pair",
         ],
         tip: "use with audio-out-l for a stereo insert on a bus or voice pair.",
@@ -1473,7 +1473,7 @@ export const modules: ModuleSpec[] = [
         size: 18,
         description: [
           "in gesture mode: press and drag to draw an envelope, release to begin playback through all four outputs",
-          "the bottom of the strip is always 0V — start and end your gesture there for clean rest positions",
+          "the bottom of the strip is always 0V: start and end your gesture there for clean rest positions",
           "in ADSR mode: touching the strip while sustain or release is selected edits those stages directly",
         ],
         tip: ""
@@ -1487,7 +1487,7 @@ export const modules: ModuleSpec[] = [
         size: 13,
         description: [
           "shows the recorded envelope shape with a scanline for each active voice's playback position",
-          "displays speed, duration, and phase offset at the top — a parameter banner appears when you adjust controls",
+          "displays speed, duration, and phase offset at the top: a parameter banner appears when you adjust controls",
           "choose a color theme in the context menu: phosphor, ice, solar, or amber",
         ],
         tip: ""
@@ -1501,7 +1501,7 @@ export const modules: ModuleSpec[] = [
         size: 5.5,
         description: [
           "sets playback speed for the selected envelope output (0–8×)",
-          "most of the knob travel covers fine 0–2× control — push past that for faster playback",
+          "most of the knob travel covers fine 0–2× control: push past that for faster playback",
           "in ADSR mode, sets the time or level of the selected stage (attack, decay, sustain, or release)",
         ],
         tip: "",
@@ -1521,7 +1521,7 @@ export const modules: ModuleSpec[] = [
         size: 5.5,
         description: [
           "in gesture mode: shifts where the playback starts in the envelope (0–360°, wrapping)",
-          "at 180° the output begins halfway through the gesture — useful for layered stagger effects",
+          "at 180° the output begins halfway through the gesture: useful for layered stagger effects",
           "in ADSR mode: sets the curve shape for the selected stage, from logarithmic through linear to exponential",
         ],
         tip: "",
@@ -1540,9 +1540,9 @@ export const modules: ModuleSpec[] = [
         y: 27.7,
         size: 3.5,
         description: [
-          "when on, the selected output restarts automatically at the end of each cycle — works like an LFO",
+          "when on, the selected output restarts automatically at the end of each cycle: works like an LFO",
           "in ADSR mode, the loop waits for gate release before re-triggering",
-          "each output has its own loop state — select the output with the Env buttons before toggling",
+          "each output has its own loop state: select the output with the Env buttons before toggling",
         ],
         tip: "",
         diagrams: [
@@ -1558,8 +1558,8 @@ export const modules: ModuleSpec[] = [
         y: 27.7,
         size: 3.5,
         description: [
-          "flips the output voltage on the selected channel — a rising gesture becomes a falling one",
-          "each output has its own invert state — select the output before toggling",
+          "flips the output voltage on the selected channel: a rising gesture becomes a falling one",
+          "each output has its own invert state: select the output before toggling",
         ],
         tip: "",
         diagrams: [
@@ -1600,7 +1600,7 @@ export const modules: ModuleSpec[] = [
         size: 3.5,
         description: [
           "manually fires a trigger to start playback without a CV input patched",
-          "fires alongside any connected gate or trigger CV — it won't interrupt those channels",
+          "fires alongside any connected gate or trigger CV: it won't interrupt those channels",
         ],
         tip: ""
       },
@@ -1614,7 +1614,7 @@ export const modules: ModuleSpec[] = [
         description: [
           "starts the envelope on the rising edge and releases it on the falling edge",
           "in ADSR mode: holds the sustain stage as long as the gate is high, then triggers release",
-          "polyphonic — up to 16 channels, each voice runs independently through all four outputs",
+          "polyphonic: up to 16 channels, each voice runs independently through all four outputs",
         ],
         tip: ""
       },
@@ -1626,8 +1626,8 @@ export const modules: ModuleSpec[] = [
         y: 39.9,
         size: 4.5,
         description: [
-          "fires a one-shot envelope each time it receives a trigger pulse — no hold, just start to end",
-          "polyphonic — each of the 16 channels runs its own voice through all four outputs",
+          "fires a one-shot envelope each time it receives a trigger pulse: no hold, just start to end",
+          "polyphonic: each of the 16 channels runs its own voice through all four outputs",
         ],
         tip: ""
       },
@@ -1692,7 +1692,7 @@ export const modules: ModuleSpec[] = [
         y: 59.6,
         size: 4.5,
         description: [
-          "shifts where output 1 starts in the envelope, per voice — great for fan or stagger effects",
+          "shifts where output 1 starts in the envelope, per voice: great for fan or stagger effects",
           "in ADSR mode, adds a rhythmic delay offset before the envelope starts (quantized to 1/16 by default)",
         ],
         tip: ""
@@ -1705,7 +1705,7 @@ export const modules: ModuleSpec[] = [
         y: 59.6,
         size: 4.5,
         description: [
-          "shifts where output 2 starts in the envelope, per voice — independent from output 1's phase CV",
+          "shifts where output 2 starts in the envelope, per voice: independent from output 1's phase CV",
         ],
         tip: ""
       },
@@ -1717,7 +1717,7 @@ export const modules: ModuleSpec[] = [
         y: 59.6,
         size: 4.5,
         description: [
-          "shifts where output 3 starts in the envelope, per voice — independent from the other phase CVs",
+          "shifts where output 3 starts in the envelope, per voice: independent from the other phase CVs",
         ],
         tip: ""
       },
@@ -1729,7 +1729,7 @@ export const modules: ModuleSpec[] = [
         y: 59.6,
         size: 4.5,
         description: [
-          "shifts where output 4 starts in the envelope, per voice — independent from the other phase CVs",
+          "shifts where output 4 starts in the envelope, per voice: independent from the other phase CVs",
         ],
         tip: ""
       },
@@ -1741,7 +1741,7 @@ export const modules: ModuleSpec[] = [
         y: 69.5,
         size: 4.5,
         description: [
-          "fires a short pulse when envelope 1 completes a cycle — fires on every loop iteration too",
+          "fires a short pulse when envelope 1 completes a cycle: fires on every loop iteration too",
         ],
         tip: ""
       },
@@ -1753,7 +1753,7 @@ export const modules: ModuleSpec[] = [
         y: 69.5,
         size: 4.5,
         description: [
-          "fires a short pulse when envelope 2 completes a cycle — polyphonic, one pulse per voice",
+          "fires a short pulse when envelope 2 completes a cycle: polyphonic, one pulse per voice",
         ],
         tip: ""
       },
@@ -1765,7 +1765,7 @@ export const modules: ModuleSpec[] = [
         y: 69.5,
         size: 4.5,
         description: [
-          "fires a short pulse when envelope 3 completes a cycle — polyphonic, one pulse per voice",
+          "fires a short pulse when envelope 3 completes a cycle: polyphonic, one pulse per voice",
         ],
         tip: ""
       },
@@ -1777,7 +1777,7 @@ export const modules: ModuleSpec[] = [
         y: 69.5,
         size: 4.5,
         description: [
-          "fires a short pulse when envelope 4 completes a cycle — polyphonic, one pulse per voice",
+          "fires a short pulse when envelope 4 completes a cycle: polyphonic, one pulse per voice",
         ],
         tip: ""
       },
@@ -1790,7 +1790,7 @@ export const modules: ModuleSpec[] = [
         size: 4.5,
         description: [
           "stays high while envelope 1 is playing, drops to zero when it finishes",
-          "polyphonic — each voice has its own gate state",
+          "polyphonic: each voice has its own gate state",
         ],
         tip: ""
       },
@@ -1802,7 +1802,7 @@ export const modules: ModuleSpec[] = [
         y: 79.4,
         size: 4.5,
         description: [
-          "stays high while envelope 2 is playing, drops to zero when it finishes — polyphonic",
+          "stays high while envelope 2 is playing, drops to zero when it finishes: polyphonic",
         ],
         tip: ""
       },
@@ -1814,7 +1814,7 @@ export const modules: ModuleSpec[] = [
         y: 79.4,
         size: 4.5,
         description: [
-          "stays high while envelope 3 is playing, drops to zero when it finishes — polyphonic",
+          "stays high while envelope 3 is playing, drops to zero when it finishes: polyphonic",
         ],
         tip: ""
       },
@@ -1826,7 +1826,7 @@ export const modules: ModuleSpec[] = [
         y: 79.4,
         size: 4.5,
         description: [
-          "stays high while envelope 4 is playing, drops to zero when it finishes — polyphonic",
+          "stays high while envelope 4 is playing, drops to zero when it finishes: polyphonic",
         ],
         tip: ""
       },
@@ -1840,7 +1840,7 @@ export const modules: ModuleSpec[] = [
         description: [
           "main envelope CV output (0–10V) for playback engine 1",
           "plays the recorded gesture at the speed, phase, loop, and invert settings configured for this output",
-          "polyphonic — up to 16 voices play simultaneously",
+          "polyphonic: up to 16 voices play simultaneously",
         ],
         tip: ""
       },
@@ -1902,7 +1902,7 @@ export const modules: ModuleSpec[] = [
         label: "adsr",
         kind: "choice",
         description: [
-          "classic four-stage envelope — Attack, Decay, Sustain, Release",
+          "classic four-stage envelope: Attack, Decay, Sustain, Release",
           "use Env 1–4 Select to choose which output and which stage to edit",
           "touch the strip during Sustain or Release to set level and time directly"
         ]
@@ -2113,6 +2113,22 @@ export const modules: ModuleSpec[] = [
       height: 2056,
       alt: "tessellation hardware panel"
     },
+    media: {},
+    controls: [],
+    manual: []
+  },
+  {
+    slug: "fatebinder",
+    hidden: true,
+    name: "fatebinder",
+    subtitle: "",
+    summary: "",
+    category: "vcv rack module",
+    status: "",
+    accent: "#68B7C8",
+    accentSoft: "rgba(104, 183, 200, 0.2)",
+    icon: Gauge,
+    hp: 12,
     media: {},
     controls: [],
     manual: []
