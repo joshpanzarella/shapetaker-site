@@ -32,7 +32,7 @@ export function SiteFooter() {
 
         <div className="site-footer__contact">
           <span className="site-footer__col-label">get in touch</span>
-          <a href="mailto:shapetaker@gmail.com">shapetaker@gmail.com</a>
+          <a href="mailto:shapetakeraudio@gmail.com">shapetakeraudio@gmail.com</a>
         </div>
       </div>
 
