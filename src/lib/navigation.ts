@@ -36,7 +36,7 @@ export const siteNav: NavItem[] = [
     label: "notes",
     labelParts: [
       { text: "n" },
-      { text: "☉", glyph: true, fontSize: "1.35em", marginLeft: "-0.24em", marginRight: "-0.20em" },
+      { text: "☉", glyph: true, fontSize: "1.35em", top: "0.19em", marginLeft: "-0.24em", marginRight: "-0.20em" },
       { text: "tes" },
     ],
   },
