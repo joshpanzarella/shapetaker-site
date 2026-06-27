@@ -1,7 +1,7 @@
 export type NavItem = {
   href: string;
   label: string;
-  labelParts?: Array<{ text: string; glyph?: boolean; fontSize?: string; top?: string; marginLeft?: string; marginRight?: string; fontFamily?: string; fontWeight?: string }>;
+  labelParts?: Array<{ text: string; glyph?: boolean; fontSize?: string; top?: string; marginLeft?: string; marginRight?: string; fontFamily?: string; fontWeight?: string; className?: string }>;
 };
 
 export const siteNav: NavItem[] = [
@@ -36,7 +36,7 @@ export const siteNav: NavItem[] = [
     label: "notes",
     labelParts: [
       { text: "n" },
-      { text: "☉", glyph: true, fontSize: "1.35em", top: "0.19em", marginLeft: "-0.24em", marginRight: "-0.20em" },
+      { text: "☉", glyph: true, fontSize: "1.35em", top: "0.19em", marginLeft: "-0.24em", marginRight: "-0.20em", className: "nav-alch-glyph--sun" },
       { text: "tes" },
     ],
   },

@@ -50,7 +50,7 @@ export function SiteHeader() {
                     ? (
                         <span
                           key={i}
-                          className="nav-alch-glyph"
+                          className={`nav-alch-glyph${part.className ? ` ${part.className}` : ""}`}
                           style={{
                             ...(part.fontSize ? { fontSize: part.fontSize } : {}),
                             ...(part.top ? { top: part.top } : {}),
