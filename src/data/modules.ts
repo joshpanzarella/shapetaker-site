@@ -166,7 +166,7 @@ export const modules: ModuleSpec[] = [
         y: 19.73,
         size: 30,
         description: [
-          "shows the live stereo output: the shape reflects how V and Z are blending at the crossfader",
+          "shows the live stereo output; the shape reflects how V and Z are blending at the crossfader",
           "when sync is on and V:Z are at a simple ratio, the trace locks into a stable figure",
           "choose a color theme (phosphor, ice, solar, amber) in the context menu",
         ],
@@ -1027,7 +1027,7 @@ export const modules: ModuleSpec[] = [
         y: 14.8,
         size: 9,
         description: [
-          "shows the current VCA gain level including any CV: fully lit is 2× gain",
+          "shows VCA gain level including any CV, fully lit is 2× gain",
           "watch this while patching VCA CV to confirm modulation is arriving at the gain stage",
         ],
         tip: "watch this while patching VCA CV to confirm modulation is reaching the gain stage.",
@@ -1061,7 +1061,7 @@ export const modules: ModuleSpec[] = [
         y: 15.9,
         size: 22,
         description: [
-          "controls the output level before signal reaches the distortion engine: noon is unity gain",
+          "controls the output level before the distortion engine, noon is unity gain",
           "pushing above unity with a hot input adds a subtle drive-like coloring",
         ],
         tip: "set this around unity (noon) first, then use CV for dynamics.",
@@ -1080,9 +1080,9 @@ export const modules: ModuleSpec[] = [
         y: 30.6,
         size: 14,
         description: [
-          "selects the distortion algorithm: hard clip, tube sat, wave fold, bit crush, destroy, or ring mod",
+          "six algorithms: hard clip, tube sat, wave fold, bit crush, destroy, ring mod",
           "transitions between types are crossfaded so switching won't cause clicks",
-          "each algorithm responds differently to the Drive and Dist % settings: try them while listening",
+          "each algorithm responds differently to Drive and Dist %, experiment while listening",
         ],
         tip: "move this while listening — each algorithm responds differently to the Drive and Dist % settings.",
         diagrams: [
@@ -1136,9 +1136,9 @@ export const modules: ModuleSpec[] = [
         y: 41.2,
         size: 14,
         description: [
-          "controls how deeply the algorithm shapes the signal: at zero the distortion engine is bypassed",
+          "controls distortion depth; at zero the engine is fully bypassed",
           "most algorithms show their character before the knob reaches halfway",
-          "works together with Drive: drive sets how hard the signal hits, dist % sets how far in it goes",
+          "works with Drive; drive sets how hard the signal hits, dist % sets how far in it goes",
         ],
         tip: "start low and increase slowly — most algorithms reveal their character before the knob reaches halfway.",
         diagrams: [
@@ -1156,7 +1156,7 @@ export const modules: ModuleSpec[] = [
         y: 41.2,
         size: 14,
         description: [
-          "sets how hard the signal hits the distortion algorithm: higher values add harmonic complexity",
+          "sets how hard the signal hits the algorithm, higher values add harmonic complexity",
           "set drive before dist % to dial in the character you want first",
           "drive has no effect if dist % is at zero",
         ],
@@ -1176,7 +1176,7 @@ export const modules: ModuleSpec[] = [
         y: 41.2,
         size: 14,
         description: [
-          "blends the clean signal with the distorted signal: fully left is dry, fully right is wet",
+          "blends clean and distorted signal; fully left is dry, fully right is wet",
           "adaptive makeup gain keeps the volume consistent as you sweep, so you can focus on character",
           "parallel distortion at noon is a useful starting point",
         ],
@@ -1195,7 +1195,7 @@ export const modules: ModuleSpec[] = [
         y: 54.6,
         size: 10,
         description: [
-          "scales the CV going into dist %: noon is off, clockwise is positive, counter-clockwise inverts",
+          "scales dist % CV; noon is off, clockwise positive, counter-clockwise inverts",
         ],
         tip: "set this before the CV source — dial how much range you want the modulation to cover.",
         diagrams: [
@@ -1212,7 +1212,7 @@ export const modules: ModuleSpec[] = [
         y: 54.6,
         size: 10,
         description: [
-          "scales the CV going into drive: noon is off, counter-clockwise inverts",
+          "scales drive CV; noon is off, counter-clockwise inverts",
           "a slow LFO with a small attenuverter setting gives gradual harmonic texture shifts",
         ],
         tip: "a slow LFO on drive with a low attenuverter setting gives gradual texture shifts.",
@@ -1230,8 +1230,8 @@ export const modules: ModuleSpec[] = [
         y: 54.6,
         size: 10,
         description: [
-          "scales the CV going into mix: noon is off, counter-clockwise inverts the blend direction",
-          "inverted with a gate envelope gives a ducking effect: distortion pulls back when the gate fires",
+          "scales mix CV; noon is off, counter-clockwise inverts the blend direction",
+          "inverted with a gate envelope pulls distortion back when the gate fires",
         ],
         tip: "use inverted scaling from a gate envelope to pull the wet signal back on silence.",
         diagrams: [
@@ -1287,7 +1287,7 @@ export const modules: ModuleSpec[] = [
         y: 79.0,
         size: 10,
         description: [
-          "CV input for VCA gain: no attenuverter, so patch a full-range envelope directly",
+          "no attenuverter: patch a full-range envelope directly",
           "polyphonic: each channel controls its own voice level independently",
         ],
         tip: "patch directly from an ADSR envelope without attenuation for standard VCA dynamics.",
@@ -1300,8 +1300,12 @@ export const modules: ModuleSpec[] = [
         y: 79.0,
         size: 10,
         description: [
-          "CV input for the distortion type selector: 0–10V spans all six algorithm positions",
-          "transitions are crossfaded so switching won't click; quantize to 6 steps for clean stepping from a sequencer",
+          "0V: hard clip",
+          "2V: tube sat",
+          "4V: wave fold",
+          "6V: bit crush",
+          "8V: destroy",
+          "10V: ring mod",
         ],
         tip: "quantize to 6 steps for clean algorithm switching from a sequencer.",
       },
@@ -1314,7 +1318,7 @@ export const modules: ModuleSpec[] = [
         size: 10,
         description: [
           "audio input that drives the sidechain envelope follower",
-          "the sidechain can trigger distortion, duck it, or replace the dist % knob entirely: set the mode in the context menu",
+          "can trigger, duck, or replace Dist % entirely; set the mode in the context menu",
           "patch a kick or snare here to sync distortion behavior with the rest of your mix",
         ],
         tip: "patch a kick drum or submix send here to trigger or duck distortion in sync with the rest of the mix.",
@@ -1327,7 +1331,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 10,
         description: [
-          "left audio input: polyphonic, each voice gets its own VCA and distortion processing",
+          "polyphonic: each voice gets its own VCA and distortion processing",
           "when link L/R is on, this input feeds both channels",
         ],
         tip: "patch a polyphonic oscillator here for per-voice independent processing.",
@@ -1366,7 +1370,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 10,
         description: [
-          "right processed output: mirrors the left when link L/R is active",
+          "mirrors the left when link L/R is on",
           "use L and R together for a stereo insert on a bus or voice pair",
         ],
         tip: "use with audio-out-l for a stereo insert on a bus or voice pair.",
@@ -1374,36 +1378,17 @@ export const modules: ModuleSpec[] = [
     ],
     contextMenu: [
       {
-        id: "oversample-1x",
+        id: "oversampling",
         group: "oversampling",
-        label: "1x (no oversampling)",
+        label: "oversampling",
         kind: "choice",
         values: ["1x", "2x", "4x", "8x"],
-        description: "Lowest CPU cost. May introduce faint aliasing at extreme drive or high pitches.",
-      },
-      {
-        id: "oversample-2x",
-        group: "oversampling",
-        label: "2x",
-        kind: "choice",
-        values: ["1x", "2x", "4x", "8x"],
-        description: "Reduces aliasing artifacts at moderate CPU cost. A good middle ground for busy patches.",
-      },
-      {
-        id: "oversample-4x",
-        group: "oversampling",
-        label: "4x (default)",
-        kind: "choice",
-        values: ["1x", "2x", "4x", "8x"],
-        description: "Default. Aliasing is below audible thresholds for most algorithms and drive settings.",
-      },
-      {
-        id: "oversample-8x",
-        group: "oversampling",
-        label: "8x (high quality)",
-        kind: "choice",
-        values: ["1x", "2x", "4x", "8x"],
-        description: "Highest quality. Use for destroy, bit crush, and ring mod at high drive. Noticeably higher CPU — use when it matters.",
+        description: [
+          "1×: lowest CPU cost, may introduce faint aliasing at extreme drive or high pitches",
+          "2×: reduces aliasing at moderate CPU cost, good middle ground for busy patches",
+          "4×: default, aliasing below audible thresholds for most algorithms and drive settings",
+          "8×: highest quality, use for destroy, bit crush, and ring mod at high drive",
+        ],
       },
       {
         id: "sidechain-enhancement",
