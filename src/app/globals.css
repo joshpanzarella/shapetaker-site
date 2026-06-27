@@ -2582,6 +2582,16 @@ h3 {
   grid-template-columns: 1fr;
 }
 
+.control-diagram--icon-only {
+  grid-template-columns: 1fr;
+}
+
+.control-diagram--icon-only .control-diagram__content {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
 .control-diagram--meter .control-diagram__content {
   flex-direction: column;
   align-items: center;
@@ -2683,7 +2693,7 @@ h3 {
 }
 
 .control-diagram__icon {
-  color: var(--text-accent);
+  color: var(--teal);
 }
 
 @keyframes spookyWave {

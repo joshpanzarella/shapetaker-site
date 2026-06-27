@@ -131,7 +131,7 @@ export const modules: ModuleSpec[] = [
     slug: "clairaudient",
     name: "clairaudient",
     subtitle: "polyphonic dual oscillator with sigmoid-saw or PWM waveforms, symmetric detuned pairs, two sync modes, and equal-power or stereo-swap crossfade",
-    summary: "Clairaudient is a polyphonic, stereo, dual oscillator. Each voice (V and Z) has two oscillators that you can tune via the FREQ knobs. A central crossfader blends V/Z with a constant-power curve or a stereo-swap mode that inverts the image as it sweeps. Cross-sync and reverse-sync add rhythmic harmonic locking between V and Z.",
+    summary: "Clairaudient is a polyphonic, stereo, dual oscillator. Each voice (V and Z) has an oscillator pair that you can tune/detune via the FREQ and FINE knobs. A central crossfader blends V/Z with a constant-power curve or a stereo-swap mode that inverts the image as it sweeps. Cross-sync and reverse-sync add rhythmic harmonic locking between V and Z.",
     category: "vcv rack modules",
     status: "stereo oscillator",
     accent: "#68B7C8",

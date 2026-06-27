@@ -7,12 +7,12 @@ import { alchemicalSymbols } from "@/lib/symbols";
 import {
   MousePointer2, Settings2,
   Activity, ArrowRight, ChevronDown, ChevronUp, ChevronsDown, ChevronsUp,
-  Circle, Link, Minus, Plus, Repeat, Square, Spline, Unlink,
+  Circle, Grid3x3, Link, Minus, Plus, RefreshCw, Repeat, Square, Spline, Unlink, Waves, Zap,
 } from "lucide-react";
 
 const DIAGRAM_ICONS: Record<string, React.ElementType> = {
   Activity, ArrowRight, ChevronDown, ChevronUp, ChevronsDown, ChevronsUp,
-  Circle, Link, Minus, Plus, Repeat, Square, Spline, Unlink,
+  Circle, Grid3x3, Link, Minus, Plus, RefreshCw, Repeat, Square, Spline, Unlink, Waves, Zap,
 };
 import type { Hotspot, ModuleExplorerData } from "@/data/modules";
 
@@ -296,8 +296,15 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
           {!isContextMode && activeControl?.diagrams && activeControl.diagrams.length > 0 ? (
             <div className="control-diagrams">
               {activeControl.diagrams.map((diagram) => {
+                const hasVisual = activeControl.type === "switch" || diagram.rotation !== undefined;
+                const cls = [
+                  "control-diagram",
+                  activeControl.type === "meter" ? "control-diagram--meter" : "",
+                  !hasVisual ? "control-diagram--icon-only" : "",
+                ].filter(Boolean).join(" ");
+                const IconComponent = diagram.icon ? (DIAGRAM_ICONS[diagram.icon] ?? Circle) : null;
                 return (
-                  <div key={diagram.id} className={`control-diagram${activeControl.type === "meter" ? " control-diagram--meter" : ""}`}>
+                  <div key={diagram.id} className={cls}>
                     {activeControl.type === "switch" ? (
                       <div className="control-diagram__switch">
                         <div
@@ -328,11 +335,8 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
                             __html: `<svg viewBox="0 0 24 24" width="28" height="28" class="control-diagram__icon">${diagram.svg}</svg>`
                           }}
                         />
-                      ) : diagram.icon ? (
-                        (() => {
-                          const IconComponent = DIAGRAM_ICONS[diagram.icon] ?? Circle;
-                          return <IconComponent size={28} className="control-diagram__icon" style={diagram.color ? { color: diagram.color } : undefined} />;
-                        })()
+                      ) : IconComponent ? (
+                        <IconComponent size={28} className="control-diagram__icon" style={diagram.color ? { color: diagram.color } : undefined} />
                       ) : null}
                       <span className="control-diagram__label">{diagram.label}</span>
                     </div>
