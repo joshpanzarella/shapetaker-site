@@ -19,6 +19,7 @@ export type Hotspot = {
     color?: string;
     rotation?: number;
     state?: 'up' | 'down';
+    tracePath?: string;
   }>;
 };
 
@@ -173,19 +174,19 @@ export const modules: ModuleSpec[] = [
         tip: "watch the display change shape as you adjust the crossfader, sync switches, or V/Z ratio — it shows the stereo relationship, not just amplitude.",
         diagrams: [
           {
-            id: "scope-chaotic",
-            label: "chaotic (incommensurate ratio)",
-            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="#020617" /><path fill="none" stroke="#2dd4bf" stroke-width="1.5" class="scope-trace" d="M 4 12 Q 8 4, 12 12 T 20 12 M 12 4 Q 4 8, 12 12 T 12 20 M 6 6 C 12 4, 18 12, 18 18 C 12 20, 6 12, 6 6 Z" />'
+            id: "scope-free",
+            label: "free running",
+            tracePath: "M 100,100 C 135,115 148,135 145,139 C 142,143 115,140 100,139 C 85,138 58,115 55,100 C 52,85 75,65 100,61 C 125,57 142,63 145,61 C 148,59 120,90 100,100 Z"
           },
           {
             id: "scope-sync",
-            label: "hard synced (forced lock)",
-            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="#020617" /><path fill="none" stroke="#2dd4bf" stroke-width="1.5" class="scope-trace" d="M 4 14 Q 8 4, 12 14 L 12 6 Q 16 6, 20 14" />'
+            label: "hard sync",
+            tracePath: "M 100,100 C 122,72 150,72 150,100 C 150,128 122,128 100,100 C 78,72 50,72 50,100 C 50,128 78,128 100,100 Z"
           },
           {
-            id: "scope-1-1",
-            label: "unison (1:1 phase lock)",
-            svg: '<rect x="1" y="1" width="22" height="22" rx="4" fill="#020617" /><ellipse fill="none" stroke="#2dd4bf" stroke-width="1.5" class="scope-trace" cx="12" cy="12" rx="6" ry="6" />'
+            id: "scope-unison",
+            label: "1:1 ratio",
+            tracePath: "M 55,100 A 45,45 0 0,1 145,100 A 45,45 0 0,1 55,100 Z"
           }
         ]
       },

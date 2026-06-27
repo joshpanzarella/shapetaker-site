@@ -314,18 +314,26 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
                       </div>
                     ) : null}
                     <div className="control-diagram__content">
-                      {diagram.svg && (
+                      {diagram.tracePath ? (
+                        <span
+                          style={{ display: 'flex' }}
+                          dangerouslySetInnerHTML={{
+                            __html: `<svg viewBox="0 0 200 200" width="90" height="90" class="control-diagram__oscope"><defs><filter id="tg-${diagram.id}" x="-15%" y="-15%" width="130%" height="130%"><feGaussianBlur stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><image href="/modules/clairaudient/vintage_oscope_screen.svg" width="200" height="200"/><path fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#tg-${diagram.id})" d="${diagram.tracePath}"/></svg>`
+                          }}
+                        />
+                      ) : diagram.svg ? (
                         <span
                           style={{ display: 'flex' }}
                           dangerouslySetInnerHTML={{
                             __html: `<svg viewBox="0 0 24 24" width="28" height="28" class="control-diagram__icon">${diagram.svg}</svg>`
                           }}
                         />
-                      )}
-                      {diagram.icon && (() => {
-                        const IconComponent = DIAGRAM_ICONS[diagram.icon] ?? Circle;
-                        return <IconComponent size={28} className="control-diagram__icon" style={diagram.color ? { color: diagram.color } : undefined} />;
-                      })()}
+                      ) : diagram.icon ? (
+                        (() => {
+                          const IconComponent = DIAGRAM_ICONS[diagram.icon] ?? Circle;
+                          return <IconComponent size={28} className="control-diagram__icon" style={diagram.color ? { color: diagram.color } : undefined} />;
+                        })()
+                      ) : null}
                       <span className="control-diagram__label">{diagram.label}</span>
                     </div>
                   </div>

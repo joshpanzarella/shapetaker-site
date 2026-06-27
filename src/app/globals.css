@@ -2573,6 +2573,18 @@ h3 {
   grid-template-columns: 1fr;
 }
 
+.control-diagram--meter .control-diagram__content {
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.control-diagram__oscope {
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .control-diagram__knob {
   width: 40px;
   height: 40px;
@@ -2625,18 +2637,6 @@ h3 {
   transform: translateX(-50%);
 }
 
-.scope-trace {
-  stroke: #2dd4bf;
-  stroke-width: 1.5;
-  fill: none;
-  stroke-dasharray: 8 20;
-  animation: scopeTrace 1.5s linear infinite;
-}
-
-@keyframes scopeTrace {
-  from { stroke-dashoffset: 28; }
-  to { stroke-dashoffset: 0; }
-}
 
 .control-diagram__knob-indicator {
   position: absolute;
