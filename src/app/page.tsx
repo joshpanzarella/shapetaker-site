@@ -39,8 +39,8 @@ export default function Home() {
       <section className="content-band content-band--dark">
         <FadeIn direction="up">
           <div className="section-heading">
-            <span className="eyebrow">build direction</span>
-            <h2>set up for deeper product pages.</h2>
+            <span className="eyebrow">currently</span>
+            <h2>what's on the bench.</h2>
           </div>
         </FadeIn>
         <div className="stack-grid">
@@ -58,8 +58,8 @@ export default function Home() {
           })}
         </div>
         <FadeIn delay={400} direction="up" className="mt-8">
-          <Link className="inline-link" href="/manuals">
-            browse manual index
+          <Link className="inline-link" href="/blog">
+            read field notes
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </FadeIn>

@@ -1,4 +1,4 @@
-import { Activity, AudioLines, Cable, Gauge, SlidersHorizontal, Sparkles, Filter, Layers, Waves } from "lucide-react";
+import { Activity, AudioLines, Compass, Gauge, PenLine, SlidersHorizontal, Sparkles, Filter, Layers, Waves, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type Hotspot = {
@@ -2123,19 +2123,19 @@ export const modules: ModuleSpec[] = [
 
 export const stackHighlights = [
   {
-    title: "static-friendly",
-    description: "builds to exportable files for conventional hosting while staying react-driven during development.",
-    icon: Cable
+    title: "building",
+    description: "dual 6th-order morphing filters with cross-feedback, Lorenz chaos modulation, Bode frequency shifting, and a chaos-swept phaser. still figuring out the panel.",
+    icon: Wrench
   },
   {
-    title: "manual-first",
-    description: "module pages are data-driven now and can move to mdx content files when the manuals grow.",
-    icon: Gauge
+    title: "writing",
+    description: "a more practical approach to organizing samples when you have a lot of them. not another folder structure.",
+    icon: PenLine
   },
   {
-    title: "interactive",
-    description: "panel controls expose hover, focus, and click states for polished module explanations.",
-    icon: Sparkles
+    title: "exploring",
+    description: "using Ableton Extensions to build something that keeps presets and patches for hardware, software synths, and plugins in one place. early days.",
+    icon: Compass
   }
 ];
 
