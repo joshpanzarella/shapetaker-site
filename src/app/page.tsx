@@ -40,7 +40,7 @@ export default function Home() {
         <FadeIn direction="up">
           <div className="section-heading">
             <span className="eyebrow">currently</span>
-            <h2>what's on the bench.</h2>
+            <h2>...and next up.</h2>
           </div>
         </FadeIn>
         <div className="stack-grid">

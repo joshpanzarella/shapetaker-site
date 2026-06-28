@@ -131,7 +131,7 @@ export const modules: ModuleSpec[] = [
     slug: "clairaudient",
     name: "clairaudient",
     subtitle: "polyphonic dual oscillator with sigmoid-saw or PWM waveforms, symmetric detuned pairs, two sync modes, and equal-power or stereo-swap crossfade",
-    summary: "Clairaudient is a polyphonic, stereo, dual oscillator. Each voice (V and Z) has an oscillator pair that you can tune/detune via the FREQ and FINE knobs. A central crossfader blends V/Z with a constant-power curve or a stereo-swap mode that inverts the image as it sweeps. Cross-sync and reverse-sync add rhythmic harmonic locking between V and Z.",
+    summary: "Dual oscillator pairs, V and Z, with independent tuning and a crossfader that sweeps between them. Two sync modes add rhythmic harmonic locking.",
     category: "vcv rack modules",
     status: "stereo oscillator",
     accent: "#68B7C8",
@@ -657,15 +657,15 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "overview",
-        body: "Two synthesis voices — V and Z — blend together to build a polyphonic stereo oscillator. Each voice generates its own natural stereo spread internally. A crossfader sweeps between them with adjustable curve behavior."
+        body: "Two voices — V and Z — blend into a polyphonic stereo oscillator. Each generates its own stereo spread. A crossfader sweeps between them with adjustable curve behavior."
       },
       {
         title: "signal flow",
-        body: "Pitch in → per-voice tuning and drift → waveshaper → crossfade blend → soft clip and DC block → L/R outputs. V and Z run in parallel; when Z has no pitch input, it inherits V's pitch plus its semitone offset."
+        body: "Pitch → tuning and drift → waveshaper → crossfade → soft clip → L/R. Z inherits V's pitch when unpatched, plus its semitone offset."
       },
       {
         title: "sync and crossfade",
-        body: "Cross Sync locks Z's phase to V's cycle — classic hard sync. Reverse Sync flips Z's direction each cycle for a sweeping, reversing character. The two modes are mutually exclusive. Crossfade mode (set in the context menu) controls whether the blend is constant-loudness or swaps voices between channels."
+        body: "Cross Sync locks Z's phase to V — classic hard sync. Reverse Sync flips Z's direction each cycle. Crossfade mode (context menu) sets constant-loudness or stereo-swap behavior."
       }
     ],
     suggestedPatches: [
@@ -1005,7 +1005,7 @@ export const modules: ModuleSpec[] = [
     slug: "chiaroscuro",
     name: "chiaroscuro",
     subtitle: "stereo vca with six-algorithm distortion engine, adaptive makeup gain, and sidechain input",
-    summary: "Chiaroscuro shapes dynamics and harmonic character in a single module. A polyphonic VCA stages the signal before a six-algorithm distortion engine with adjustable depth, drive, and wet/dry control. Oversampled processing reduces aliasing artifacts, and automatic makeup gain compensates for level changes between algorithms. A sidechain input adds three trigger behaviors: enhancement, inverse ducking, or direct voltage control of distortion amount.",
+    summary: "Stereo VCA with a six-algorithm distortion engine. Dial in depth, drive, and wet/dry blend. Adaptive makeup gain and a sidechain input with three trigger modes.",
     category: "vcv rack module",
     status: "vca + distortion",
     accent: "#D7B56D",
@@ -1419,15 +1419,15 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "overview",
-        body: "Chiaroscuro is a stereo VCA and distortion processor built for polyphonic use. Signal passes through a gain stage, then into a six-algorithm distortion engine with individual knobs for depth (Dist %), intensity (Drive), and parallel blend (Mix). An adaptive makeup gain stage compensates for loudness changes as you move between algorithms or adjust the wet/dry balance, so level-matching doesn't require manual gain compensation."
+        body: "A stereo VCA feeding a six-algorithm distortion engine. Adjust depth (Dist %), intensity (Drive), and wet/dry blend (Mix). Adaptive makeup gain compensates for level shifts between algorithms."
       },
       {
         title: "signal flow",
-        body: "Audio in → VCA gain (with optional CV and linear/exponential response curve) → pre-gain scaling (drive-scaled into the algorithm) → distortion engine at 1×–8× oversample rate → 3-pole decimation filter → wet/dry blend → adaptive makeup gain → output soft clip (fastTanh at ±9.5V). The clean VCA signal runs in parallel through the wet/dry stage. Each polyphonic voice is processed through its own dedicated VCA and distortion engine instance."
+        body: "Audio → VCA → distortion engine (1×–8× oversampled) → wet/dry blend → makeup gain → output. Each polyphonic voice runs its own engine instance."
       },
       {
         title: "sidechain and modulation",
-        body: "The sidechain input feeds an envelope follower (10ms attack, 200ms release) whose output can trigger, duck, or directly replace the Dist % value — set via the context menu. All three main parameters (Dist %, Drive, Mix) accept CV through individual attenuverters that scale and invert the signal. The VCA CV input is unattenuated and polyphonic — each voice gets its own level independently."
+        body: "Sidechain feeds an envelope follower that can enhance, duck, or directly replace Dist % — set in the context menu. Dist %, Drive, and Mix all accept CV through attenuverters."
       }
     ]
   },
@@ -1435,7 +1435,7 @@ export const modules: ModuleSpec[] = [
     slug: "evocation",
     name: "evocation",
     subtitle: "gesture envelope recorder with four independent polyphonic playback outputs and ADSR mode",
-    summary: "Evocation records touch-strip gestures as envelopes and plays them back through four independent polyphonic voice engines. Each of the four outputs has its own speed, phase offset, loop toggle, and invert toggle, making it possible to run the same gesture as a layered texture, a rhythmic pump, or a slow evolving shape simultaneously. A second mode switches to ADSR, using the touch strip as a combined gate and stage parameter editor.",
+    summary: "Records touch-strip gestures as envelopes and plays them back across four independent outputs — each with its own speed, phase, loop, and invert. A second mode switches to ADSR.",
     category: "vcv rack module",
     status: "gesture envelope",
     accent: "#68B7C8",
@@ -1523,7 +1523,7 @@ export const modules: ModuleSpec[] = [
         label: "loop",
         type: "switch",
         x: 72.0,
-        y: 27.7,
+        y: 28.3,
         size: 3.5,
         description: [
           "when on, the selected output restarts automatically at the end of each cycle: works like an LFO",
@@ -1541,7 +1541,7 @@ export const modules: ModuleSpec[] = [
         label: "invert",
         type: "switch",
         x: 48.3,
-        y: 27.7,
+        y: 28.3,
         size: 3.5,
         description: [
           "flips the output voltage on the selected channel: a rising gesture becomes a falling one",
@@ -1557,8 +1557,8 @@ export const modules: ModuleSpec[] = [
         id: "trim-lead",
         label: "trim lead",
         type: "switch",
-        x: 90.8,
-        y: 13.3,
+        x: 90.9,
+        y: 13.25,
         size: 3.5,
         description: [
           "removes the silent pause at the start of your recorded gesture",
@@ -1569,8 +1569,8 @@ export const modules: ModuleSpec[] = [
         id: "trim-tail",
         label: "trim tail",
         type: "switch",
-        x: 90.8,
-        y: 26.6,
+        x: 90.9,
+        y: 27.2,
         size: 3.5,
         description: [
           "removes the flat tail at the end of your recorded gesture",
@@ -1939,15 +1939,15 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "overview",
-        body: "Evocation is a dual-mode envelope generator built around a large vertical touch strip. In Gesture mode, you draw an envelope shape by dragging your finger on the strip; the module records the gesture at high resolution (up to 5 seconds, approximately 960 Hz sample rate), then plays it back through four independent output channels simultaneously. Each output has its own playback speed, phase offset, loop state, and invert state. The OLED display below the touch strip shows the envelope waveform, playback scanlines for active voices, and a parameter banner on any control interaction. In ADSR mode, the touch strip becomes a combined gate input and stage editor, while the Env 1–4 Select buttons select the A/D/S/R stages for parameter editing."
+        body: "Dual-mode envelope generator built around a touch strip. In Gesture mode, drag to record an envelope and play it back across four independent outputs. In ADSR mode, the strip becomes a stage editor."
       },
       {
         title: "gesture recording and editing",
-        body: "Press and drag on the touch strip to record. The module samples the Y position at approximately 960 Hz, applying a 0.2% minimum Y-delta filter that only records motion above the noise floor — flat sections are automatically skipped, keeping the stored envelope compact. The bottom 8% of the strip is a dead zone that always records as 0V, giving a reliable clean rest position at the bottom of gestures. Release the strip to end recording and begin playback across all four outputs. Use Trim Lead to remove leading silence (scans forward from the start, drops everything at or below 1% of full scale), and Trim Tail to remove trailing silence (scans backward from the end). Both buttons rescale the remaining envelope to fill the full 0–1 time range and update the stored duration proportionally."
+        body: "Drag on the strip to record. The module filters noise and skips flat sections automatically. Trim Lead and Trim Tail remove silence at either end and rescale the remaining envelope to fill the full time range."
       },
       {
-        title: "four-output playback and signal flow",
-        body: "All four outputs play the same recorded envelope simultaneously, each through its own independent playback engine. Use the Env 1–4 Select buttons to bring an output's parameters onto the controls: Speed sets playback rate (0–8×, non-linear — 70% of knob travel covers 0–2× for fine control, the remaining 30% covers 2–8×); Phase sets the starting offset (0–360°, wrapping); Loop restarts playback immediately at end of cycle; Invert flips the output voltage (10V minus original). Phase CV inputs add per-voice phase offsets (0–10V = 0–360°). In ADSR mode, Phase CV adds quantized delay offsets (1/16-note increments by default; disable via context menu). Trigger input fires one-shot envelopes per polyphonic voice channel; Gate input holds sustain in ADSR mode or controls the release fade in Gesture mode (exponential decay, 8–35ms). EOC outputs fire a 1ms pulse at end of each cycle; Gate outputs remain high while the envelope is active."
+        title: "four-output playback",
+        body: "All four outputs play the same envelope with independent speed, phase, loop, and invert controls. Trigger fires one-shot envelopes; Gate holds sustain or controls release fade. EOC outputs fire a 1ms pulse at each cycle end."
       }
     ]
   },
@@ -2124,17 +2124,17 @@ export const modules: ModuleSpec[] = [
 export const stackHighlights = [
   {
     title: "building",
-    description: "dual 6th-order morphing filters with cross-feedback, Lorenz chaos modulation, Bode frequency shifting, and a chaos-swept phaser. still figuring out the panel.",
+    description: "dual 6th-order morphing filters with cross-feedback, Lorenz chaos modulation, Bode frequency shifting, and a chaos-swept phaser. finishing up panel design.",
     icon: Wrench
   },
   {
     title: "writing",
-    description: "a more practical approach to organizing samples when you have a lot of them. not another folder structure.",
+    description: "a more practical approach to organizing samples when you have a lot of them. Johnny Decimal and PARA will be your guide.",
     icon: PenLine
   },
   {
     title: "exploring",
-    description: "using Ableton Extensions to build something that keeps presets and patches for hardware, software synths, and plugins in one place. early days.",
+    description: "using Ableton Extensions to build something that keeps presets and patches for hardware, software synths, and plugins in one place.",
     icon: Compass
   }
 ];
