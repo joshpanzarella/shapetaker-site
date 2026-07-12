@@ -1,6 +1,6 @@
 import { MorphingTitle } from "@/components/MorphingTitle";
-import { ProjectGallery } from "@/components/ProjectGallery";
-import { getProjects } from "@/lib/projects";
+import { ModuleCatalog } from "@/components/ModuleCatalog";
+import { getVisibleModules } from "@/data/modules";
 import { FadeIn } from "@/components/FadeIn";
 
 export const metadata = {
@@ -8,23 +8,21 @@ export const metadata = {
 };
 
 export default function ProjectsPage() {
-  const projects = getProjects();
+  const moduleCount = getVisibleModules().length;
 
   return (
     <main className="page-shell">
       <FadeIn direction="up">
         <section className="page-heading">
-          <span className="eyebrow">project library</span>
-          <MorphingTitle title="select a project." as="h1" />
+          <span className="eyebrow">module catalog</span>
+          <MorphingTitle title="the full rack." as="h1" />
           <p>
-            browse module panel renders, manuals, and future audio or software projects from one place.
+            {moduleCount} modules in the shapetaker series — every panel links to its interactive manual.
           </p>
         </section>
       </FadeIn>
 
-      <FadeIn delay={200} direction="up" className="w-full">
-        <ProjectGallery projects={projects} />
-      </FadeIn>
+      <ModuleCatalog />
     </main>
   );
 }

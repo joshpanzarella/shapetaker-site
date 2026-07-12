@@ -24,8 +24,34 @@
   font-weight: 700;
 }
 
+@font-face {
+  font-family: "Routed Gothic";
+  src: url("/fonts/routed-gothic.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Routed Gothic Narrow";
+  src: url("/fonts/routed-gothic-narrow.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Routed Gothic Wide";
+  src: url("/fonts/routed-gothic-wide.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
 /*
   Neokurat is loaded from public/fonts for brand and display text.
+  Routed Gothic (regular/narrow/wide) is the engraved panel-label voice,
+  matching the lettering routed into the module faceplates.
   IBM Plex Sans is loaded through next/font/google in src/app/layout.tsx.
 */
 
@@ -48,7 +74,7 @@
   --palette-green-600: #496f5b;
   --ink: #0a0a0a;
   --ink-soft: #3d3933;
-  --paper: #a8a8a8;
+  --paper: #e3d8c0;
   --paper-deep: #f9f2e3;
   --panel: #23211f;
   --panel-2: #35312d;
@@ -69,7 +95,7 @@
   --gold: var(--palette-teal-700);
   --teal: var(--palette-teal-700);
   --text-accent: var(--ink);
-  --redwood: #4d277a;
+  --redwood: #7c5a22;
   --green: var(--palette-teal-700);
   --focus-purple: #4d277a;
   --symbol-teal: #004d58;
@@ -81,6 +107,9 @@
   --font-display: "Neokurat", var(--font-plex-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-brand: "Neokurat", var(--font-plex-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-text: var(--font-plex-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-label: "Routed Gothic Narrow", var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-label-wide: "Routed Gothic Wide", var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-plate: "Routed Gothic", "Courier New", Courier, monospace;
   --chamfer: inset(0);
   --chamfer-sm: inset(0);
   --panel-filter: none;
@@ -90,14 +119,14 @@
 :root[data-theme="dark"] {
   --ink: #eeebe4;
   --ink-soft: #cbc6bd;
-  --paper: #0a0a0a;
-  --paper-deep: #111111;
-  --panel: #0d0d0d;
-  --panel-2: #161616;
-  --surface-card: #000;
+  --paper: #0c0a07;
+  --paper-deep: #14110c;
+  --panel: #0f0d09;
+  --panel-2: #181510;
+  --surface-card: #0b0906;
   --surface-card-soft: rgba(238, 235, 228, 0.05);
   --surface-code: rgba(238, 235, 228, 0.09);
-  --surface-header: rgba(0, 0, 0, 1);
+  --surface-header: #0b0906;
   --surface-raised: rgba(238, 235, 228, 0.08);
   --surface-muted: rgba(238, 235, 228, 0.07);
   --line: rgba(238, 235, 228, 0.05);
@@ -494,13 +523,6 @@ h3 {
 .button--primary:hover,
 .button--primary:focus-visible {
   filter: drop-shadow(0 8px 20px color-mix(in srgb, var(--teal) 35%, transparent));
-  animation: spellSway 1.6s ease-in-out infinite;
-}
-
-@keyframes spellSway {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-3px) rotate(1.5deg); }
-  66% { transform: translateY(-3px) rotate(-1.5deg); }
 }
 
 .button--ghost {
@@ -635,8 +657,8 @@ h3 {
   opacity: 0;
   will-change: opacity, transform;
   transition:
-    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 3.0s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .module-explorer .panel-stage {
@@ -652,21 +674,21 @@ h3 {
   opacity: 1;
   transform: none;
   will-change: auto;
-  transition-delay: 1400ms;
+  transition-delay: 150ms;
 }
 
 .module-explorer.is-revealed .control-readout {
   opacity: 1;
   transform: none;
   will-change: auto;
-  transition-delay: 1900ms;
+  transition-delay: 350ms;
 }
 
 .module-explorer.is-revealed .module-overview {
   opacity: 1;
   transform: none;
   will-change: auto;
-  transition-delay: 2400ms;
+  transition-delay: 550ms;
 }
 
 .overview-eyebrow {
@@ -1151,9 +1173,9 @@ h3 {
   align-self: flex-start;
   margin-top: 0.55rem;
   padding: 0.2em 0.55em;
-  font-family: "Courier New", monospace;
+  font-family: var(--font-plate);
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-accent);
@@ -1210,7 +1232,7 @@ h3 {
 
 .module-typeplate__row dd {
   margin: 0;
-  font-family: "Courier New", "Courier", monospace;
+  font-family: var(--font-plate);
   font-size: 0.62rem;
   font-weight: 400;
   letter-spacing: 0.08em;
@@ -2169,7 +2191,7 @@ h3 {
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--ink-soft);
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-plate);
   white-space: nowrap;
 }
 
@@ -3206,5 +3228,212 @@ h3 {
   .patch-walker__panel {
     height: auto;
     min-height: 320px;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Engraved label voice — Routed Gothic
+   The same lettering routed into the module
+   faceplates carries every small label on the
+   site. Single-weight font: always 400.
+   ───────────────────────────────────────────── */
+
+.eyebrow,
+.overview-eyebrow,
+.readout-kicker,
+.module-card__topline,
+.module-card__meta span,
+.spec-row span,
+.site-footer__col-label,
+.site-footer__bar,
+.readout-segment button,
+.context-select span,
+.context-options button,
+.gallery-tabs button,
+.project-select span,
+.project-detail__note,
+.project-cover,
+.project-screenshot,
+.blog-post-meta,
+.audio-player__eyebrow,
+.audio-player__status,
+.patch-difficulty,
+.patch-step-counter,
+.patch-complete-label,
+.patch-audio__label,
+.back-link,
+.inline-link,
+.project-page__cta-note,
+.rack-panel__brand,
+.control-diagram__label {
+  font-family: var(--font-label);
+  font-weight: 400;
+}
+
+.eyebrow,
+.overview-eyebrow,
+.readout-kicker {
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+}
+
+.site-nav a,
+.button,
+.theme-toggle {
+  font-family: var(--font-label);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.button {
+  font-size: 0.98rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.module-card__meta span,
+.spec-row span,
+.site-footer__col-label,
+.blog-post-meta {
+  letter-spacing: 0.12em;
+}
+
+.patch-tab,
+.patch-node__label,
+.patch-node__sublabel,
+.patch-panel-settings li,
+.patch-port__label {
+  font-family: var(--font-plate);
+  font-weight: 400;
+}
+
+.patch-node__sublabel {
+  font-style: normal;
+}
+
+/* section headings read like panel legends:
+   eyebrow label with a dotted leader line, the
+   same dotted traces that connect panel jacks */
+.section-heading .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.section-heading .eyebrow::after {
+  content: "";
+  flex: 1 1 auto;
+  border-top: 1px dotted var(--line-strong);
+  transform: translateY(1px);
+}
+
+/* ─────────────────────────────────────────────
+   Module catalog — the full rack, one panel per
+   module, mounted on dark rails like the units
+   themselves.
+   ───────────────────────────────────────────── */
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.catalog-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  clip-path: var(--chamfer-sm);
+  background-color: var(--surface-card);
+  background-image: var(--surface-texture);
+  background-size: 256px 256px;
+  box-shadow: var(--surface-shadow);
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.catalog-card:hover,
+.catalog-card:focus-visible {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--surface-shadow-hover);
+  outline: 0;
+}
+
+.catalog-card__rack {
+  display: grid;
+  place-items: center;
+  padding: 1.2rem 1rem;
+  background:
+    linear-gradient(180deg, #080807 0 7px, transparent 7px calc(100% - 7px), #080807 calc(100% - 7px)),
+    linear-gradient(90deg, rgba(244, 240, 232, 0.05), transparent 30%, rgba(244, 240, 232, 0.03)),
+    #131009;
+  border-bottom: 1px solid var(--line);
+}
+
+.catalog-card__rack img {
+  height: 224px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.55));
+}
+
+.catalog-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem 1.05rem 1.05rem;
+}
+
+.catalog-card__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 2.2vw, 1.9rem);
+  letter-spacing: 0.035em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.catalog-card__status {
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--redwood);
+}
+
+.content-band--dark .catalog-card__status {
+  color: var(--text-accent);
+}
+
+.catalog-card__summary {
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.catalog-card__plate {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.65rem;
+  border-top: 1px dotted var(--line-strong);
+  font-family: var(--font-plate);
+  font-size: 0.63rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 560px) {
+  .catalog-grid {
+    grid-template-columns: 1fr;
   }
 }

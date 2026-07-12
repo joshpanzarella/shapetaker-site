@@ -356,10 +356,12 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
               <dt>type</dt>
               <dd>{module.typeplate.type}</dd>
             </div>
-            <div className="module-typeplate__row">
-              <dt>alt</dt>
-              <dd>{module.typeplate.alt}</dd>
-            </div>
+            {module.typeplate.alt && (
+              <div className="module-typeplate__row">
+                <dt>alt</dt>
+                <dd>{module.typeplate.alt}</dd>
+              </div>
+            )}
           </dl>
         )}
       </aside>

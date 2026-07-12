@@ -1,4 +1,4 @@
-import { Activity, AudioLines, Compass, Gauge, PenLine, SlidersHorizontal, Sparkles, Filter, Layers, Waves, Wrench } from "lucide-react";
+import { Activity, AudioLines, Compass, Drum, Eye, Gauge, Hourglass, PenLine, SlidersHorizontal, Sparkles, Split, Filter, Layers, Tv, Waves, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type Hotspot = {
@@ -117,7 +117,7 @@ export type ModuleSpec = {
   typeplate?: {
     unit: string;
     type: string;
-    alt: string;
+    alt?: string;
   };
 };
 
@@ -139,9 +139,9 @@ export const modules: ModuleSpec[] = [
     icon: AudioLines,
     hp: 16,
     panelImage: {
-      src: "/modules/clairaudient/panel-v2.png",
-      width: 1268,
-      height: 2014,
+      src: "/modules/clairaudient/panel.webp",
+      width: 1200,
+      height: 1900,
       alt: "clairaudient vcv rack module panel"
     },
     media: {
@@ -976,28 +976,35 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "transmutation",
-    hidden: true,
     name: "transmutation",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
-    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
-    category: "vcv rack modules",
-    status: "sequencer",
-    accent: "#8c7aa3",
-    accentSoft: "rgba(140, 122, 163, 0.2)",
+    subtitle: "dual 64-step polyphonic chord sequencer with chord packs mapped to twelve alchemical symbol buttons, groove templates, and four variation slots",
+    summary: "Two independent 64-step sequencers emit up to six voices of polyphonic chords each. Chord packs map rich voicings across twelve symbol buttons, while sequence B can derive chord tones or scale melodies from A.",
+    category: "vcv rack module",
+    status: "chord sequencer",
+    accent: "#7f58a9",
+    accentSoft: "rgba(127, 88, 169, 0.2)",
     icon: Sparkles,
-    hp: 14,
+    hp: 40,
     panelImage: {
-      src: "/modules/transmutation/panel-source.png",
-      width: 3256,
-      height: 2060,
-      alt: "transmutation hardware panel"
+      src: "/modules/transmutation/panel.webp",
+      width: 3000,
+      height: 1900,
+      alt: "transmutation vcv rack module panel"
     },
     media: {},
     controls: [],
     manual: [
       {
-        title: "concept overview",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
+        title: "dual sequencers",
+        body: "Sequences A and B each run up to 64 steps with independent length, start/stop/reset, and 6-voice polyphonic CV and gate outputs. B can play its own steps, extract chord tones from A, or generate scale melodies in the current key."
+      },
+      {
+        title: "macros and variations",
+        body: "Space/Energy, Motion, and Humanize steer voicing density, harmonic volatility, and analog-style timing slop. Four variation slots store complete A/B sequences with their macro states — verse, chorus, bridge, and a spare."
+      },
+      {
+        title: "groove and display",
+        body: "Steps can be micro-shifted ±20 ticks by dragging on the matrix, or shaped globally with swing and shuffle presets. The Spooky TV display tracks occupancy, playheads, and timing deviations in CRT phosphor."
       }
     ]
   },
@@ -1013,10 +1020,15 @@ export const modules: ModuleSpec[] = [
     icon: SlidersHorizontal,
     hp: 12,
     panelImage: {
-      src: "/modules/chiaroscuro/panel-source.png",
-      width: 972,
-      height: 2054,
+      src: "/modules/chiaroscuro/panel.webp",
+      width: 900,
+      height: 1900,
       alt: "chiaroscuro vcv rack module panel"
+    },
+    typeplate: {
+      unit: "UNIT 01411",
+      type: "SIGNAL AMPLIFIER",
+      alt: "PRE-BIASED CENTER",
     },
     media: {},
     controls: [
@@ -1443,10 +1455,15 @@ export const modules: ModuleSpec[] = [
     icon: Activity,
     hp: 20,
     panelImage: {
-      src: "/modules/evocation/panel-source.png",
-      width: 1626,
-      height: 2056,
+      src: "/modules/evocation/panel.webp",
+      width: 1500,
+      height: 1900,
       alt: "evocation hardware panel"
+    },
+    typeplate: {
+      unit: "UNIT 09921",
+      type: "GESTURE ENV GEN",
+      alt: "CAPACITIVE CONJURING",
     },
     media: {},
     controls: [
@@ -1953,171 +1970,467 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "involution",
-    hidden: true,
     name: "involution",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
-    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+    subtitle: "dual 6th-order liquid filters animated by a lorenz strange attractor, with counter-rotating frequency shifting and chaos-swept phasing",
+    summary: "Two 36 dB/octave filters that breathe: input transients push the cutoff open while resonant blooms pull it down. A Lorenz attractor replaces the LFO, so the motion never repeats.",
     category: "vcv rack module",
-    status: "filter",
-    accent: "#8c7aa3",
-    accentSoft: "rgba(140, 122, 163, 0.2)",
+    status: "dual chaotic filter",
+    accent: "#5ec2ab",
+    accentSoft: "rgba(94, 194, 171, 0.2)",
     icon: Filter,
-    hp: 12,
+    hp: 18,
     panelImage: {
-      src: "/modules/involution/panel-source.png",
-      width: 1474,
-      height: 2070,
-      alt: "involution hardware panel"
+      src: "/modules/involution/panel.webp",
+      width: 1350,
+      height: 1900,
+      alt: "involution vcv rack module panel"
     },
     media: {},
     controls: [],
+    typeplate: {
+      unit: "UNIT 01557",
+      type: "HARMONIC REDUCTION",
+    },
     manual: [
       {
-        title: "concept overview",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
+        title: "liquid filters",
+        body: "Each channel cascades three state-variable stages into a 6th-order slope with ladder-style global feedback and bass protection. Transient and bloom followers give the cutoff an elastic, seeking-and-settling response under resonance."
+      },
+      {
+        title: "lorenz attractor",
+        body: "Modulation comes from a chaotic Lorenz system — three axes tapped and spread across polyphonic voices so no two move identically. The front-panel oscilloscope draws the attractor's live trajectory."
+      },
+      {
+        title: "spatial network",
+        body: "Post-filter, a counter-rotating frequency shifter widens the field (A shifts up, B shifts down) and a resonant all-pass phaser tracks the cutoff, its depth swept continuously by the chaos source."
       }
     ]
   },
   {
     slug: "specula",
-    hidden: true,
     name: "specula",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
-    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+    subtitle: "dual-channel vintage vu meter with needle ballistics, polyphonic peak detection, and transparent pass-through",
+    summary: "A dual VU meter with the mechanical inertia of classic needle movements — 15 ms attack, 450 ms release, calibrated so 10 Vpp reads 0 VU. Inputs pass through untouched.",
     category: "vcv rack module",
     status: "vu meter",
-    accent: "#68B7C8",
-    accentSoft: "rgba(104, 183, 200, 0.2)",
+    accent: "#d7b56d",
+    accentSoft: "rgba(215, 181, 109, 0.2)",
     icon: Gauge,
-    hp: 4,
+    hp: 10,
     panelImage: {
-      src: "/modules/specula/panel-source.png",
-      width: 818,
-      height: 2072,
-      alt: "specula module panel art"
+      src: "/modules/specula/panel.webp",
+      width: 750,
+      height: 1900,
+      alt: "specula vcv rack module panel"
     },
     media: {},
     controls: [],
+    typeplate: {
+      unit: "UNIT 07843",
+      type: "VU METER",
+      alt: "CALIBRATED",
+    },
     manual: [
       {
-        title: "concept overview",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
+        title: "ballistics",
+        body: "Custom metering emulates the inertia of a mechanical needle: fast 15 ms attack to catch transients, smooth 450 ms release for a readable decay. The dial spans −20 dB to +3 dB."
+      },
+      {
+        title: "polyphonic metering",
+        body: "Each input evaluates up to six polyphonic channels and displays the maximum peak across them, so a hot voice buried in a chord still shows on the needle."
+      },
+      {
+        title: "pass-through",
+        body: "The signal path is a direct, uncolored buffer — inputs are duplicated at the outputs with their exact voltages and channel counts, so Specula can sit inline anywhere in a chain."
       }
     ]
   },
   {
     slug: "incantation",
-    hidden: true,
     name: "incantation",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
-    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+    subtitle: "eight-band resonant filter array with a 24-pattern animation sequencer, envelope morphing, and analog-modeled drive",
+    summary: "Eight resonant filter bands, each gated by its own envelope and sequenced by selectable rhythmic patterns. A dynamic resonator that gives any source motion and vocalic character.",
     category: "vcv rack module",
-    status: "resonant filter bank",
+    status: "resonant filter array",
     accent: "#5ec2ab",
     accentSoft: "rgba(94, 194, 171, 0.2)",
     icon: Layers,
-    hp: 14,
+    hp: 19,
     panelImage: {
-      src: "/modules/incantation/panel-source.png",
-      width: 1540,
-      height: 2062,
-      alt: "incantation hardware panel"
+      src: "/modules/incantation/panel.webp",
+      width: 1425,
+      height: 1900,
+      alt: "incantation vcv rack module panel"
     },
     media: {},
     controls: [],
     manual: [
       {
-        title: "concept overview",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
+        title: "filter array",
+        body: "Eight state-variable bands with per-band sliders and CV inputs. MIDS voices all bands from 200 Hz to 3.4 kHz for guitars, synths, and vowels; BASS keeps band one as a 110 Hz lowpass to protect the fundamental."
+      },
+      {
+        title: "animation sequencer",
+        body: "24 patterns across two banks animate the bands from 0.08 to 4 Hz, with tap tempo. The Envelope knob morphs each band's VCA from sharp and choppy through tremolo crossfades to reverse-style swells."
+      },
+      {
+        title: "drive and imaging",
+        body: "An analog-modeled saturation stage colors the input before the array. Patch only the left input and take both outputs: odd bands pan left, even bands pan right, and the animation bounces across the stereo field."
       }
     ]
   },
   {
     slug: "torsion",
-    hidden: true,
     name: "torsion",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
-    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+    subtitle: "cz-inspired phase distortion oscillator with five warp shapes, a six-stage dcw envelope, sub oscillator, and bbd-style chorus",
+    summary: "Phase distortion in the CZ tradition, expanded for the modular world: five warp shapes with symmetry bias, dual operators with cross phase-mod and ring mod, and a six-stage envelope dedicated to distortion depth.",
     category: "vcv rack module",
-    status: "phase distortion oscillator",
+    status: "phase distortion osc",
     accent: "#cf8e5c",
     accentSoft: "rgba(207, 142, 92, 0.2)",
     icon: Waves,
-    hp: 14,
+    hp: 18,
     panelImage: {
-      src: "/modules/torsion/torsion.png",
-      width: 1458,
-      height: 2056,
-      alt: "torsion hardware panel"
+      src: "/modules/torsion/panel.webp",
+      width: 1350,
+      height: 1900,
+      alt: "torsion vcv rack module panel"
     },
     media: {},
     controls: [],
+    typeplate: {
+      unit: "UNIT 03190",
+      type: "PHASE ABBERATION",
+    },
     manual: [
       {
-        title: "concept overview",
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pulvinar, elit nec luctus dapibus, lacus magna fringilla risus, id malesuada sem ante non mauris. Phasellus tristique hendrerit quam, eget rhoncus ligula dignissim a. Vestibulum suscipit nunc elit, sit amet accumsan neque vehicula et."
+        title: "phase distortion engine",
+        body: "Digitally controlled waveforms warp the oscillator phase under the Torsion control. Five warp shapes — single sine, resonant, double sine, saw pulse, pulse — plus a Symmetry bias reshape the harmonic structure, with saw, triangle, and square injections layered on top."
+      },
+      {
+        title: "six-stage envelope",
+        body: "Six stage sliders set an envelope dedicated to distortion depth, smoothly interpolated and visualized on the LED array. Gate input sustains, Stage Trig fires one-shots, and the envelope is available at the Edge output."
+      },
+      {
+        title: "interaction and character",
+        body: "A sub oscillator anchors the low end while the interaction switch selects independent, cross phase-mod, DCW-follow, or ring mod behavior between operators. Feedback, the Dirty saturation circuit, and a bucket-brigade chorus finish the voice."
       }
     ]
   },
   {
     slug: "reverie",
-    hidden: true,
     name: "reverie",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.",
+    subtitle: "dattorro plate reverb wrapped in five character modes — field blur, afterimage, reverse, lo-fi, and modulated",
+    summary: "A finely tuned plate tank surrounded by five pre- and post-processors: shoegaze chorus and shimmer, ghostly spectral resonance, reverse granular swells, degraded wow-and-flutter texture, and deep classic modulation.",
     category: "vcv rack module",
-    status: "reverb",
+    status: "multi-mode reverb",
     accent: "#68B7C8",
     accentSoft: "rgba(104, 183, 200, 0.2)",
     icon: Sparkles,
-    hp: 14,
+    hp: 18,
     panelImage: {
-      src: "/modules/reverie/panel-source.png",
-      width: 1458,
-      height: 2056,
-      alt: "reverie hardware panel"
+      src: "/modules/reverie/panel.webp",
+      width: 1350,
+      height: 1900,
+      alt: "reverie vcv rack module panel"
     },
     media: {},
     controls: [],
-    manual: []
+    manual: [
+      {
+        title: "the tank",
+        body: "A polyphonic Dattorro plate network sits at the core. Decay ranges from short room bursts to near-infinite atmosphere; Tone damps the tail dark or opens it to a brilliant, expansive decay."
+      },
+      {
+        title: "five modes",
+        body: "A blade switch selects the character: Field Blur (stereo ensemble chorus + regenerative shimmer), Afterimage (resonant bandpass + sub-octave ghosts), Reverse (granular buffer ahead of the tank), Lo-Fi (crush, saturation, wow and flutter), and Modulated (deep animated plate). The jewel LED shows the active mode."
+      },
+      {
+        title: "effect blend",
+        body: "One small knob scales both mode parameters at once — fully counter-clockwise leaves a pristine plate, clockwise fades the dialed-in texture back in without losing the Param 1/2 relationship. Decay, Mix, and both Params take CV through attenuverters."
+      }
+    ]
   },
   {
     slug: "tessellation",
-    hidden: true,
     name: "tessellation",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.",
+    subtitle: "three stereo delay lines with golden-ratio subdivisions, vintage voicing modes, and a circulating cross-feedback network",
+    summary: "A rhythmic polytap delay where line 1 is the master timebase and lines 2 and 3 follow in musical — or irrational golden-ratio — subdivisions. Cross-feedback turns the whole module into one circulating wash.",
     category: "vcv rack module",
     status: "triple delay",
     accent: "#8c7aa3",
     accentSoft: "rgba(140, 122, 163, 0.2)",
     icon: Layers,
-    hp: 14,
+    hp: 26,
     panelImage: {
-      src: "/modules/tessellation/panel-source.png",
-      width: 1458,
-      height: 2056,
-      alt: "tessellation hardware panel"
+      src: "/modules/tessellation/panel.webp",
+      width: 1950,
+      height: 1900,
+      alt: "tessellation vcv rack module panel"
     },
     media: {},
     controls: [],
-    manual: []
+    typeplate: {
+      unit: "UNIT 06667",
+      type: "TRIPLE DELAY",
+    },
+    manual: [
+      {
+        title: "three delay lines",
+        body: "Three parallel stereo lines from 20 ms to 1.6 s. Delay 1 sets the tempo by knob, tap, or external clock; delays 2 and 3 lock to it through triplet, eighth, dotted, or free subdivisions."
+      },
+      {
+        title: "golden subdivisions",
+        body: "The Golden setting locks lines 2 and 3 to powers of phi — irrational ratios that keep repeats from stacking into metallic comb filtering. Sweeping Time explores golden short, golden, unity, golden long, and golden double."
+      },
+      {
+        title: "voicing and x-feed",
+        body: "Each line voices as pristine 24/96, ADM compander grit, or 12-bit vintage converters. X-Feed routes 1 → 2 → 3 → 1 into a circulating network that can run past unity into a saturated wash — kill switches mute each line while its buffer keeps recording."
+      }
+    ]
   },
   {
     slug: "fatebinder",
-    hidden: true,
     name: "fatebinder",
-    subtitle: "",
-    summary: "",
+    subtitle: "four euclidean-articulated lfos with a radar-screen playhead — the rhythm leans on the outputs, it never steps them",
+    summary: "Four related LFOs articulated by a rhythm you can see. The radar sweep is the playhead; when it crosses a blip, that lane inhales, surges, or shifts — but the outputs stay continuous. No steps, no clicks.",
     category: "vcv rack module",
-    status: "",
-    accent: "#68B7C8",
-    accentSoft: "rgba(104, 183, 200, 0.2)",
-    icon: Gauge,
-    hp: 12,
+    status: "rhythmic quad lfo",
+    accent: "#d7b56d",
+    accentSoft: "rgba(215, 181, 109, 0.2)",
+    icon: Activity,
+    hp: 20,
+    panelImage: {
+      src: "/modules/fatebinder/panel.webp",
+      width: 1500,
+      height: 1900,
+      alt: "fatebinder vcv rack module panel"
+    },
     media: {},
     controls: [],
-    manual: []
+    typeplate: {
+      unit: "UNIT 03652",
+      type: "RHYTHM GEN",
+      alt: "FORCED ALIGNMENT",
+    },
+    manual: [
+      {
+        title: "reading the radar",
+        body: "Four concentric rings are the four lanes — A teal, B violet, C azure, D amber. Small stationary dots are Euclidean rhythm steps; the one larger moving dot per ring is the LFO itself. The amber sweep is the playhead, one revolution per rhythmic cycle."
+      },
+      {
+        title: "articulation",
+        body: "Blips never touch the outputs directly — they kick slewed envelopes that modulate each lane's amplitude, rate, and waveform. Intensity is the LFO-to-rhythm crossfader: at zero, a pure quad LFO; raised, every hit breathes harder. Memory sets how long articulations linger."
+      },
+      {
+        title: "scenes and outputs",
+        body: "Six scenes — Tide, Pulse, Drift, Teeth, Eclipse, Fracture — set what a blip does and each lane's rate ratio. Outputs A–D are correlated motions, while TRIG and ACCENT make the radar's rhythm patchable. Bind rerolls the pattern, Freeze holds the sweep mid-breath."
+      }
+    ]
+  },
+  {
+    slug: "chimera",
+    name: "chimera",
+    subtitle: "four-channel polyphonic performance mixer with clock-synced phrase looping, dual morphing effect busses, and a glue bus compressor",
+    summary: "A performance console: capture 1, 2, or 4-bar loops on any channel, chop them probabilistically, wash them through two morphing effect slots, and glue the mix with a VCA-style bus compressor.",
+    category: "vcv rack module",
+    status: "performance mixer",
+    accent: "#7f58a9",
+    accentSoft: "rgba(127, 88, 169, 0.2)",
+    icon: SlidersHorizontal,
+    hp: 44,
+    panelImage: {
+      src: "/modules/chimera/panel.webp",
+      width: 3300,
+      height: 1900,
+      alt: "chimera vcv rack module panel"
+    },
+    media: {},
+    controls: [],
+    manual: [
+      {
+        title: "channels and looper",
+        body: "Four polyphonic channels with level, pan, and bus assignment. Arm a channel and the tape buffer waits for the downbeat, records the selected bar length, and plays back instantly. Loops sent to the morph busses degrade gracefully — a fraction of the saturated, filtered output writes back into the buffer each pass."
+      },
+      {
+        title: "morphing busses",
+        body: "Slot A offers Ensemble, Phasewash, and Tape; slot B offers Jet, Trem/Pan, and Shimmer — each with Rate, Depth, and Texture under CV. A channel assigned to A+B uses its morph knob as a crossfader between slots, and patching the Returns swaps in external processors."
+      },
+      {
+        title: "glue compressor",
+        body: "A VCA-style bus compressor coheres the final mix with 2:1, 4:1, or 10:1 Crush ratios, selectable sidechain source, high-pass detector filtering, and a dry/wet mix for parallel compression."
+      }
+    ]
+  },
+  {
+    slug: "tetrarch",
+    name: "tetrarch",
+    subtitle: "five-voice hybrid drum machine blending 808-style circuit models with vintage pcm samples, driven by a generative phrase engine",
+    summary: "A self-contained rhythm section: kick, snare, hat, percussion, and tom lanes, each pairing an analog circuit model with a sample layer under one blend knob. Patterns, variations, and fills replace static step programming.",
+    category: "vcv rack module",
+    status: "drum machine",
+    accent: "#cf8e5c",
+    accentSoft: "rgba(207, 142, 92, 0.2)",
+    icon: Drum,
+    hp: 28,
+    panelImage: {
+      src: "/modules/tetrarch/panel.webp",
+      width: 2100,
+      height: 1900,
+      alt: "tetrarch vcv rack module panel"
+    },
+    media: {},
+    controls: [],
+    manual: [
+      {
+        title: "generative sequencer",
+        body: "Five patterns set the core groove — four fixed styles plus a generative fifth that rerolls its seed on selection. Variations A–F escalate from bare foundation to maximum density, Fill arms a turnaround, and Density and Humanize push ghost notes and micro-timing."
+      },
+      {
+        title: "hybrid voices",
+        body: "Each lane is a meticulous circuit model: a bridged-T kick with beater knock, a dual-resonator snare with crack and tail envelopes, six square oscillators behind the hats, cowbell/bongo/clap percussion, and a sweepable tom for fills."
+      },
+      {
+        title: "sample layer",
+        body: "Vintage PCM samples run in parallel with the synthesis, crossfaded by a single Sample Blend control. Converter modes emulate 12-bit/32 kHz grit or 8-bit µ-law companding, and every voice has its own output beside the stereo master."
+      }
+    ]
+  },
+  {
+    slug: "nocturne-tv",
+    name: "nocturne tv",
+    subtitle: "vhs-era crt video synthesizer with four render engines, fourteen aesthetic programs, and cv-controlled chaos",
+    summary: "A purely visual module that converts CV and audio into evolving video art — sync tearing, luma keying, recursive feedback, and glitched tape mechanics, rendered through fourteen aesthetic programs.",
+    category: "vcv rack module",
+    status: "video synth",
+    accent: "#5ec2ab",
+    accentSoft: "rgba(94, 194, 171, 0.2)",
+    icon: Tv,
+    hp: 18,
+    panelImage: {
+      src: "/modules/nocturne-tv/panel.webp",
+      width: 1350,
+      height: 1900,
+      alt: "nocturne tv vcv rack module panel"
+    },
+    media: {},
+    controls: [],
+    manual: [
+      {
+        title: "video engines",
+        body: "Four rendering topologies: Sync emulates CRT sync tearing, Keyer generates hard-edged quantized shapes, Feedback points a virtual camera at its own monitor for blooming spirals, and Glitch evokes tracking errors and broken tape transport."
+      },
+      {
+        title: "fourteen programs",
+        body: "Aesthetic scenes dictate palette and post-processing — phosphor burn-in, scanlines, RF snow, chroma storms, datamosh corruption, neon wireframes, self-consuming ouroboros loops, and more."
+      },
+      {
+        title: "buses and chaos",
+        body: "Deflect, Hold, Luma key, and Chroma buses map signals to warp, roll, contrast, and tint, with eight further CV inputs including a transient-reactive Explode. Unpatched, an internal chaotic motion generator keeps the screen alive as a standalone display."
+      }
+    ]
+  },
+  {
+    slug: "divergence",
+    name: "divergence",
+    subtitle: "1-to-3 sequential stereo routing switch with polyphonic fidelity and jewel-lamp lane indication",
+    summary: "A precision router that sends one stereo source to one of three stereo destinations, advanced by pushbutton or trigger. Pristine switching — no attenuation, no slew, exact voltages.",
+    category: "vcv rack module",
+    status: "stereo router",
+    accent: "#68B7C8",
+    accentSoft: "rgba(104, 183, 200, 0.2)",
+    icon: Split,
+    hp: 6,
+    panelImage: {
+      src: "/modules/divergence/panel.webp",
+      width: 450,
+      height: 1900,
+      alt: "divergence vcv rack module panel"
+    },
+    media: {},
+    controls: [],
+    manual: [
+      {
+        title: "routing",
+        body: "One stereo input pair feeds lanes A, B, and C in sequence. The Change Lane button advances manually; a Schmitt-trigger CV input advances on every rising edge for clocked routing."
+      },
+      {
+        title: "signal integrity",
+        body: "Polyphonic channel counts are preserved — the active lane carries the exact input voltages while inactive lanes output precisely zero volts. Mono sources normalize left-to-right automatically."
+      },
+      {
+        title: "indication",
+        body: "The main jewel lamp shows the active lane by color — dark teal for A, dark green for B, shapetaker purple for C — with per-lane LEDs between each output pair for confirmation at the jacks."
+      }
+    ]
+  },
+  {
+    slug: "augury",
+    name: "augury",
+    subtitle: "polyphonic chord identifier scoring 31 templates, with a live crt readout and root, type, and confidence cv outputs",
+    summary: "Feed it polyphonic pitches and it names the chord — root, quality, inversion, and spelling — on a CRT-style display, while emitting the analysis as control voltages. Audio passes through untouched.",
+    category: "vcv rack module",
+    status: "chord analyzer",
+    accent: "#5ec2ab",
+    accentSoft: "rgba(94, 194, 171, 0.2)",
+    icon: Eye,
+    hp: 8,
+    panelImage: {
+      src: "/modules/augury/panel.webp",
+      width: 600,
+      height: 1900,
+      alt: "augury vcv rack module panel"
+    },
+    media: {},
+    controls: [],
+    manual: [
+      {
+        title: "detection engine",
+        body: "Incoming polyphonic V/oct is quantized to semitones with hysteresis, then scored against 31 chord templates from power chords to altered dominants. Gate-settling logic waits ~60 ms for all voices to land before committing to a new chord."
+      },
+      {
+        title: "the readout",
+        body: "The display renders root and suffix (Cmaj7, Dm9), slash chords when the bass differs from the root, note spellings biased by the Key knob, and a confidence percentage. The CONF lamp shifts from amber through green to cyan as certainty rises."
+      },
+      {
+        title: "cv outputs",
+        body: "ROOT emits 1 V/oct for the detected root, TYPE steps 0.4 V per template index, and CONF scales 0–10 V with confidence — enough to drive arpeggiators or a second voice that follows a generative progression."
+      }
+    ]
+  },
+  {
+    slug: "reliquary",
+    name: "reliquary",
+    subtitle: "granular memory instrument — a 60-second buffer that forgets, where recall reinforces and neglect dissolves into the vessel resonator",
+    summary: "A granular buffer treated as memory rather than tape. Regions fade unless recalled; replaying them reinforces their vitality. As memories degrade they excite the Vessel, an inharmonic modal resonator that slowly replaces what is forgotten.",
+    category: "vcv rack module",
+    status: "granular memory",
+    accent: "#d7b56d",
+    accentSoft: "rgba(215, 181, 109, 0.2)",
+    icon: Hourglass,
+    hp: 16,
+    panelImage: {
+      src: "/modules/reliquary/panel.webp",
+      width: 1200,
+      height: 1900,
+      alt: "reliquary vcv rack module panel"
+    },
+    media: {},
+    controls: [],
+    manual: [
+      {
+        title: "memory buffer",
+        body: "Recall draws grains from up to 60 seconds of history; Size, Density, Dispersion, and Pitch shape the cloud. Every region of the buffer has a vitality that decays over time — faded memories return darker, wobblier, and quieter."
+      },
+      {
+        title: "consolidation",
+        body: "Recalling a region reinforces it. Freeze the buffer and it becomes self-curating: phrases you keep revisiting stay vivid and pristine while untouched sections dissolve into ghostly noise and, eventually, silence. The phosphor display maps vitality across the timeline."
+      },
+      {
+        title: "the vessel",
+        body: "An eight-mode inharmonic resonator rings sympathetically beneath the grains — and degraded memories excite it hardest, so the module's body gradually replaces the audio it forgets. A YIN tracker keeps it tuned to the input, with lane voicings for smeared, shoegaze glissandi."
+      }
+    ]
   }
 ];
 
