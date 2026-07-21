@@ -123,16 +123,16 @@ export function ProjectGallery({ projects }: ProjectGalleryProps) {
             </div>
           )}
           {activeProject.href ? (
-            <Link className="button button--primary" href={activeProject.href} style={{ justifyContent: 'space-between', width: '100%' }}>
-              <span style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center' }}>
+            <Link className="button button--primary gallery-open" href={activeProject.href}>
+              <span className="gallery-open__syms" aria-hidden="true">
                 {symbolsLeft.map((sym, i) => (
-                  <span key={i} style={{ fontSize: '1.2em', lineHeight: 1 }}>{sym}</span>
+                  <span key={i}>{sym}</span>
                 ))}
               </span>
-              open the interactive manual
-              <span style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center' }}>
+              <span className="gallery-open__label">open the interactive manual</span>
+              <span className="gallery-open__syms" aria-hidden="true">
                 {symbolsRight.map((sym, i) => (
-                  <span key={i} style={{ fontSize: '1.2em', lineHeight: 1 }}>{sym}</span>
+                  <span key={i}>{sym}</span>
                 ))}
               </span>
             </Link>

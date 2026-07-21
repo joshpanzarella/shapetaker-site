@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronRight, ChevronLeft, RotateCcw, Headphones, Cable } from "lucide-react";
 import type { SuggestedPatch, PatchNode, PatchPort } from "@/data/modules";
 
@@ -14,6 +14,22 @@ export function PatchWalker({ patches, mainModuleId, mainModuleName }: PatchWalk
   const [patchIndex, setPatchIndex] = useState(0);
   const [started, setStarted] = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const diagramRef = useRef<HTMLDivElement>(null);
+
+  // keep the info panel scrolled to the top whenever the step or patch changes
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0 });
+  }, [patchIndex, started, stepIndex]);
+
+  // on narrow screens the diagram scrolls horizontally — start with the
+  // main module (drawn around the center of the viewBox) in view
+  useEffect(() => {
+    const el = diagramRef.current;
+    if (el && el.scrollWidth > el.clientWidth) {
+      el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2;
+    }
+  }, [patchIndex]);
 
   const patch = patches[patchIndex];
   if (!patch) return null;
@@ -88,9 +104,25 @@ export function PatchWalker({ patches, mainModuleId, mainModuleName }: PatchWalk
   const currentStep = patch.steps[stepIndex];
   const activeCableIds = new Set(currentStep?.cableIds ?? []);
 
-  const allSettings = patch.nodes.flatMap((n) => 
+  const allSettings = patch.nodes.flatMap((n) =>
     n.settings?.map((s) => ({ ...s, nodeLabel: n.label })) ?? []
   );
+
+  const settingsBlock =
+    allSettings.length > 0 ? (
+      <div className="patch-panel-settings">
+        <h4>Control Settings</h4>
+        <ul>
+          {allSettings.map((s, i) => (
+            <li key={i}>
+              <span className="setting-node">{s.nodeLabel}</span>
+              <span className="setting-label">{s.label}:</span>
+              <span className="setting-val">{s.value}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ) : null;
 
   return (
     <div className="patch-walker">
@@ -115,7 +147,7 @@ export function PatchWalker({ patches, mainModuleId, mainModuleName }: PatchWalk
       )}
 
       <div className="patch-walker__body">
-        <div className="patch-walker__diagram" aria-label={`${patch.title} patch diagram`}>
+        <div ref={diagramRef} className="patch-walker__diagram" aria-label={`${patch.title} patch diagram`}>
           <svg viewBox={patch.viewBox} aria-hidden="true">
             {patch.nodes.map((node) => (
               <NodeShape key={node.id} node={node} state={getNodeState(node)} />
@@ -146,58 +178,55 @@ export function PatchWalker({ patches, mainModuleId, mainModuleName }: PatchWalk
         </div>
 
         <div className="patch-walker__panel">
-          {allSettings.length > 0 && (
-            <div className="patch-panel-settings">
-              <h4>Control Settings</h4>
-              <ul>
-                {allSettings.map((s, i) => (
-                  <li key={i}>
-                    <span className="setting-node">{s.nodeLabel}</span>
-                    <span className="setting-label">{s.label}:</span>
-                    <span className="setting-val">{s.value}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {!started ? (
-            <>
-              <h3 className="patch-title">{patch.title}</h3>
-              <p className="patch-description">{patch.description}</p>
+          <div ref={scrollRef} className="patch-panel__scroll">
+            {!started && settingsBlock}
+            {!started ? (
+              <>
+                <h3 className="patch-title">{patch.title}</h3>
+                <p className="patch-description">{patch.description}</p>
+              </>
+            ) : isComplete ? (
+              <>
+                <span className="patch-complete-label">patch complete</span>
+                <p className="patch-step__instruction">
+                  all connections made. experiment with the Z Fine Tune knob for subtle detuning, or swap the LFO waveform for a different crossfade character.
+                </p>
+                {patch.audioUrl && (
+                  <div className="patch-audio">
+                    <span className="patch-audio__label">
+                      <Headphones size={13} aria-hidden="true" />
+                      demo recording
+                    </span>
+                    <audio controls src={patch.audioUrl} />
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <span className="patch-step-counter">
+                  step {stepIndex + 1} / {totalSteps}
+                </span>
+                <p className="patch-step__instruction">{currentStep.instruction}</p>
+                {currentStep.detail && (
+                  <p className="patch-step__detail">{currentStep.detail}</p>
+                )}
+              </>
+            )}
+            {started && settingsBlock}
+          </div>
+
+          <div className="patch-panel__actions">
+            {!started ? (
               <button className="patch-start-btn" onClick={handleStart}>
-                <Cable size={15} aria-hidden="true" />
+                <Cable size={16} aria-hidden="true" />
                 start patch
               </button>
-            </>
-          ) : isComplete ? (
-            <>
-              <span className="patch-complete-label">patch complete</span>
-              <p className="patch-step__instruction">
-                all connections made. experiment with the Z Fine Tune knob for subtle detuning, or swap the LFO waveform for a different crossfade character.
-              </p>
-              {patch.audioUrl && (
-                <div className="patch-audio">
-                  <span className="patch-audio__label">
-                    <Headphones size={13} aria-hidden="true" />
-                    demo recording
-                  </span>
-                  <audio controls src={patch.audioUrl} />
-                </div>
-              )}
+            ) : isComplete ? (
               <button className="patch-restart-btn" onClick={handleRestart}>
                 <RotateCcw size={13} aria-hidden="true" />
                 restart
               </button>
-            </>
-          ) : (
-            <>
-              <span className="patch-step-counter">
-                step {stepIndex + 1} / {totalSteps}
-              </span>
-              <p className="patch-step__instruction">{currentStep.instruction}</p>
-              {currentStep.detail && (
-                <p className="patch-step__detail">{currentStep.detail}</p>
-              )}
+            ) : (
               <div className="patch-step__nav">
                 <button
                   className="patch-nav-prev"
@@ -213,8 +242,8 @@ export function PatchWalker({ patches, mainModuleId, mainModuleName }: PatchWalk
                   <ChevronRight size={16} aria-hidden="true" />
                 </button>
               </div>
-            </>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>
