@@ -8,7 +8,8 @@
     "prebuild": "node scripts/generate-blog-data.mjs",
     "build": "next build",
     "preview": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "panels": "node scripts/update-panels.mjs"
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",

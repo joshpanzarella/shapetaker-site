@@ -139,7 +139,7 @@ export const modules: ModuleSpec[] = [
     icon: AudioLines,
     hp: 18,
     panelImage: {
-      src: "/modules/clairaudient/panel-v2.webp",
+      src: "/modules/clairaudient/panel-v4.webp",
       width: 1350,
       height: 1900,
       alt: "clairaudient vcv rack module panel"
@@ -1245,7 +1245,7 @@ export const modules: ModuleSpec[] = [
     icon: Sparkles,
     hp: 40,
     panelImage: {
-      src: "/modules/transmutation/panel.webp",
+      src: "/modules/transmutation/panel-v2.webp",
       width: 3000,
       height: 1900,
       alt: "transmutation vcv rack module panel"
@@ -1280,7 +1280,7 @@ export const modules: ModuleSpec[] = [
     icon: SlidersHorizontal,
     hp: 12,
     panelImage: {
-      src: "/modules/chiaroscuro/panel.webp",
+      src: "/modules/chiaroscuro/panel-v2.webp",
       width: 900,
       height: 1900,
       alt: "chiaroscuro vcv rack module panel"
@@ -1716,7 +1716,7 @@ export const modules: ModuleSpec[] = [
     icon: Activity,
     hp: 20,
     panelImage: {
-      src: "/modules/evocation/panel.webp",
+      src: "/modules/evocation/panel-v2.webp",
       width: 1500,
       height: 1900,
       alt: "evocation hardware panel"
@@ -2242,7 +2242,7 @@ export const modules: ModuleSpec[] = [
     icon: Filter,
     hp: 18,
     panelImage: {
-      src: "/modules/involution/panel.webp",
+      src: "/modules/involution/panel-v2.webp",
       width: 1350,
       height: 1900,
       alt: "involution vcv rack module panel"
@@ -2281,7 +2281,7 @@ export const modules: ModuleSpec[] = [
     icon: Gauge,
     hp: 10,
     panelImage: {
-      src: "/modules/specula/panel.webp",
+      src: "/modules/specula/panel-v3.webp",
       width: 750,
       height: 1900,
       alt: "specula vcv rack module panel"
@@ -2321,7 +2321,7 @@ export const modules: ModuleSpec[] = [
     icon: Layers,
     hp: 19,
     panelImage: {
-      src: "/modules/incantation/panel.webp",
+      src: "/modules/incantation/panel-v2.webp",
       width: 1425,
       height: 1900,
       alt: "incantation vcv rack module panel"
@@ -2356,7 +2356,7 @@ export const modules: ModuleSpec[] = [
     icon: Waves,
     hp: 18,
     panelImage: {
-      src: "/modules/torsion/panel.webp",
+      src: "/modules/torsion/panel-v2.webp",
       width: 1350,
       height: 1900,
       alt: "torsion vcv rack module panel"
@@ -2395,7 +2395,7 @@ export const modules: ModuleSpec[] = [
     icon: Sparkles,
     hp: 16,
     panelImage: {
-      src: "/modules/reverie/panel.webp",
+      src: "/modules/reverie/panel-v2.webp",
       width: 1200,
       height: 1900,
       alt: "reverie vcv rack module panel"
@@ -2430,7 +2430,7 @@ export const modules: ModuleSpec[] = [
     icon: Layers,
     hp: 26,
     panelImage: {
-      src: "/modules/tessellation/panel.webp",
+      src: "/modules/tessellation/panel-v2.webp",
       width: 1950,
       height: 1900,
       alt: "tessellation vcv rack module panel"
@@ -2469,7 +2469,7 @@ export const modules: ModuleSpec[] = [
     icon: Activity,
     hp: 14,
     panelImage: {
-      src: "/modules/fatebinder/panel.webp",
+      src: "/modules/fatebinder/panel-v2.webp",
       width: 1050,
       height: 1900,
       alt: "fatebinder vcv rack module panel"
@@ -2509,7 +2509,7 @@ export const modules: ModuleSpec[] = [
     icon: SlidersHorizontal,
     hp: 44,
     panelImage: {
-      src: "/modules/chimera/panel.webp",
+      src: "/modules/chimera/panel-v2.webp",
       width: 3300,
       height: 1900,
       alt: "chimera vcv rack module panel"
@@ -2544,7 +2544,7 @@ export const modules: ModuleSpec[] = [
     icon: Drum,
     hp: 28,
     panelImage: {
-      src: "/modules/tetrarch/panel.webp",
+      src: "/modules/tetrarch/panel-v2.webp",
       width: 2100,
       height: 1900,
       alt: "tetrarch vcv rack module panel"
@@ -2579,7 +2579,7 @@ export const modules: ModuleSpec[] = [
     icon: Tv,
     hp: 18,
     panelImage: {
-      src: "/modules/nocturne-tv/panel.webp",
+      src: "/modules/nocturne-tv/panel-v2.webp",
       width: 1350,
       height: 1900,
       alt: "nocturne tv vcv rack module panel"
@@ -2614,7 +2614,7 @@ export const modules: ModuleSpec[] = [
     icon: Split,
     hp: 6,
     panelImage: {
-      src: "/modules/divergence/panel.webp",
+      src: "/modules/divergence/panel-v2.webp",
       width: 450,
       height: 1900,
       alt: "divergence vcv rack module panel"
@@ -2649,7 +2649,7 @@ export const modules: ModuleSpec[] = [
     icon: Eye,
     hp: 8,
     panelImage: {
-      src: "/modules/augury/panel.webp",
+      src: "/modules/augury/panel-v2.webp",
       width: 600,
       height: 1900,
       alt: "augury vcv rack module panel"
@@ -2684,7 +2684,7 @@ export const modules: ModuleSpec[] = [
     icon: Hourglass,
     hp: 16,
     panelImage: {
-      src: "/modules/reliquary/panel.webp",
+      src: "/modules/reliquary/panel-v2.webp",
       width: 1200,
       height: 1900,
       alt: "reliquary vcv rack module panel"
