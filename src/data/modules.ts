@@ -167,17 +167,12 @@ export const modules: ModuleSpec[] = [
         y: 18.9,
         size: 30,
         description: [
-          "a triggered trace of the left output with the right output ghosted behind it — watch the voice engine bend the sigmoid in real time",
-          "switch to lissajous (x-y) in the context menu: a diagonal line means mono, an open ellipse means stereo, a woolly cloud means WIDTH and the sync switches are doing their job",
+          "starts in lissajous (x-y) mode, plotting left against right: a diagonal line means mono, an open ellipse means stereo, a woolly cloud means WIDTH and the sync switches are doing their job",
+          "switch to the triggered waveform view in the context menu — the left output traced with the right ghosted behind it, ideal for watching the voice engine bend the sigmoid in real time",
           "choose a color theme (phosphor, ice, solar, amber) in the context menu",
         ],
-        tip: "leave it on waveform while learning the voice engine — every DEPTH, RATIO, and ASYM move is visible immediately.",
+        tip: "flip to the waveform view while learning the voice engine — every DEPTH, RATIO, and ASYM move is visible immediately.",
         diagrams: [
-          {
-            id: "scope-waveform",
-            label: "waveform trace",
-            tracePath: "M 30,100 C 40,45 55,45 65,100 C 70,128 78,128 84,100 C 94,45 109,45 119,100 C 124,128 132,128 138,100 C 148,45 163,45 173,100"
-          },
           {
             id: "scope-liss-mono",
             label: "lissajous: mono",
@@ -187,6 +182,11 @@ export const modules: ModuleSpec[] = [
             id: "scope-liss-wide",
             label: "lissajous: wide",
             tracePath: "M 55,100 C 55,72 75,55 100,55 C 125,55 145,72 145,100 C 145,128 125,145 100,145 C 75,145 55,128 55,100 Z"
+          },
+          {
+            id: "scope-waveform",
+            label: "waveform trace",
+            tracePath: "M 30,100 C 40,45 55,45 65,100 C 70,128 78,128 84,100 C 94,45 109,45 119,100 C 124,128 132,128 138,100 C 148,45 163,45 173,100"
           }
         ]
       },
@@ -199,7 +199,7 @@ export const modules: ModuleSpec[] = [
         size: 16,
         description: [
           "sets Core V's pitch, snapping precisely to musical octaves (±2) for stable octave layering",
-          "the Quantize setting in the context menu defeats the stepping for continuous sweeps",
+          "its own checkmark under Quantize in the context menu defeats the stepping for continuous sweeps — V and Z unquantize independently",
         ],
         tip: "set this first when placing V in a register, then tune Z relative to it.",
         diagrams: [
@@ -221,7 +221,7 @@ export const modules: ModuleSpec[] = [
           "sets Core Z's pitch in discrete semitones over a four-octave range (±24) for immediate interval selection",
           "detune Z a fifth or an octave from V before reaching for the sync switches — intervals are where they sing",
         ],
-        tip: "the Quantize context setting also frees this knob for continuous pitch.",
+        tip: "its Quantize checkmark in the context menu frees this knob for continuous pitch, independent of V's.",
         diagrams: [
           { id: "z-freq--24", label: "-24 st", icon: "ChevronsDown", rotation: -135 },
           { id: "z-freq--12", label: "-12 st", icon: "ChevronDown", rotation: -67.5 },
@@ -363,7 +363,7 @@ export const modules: ModuleSpec[] = [
         y: 74.7,
         size: 14,
         description: [
-          "the modulator's speed as a multiple of the oscillator's pitch, snapped to musical ratios (×0.5 through ×7)",
+          "the modulator's speed as a multiple of the oscillator's pitch, snapped to eight musical ratios: ×0.5, ×1, ×1.5, ×2, ×3, ×4, ×5, ×7",
           "low integers (×2, ×3) give vowel and brass formants; high ones (×5, ×7) turn metallic and bell-like",
           "×0.5 repeats its pattern every two cycles, adding a growling octave-down component",
         ],
@@ -474,7 +474,7 @@ export const modules: ModuleSpec[] = [
         x: 8.9,
         y: 86.8,
         size: 9,
-        description: "pitch tracking input for Core V, 1 volt per octave. The widest polyphonic cable patched anywhere sets the voice count (up to 6).",
+        description: "pitch tracking input for Core V, 1 volt per octave. The widest polyphonic cable patched into any input sets the voice count (up to 16).",
         tip: "a mono cable here is broadcast to every voice — one note held against an entire chord on Z.",
         voltageRange: "1V/OCT"
       },
@@ -557,21 +557,28 @@ export const modules: ModuleSpec[] = [
     ],
     contextMenu: [
       {
-        id: "quantize",
+        id: "quantize-v",
         group: "settings",
-        label: "quantize",
+        label: "quantize: v oscillator",
         kind: "toggle",
-        description: "Defeats the stepped behavior of the V (octaves) and Z (semitones) pitch controls for continuous sweeps."
+        description: "Checkmark under Settings → Quantize. On by default: the V FREQ knob snaps to whole octaves. Turn off for continuous pitch sweeps on V alone."
+      },
+      {
+        id: "quantize-z",
+        group: "settings",
+        label: "quantize: z oscillator",
+        kind: "toggle",
+        description: "Checkmark under Settings → Quantize. On by default: the Z FREQ knob snaps to semitones. Independent of V's checkmark — free one core, keep the other stepped."
       },
       {
         id: "oscilloscope-display",
         group: "settings",
         label: "oscilloscope display",
         kind: "choice",
-        values: ["waveform", "lissajous (x-y)"],
+        values: ["lissajous (x-y)", "waveform (triggered)"],
         description: [
-          "waveform: a triggered trace of the left output with the right ghosted behind it — stable, and ideal for watching the voice engine bend the sigmoid",
-          "lissajous: plots left against right. A diagonal line means mono, an open ellipse means stereo, a woolly cloud means WIDTH and sync are doing their job"
+          "lissajous (default): plots left against right. A diagonal line means mono, an open ellipse means stereo, a woolly cloud means WIDTH and sync are doing their job",
+          "waveform: a triggered trace of the left output with the right ghosted behind it — stable, and ideal for watching the voice engine bend the sigmoid"
         ]
       },
       {
@@ -614,8 +621,11 @@ export const modules: ModuleSpec[] = [
         group: "settings",
         label: "oversampling",
         kind: "choice",
-        values: ["1x", "2x", "4x"],
-        description: "4× oversampling is recommended for general operation — it keeps aliasing down under hard sync, reverse sync, and audio-rate shape modulation."
+        values: ["1x (off)", "2x", "4x", "8x"],
+        description: [
+          "4× is the default and recommended for general operation — it keeps aliasing down under hard sync, reverse sync, and audio-rate shape modulation",
+          "8× is the highest quality, worth it for MUTUAL reverse sync or aggressive shape CV at high pitches; 1× disables oversampling for the lowest CPU cost"
+        ]
       },
       {
         id: "vintage",
@@ -642,7 +652,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "sigmoid oscillators",
-        body: "Cores V and Z build their waveform around a sigmoid curve — a sawtooth whose central edge reshapes from gentle ramp to razor edge. V snaps to octaves, Z to semitones, each with ±20 cent fine tune. Z's pitch input normalizes to V per-voice, and up to six polyphonic voices pair lane-by-lane."
+        body: "Cores V and Z build their waveform around a sigmoid curve — a sawtooth whose central edge reshapes from gentle ramp to razor edge. V snaps to octaves, Z to semitones, each with ±20 cent fine tune. Z's pitch input normalizes to V per-voice, and up to sixteen polyphonic voices pair lane-by-lane."
       },
       {
         title: "reverse sync and chance",

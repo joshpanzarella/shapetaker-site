@@ -2852,6 +2852,12 @@ h3 {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 2rem;
+  /* the walker auto-pans to the active nodes, so no scrollbar chrome */
+  scrollbar-width: none;
+}
+
+.patch-walker__diagram::-webkit-scrollbar {
+  display: none;
 }
 
 .patch-walker__diagram svg {

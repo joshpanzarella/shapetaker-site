@@ -22,14 +22,25 @@ export function PatchWalker({ patches, mainModuleId, mainModuleName }: PatchWalk
     scrollRef.current?.scrollTo({ top: 0 });
   }, [patchIndex, started, stepIndex]);
 
-  // on narrow screens the diagram scrolls horizontally — start with the
-  // main module (drawn around the center of the viewBox) in view
+  // when the diagram is wider than its container, keep it centered on the
+  // nodes currently in play — panning smoothly as each step reveals modules
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const el = diagramRef.current;
-    if (el && el.scrollWidth > el.clientWidth) {
-      el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2;
-    }
-  }, [patchIndex]);
+    if (!el) return;
+    const svg = el.querySelector("svg");
+    if (!svg || el.scrollWidth <= el.clientWidth + 1) return;
+    const [vbX, , vbW] = patch.viewBox.split(/\s+/).map(Number);
+    const visible = patch.nodes.filter((n) => getNodeState(n) === "visible");
+    const focus = visible.length > 0 ? visible : patch.nodes;
+    const minX = Math.min(...focus.map((n) => n.x));
+    const maxX = Math.max(...focus.map((n) => n.x + n.width));
+    const scale = svg.getBoundingClientRect().width / vbW;
+    const pad = svg.getBoundingClientRect().left - el.getBoundingClientRect().left + el.scrollLeft;
+    const centerPx = pad + ((minX + maxX) / 2 - vbX) * scale;
+    const target = Math.max(0, Math.min(centerPx - el.clientWidth / 2, el.scrollWidth - el.clientWidth));
+    el.scrollTo({ left: target, behavior: "smooth" });
+  }, [patchIndex, started, stepIndex]);
 
   const patch = patches[patchIndex];
   if (!patch) return null;
