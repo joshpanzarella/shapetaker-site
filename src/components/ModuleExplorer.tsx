@@ -191,7 +191,8 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
               src={module.panelImage.src}
               alt={module.panelImage.alt}
               fill
-              sizes="(max-width: 860px) calc(100vw - 2rem), 420px"
+              sizes={`(max-width: 860px) min(calc(100vw - 2rem), 460px), ${(module.hp ?? 12) * 35}px`}
+              quality={90}
               priority={true}
             />
           ) : (

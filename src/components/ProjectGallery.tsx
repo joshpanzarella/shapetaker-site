@@ -101,6 +101,7 @@ export function ProjectGallery({ projects }: ProjectGalleryProps) {
               alt={activeProject.image.alt}
               fill
               sizes="(max-width: 860px) calc(100vw - 2rem), 48vw"
+              quality={90}
             />
           ) : (
             <div className="project-preview__empty">
