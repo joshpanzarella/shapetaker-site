@@ -653,7 +653,7 @@ export const modules: ModuleSpec[] = [
       {
         id: "harmonic-stereo-drift",
         title: "harmonic stereo drift",
-        description: "Two oscillator voices tuned a fifth apart, with a slow LFO sweeping the crossfade between them to animate the stereo field from V to Z and back.",
+        description: "Two oscillator cores tuned a fifth apart, with a slow LFO sweeping the crossfade between them to animate the stereo field from V to Z and back.",
         difficulty: "beginner",
         viewBox: "0 0 620 280",
         nodes: [
@@ -669,6 +669,7 @@ export const modules: ModuleSpec[] = [
           {
             id: "lfo",
             label: "LFO",
+            sublabel: "0.1–0.3 Hz",
             x: 20, y: 175, width: 140, height: 90,
             ports: [
               { id: "out", label: "Out", side: "right", offsetY: 73, icon: "triangle" }
@@ -679,15 +680,14 @@ export const modules: ModuleSpec[] = [
             label: "Clairaudient",
             x: 200, y: 20, width: 170, height: 240,
             settings: [
-              { label: "V Coarse", value: "0" },
-              { label: "Z Coarse", value: "+7" }
+              { label: "V Freq", value: "0 oct" },
+              { label: "Z Freq", value: "+7 st" }
             ],
             ports: [
               { id: "voct-v", label: "V/Oct V", side: "left", offsetY: 80 },
-              { id: "voct-z", label: "V/Oct Z", side: "left", offsetY: 110 },
-              { id: "x-in",   label: "X Input",  side: "left", offsetY: 210 },
-              { id: "left-out",  label: "Left Out",  side: "right", offsetY: 80 },
-              { id: "right-out", label: "Right Out", side: "right", offsetY: 110 }
+              { id: "xfade-cv", label: "XFADE CV", side: "left", offsetY: 150 },
+              { id: "left-out",  label: "+ Out (L)",  side: "right", offsetY: 80 },
+              { id: "right-out", label: "− Out (R)", side: "right", offsetY: 110 }
             ]
           },
           {
@@ -709,15 +709,9 @@ export const modules: ModuleSpec[] = [
             color: "#5ec2ab"
           },
           {
-            id: "pitch-z",
-            fromNode: "keyboard", fromPort: "voct-out",
-            toNode: "clairaudient", toPort: "voct-z",
-            color: "#5ec2ab"
-          },
-          {
-            id: "lfo-x",
+            id: "lfo-xfade",
             fromNode: "lfo", fromPort: "out",
-            toNode: "clairaudient", toPort: "x-in",
+            toNode: "clairaudient", toPort: "xfade-cv",
             color: "#a78bfa"
           },
           {
@@ -735,55 +729,47 @@ export const modules: ModuleSpec[] = [
         ],
         steps: [
           {
-            instruction: "Connect your keyboard or sequencer's V/Oct output to V/Oct-V.",
-            detail: "This sets the pitch of the V-side oscillator. Start with the V Coarse Freq knob at center (0 semitones).",
+            instruction: "Connect your keyboard or sequencer's V/Oct output to V/OCT V.",
+            detail: "One cable tunes both cores — the Z input is normalized to V per voice. Set Z FREQ to +7 semitones (a perfect fifth) for a harmonic relationship.",
             cableIds: ["pitch-v"]
           },
           {
-            instruction: "Connect the same V/Oct source to V/Oct-Z.",
-            detail: "Both voices now track the same pitch. Set the Z Coarse Freq knob up to +7 semitones (a perfect fifth) for a harmonic relationship.",
-            cableIds: ["pitch-z"]
+            instruction: "Connect a slow LFO to the XFADE CV jack (center column).",
+            detail: "A sine or triangle at 0.1–0.3 Hz makes the blend breathe between the two cores. Trim the depth with the hex attenuverter directly above the jack.",
+            cableIds: ["lfo-xfade"]
           },
           {
-            instruction: "Connect an LFO output to the X Input.",
-            detail: "X controls the crossfade between V and Z. A slow sine or triangle LFO at 0.1–0.3 Hz makes the stereo image breathe between the two voices.",
-            cableIds: ["lfo-x"]
-          },
-          {
-            instruction: "Connect Left Out to the left channel of your mixer or interface.",
-            detail: "The V-side voice is dominant on the left output when the crossfade favors V.",
-            cableIds: ["audio-left"]
-          },
-          {
-            instruction: "Connect Right Out to the right channel of your mixer or interface.",
-            detail: "The Z-side voice is dominant on the right. Together the two outputs create a wide stereo field that drifts with the LFO.",
-            cableIds: ["audio-right"]
+            instruction: "Connect the + and − outputs to your mixer's left and right channels.",
+            detail: "For a more dramatic image, set Crossfade Curve to 'stereo swap' in the context menu — V and Z will trade places across the field as the LFO sweeps.",
+            cableIds: ["audio-left", "audio-right"]
           }
         ]
       },
       {
-        id: "dissonant-drone",
-        title: "dissonant drone",
-        description: "A slow, evolving, and slightly dissonant drone using extreme cross-modulation.",
+        id: "brass-seance",
+        title: "brass séance",
+        description: "An envelope pushes both Shape inputs so every note swells from hollow woodwind into a full brass section as the voice engine finds its even harmonics.",
         difficulty: "intermediate",
         viewBox: "0 0 620 280",
         nodes: [
           {
-            id: "lfo-1",
-            label: "LFO 1",
-            sublabel: "Slow Triangle",
+            id: "keyboard",
+            label: "Keyboard",
+            sublabel: "V/Oct + Gate",
             x: 20, y: 55, width: 140, height: 100,
             ports: [
-              { id: "out", label: "Out", side: "right", offsetY: 78, icon: "triangle" }
+              { id: "voct-out", label: "V/Oct", side: "right", offsetY: 68 },
+              { id: "gate-out", label: "Gate", side: "right", offsetY: 88 }
             ]
           },
           {
-            id: "lfo-2",
-            label: "LFO 2",
-            sublabel: "Slow Sine",
+            id: "adsr",
+            label: "ADSR",
+            sublabel: "slow attack",
             x: 20, y: 175, width: 140, height: 90,
             ports: [
-              { id: "out", label: "Out", side: "right", offsetY: 73, icon: "sine" }
+              { id: "gate-in", label: "Gate", side: "left", offsetY: 60 },
+              { id: "env-out", label: "Env", side: "right", offsetY: 73 }
             ]
           },
           {
@@ -791,19 +777,22 @@ export const modules: ModuleSpec[] = [
             label: "Clairaudient",
             x: 200, y: 20, width: 170, height: 240,
             settings: [
-              { label: "Rev. Sync", value: "ON" }
+              { label: "V + Z Shape", value: "~85%" },
+              { label: "Formant Dep.", value: "50%" },
+              { label: "Formant Ratio", value: "×2" },
+              { label: "Asymmetry", value: "sweep 0→60%" }
             ],
             ports: [
+              { id: "voct-v", label: "V/Oct V", side: "left", offsetY: 80 },
               { id: "v-shape-cv", label: "V Shape CV", side: "left", offsetY: 140 },
               { id: "z-shape-cv", label: "Z Shape CV", side: "left", offsetY: 170 },
-              { id: "left-out",  label: "Left Out",  side: "right", offsetY: 80 },
-              { id: "right-out", label: "Right Out", side: "right", offsetY: 110 }
+              { id: "left-out",  label: "+ Out (L)",  side: "right", offsetY: 80 },
+              { id: "right-out", label: "− Out (R)", side: "right", offsetY: 110 }
             ]
           },
           {
             id: "mixer",
             label: "Mixer",
-            sublabel: "or Interface",
             x: 410, y: 55, width: 140, height: 110,
             ports: [
               { id: "left-in",  label: "Left In",  side: "left", offsetY: 76 },
@@ -813,15 +802,128 @@ export const modules: ModuleSpec[] = [
         ],
         cables: [
           {
-            id: "lfo-v",
-            fromNode: "lfo-1", fromPort: "out",
+            id: "pitch-v",
+            fromNode: "keyboard", fromPort: "voct-out",
+            toNode: "clairaudient", toPort: "voct-v",
+            color: "#5ec2ab"
+          },
+          {
+            id: "gate-adsr",
+            fromNode: "keyboard", fromPort: "gate-out",
+            toNode: "adsr", toPort: "gate-in",
+            color: "#68b7c8"
+          },
+          {
+            id: "env-v-shape",
+            fromNode: "adsr", fromPort: "env-out",
             toNode: "clairaudient", toPort: "v-shape-cv",
             color: "#a78bfa"
           },
           {
-            id: "lfo-z",
-            fromNode: "lfo-2", fromPort: "out",
+            id: "env-z-shape",
+            fromNode: "adsr", fromPort: "env-out",
             toNode: "clairaudient", toPort: "z-shape-cv",
+            color: "#a78bfa"
+          },
+          {
+            id: "audio-left",
+            fromNode: "clairaudient", fromPort: "left-out",
+            toNode: "mixer", toPort: "left-in",
+            color: "#D7B56D"
+          },
+          {
+            id: "audio-right",
+            fromNode: "clairaudient", fromPort: "right-out",
+            toNode: "mixer", toPort: "right-in",
+            color: "#D7B56D"
+          }
+        ],
+        steps: [
+          {
+            instruction: "Connect the keyboard's V/Oct to V/OCT V, and its Gate to the ADSR.",
+            detail: "Z follows V through internal normalization. Give the ADSR a slow attack (~200 ms) and a medium release.",
+            cableIds: ["pitch-v", "gate-adsr"]
+          },
+          {
+            instruction: "Send the envelope to V SHAPE CV.",
+            detail: "Set both SHAPE knobs around 85% so the wave sits in its most symmetric, square-like zone — that's where ASYMMETRY has the most even harmonics to pour in.",
+            cableIds: ["env-v-shape"]
+          },
+          {
+            instruction: "Mult the envelope to Z SHAPE CV as well.",
+            detail: "Both cores now open together on each note. Trim each side's response with the hex attenuverters beside the SHAPE knobs.",
+            cableIds: ["env-z-shape"]
+          },
+          {
+            instruction: "Connect the outputs and slowly sweep ASYMMETRY up from zero.",
+            detail: "With FORMANT DEP. at 50% and RATIO at ×2, the tone transforms from hollow chiptune to reedy, brassy speech as the even harmonics arrive. Every note now swells into a voice.",
+            cableIds: ["audio-left", "audio-right"]
+          }
+        ]
+      },
+      {
+        id: "broken-radio",
+        title: "the broken radio",
+        description: "MUTUAL reverse sync with a stepped-random source rolling the dice on every flip — the two cores lurch between locked snarling and staggering collapse, spread 200% wide.",
+        difficulty: "advanced",
+        viewBox: "0 0 620 280",
+        nodes: [
+          {
+            id: "keyboard",
+            label: "Sequencer",
+            sublabel: "or Keyboard",
+            x: 20, y: 55, width: 140, height: 100,
+            ports: [
+              { id: "voct-out", label: "V/Oct", side: "right", offsetY: 78 }
+            ]
+          },
+          {
+            id: "random",
+            label: "Random",
+            sublabel: "S&H / stepped",
+            x: 20, y: 175, width: 140, height: 90,
+            ports: [
+              { id: "out", label: "Out", side: "right", offsetY: 73, icon: "square" }
+            ]
+          },
+          {
+            id: "clairaudient",
+            label: "Clairaudient",
+            x: 200, y: 20, width: 170, height: 240,
+            settings: [
+              { label: "Z Freq", value: "+7 st" },
+              { label: "Rev. Sync", value: "MUTUAL" },
+              { label: "Rev. Chance", value: "80%" },
+              { label: "Width", value: "200%" }
+            ],
+            ports: [
+              { id: "voct-v", label: "V/Oct V", side: "left", offsetY: 80 },
+              { id: "rev-ch-cv", label: "Rev. Ch. CV", side: "left", offsetY: 170 },
+              { id: "left-out",  label: "+ Out (L)",  side: "right", offsetY: 80 },
+              { id: "right-out", label: "− Out (R)", side: "right", offsetY: 110 }
+            ]
+          },
+          {
+            id: "mixer",
+            label: "Mixer",
+            x: 410, y: 55, width: 140, height: 110,
+            ports: [
+              { id: "left-in",  label: "Left In",  side: "left", offsetY: 76 },
+              { id: "right-in", label: "Right In", side: "left", offsetY: 96 }
+            ]
+          }
+        ],
+        cables: [
+          {
+            id: "pitch-v",
+            fromNode: "keyboard", fromPort: "voct-out",
+            toNode: "clairaudient", toPort: "voct-v",
+            color: "#5ec2ab"
+          },
+          {
+            id: "random-chance",
+            fromNode: "random", fromPort: "out",
+            toNode: "clairaudient", toPort: "rev-ch-cv",
             color: "#ec4899"
           },
           {
@@ -839,113 +941,288 @@ export const modules: ModuleSpec[] = [
         ],
         steps: [
           {
-            instruction: "Connect LFO 1 to the V Shape CV input.",
-            detail: "This will slowly modulate the shape of the V oscillator. Set the V Shape Attenuverter to about 50%.",
-            cableIds: ["lfo-v"]
+            instruction: "Patch a pitch source into V/OCT V and detune Z a fifth up (+7).",
+            detail: "Flip REV. SYNC to its MUTUAL position — the two cores now shove each other's playback direction around. At CHANCE 100% this chaos is fully deterministic.",
+            cableIds: ["pitch-v"]
           },
           {
-            instruction: "Connect LFO 2 to the Z Shape CV input.",
-            detail: "Use a different, very slow speed for LFO 2 to create complex polymetric motion between the voices.",
-            cableIds: ["lfo-z"]
+            instruction: "Patch a stepped-random source into REV. CH. CV.",
+            detail: "Set REV. CH. ATTEN. slightly negative so random steps subtract from the 80% CHANCE setting. Each polyphonic voice rolls its own dice — flips loosen, lurch, and stagger.",
+            cableIds: ["random-chance"]
           },
           {
-            instruction: "Connect Left Out and Right Out to your mixer.",
-            detail: "Detune the oscillators slightly to introduce a slow beating effect across the stereo field.",
+            instruction: "Connect both outputs and turn WIDTH to 200%.",
+            detail: "The left and right copies of Z flip on opposite edges of V's cycle, so the wreckage spreads across the entire stereo field. Ride CHANCE between 60% and 100% by hand — that sweep is the module's signature live move.",
             cableIds: ["audio-left", "audio-right"]
           }
         ]
       },
       {
-        id: "fm-bassline",
-        title: "fm bassline",
-        description: "A classic frequency modulated bass patch utilizing Clairaudient's complex cross-modulation.",
+        id: "massive-stereo-ensemble",
+        title: "massive stereo ensemble",
+        description: "Stereo-swap crossfading, aged Vintage character, and two independent slow LFOs combine into an exceptionally wide, organic ensemble — one module sounding like a section.",
         difficulty: "intermediate",
         viewBox: "0 0 620 280",
         nodes: [
           {
-            id: "sequencer", label: "Sequencer", x: 20, y: 55, width: 140, height: 100,
-            ports: [ { id: "cv", label: "Pitch CV", side: "right", offsetY: 78 } ]
-          },
-          {
-            id: "clairaudient", label: "Clairaudient", x: 200, y: 20, width: 170, height: 240,
+            id: "keyboard",
+            label: "Keyboard",
+            sublabel: "or Sequencer",
+            x: 20, y: 55, width: 140, height: 100,
             ports: [
-              { id: "voct-v", label: "V/Oct V", side: "left", offsetY: 80 },
-              { id: "left-out", label: "Left Out", side: "right", offsetY: 80 }
+              { id: "voct-out", label: "V/Oct", side: "right", offsetY: 78 }
             ]
           },
           {
-            id: "mixer", label: "Mixer", x: 410, y: 55, width: 140, height: 110,
-            ports: [ { id: "in", label: "Input", side: "left", offsetY: 76 } ]
+            id: "dual-lfo",
+            label: "Dual LFO",
+            sublabel: "two slow, unsynced",
+            x: 20, y: 175, width: 140, height: 90,
+            ports: [
+              { id: "sine-out", label: "Sine", side: "right", offsetY: 60, icon: "sine" },
+              { id: "tri-out", label: "Tri", side: "right", offsetY: 80, icon: "triangle" }
+            ]
+          },
+          {
+            id: "clairaudient",
+            label: "Clairaudient",
+            x: 200, y: 20, width: 170, height: 240,
+            settings: [
+              { label: "Crossfade Curve", value: "stereo swap" },
+              { label: "Vintage", value: "~70%" },
+              { label: "Width", value: "150%" }
+            ],
+            ports: [
+              { id: "voct-v", label: "V/Oct V", side: "left", offsetY: 80 },
+              { id: "z-fine-cv", label: "Z Fine CV", side: "left", offsetY: 140 },
+              { id: "xfade-cv", label: "XFADE CV", side: "left", offsetY: 170 },
+              { id: "left-out",  label: "+ Out (L)",  side: "right", offsetY: 80 },
+              { id: "right-out", label: "− Out (R)", side: "right", offsetY: 110 }
+            ]
+          },
+          {
+            id: "mixer",
+            label: "Mixer",
+            x: 410, y: 55, width: 140, height: 110,
+            ports: [
+              { id: "left-in",  label: "Left In",  side: "left", offsetY: 76 },
+              { id: "right-in", label: "Right In", side: "left", offsetY: 96 }
+            ]
           }
         ],
         cables: [
-          { id: "seq-pitch", fromNode: "sequencer", fromPort: "cv", toNode: "clairaudient", toPort: "voct-v", color: "#5ec2ab" },
-          { id: "audio-out", fromNode: "clairaudient", fromPort: "left-out", toNode: "mixer", toPort: "in", color: "#D7B56D" }
+          {
+            id: "pitch-v",
+            fromNode: "keyboard", fromPort: "voct-out",
+            toNode: "clairaudient", toPort: "voct-v",
+            color: "#5ec2ab"
+          },
+          {
+            id: "sine-xfade",
+            fromNode: "dual-lfo", fromPort: "sine-out",
+            toNode: "clairaudient", toPort: "xfade-cv",
+            color: "#a78bfa"
+          },
+          {
+            id: "tri-fine",
+            fromNode: "dual-lfo", fromPort: "tri-out",
+            toNode: "clairaudient", toPort: "z-fine-cv",
+            color: "#ec4899"
+          },
+          {
+            id: "audio-left",
+            fromNode: "clairaudient", fromPort: "left-out",
+            toNode: "mixer", toPort: "left-in",
+            color: "#D7B56D"
+          },
+          {
+            id: "audio-right",
+            fromNode: "clairaudient", fromPort: "right-out",
+            toNode: "mixer", toPort: "right-in",
+            color: "#D7B56D"
+          }
         ],
         steps: [
-          { instruction: "Connect Sequencer Pitch CV to V/Oct V.", cableIds: ["seq-pitch"] },
-          { instruction: "Connect Left Out to Mixer Input.", cableIds: ["audio-out"] }
+          {
+            instruction: "Patch your pitch source into V/OCT V.",
+            detail: "In the context menu, set Crossfade Curve to 'stereo swap' and raise Vintage to about 70% — thermal drift, per-voice tolerances, and crosstalk age the module into an old ensemble machine.",
+            cableIds: ["pitch-v"]
+          },
+          {
+            instruction: "Send a slow sine to XFADE CV.",
+            detail: "In stereo swap mode the two cores transit across the field and trade places. Keep the attenuverter gentle so the motion stays tidal rather than seasick.",
+            cableIds: ["sine-xfade"]
+          },
+          {
+            instruction: "Send a slow triangle — unsynced, different rate — to Z FINE CV.",
+            detail: "Z drifts a few cents against V, beating slowly. Independent LFO rates keep the two motions from ever aligning.",
+            cableIds: ["tri-fine"]
+          },
+          {
+            instruction: "Connect both outputs and set WIDTH to 150%.",
+            detail: "Beyond 100%, the voice engine's motion in the two channels drives out of phase — combined with the drift and swap, the result is an exceptionally wide, organic ensemble.",
+            cableIds: ["audio-left", "audio-right"]
+          }
         ]
       },
       {
-        id: "vocal-formants",
-        title: "vocal formants",
-        description: "Modulating the shape parameters to synthesize vocal vowel-like textures.",
-        difficulty: "advanced",
+        id: "lopsided-pwm-throb",
+        title: "lopsided pwm throb",
+        description: "PWM mode with a skewed modulation trajectory — the pulse lingers narrow and snaps through wide, turning even shimmer into a rhythmic, dub-flavored lean.",
+        difficulty: "intermediate",
         viewBox: "0 0 620 280",
         nodes: [
           {
-            id: "lfo-fast", label: "Fast LFO", x: 20, y: 55, width: 140, height: 100,
-            ports: [ { id: "out", label: "Out", side: "right", offsetY: 78, icon: "triangle" } ]
-          },
-          {
-            id: "clairaudient", label: "Clairaudient", x: 200, y: 20, width: 170, height: 240,
+            id: "sequencer",
+            label: "Sequencer",
+            sublabel: "bass line",
+            x: 20, y: 55, width: 140, height: 100,
             ports: [
-              { id: "v-shape-cv", label: "V Shape CV", side: "left", offsetY: 140 },
-              { id: "left-out", label: "Left Out", side: "right", offsetY: 80 }
+              { id: "cv-out", label: "Pitch CV", side: "right", offsetY: 78 }
             ]
           },
           {
-            id: "mixer", label: "Mixer", x: 410, y: 55, width: 140, height: 110,
-            ports: [ { id: "in", label: "Input", side: "left", offsetY: 76 } ]
+            id: "lfo",
+            label: "LFO",
+            sublabel: "very slow",
+            x: 20, y: 175, width: 140, height: 90,
+            ports: [
+              { id: "out", label: "Out", side: "right", offsetY: 73, icon: "sine" }
+            ]
+          },
+          {
+            id: "clairaudient",
+            label: "Clairaudient",
+            x: 200, y: 20, width: 170, height: 240,
+            settings: [
+              { label: "Waveform", value: "PWM" },
+              { label: "Shape", value: "~40%" },
+              { label: "Formant Dep.", value: "60%" },
+              { label: "Formant Ratio", value: "×1" },
+              { label: "Asymmetry", value: "70%" }
+            ],
+            ports: [
+              { id: "voct-v", label: "V/Oct V", side: "left", offsetY: 80 },
+              { id: "v-shape-cv", label: "V Shape CV", side: "left", offsetY: 150 },
+              { id: "left-out",  label: "+ Out (L)",  side: "right", offsetY: 80 },
+              { id: "right-out", label: "− Out (R)", side: "right", offsetY: 110 }
+            ]
+          },
+          {
+            id: "mixer",
+            label: "Mixer",
+            x: 410, y: 55, width: 140, height: 110,
+            ports: [
+              { id: "left-in",  label: "Left In",  side: "left", offsetY: 76 },
+              { id: "right-in", label: "Right In", side: "left", offsetY: 96 }
+            ]
           }
         ],
         cables: [
-          { id: "lfo-shape", fromNode: "lfo-fast", fromPort: "out", toNode: "clairaudient", toPort: "v-shape-cv", color: "#a78bfa" },
-          { id: "audio-out", fromNode: "clairaudient", fromPort: "left-out", toNode: "mixer", toPort: "in", color: "#D7B56D" }
+          {
+            id: "seq-pitch",
+            fromNode: "sequencer", fromPort: "cv-out",
+            toNode: "clairaudient", toPort: "voct-v",
+            color: "#5ec2ab"
+          },
+          {
+            id: "lfo-shape",
+            fromNode: "lfo", fromPort: "out",
+            toNode: "clairaudient", toPort: "v-shape-cv",
+            color: "#a78bfa"
+          },
+          {
+            id: "audio-left",
+            fromNode: "clairaudient", fromPort: "left-out",
+            toNode: "mixer", toPort: "left-in",
+            color: "#D7B56D"
+          },
+          {
+            id: "audio-right",
+            fromNode: "clairaudient", fromPort: "right-out",
+            toNode: "mixer", toPort: "right-in",
+            color: "#D7B56D"
+          }
         ],
         steps: [
-          { instruction: "Connect Fast LFO to V Shape CV.", cableIds: ["lfo-shape"] },
-          { instruction: "Connect Left Out to Mixer.", cableIds: ["audio-out"] }
+          {
+            instruction: "Switch Waveform to PWM in the context menu, then patch the sequencer into V/OCT V.",
+            detail: "In PWM mode, Shape sets the static pulse width (5–95% duty) and FORMANT DEP. becomes pitch-locked pulse-width modulation. Set Shape around 40%, DEPTH to 60%, RATIO to ×1.",
+            cableIds: ["seq-pitch"]
+          },
+          {
+            instruction: "Send a very slow LFO to V SHAPE CV.",
+            detail: "Shape CV now sweeps the base duty cycle underneath the voice engine's PWM — two layers of pulse motion at very different speeds.",
+            cableIds: ["lfo-shape"]
+          },
+          {
+            instruction: "Connect the outputs, then sweep ASYMMETRY upward.",
+            detail: "ASYMMETRY skews the modulation's trajectory: the pulse lingers on its narrow side and snaps through its wide side. The even shimmer becomes a lopsided, dub-flavored throb — push WIDTH past 100% to lean it between the speakers.",
+            cableIds: ["audio-left", "audio-right"]
+          }
         ]
       },
       {
         id: "self-patched-chaos",
-        title: "self patched chaos",
-        description: "A chaotic feedback loop utilizing the module's own outputs as modulation sources.",
+        title: "self-patched chaos",
+        description: "The module modulates itself: the right output feeds back into its own shape input at audio rate while reverse sync tears at the result. No other modules required.",
         difficulty: "advanced",
         viewBox: "0 0 620 280",
         nodes: [
           {
-            id: "clairaudient", label: "Clairaudient", x: 200, y: 20, width: 170, height: 240,
+            id: "clairaudient",
+            label: "Clairaudient",
+            x: 200, y: 20, width: 170, height: 240,
+            settings: [
+              { label: "Z Freq", value: "−12 st" },
+              { label: "Rev. Sync", value: "ON → MUTUAL" },
+              { label: "V Shape Atten.", value: "start ±15%" }
+            ],
             ports: [
               { id: "v-shape-cv", label: "V Shape CV", side: "left", offsetY: 140 },
-              { id: "right-out", label: "Right Out", side: "right", offsetY: 110 },
-              { id: "left-out", label: "Left Out", side: "right", offsetY: 80 }
+              { id: "left-out",  label: "+ Out (L)",  side: "right", offsetY: 80 },
+              { id: "right-out", label: "− Out (R)", side: "right", offsetY: 110 }
             ]
           },
           {
-            id: "mixer", label: "Mixer", x: 410, y: 55, width: 140, height: 110,
-            ports: [ { id: "in", label: "Input", side: "left", offsetY: 76 } ]
+            id: "mixer",
+            label: "Mixer",
+            x: 410, y: 55, width: 140, height: 110,
+            ports: [
+              { id: "in", label: "Input", side: "left", offsetY: 76 }
+            ]
           }
         ],
         cables: [
-          { id: "feedback", fromNode: "clairaudient", fromPort: "right-out", toNode: "clairaudient", toPort: "v-shape-cv", color: "#ec4899" },
-          { id: "audio-out", fromNode: "clairaudient", fromPort: "left-out", toNode: "mixer", toPort: "in", color: "#D7B56D" }
+          {
+            id: "feedback",
+            fromNode: "clairaudient", fromPort: "right-out",
+            toNode: "clairaudient", toPort: "v-shape-cv",
+            color: "#ec4899"
+          },
+          {
+            id: "audio-out",
+            fromNode: "clairaudient", fromPort: "left-out",
+            toNode: "mixer", toPort: "in",
+            color: "#D7B56D"
+          }
         ],
         steps: [
-          { instruction: "Patch Right Out back into V Shape CV for chaotic feedback.", cableIds: ["feedback"] },
-          { instruction: "Connect Left Out to Mixer to hear the result.", cableIds: ["audio-out"] }
+          {
+            instruction: "Patch the − output back into V SHAPE CV.",
+            detail: "The right channel now bends V's sigmoid at audio rate. Start with the V Shape attenuverter barely open (±15%) — the feedback ranges from gentle growl to total wavebreak.",
+            cableIds: ["feedback"]
+          },
+          {
+            instruction: "Take the + output to your mixer and flip REV. SYNC on.",
+            detail: "With Z an octave down, each of V's cycles now flips Z's direction while Z's output is shaping V — the loop folds in on itself. Raise FORMANT DEP. and the voice engine joins the argument.",
+            cableIds: ["audio-out"]
+          },
+          {
+            instruction: "Graduate to MUTUAL and ride REV. CHANCE around 70%.",
+            detail: "The flips turn probabilistic and the feedback staggers unpredictably. The crossfade knob is now your mix control between the clean V core and the wreckage — perform it.",
+            cableIds: ["feedback", "audio-out"]
+          }
         ]
       }
     ],
