@@ -61,7 +61,7 @@ export default async function ModulePage({ params }: ModulePageProps) {
           </FadeIn>
           <FadeIn direction="up" delay={280}>
             <div className="spec-row" aria-label={`${moduleSpec.name} specifications`}>
-              <span>{moduleSpec.hp} hp</span>
+              <span>{moduleSpec.hp} HP</span>
               <span>{moduleSpec.status}</span>
             </div>
           </FadeIn>

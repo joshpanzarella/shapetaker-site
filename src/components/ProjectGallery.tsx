@@ -117,7 +117,7 @@ export function ProjectGallery({ projects }: ProjectGalleryProps) {
 
           {activeProject.audioSamples && activeProject.audioSamples.length > 0 && (
             <div className="project-detail__samples" style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: '0.5rem', marginBottom: '0.5rem', flex: 1 }}>
-              <strong style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--ink-soft)' }}>Sound Samples</strong>
+              <strong className="project-detail__samples-label">sound samples</strong>
               {activeProject.audioSamples.map((sample, i) => (
                 <audio key={i} controls src={sample.url} style={{ height: '36px', width: '100%', borderRadius: '4px' }} />
               ))}
