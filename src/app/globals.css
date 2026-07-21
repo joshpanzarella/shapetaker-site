@@ -491,6 +491,10 @@ h3 {
   margin-top: 1.8rem;
 }
 
+.hero-actions--center {
+  justify-content: center;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
