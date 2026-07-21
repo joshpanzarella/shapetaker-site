@@ -129,7 +129,7 @@ export function ProjectGallery({ projects }: ProjectGalleryProps) {
                   <span key={i} style={{ fontSize: '1.2em', lineHeight: 1 }}>{sym}</span>
                 ))}
               </span>
-              open
+              open the interactive manual
               <span style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center' }}>
                 {symbolsRight.map((sym, i) => (
                   <span key={i} style={{ fontSize: '1.2em', lineHeight: 1 }}>{sym}</span>
@@ -142,36 +142,6 @@ export function ProjectGallery({ projects }: ProjectGalleryProps) {
         </aside>
       </div>
 
-      <div className="project-strip" aria-label="project thumbnails">
-        {filteredProjects.map((project) => (
-          <button
-            key={project.slug}
-            className={project.slug === activeProject.slug ? "is-active" : ""}
-            type="button"
-            onClick={() => setActiveSlug(project.slug)}
-          >
-            <span className="jitter-text">
-              {project.title.split("").map((char, i) => {
-                const speeds = [2.0, 3.2, 2.4, 3.8, 2.6, 4.0];
-                const signs = [1, -1, -1, 1, -1, 1];
-                return (
-                  <span 
-                    key={i} 
-                    className="jitter-char"
-                    style={{
-                      '--spin-speed': speeds[i % speeds.length],
-                      '--spin-sign': signs[i % signs.length]
-                    } as React.CSSProperties}
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </span>
-                );
-              })}
-            </span>
-            <small>{project.status}</small>
-          </button>
-        ))}
-      </div>
     </section>
   );
 }

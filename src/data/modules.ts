@@ -139,7 +139,7 @@ export const modules: ModuleSpec[] = [
     icon: AudioLines,
     hp: 18,
     panelImage: {
-      src: "/modules/clairaudient/panel.webp",
+      src: "/modules/clairaudient/panel-v2.webp",
       width: 1350,
       height: 1900,
       alt: "clairaudient vcv rack module panel"

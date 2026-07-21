@@ -20,15 +20,6 @@ export default function Home() {
               SHAPETA<span className="brand-alt-glyph">&#xf02d;</span>E<span className="brand-alt-glyph">&#xf02e;</span>
             </span>
           </h1>
-          <p>
-            the first shapetaker module is here: clairaudient, a polyphonic dual sigmoid
-            oscillator that sings from within. learn the device through its interactive manual.
-          </p>
-          <div className="hero-actions hero-actions--center">
-            <Link className="button button--primary" href="/modules/clairaudient">
-              open the interactive manual
-            </Link>
-          </div>
         </FadeIn>
         <FadeIn delay={200} direction="up" className="w-full">
           <ProjectGallery projects={projects} />
