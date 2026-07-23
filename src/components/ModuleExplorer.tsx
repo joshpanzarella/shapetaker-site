@@ -63,67 +63,80 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
     const section = sectionRef.current;
     if (!section) return;
 
-    const windowH = window.innerHeight;
-
-    // Mobile: reveal immediately, symbols stay at CSS-defined positions
-    if (window.innerWidth <= 860) {
-      section.style.setProperty("--reveal-progress", "1");
-      section.classList.add("is-revealed");
-      return;
-    }
-
-    // Hero position check — done ONCE at mount so it doesn't fire mid-scroll on homepage.
-    // If the section is already well into the viewport (e.g. module detail hero), snap straight
-    // to revealed and skip the scroll animation entirely.
-    const initialRect = section.getBoundingClientRect();
-    if (initialRect.top < windowH * 0.68) {
-      section.style.setProperty("--reveal-progress", "1");
-      section.classList.add("is-revealed");
-      return;
-    }
-
-    let revealedCards = false;
-    let targetProgress = 0;
+    const compactLayout = window.matchMedia("(max-width: 1000px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let displayProgress = 0;
     let rafId: number | null = null;
-    let descentStarted = false;
-
-    // Max step per 60fps frame — descent takes ~2.5s regardless of scroll speed
+    let observer: IntersectionObserver | null = null;
     const MAX_STEP = 0.007;
 
-    const tick = () => {
-      const diff = targetProgress - displayProgress;
-      if (Math.abs(diff) < 0.001) {
-        displayProgress = targetProgress;
+    const revealImmediately = () => {
+      if (observer) {
+        observer.disconnect();
+        observer = null;
+      }
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
         rafId = null;
-      } else {
-        displayProgress += Math.min(Math.abs(diff), MAX_STEP) * Math.sign(diff);
+      }
+      displayProgress = 1;
+      section.style.setProperty("--reveal-progress", "1");
+      section.classList.add("is-revealed");
+    };
+
+    const animateReveal = () => {
+      if (rafId !== null || section.classList.contains("is-revealed")) return;
+
+      const tick = () => {
+        displayProgress = Math.min(1, displayProgress + MAX_STEP);
+        section.style.setProperty("--reveal-progress", String(displayProgress));
+
+        if (displayProgress >= 1) {
+          rafId = null;
+          section.classList.add("is-revealed");
+          return;
+        }
+
         rafId = requestAnimationFrame(tick);
-      }
+      };
 
-      section.style.setProperty("--reveal-progress", String(displayProgress));
-
-      if (displayProgress >= 1 && !revealedCards) {
-        revealedCards = true;
-        section.classList.add("is-revealed");
-      }
+      rafId = requestAnimationFrame(tick);
     };
 
-    const handleScroll = () => {
-      const rect = section.getBoundingClientRect();
-      const moveStart = windowH * 0.68;
-      const moveEnd = windowH * 0.43;
-      const scrollProgress = Math.max(0, Math.min(1, (moveStart - rect.top) / (moveStart - moveEnd)));
-      // Once descent begins, latch to 1 — symbol always reaches its terminal position
-      if (scrollProgress > 0) descentStarted = true;
-      targetProgress = descentStarted ? 1 : 0;
-      if (rafId === null) rafId = requestAnimationFrame(tick);
+    const configureReveal = () => {
+      if (
+        compactLayout.matches ||
+        reducedMotion.matches ||
+        section.getBoundingClientRect().top < window.innerHeight * 0.68
+      ) {
+        revealImmediately();
+        return;
+      }
+
+      observer?.disconnect();
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          observer?.disconnect();
+          observer = null;
+          animateReveal();
+        },
+        {
+          rootMargin: "0px 0px -32% 0px",
+          threshold: 0
+        }
+      );
+      observer.observe(section);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    compactLayout.addEventListener("change", configureReveal);
+    reducedMotion.addEventListener("change", configureReveal);
+    configureReveal();
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      compactLayout.removeEventListener("change", configureReveal);
+      reducedMotion.removeEventListener("change", configureReveal);
+      observer?.disconnect();
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
@@ -152,6 +165,9 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
   const isVertical = module.panelImage
     ? module.panelImage.height > module.panelImage.width
     : true;
+  const panelMaxWidth = module.panelImage
+    ? Math.ceil(800 * (module.panelImage.width / module.panelImage.height))
+    : (module.hp ?? 12) * 35;
 
   return (
     <section
@@ -162,6 +178,9 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
         {
           "--panel-ratio": module.panelImage
             ? `${module.panelImage.height / module.panelImage.width}`
+            : undefined,
+          "--panel-aspect": module.panelImage
+            ? `${module.panelImage.width} / ${module.panelImage.height}`
             : undefined,
           "--module-hp": module.hp ?? 12
         } as React.CSSProperties
@@ -191,7 +210,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
               src={module.panelImage.src}
               alt={module.panelImage.alt}
               fill
-              sizes={`(max-width: 860px) min(calc(100vw - 2rem), 460px), ${(module.hp ?? 12) * 35}px`}
+              sizes={`(max-width: 1000px) min(calc(100vw - 2rem), ${panelMaxWidth}px), ${panelMaxWidth}px`}
               quality={90}
               priority={true}
             />
