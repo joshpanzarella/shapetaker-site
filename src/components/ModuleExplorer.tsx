@@ -6,13 +6,13 @@ import type { CSSProperties } from "react";
 import { alchemicalSymbols } from "@/lib/symbols";
 import {
   MousePointer2, Settings2,
-  Activity, ArrowRight, ChevronDown, ChevronUp, ChevronsDown, ChevronsUp,
-  Circle, Grid3x3, Link, Minus, Plus, RefreshCw, Repeat, Square, Spline, Unlink, Waves, Zap,
+  Activity, ArrowLeftRight, ArrowRight, ChevronDown, ChevronUp, ChevronsDown, ChevronsUp,
+  Circle, Grid3x3, Link, Minus, Plus, RefreshCw, Repeat, Shuffle, Square, Spline, Unlink, Waves, Zap,
 } from "lucide-react";
 
 const DIAGRAM_ICONS: Record<string, React.ElementType> = {
-  Activity, ArrowRight, ChevronDown, ChevronUp, ChevronsDown, ChevronsUp,
-  Circle, Grid3x3, Link, Minus, Plus, RefreshCw, Repeat, Square, Spline, Unlink, Waves, Zap,
+  Activity, ArrowLeftRight, ArrowRight, ChevronDown, ChevronUp, ChevronsDown, ChevronsUp,
+  Circle, Grid3x3, Link, Minus, Plus, RefreshCw, Repeat, Shuffle, Square, Spline, Unlink, Waves, Zap,
 };
 import type { Hotspot, ModuleExplorerData } from "@/data/modules";
 

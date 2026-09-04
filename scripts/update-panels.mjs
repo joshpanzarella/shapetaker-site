@@ -17,7 +17,7 @@
  *      image optimizer all cache by URL, so reusing a name shows stale art.
  *
  * Requirements:
- *   - The plugin must be BUILT at ~/vcv-dev/shapetaker (plugin.dylib +
+ *   - The plugin must be BUILT at ~/src/shapetaker (plugin.dylib +
  *     res/). Panels render from the compiled build — rebuild the plugin
  *     first or your art change won't appear.
  *   - VCV Rack 2 Pro installed. Rack briefly opens a window; let it.
@@ -31,7 +31,7 @@ import os from "node:os";
 import path from "node:path";
 
 const REPO = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const PLUGIN_DIR = process.env.SHAPETAKER_PLUGIN_DIR ?? path.join(os.homedir(), "vcv-dev/shapetaker");
+const PLUGIN_DIR = process.env.SHAPETAKER_PLUGIN_DIR ?? path.join(os.homedir(), "src/shapetaker");
 const RACK_BIN = process.env.RACK_BIN ?? "/Applications/VCV Rack 2 Pro.app/Contents/MacOS/Rack";
 const PUBLIC_MODULES = path.join(REPO, "public/modules");
 const MODULES_TS = path.join(REPO, "src/data/modules.ts");
@@ -40,6 +40,7 @@ const QUALITY = 0.9;
 
 // Rack module slug -> site slug. Add new modules here when they get a site entry.
 const slugMap = {
+  Athanor: "athanor",
   Augury: "augury",
   Chiaroscuro: "chiaroscuro",
   Chimera: "chimera",
@@ -50,16 +51,18 @@ const slugMap = {
   Incantation: "incantation",
   Involution: "involution",
   NocturneTV: "nocturne-tv",
+  Recollect: "recollect",
   Reliquary: "reliquary",
   Reverie: "reverie",
   Specula: "specula",
   Tessellation: "tessellation",
   Tetrarch: "tetrarch",
   Torsion: "torsion",
-  Transmutation: "transmutation"
+  Transmutation: "transmutation",
+  UtilityPanel: "utility-panel"
 };
 
-const IGNORED = new Set(["UtilityPanel"]);
+const IGNORED = new Set([]);
 
 // optional filter: accept Rack names or site slugs, case-insensitive
 const filterArgs = process.argv.slice(2).map((a) => a.toLowerCase());

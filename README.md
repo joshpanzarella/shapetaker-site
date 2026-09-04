@@ -22,7 +22,7 @@ npm run preview
 ## Updating panel images
 
 When module art changes in the plugin, rebuild the plugin (`make` in
-`~/vcv-dev/shapetaker`), then:
+`~/src/shapetaker`), then:
 
 ```bash
 npm run panels -- clairaudient   # update just the module(s) you changed

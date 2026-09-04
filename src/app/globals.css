@@ -749,6 +749,12 @@ h3 {
   aspect-ratio: var(--panel-aspect);
 }
 
+/* Wide panels (width >= height) stack above the readout and take the full column width. */
+.module-explorer[data-orientation="horizontal"] .panel-stage--image {
+  width: 100%;
+  aspect-ratio: var(--panel-aspect);
+}
+
 .panel-stage--image .rack-rail {
   display: none;
 }
