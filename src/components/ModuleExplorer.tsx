@@ -63,7 +63,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
     const section = sectionRef.current;
     if (!section) return;
 
-    const compactLayout = window.matchMedia("(max-width: 1000px)");
+    const compactLayout = window.matchMedia("(max-width: 900px)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let displayProgress = 0;
     let rafId: number | null = null;
@@ -210,7 +210,7 @@ export function ModuleExplorer({ module }: ModuleExplorerProps) {
               src={module.panelImage.src}
               alt={module.panelImage.alt}
               fill
-              sizes={`(max-width: 1000px) min(calc(100vw - 2rem), ${panelMaxWidth}px), ${panelMaxWidth}px`}
+              sizes={`(max-width: 900px) min(calc(100vw - 2rem), ${panelMaxWidth}px), ${panelMaxWidth}px`}
               quality={90}
               priority={true}
             />

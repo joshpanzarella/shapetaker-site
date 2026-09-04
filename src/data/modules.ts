@@ -3461,7 +3461,6 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "incantation",
-    hidden: true,
     name: "incantation",
     subtitle: "eight-band resonant filter array with a 24-pattern animation sequencer, envelope morphing, and analog-modeled drive",
     summary: "Eight resonant bands, each gated by its own envelope and sequenced by selectable rhythmic patterns. A dynamic resonator rather than a static equalizer — it gives any source motion and vocalic character, and folds a mono input into a bouncing stereo field.",
@@ -3776,7 +3775,6 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "torsion",
-    hidden: true,
     name: "torsion",
     subtitle: "cz-inspired phase distortion oscillator — five warp shapes, dual lines with cross-mod and ring mod, a six-stage rate/level dcw envelope, sub, and bbd chorus",
     summary: "Phase distortion in the CZ tradition, expanded for the modular world. The carrier is always a pure sine; every harmonic comes from warping its phase under a six-stage envelope whose stages are true rate/level pairs. Two lines with five ratios, bidirectional sync, feedback, and a bucket-brigade chorus finish the voice.",
@@ -3983,7 +3981,6 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "reverie",
-    hidden: true,
     name: "reverie",
     subtitle: "dattorro plate reverb wrapped in five character modes — field blur, afterimage, reverse, lo-fi, and modulated",
     summary: "A finely tuned plate tank surrounded by five pre- and post-processors: shoegaze chorus and shimmer, ghostly spectral resonance with sub-octave shadows, reverse granular swells, degraded wow-and-flutter texture, and deep classic modulation. One small blend knob fades the chosen mode in without disturbing the plate.",
@@ -4161,7 +4158,6 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "tessellation",
-    hidden: true,
     name: "tessellation",
     subtitle: "three stereo delay lines with golden-ratio subdivisions, vintage voicing modes, and a circulating cross-feedback network",
     summary: "A rhythmic polytap delay where line 1 is the master timebase and lines 2 and 3 follow in musical — or irrational golden-ratio — subdivisions. Three voicings per line, a global modulation LFO, kill switches that keep recording while muted, and X-FEED to turn the whole module into one circulating wash.",
@@ -4356,7 +4352,6 @@ export const modules: ModuleSpec[] = [
   },
   {
     slug: "athanor",
-    hidden: true,
     name: "athanor",
     subtitle: "chord-and-strum instrument modeled on the 1984 suzuki om-84 omnichord — 84 chords, a 13-position sonicstrings strip, and a 51-step chord memory",
     summary: "Twelve root buttons in circle-of-fifths order and seven quality buttons select any of the OM-84's 84 chords. A brass touch strip strums four octaves of the voicing, a divider-style organ chord holds underneath, and a melody voice tracks V/oct. Panel layout is still in flux — control positions here will move.",
