@@ -1,12 +1,85 @@
 ---
-title: "rambling - sample workflow"
-date: "2026-06-14"
-summary: "a slightly more simple approach to using samples."
+title: "Introducing: Apotheca"
+date: "2026-11-21"
+summary: "a sort of DAW for retro gaming handhelds."
 tags:
-  - samples
+  - DAW
   - workflow
+  - handheld
 ---
 
-# organizing samples
+## Tracker saga
 
-Recently, I sold a Polyend Tracker Mini. I really did enjoy everything about the device and workflow outside of the input. Polyend makes an excellent product. I was jealous of the jog wheel and pads on the Tracker+, but I made my $800 bed and I was about to at least try to lay in it. Trying to sell anything for even 3/4 full price right now is a 1/2 inch pipe dreak. And after realizing it would just eventually end up in the aspiration graveyard, I let it go on 
+For some time now I've been wanting to try a Tracker, so I bought a Polyend Tracker Mini. That's an oversimplification... I did have a dark night of the soul thinking about paying the sticker price. Unfortunately, it did not end up working out between us, and through no fault of the hardware/software, which is well built and wonderfully designed, but rather the need to move samples onto it. My library has been a mess for a while, and I recently had the chance to sort through it and get it tidied up. So there I was, ready for another Tracker, but not ready to pay the price once again in the event that I didn't enjoy it for a reason I had yet to discover. 
+
+But then, the M8 Tracker software was made available for iOS, and I immediately purchased it. I started downloading samples remotely from my home NAS, and I would move them directly to the M8 folder and boom, just like that, I was back in a Tracker for a fraction of the cost.
+
+I got along with it so well that I have been holding off from hitting buy every time a new v2 drops.
+
+I came across the M8 Headless firmware that can be loaded onto a Teensy microcontroller [link M8 Headless](https://github.com/Dirtywave/M8Docs/blob/main/docs/M8HeadlessSetup.md), but it was bring-your-own hardware from there. It seemed like a little more work than I was willing to take on given the dozen or so projects I'm already working on, so I went hunting for an alternative. I did find something, and to my surprise, it ran on a low-cost handheld device that I had been looking at for retro games for a while. So, at $60 + the cost of the software, I was going to finally have my Tracker.
+
+The device I purchased to run the software was the Anbernic RG40XXV (first in white, then in the transparent black, which is objectively sick as hell). After receiving it and installing the software, I was hyped. The software was fairly solid, but it lacked a lot of features that the M8 included; to be expected, considering that was a long-running commercial product.
+
+An update came, and I was excited to install it and play with the new features and grow with it a little. Turns out, the update refused to start, and I have had no success in getting it to work since then. I was a bit annoyed that there was no movement since that last update, so I did what I've been doing for the past year... I decided I would just make my own.
+
+DIY has always excited me, and with some AI tools, ADHD, and a million ideas, I have been ready to make it all, so I added this to the pile. That FINALLY brings me to the reason for this post: my new handheld software for music creation called Apotheca.
+
+Apotheca is FREE and open source, and always will be. I figure if I am blasting through some VC money that is subsidizing these AI systems, I might as well get something out of it for the people! Apotheca, however, is not a Tracker. I know that sounds bizarre given the lead-up, but hear me out. I did not want to compete with the other developer doing their thing, and I just had so many ideas about how I would work in a handheld DAW like this that I had to give it a try.
+
+First and foremost, I wanted Apotheca to be self-contained (you don't need samples, but you can use them, of course), intuitive, but above all else, fast. There are a lot of people out there who are good with gaming controllers, so I felt like this would be a natural migration. It has dedicated keys and minimal key combos to get the ideas in your head out quickly. Trackers, while fun and unique, are still not exactly what I would call fast.
+
+Be warned that Apotheca is still very much in the alpha stage! I've decided to create my own firmware (image) to run only Apotheca, which can also be found on the GitHub page. I will begin (slowly) creating documentation and walkthroughs for installation and such, but for now I've been focusing mostly on features, some of which I will outline below.
+
+Randomness for Exploration:
+
+An inspiration I did take from the Tracker workflow was the ability to quickly and easily add randomization to your sequence.
+
+#### Chords:
+
+I am just a polyphonic kind of guy, so I wanted near-instant access to chords. No drawing chords on the piano roll. So, Apotheca supports chord packs stored as JSON files you can freely edit. You can quickly drop a chord on the piano roll by pressing and holding Y, then pressing &larr; and &rarr; to change chords, &uarr; and &darr; to change the inversion, and R1 to change the current pack.
+
+#### Panic:
+
+This is not exactly a fun one, but it's something I've always wanted. I'm calling it "Panic," similar to a MIDI panic, except this version stops all sounds playing regardless of the situation. Sometimes something is just too loud, or something is too dissonant. Kill it with L1 + L2 + R1 + R2 (all shoulder buttons at the same time).
+
+#### Throw:
+
+Again, in the Tracker spirit, I wanted to be able to take any chord or single note and "throw" it to a bus... but just that instance. It's not exactly send automation, but I thought it was a fun and quick way to add some sauce to a lead line. I have more plans for this feature.
+
+#### Stretched Samples:
+
+Getting samples to be the correct duration was never my thing, so I wanted to include a feature that would allow you to fit them to the duration you choose, measured in either steps or bars, while retaining the pitch (if it's a melodic sample).
+
+### Current State:
+
+In its current state, Apotheca has:
+
+* Up to 12 instruments per SONG
+* 64 scenes per SONG
+* 7 synth types with presets
+  * Virtual Analog (VA)
+  * FM
+  * Granular
+  * Physical Modeling
+  * Mono Bass
+  * Phase Distortion
+  * Wavetable
+  * Sample editor/player features
+
+* A bunch of effects spanning filter, drive, crush, modulation, delay, reverb, and level
+* 3 effects per track
+* 2 sends per track (to ECHO and SPACE)
+* 2 master effects slots
+* 2 modulation slots that can be grid-locked or free, with basically any parameter as a target. The mod slot can also utilize a "stepper" shape and manipulate each step amount.
+* 8 bars per scene and lane repeat
+* MIDI In support
+* A click for recording
+* A web editor for each synth for easier sound design
+* Wi-Fi that either connects to your local network or creates its own hotspot for easily moving samples over
+* And all of the other expected features that you would normally find in a DAW (tempo, time sig, panning, track level, etc.). There will be more as the project evolves!
+
+If you know what you are doing, then head over to the [GitHub page](https://github.com/joshpanzarella/apotheca) and grab the image and etch it onto an SD card, plug it in, and fire it up. If you don't, no worries, there will be installation instructions!
+
+Stay tuned for more development, and please reach out to me with feature requests, BUGS, an introduction, recommended sandwiches in Philadelphia, whatever you'd like!
+
+\- **shapetaker**
