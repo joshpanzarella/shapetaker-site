@@ -2,6 +2,7 @@
 title: "Introducing: Apotheca"
 date: "2026-11-21"
 summary: "a sort of DAW for retro gaming handhelds."
+image: "/blog/apotheca/song.png"
 tags:
   - DAW
   - workflow
@@ -28,15 +29,25 @@ Apotheca is FREE and open source, and always will be. I figure if I am blasting 
 
 First and foremost, I wanted Apotheca to be self-contained (you don't need samples, but you can use them, of course), intuitive, but above all else, fast. There are a lot of people out there who are good with gaming controllers, so I felt like this would be a natural migration. It has dedicated keys and minimal key combos to get the ideas in your head out quickly. Trackers, while fun and unique, are still not exactly what I would call fast.
 
+<figure class="blog-figure">
+  <img src="/blog/apotheca/song.png" alt="Apotheca SONG view showing three tracks across eight scenes" />
+  <figcaption>The SONG view: tracks, scenes, and repeats at a glance.</figcaption>
+</figure>
+
 Be warned that Apotheca is still very much in the alpha stage! I've decided to create my own firmware (image) to run only Apotheca, which can also be found on the GitHub page. I will begin (slowly) creating documentation and walkthroughs for installation and such, but for now I've been focusing mostly on features, some of which I will outline below.
 
-Randomness for Exploration:
+### Randomness for Exploration:
 
 An inspiration I did take from the Tracker workflow was the ability to quickly and easily add randomization to your sequence.
 
 #### Chords:
 
 I am just a polyphonic kind of guy, so I wanted near-instant access to chords. No drawing chords on the piano roll. So, Apotheca supports chord packs stored as JSON files you can freely edit. You can quickly drop a chord on the piano roll by pressing and holding Y, then pressing &larr; and &rarr; to change chords, &uarr; and &darr; to change the inversion, and R1 to change the current pack.
+
+<figure class="blog-figure">
+  <img src="/blog/apotheca/bars-roll.png" alt="Apotheca piano roll showing an Am7 chord spanning multiple steps" />
+  <figcaption>Dropping an Am7 chord straight onto the piano roll.</figcaption>
+</figure>
 
 #### Panic:
 
@@ -49,6 +60,11 @@ Again, in the Tracker spirit, I wanted to be able to take any chord or single no
 #### Stretched Samples:
 
 Getting samples to be the correct duration was never my thing, so I wanted to include a feature that would allow you to fit them to the duration you choose, measured in either steps or bars, while retaining the pitch (if it's a melodic sample).
+
+<figure class="blog-figure">
+  <img src="/blog/apotheca/sampler.png" alt="Apotheca sampler view showing a break waveform with start and end points" />
+  <figcaption>The sampler: chop a break and fit it to the length you need.</figcaption>
+</figure>
 
 ### Current State:
 
@@ -77,6 +93,25 @@ In its current state, Apotheca has:
 * A web editor for each synth for easier sound design
 * Wi-Fi that either connects to your local network or creates its own hotspot for easily moving samples over
 * And all of the other expected features that you would normally find in a DAW (tempo, time sig, panning, track level, etc.). There will be more as the project evolves!
+
+### In action:
+
+A few more shots from the current build: the drum sequencer, the effects page, and modulation.
+
+<figure class="blog-figure">
+  <img src="/blog/apotheca/drums.png" alt="Apotheca drum sequencer showing kick, snare, and hi-hat patterns" />
+  <figcaption>The drum sequencer: 8 lanes with per-step level, nudge, and chance.</figcaption>
+</figure>
+
+<figure class="blog-figure">
+  <img src="/blog/apotheca/fx.png" alt="Apotheca effects page showing a tape delay with time, feedback, and mix controls" />
+  <figcaption>Effects: three slots per track, plus ECHO and SPACE buses and master slots.</figcaption>
+</figure>
+
+<figure class="blog-figure">
+  <img src="/blog/apotheca/mod.png" alt="Apotheca modulation page showing a triangle LFO routed to tone" />
+  <figcaption>Modulation: two slots per track, targeting nearly any parameter.</figcaption>
+</figure>
 
 If you know what you are doing, then head over to the [GitHub page](https://github.com/joshpanzarella/apotheca) and grab the image and etch it onto an SD card, plug it in, and fire it up. If you don't, no worries, there will be installation instructions!
 

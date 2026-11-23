@@ -25,7 +25,7 @@ function generateBlogData() {
         slug: file.replace(/\.mdx?$/, ""),
         frontmatter: data,
         content,
-        contentHtml: micromark(content)
+        contentHtml: micromark(content, { allowDangerousHtml: true })
       };
     });
 
