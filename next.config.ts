@@ -4,6 +4,15 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 90],
   },
+  async redirects() {
+    return [
+      {
+        source: "/blog/first-post",
+        destination: "/blog/introducing-apotheca",
+        permanent: true
+      }
+    ];
+  },
   async headers() {
     return [
       {
