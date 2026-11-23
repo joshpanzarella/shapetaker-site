@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, ExternalLink, Music, VolumeX, Send, Waves } from "lucide-react";
+import { ArrowLeft, ArrowRight, Download, ExternalLink, Music, VolumeX, Send, Waves } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
 
 export const metadata = {
@@ -60,6 +60,13 @@ export default function ApothecaPage() {
             <div className="project-page__actions">
               <Link
                 className="button button--primary"
+                href="https://github.com/joshpanzarella/apotheca/releases/latest/download/apotheca-rg40xxv.img.gz"
+              >
+                <Download size={15} aria-hidden="true" />
+                download image
+              </Link>
+              <Link
+                className="button button--ghost"
                 href="https://github.com/joshpanzarella/apotheca"
               >
                 <ExternalLink size={15} aria-hidden="true" />
@@ -69,6 +76,7 @@ export default function ApothecaPage() {
                 read the announcement
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>
+              <span className="project-page__cta-note">v0.827 · 37 MB · etch to microSD</span>
             </div>
           </div>
         </FadeIn>
@@ -146,8 +154,23 @@ export default function ApothecaPage() {
             <span className="eyebrow">pricing</span>
             <h2>free, forever.</h2>
             <p>
-              Apotheca is free and open source, and always will be. Grab the
-              image from GitHub, etch it to an SD card, and fire it up.
+              Apotheca is free and open source, and always will be.{" "}
+              <Link
+                className="inline-link"
+                href="https://github.com/joshpanzarella/apotheca/releases/latest/download/apotheca-rg40xxv.img.gz"
+              >
+                Download the v0.827 image
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>{" "}
+              (37 MB), etch it to a microSD card, and fire it up — or browse
+              all{" "}
+              <Link
+                className="inline-link"
+                href="https://github.com/joshpanzarella/apotheca/releases"
+              >
+                releases
+              </Link>
+              .
             </p>
           </div>
         </FadeIn>
