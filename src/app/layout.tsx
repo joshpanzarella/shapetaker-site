@@ -11,7 +11,7 @@ const ibmPlexSans = IBM_Plex_Sans({
   variable: "--font-plex-sans"
 });
 
-// body prose — the printed-manual voice; Plex Sans remains for
+// body prose, the printed-manual voice; Plex Sans remains for
 // display-font fallbacks and to match the small print on the panels
 const ibmPlexSerif = IBM_Plex_Serif({
   subsets: ["latin"],

@@ -12,7 +12,7 @@ const features = [
     icon: Save,
     title: "one-click save",
     description:
-      "Capture the complete state of your VCV Rack patch — module settings, cable connections, and panel positions — in a single action.",
+      "Capture the complete state of your VCV Rack patch, module settings, cable connections, and panel positions, in a single action.",
   },
   {
     icon: Tag,
@@ -69,7 +69,7 @@ export default function PatchBasePage() {
             <h1 className="project-page__title">patch base</h1>
             <p className="project-page__tagline">
               A preset manager built for VCV Rack. Save, organize, and recall
-              complete patch states — so the sounds you find don't disappear
+              complete patch states, so the sounds you find don't disappear
               when you close the session.
             </p>
             <div className="spec-row" aria-label="project specifications">
@@ -147,7 +147,7 @@ export default function PatchBasePage() {
             <span className="eyebrow">pricing</span>
             <h2>paid license, one time.</h2>
             <p>
-              Patch Base will be sold as a one-time license — no subscription.
+              Patch Base will be sold as a one-time license, no subscription.
               Pricing is not yet set. Check back as development progresses, or
               watch the status pill above for updates.
             </p>

@@ -13,23 +13,21 @@ export default function ProjectsPage() {
     <main className="page-shell">
       <FadeIn direction="up">
         <section className="page-heading">
-          <span className="eyebrow">module catalog</span>
+          <span className="eyebrow">catalog</span>
           <MorphingTitle title="projects" as="h1" />
           <p>
-            clairaudient leads the shapetaker series — open the panel to learn the device through
-            its interactive manual. more modules are on the bench and will surface here as they ship.
+            standalone software and vcv rack modules, everything
+            shapetaker ships.
           </p>
         </section>
       </FadeIn>
 
-      <ModuleCatalog />
-
       <FadeIn direction="up">
-        <section className="page-heading" style={{ marginTop: "3rem" }}>
+        <section className="page-heading">
           <span className="eyebrow">software</span>
           <h2>standalone builds.</h2>
           <p>
-            full applications outside the rack — handheld instruments and tools
+            full applications outside the rack, handheld instruments and tools
             that ship on their own.
           </p>
         </section>
@@ -62,6 +60,19 @@ export default function ProjectsPage() {
           </Link>
         </FadeIn>
       </div>
+
+      <FadeIn direction="up">
+        <section className="page-heading" style={{ marginTop: "3rem" }}>
+          <span className="eyebrow">module catalog</span>
+          <h2>vcv rack modules.</h2>
+          <p>
+            clairaudient leads the shapetaker series, open the panel to learn the device through
+            its interactive manual. more modules are on the bench and will surface here as they ship.
+          </p>
+        </section>
+      </FadeIn>
+
+      <ModuleCatalog />
     </main>
   );
 }

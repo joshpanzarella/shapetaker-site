@@ -9,7 +9,7 @@ function countForWidth(width: number) {
 
 export function RandomSymbols() {
   // poolRef holds a large stable bank of symbols generated once on mount.
-  // On resize we only change how many we show — never re-randomize.
+  // On resize we only change how many we show, never re-randomize.
   const poolRef = useRef<string[]>([]);
   const [count, setCount] = useState(0);
 

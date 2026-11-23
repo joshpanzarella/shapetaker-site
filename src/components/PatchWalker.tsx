@@ -23,7 +23,7 @@ export function PatchWalker({ patches, mainModuleId, mainModuleName }: PatchWalk
   }, [patchIndex, started, stepIndex]);
 
   // when the diagram is wider than its container, keep it centered on the
-  // nodes currently in play — panning smoothly as each step reveals modules
+  // nodes currently in play, panning smoothly as each step reveals modules
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const el = diagramRef.current;

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, Download, ExternalLink, Music, VolumeX, Send, Waves } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Download, ExternalLink, Music, VolumeX, Send, Waves } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
 
 export const metadata = {
@@ -13,19 +13,19 @@ const features = [
     icon: Music,
     title: "instant chords",
     description:
-      "Chord packs stored as plain JSON you can freely edit. Hold Y and drop a chord straight onto the piano roll — arrows pick the chord and inversion, R1 switches packs.",
+      "Chord packs stored as plain JSON you can freely edit. Hold Y and drop a chord straight onto the piano roll, arrows pick the chord and inversion, R1 switches packs.",
   },
   {
     icon: VolumeX,
     title: "panic",
     description:
-      "A MIDI-panic-style kill switch that stops all sound no matter what is happening. Too loud, too dissonant — all four shoulder buttons at once and it is gone.",
+      "A MIDI-panic-style kill switch that stops all sound no matter what is happening. Too loud, too dissonant, all four shoulder buttons at once and it is gone.",
   },
   {
     icon: Send,
     title: "throw",
     description:
-      "Fling any single chord or note to a bus for just that instance. Not quite send automation — a fast way to splash sauce on one moment of a lead line.",
+      "Fling any single chord or note to a bus for just that instance. Not quite send automation, a fast way to splash sauce on one moment of a lead line.",
   },
   {
     icon: Waves,
@@ -49,7 +49,7 @@ export default function ApothecaPage() {
             <h1 className="project-page__title">apotheca</h1>
             <p className="project-page__tagline">
               A handheld DAW for retro gaming devices. Self-contained,
-              controller-fast, and free forever — no samples required,
+              controller-fast, and free forever, no samples required,
               samples welcome.
             </p>
             <div className="spec-row" aria-label="project specifications">
@@ -75,6 +75,13 @@ export default function ApothecaPage() {
               <Link className="inline-link" href="/blog/introducing-apotheca">
                 read the announcement
                 <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+              <Link
+                className="inline-link"
+                href="https://github.com/joshpanzarella/apotheca/blob/main/docs/manual.md"
+              >
+                <BookOpen size={16} aria-hidden="true" />
+                read the manual
               </Link>
               <span className="project-page__cta-note">v0.827 · 37 MB · etch to microSD</span>
             </div>
@@ -135,7 +142,7 @@ export default function ApothecaPage() {
               Wi-Fi sample transfer.
             </p>
             <p>
-              The full rundown — including the tracker saga that led here —
+              The full rundown, including the tracker saga that led here,
               lives in the announcement post.
             </p>
             <p>
@@ -162,7 +169,7 @@ export default function ApothecaPage() {
                 Download the v0.827 image
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>{" "}
-              (37 MB), etch it to a microSD card, and fire it up — or browse
+              (37 MB), etch it to a microSD card, and fire it up, or browse
               all{" "}
               <Link
                 className="inline-link"

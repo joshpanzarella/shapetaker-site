@@ -4,7 +4,7 @@ import { FadeIn } from "@/components/FadeIn";
 
 export const metadata = {
   title: "understanding sound field | shapetaker",
-  description: "A field manual for sound in physical space — room acoustics, microphone placement, and practical application.",
+  description: "A field manual for sound in physical space, room acoustics, microphone placement, and practical application.",
 };
 
 const chapters = [
@@ -43,7 +43,7 @@ export default function UnderstandingSoundFieldPage() {
             <p className="project-page__tagline">
               A field manual for sound in physical space. Covers the principles
               behind room acoustics, microphone placement, and practical
-              listening — written for producers, engineers, and curious ears.
+              listening, written for producers, engineers, and curious ears.
             </p>
             <div className="spec-row" aria-label="project specifications">
               <span>coming soon</span>
@@ -103,7 +103,7 @@ export default function UnderstandingSoundFieldPage() {
           <div className="project-prose">
             <p>
               Each section is written to be read in pieces. You don't need to
-              start at the front — if you're solving a specific problem in a
+              start at the front, if you're solving a specific problem in a
               room or a recording, you can open directly to the relevant chapter.
               Annotations throughout connect theory to the practical decisions
               that come up in real sessions.

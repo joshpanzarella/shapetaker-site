@@ -130,8 +130,8 @@ export const modules: ModuleSpec[] = [
   {
     slug: "clairaudient",
     name: "clairaudient",
-    subtitle: "polyphonic dual sigmoid oscillator whose pitch-locked voice engine animates every note from within — with reverse-sync chaos and true mono-to-wide stereo imaging",
-    summary: "Two sigmoid cores, V and Z, blended by a crossfader and animated by an audio-rate voice engine locked to each note's pitch — vowels, brass, and voices emerge inside the tone with no patching at all. Reverse sync and a chance control supply the chaos.",
+    subtitle: "polyphonic dual sigmoid oscillator whose pitch-locked voice engine animates every note from within, with reverse-sync chaos and true mono-to-wide stereo imaging",
+    summary: "Two sigmoid cores, V and Z, blended by a crossfader and animated by an audio-rate voice engine locked to each note's pitch, vowels, brass, and voices emerge inside the tone with no patching at all. Reverse sync and a chance control supply the chaos.",
     category: "vcv rack modules",
     status: "STEREO OSCILLATOR",
     accent: "#68B7C8",
@@ -168,10 +168,10 @@ export const modules: ModuleSpec[] = [
         size: 30,
         description: [
           "lissajous mode plots left against right: diagonal means mono, open ellipse means stereo, woolly cloud means wide",
-          "waveform mode traces left with right ghosted behind — watch the voice engine bend the sigmoid live",
+          "waveform mode traces left with right ghosted behind, watch the voice engine bend the sigmoid live",
           "color themes (phosphor, ice, solar, amber) live in the context menu",
         ],
-        tip: "learn the voice engine in waveform view — every DEPTH, RATIO, and ASYM move shows immediately.",
+        tip: "learn the voice engine in waveform view, every DEPTH, RATIO, and ASYM move shows immediately.",
         diagrams: [
           {
             id: "scope-liss-mono",
@@ -199,7 +199,7 @@ export const modules: ModuleSpec[] = [
         size: 16,
         description: [
           "Core V pitch in whole-octave steps (±2).",
-          "its Quantize box in the context menu defeats the stepping for continuous sweeps — V and Z unquantize independently",
+          "its Quantize box in the context menu defeats the stepping for continuous sweeps, V and Z unquantize independently",
         ],
         tip: "set V's register first, then tune Z against it.",
         diagrams: [
@@ -221,7 +221,7 @@ export const modules: ModuleSpec[] = [
           "Core Z pitch in semitones (±24).",
           "its Quantize box frees this knob for continuous sweeps, independent of V.",
         ],
-        tip: "start a fifth or octave from V — intervals are where sync sings.",
+        tip: "start a fifth or octave from V, intervals are where sync sings.",
         diagrams: [
           { id: "z-freq--24", label: "-24 st", icon: "ChevronsDown", rotation: -135 },
           { id: "z-freq--12", label: "-12 st", icon: "ChevronDown", rotation: -67.5 },
@@ -261,7 +261,7 @@ export const modules: ModuleSpec[] = [
           "sweeps the sigmoid: sawtooth to square-like in the first half, then ever sharper past square.",
           "the voice engine has the most to work with near the middle.",
         ],
-        tip: "if FORMANT DEP. seems quiet, raise Shape toward middle — a bare saw gives the engine nothing to bend.",
+        tip: "if FORMANT DEP. seems quiet, raise Shape toward middle, a bare saw gives the engine nothing to bend.",
       },
       {
         id: "z-shape",
@@ -270,7 +270,7 @@ export const modules: ModuleSpec[] = [
         x: 88.6,
         y: 44.4,
         size: 14,
-        description: "Core Z's sigmoid sweep — same behavior as V, fully independent.",
+        description: "Core Z's sigmoid sweep, same behavior as V, fully independent.",
         tip: "shape V and Z differently, then sweep the crossfade between two characters.",
       },
       {
@@ -284,7 +284,7 @@ export const modules: ModuleSpec[] = [
           "proportional mix of Core V and Core Z.",
           "equal power (default) holds loudness steady; stereo swap pans V hard left and Z hard right, trading places as you sweep.",
         ],
-        tip: "modulate this with a slow LFO in stereo swap — the cores pass through each other.",
+        tip: "modulate this with a slow LFO in stereo swap, the cores pass through each other.",
       },
       {
         id: "xsync",
@@ -310,13 +310,13 @@ export const modules: ModuleSpec[] = [
         description: [
           "OFF: both cores run free.",
           "ON: V flips Z's direction each cycle, left and right on opposite edges.",
-          "MUTUAL: Z flips V back — chaotic.",
+          "MUTUAL: Z flips V back, chaotic.",
         ],
         tip: "start at ON, then MUTUAL when decorum is no longer required.",
         diagrams: [
-          { id: "rev-off", label: "off — free", icon: "Minus" },
-          { id: "rev-on", label: "on — v flips z", icon: "ArrowLeftRight" },
-          { id: "rev-mutual", label: "mutual — both flip", icon: "Shuffle" },
+          { id: "rev-off", label: "off, free", icon: "Minus" },
+          { id: "rev-on", label: "on, v flips z", icon: "ArrowLeftRight" },
+          { id: "rev-mutual", label: "mutual, both flip", icon: "Shuffle" },
         ],
       },
       {
@@ -330,7 +330,7 @@ export const modules: ModuleSpec[] = [
           "100% lands every flip on schedule; lower values make each flip probabilistic.",
           "an internal guard keeps 100% stable in MUTUAL mode.",
         ],
-        tip: "sweep 60–100% with MUTUAL engaged — the signature live move.",
+        tip: "sweep 60–100% with MUTUAL engaged, the signature live move.",
       },
       {
         id: "rev-ch-atten",
@@ -350,7 +350,7 @@ export const modules: ModuleSpec[] = [
         y: 74.7,
         size: 14,
         description: [
-          "how far the voice engine bends the curve each cycle — zero is frozen and traditional.",
+          "how far the voice engine bends the curve each cycle, zero is frozen and traditional.",
           "the lower quarter stays subtle; the voice clears its throat from the midpoint up.",
         ],
         tip: "pitch-locked, so every transposed note keeps its voice.",
@@ -377,7 +377,7 @@ export const modules: ModuleSpec[] = [
         size: 14,
         description: [
           "mono-to-wide, 0–200%: 0% is mono, 100% natural stereo.",
-          "past center the channels' motion drifts out of phase — at 200% the formants sweep in opposition.",
+          "past center the channels' motion drifts out of phase, at 200% the formants sweep in opposition.",
         ],
         tip: "mono-safe at any setting; extreme settings add a touch of saturation by design.",
       },
@@ -402,7 +402,7 @@ export const modules: ModuleSpec[] = [
         y: 30.0,
         size: 10,
         description: "attenuverter for V FINE CV, scaled for vibrato.",
-        tip: "keep it low — ±20 cents needs little CV.",
+        tip: "keep it low, ±20 cents needs little CV.",
       },
       {
         id: "z-fine-atten",
@@ -422,7 +422,7 @@ export const modules: ModuleSpec[] = [
         y: 60.5,
         size: 10,
         description: "attenuverter for V SHAPE CV.",
-        tip: "audio-rate modulation welcome — start small.",
+        tip: "audio-rate modulation welcome, start small.",
       },
       {
         id: "z-shape-atten",
@@ -452,7 +452,7 @@ export const modules: ModuleSpec[] = [
         y: 69.7,
         size: 9,
         description: "CV input for the master mix, scaled by the attenuverter above.",
-        tip: "polyphonic — each voice can sit between V and Z.",
+        tip: "polyphonic, each voice can sit between V and Z.",
       },
       {
         id: "rev-ch-cv",
@@ -575,7 +575,7 @@ export const modules: ModuleSpec[] = [
         kind: "choice",
         values: ["lissajous (x-y)", "waveform (triggered)"],
         description: [
-          "lissajous (default): left vs. right — diagonal is mono, ellipse is stereo, cloud is wide",
+          "lissajous (default): left vs. right, diagonal is mono, ellipse is stereo, cloud is wide",
           "waveform: triggered left trace with right ghosted behind"
         ]
       },
@@ -589,7 +589,7 @@ export const modules: ModuleSpec[] = [
           "phosphor: vintage-CRT green",
           "ice: cyan and blue-white",
           "solar: amber-red",
-          "amber: classic-terminal amber — shared across shapetaker modules or per-module"
+          "amber: classic-terminal amber, shared across shapetaker modules or per-module"
         ]
       },
       {
@@ -600,7 +600,7 @@ export const modules: ModuleSpec[] = [
         values: ["sigmoid saw", "pwm"],
         description: [
           "sigmoid saw: the morphing sigmoid; all voice controls work as labeled",
-          "pwm: band-limited pulse — Shape sets width (5–95%), DEP. applies pitch-locked PWM, ASYMMETRY skews its trajectory"
+          "pwm: band-limited pulse, Shape sets width (5–95%), DEP. applies pitch-locked PWM, ASYMMETRY skews its trajectory"
         ]
       },
       {
@@ -621,7 +621,7 @@ export const modules: ModuleSpec[] = [
         kind: "choice",
         values: ["1x (off)", "2x", "4x", "8x"],
         description: [
-          "4× default — clean under sync and audio-rate shape modulation",
+          "4× default, clean under sync and audio-rate shape modulation",
           "8× for MUTUAL sync or aggressive shape CV at high pitch; 1× for lowest CPU"
         ]
       },
@@ -640,17 +640,17 @@ export const modules: ModuleSpec[] = [
         group: "character",
         label: "oscillator noise",
         kind: "slider",
-        description: "Hardware-like noise floor plus phase jitter that softens edges — vintage VCO instability."
+        description: "Hardware-like noise floor plus phase jitter that softens edges, vintage VCO instability."
       }
     ],
     manual: [
       {
         title: "the voice engine",
-        body: "An audio-rate modulator locked to each oscillator's pitch bends the sigmoid from within. DEP. sets depth, RATIO speed as a musical multiple of pitch, ASYMMETRY adds even harmonics, and WIDTH pushes the channels' motion out of phase — opposing formant sweeps at 200%."
+        body: "An audio-rate modulator locked to each oscillator's pitch bends the sigmoid from within. DEP. sets depth, RATIO speed as a musical multiple of pitch, ASYMMETRY adds even harmonics, and WIDTH pushes the channels' motion out of phase, opposing formant sweeps at 200%."
       },
       {
         title: "sigmoid oscillators",
-        body: "V and Z build their wave around a sigmoid — a sawtooth whose edge reshapes from gentle ramp to razor. V snaps to octaves, Z to semitones, each with ±20-cent fine tune; Z normalizes to V per voice, up to 16 voices."
+        body: "V and Z build their wave around a sigmoid, a sawtooth whose edge reshapes from gentle ramp to razor. V snaps to octaves, Z to semitones, each with ±20-cent fine tune; Z normalizes to V per voice, up to 16 voices."
       },
       {
         title: "reverse sync and chance",
@@ -738,7 +738,7 @@ export const modules: ModuleSpec[] = [
         steps: [
           {
             instruction: "Connect your keyboard or sequencer's V/Oct output to V/OCT V.",
-            detail: "One cable tunes both cores — the Z input is normalized to V per voice. Set Z FREQ to +7 semitones (a perfect fifth) for a harmonic relationship.",
+            detail: "One cable tunes both cores, the Z input is normalized to V per voice. Set Z FREQ to +7 semitones (a perfect fifth) for a harmonic relationship.",
             cableIds: ["pitch-v"]
           },
           {
@@ -748,7 +748,7 @@ export const modules: ModuleSpec[] = [
           },
           {
             instruction: "Connect the + and − outputs to your mixer's left and right channels.",
-            detail: "For a more dramatic image, set Crossfade Curve to 'stereo swap' in the context menu — V and Z will trade places across the field as the LFO sweeps.",
+            detail: "For a more dramatic image, set Crossfade Curve to 'stereo swap' in the context menu, V and Z will trade places across the field as the LFO sweeps.",
             cableIds: ["audio-left", "audio-right"]
           }
         ]
@@ -854,7 +854,7 @@ export const modules: ModuleSpec[] = [
           },
           {
             instruction: "Send the envelope to V SHAPE CV.",
-            detail: "Set both SHAPE knobs around 85% so the wave sits in its most symmetric, square-like zone — that's where ASYMMETRY has the most even harmonics to pour in.",
+            detail: "Set both SHAPE knobs around 85% so the wave sits in its most symmetric, square-like zone, that's where ASYMMETRY has the most even harmonics to pour in.",
             cableIds: ["env-v-shape"]
           },
           {
@@ -872,7 +872,7 @@ export const modules: ModuleSpec[] = [
       {
         id: "broken-radio",
         title: "the broken radio",
-        description: "MUTUAL reverse sync with a stepped-random source rolling the dice on every flip — the two cores lurch between locked snarling and staggering collapse, spread 200% wide.",
+        description: "MUTUAL reverse sync with a stepped-random source rolling the dice on every flip, the two cores lurch between locked snarling and staggering collapse, spread 200% wide.",
         difficulty: "advanced",
         viewBox: "0 0 620 280",
         nodes: [
@@ -950,17 +950,17 @@ export const modules: ModuleSpec[] = [
         steps: [
           {
             instruction: "Patch a pitch source into V/OCT V and detune Z a fifth up (+7).",
-            detail: "Flip REV. SYNC to its MUTUAL position — the two cores now shove each other's playback direction around. At CHANCE 100% this chaos is fully deterministic.",
+            detail: "Flip REV. SYNC to its MUTUAL position, the two cores now shove each other's playback direction around. At CHANCE 100% this chaos is fully deterministic.",
             cableIds: ["pitch-v"]
           },
           {
             instruction: "Patch a stepped-random source into REV. CH. CV.",
-            detail: "Set REV. CH. ATTEN. slightly negative so random steps subtract from the 80% CHANCE setting. Each polyphonic voice rolls its own dice — flips loosen, lurch, and stagger.",
+            detail: "Set REV. CH. ATTEN. slightly negative so random steps subtract from the 80% CHANCE setting. Each polyphonic voice rolls its own dice, flips loosen, lurch, and stagger.",
             cableIds: ["random-chance"]
           },
           {
             instruction: "Connect both outputs and turn WIDTH to 200%.",
-            detail: "The left and right copies of Z flip on opposite edges of V's cycle, so the wreckage spreads across the entire stereo field. Ride CHANCE between 60% and 100% by hand — that sweep is the module's signature live move.",
+            detail: "The left and right copies of Z flip on opposite edges of V's cycle, so the wreckage spreads across the entire stereo field. Ride CHANCE between 60% and 100% by hand, that sweep is the module's signature live move.",
             cableIds: ["audio-left", "audio-right"]
           }
         ]
@@ -968,7 +968,7 @@ export const modules: ModuleSpec[] = [
       {
         id: "massive-stereo-ensemble",
         title: "massive stereo ensemble",
-        description: "Stereo-swap crossfading, aged Vintage character, and two independent slow LFOs combine into an exceptionally wide, organic ensemble — one module sounding like a section.",
+        description: "Stereo-swap crossfading, aged Vintage character, and two independent slow LFOs combine into an exceptionally wide, organic ensemble, one module sounding like a section.",
         difficulty: "intermediate",
         viewBox: "0 0 620 280",
         nodes: [
@@ -1053,7 +1053,7 @@ export const modules: ModuleSpec[] = [
         steps: [
           {
             instruction: "Patch your pitch source into V/OCT V.",
-            detail: "In the context menu, set Crossfade Curve to 'stereo swap' and raise Vintage to about 70% — thermal drift, per-voice tolerances, and crosstalk age the module into an old ensemble machine.",
+            detail: "In the context menu, set Crossfade Curve to 'stereo swap' and raise Vintage to about 70%, thermal drift, per-voice tolerances, and crosstalk age the module into an old ensemble machine.",
             cableIds: ["pitch-v"]
           },
           {
@@ -1062,13 +1062,13 @@ export const modules: ModuleSpec[] = [
             cableIds: ["sine-xfade"]
           },
           {
-            instruction: "Send a slow triangle — unsynced, different rate — to Z FINE CV.",
+            instruction: "Send a slow triangle, unsynced, different rate, to Z FINE CV.",
             detail: "Z drifts a few cents against V, beating slowly. Independent LFO rates keep the two motions from ever aligning.",
             cableIds: ["tri-fine"]
           },
           {
             instruction: "Connect both outputs and set WIDTH to 150%.",
-            detail: "Beyond 100%, the voice engine's motion in the two channels drives out of phase — combined with the drift and swap, the result is an exceptionally wide, organic ensemble.",
+            detail: "Beyond 100%, the voice engine's motion in the two channels drives out of phase, combined with the drift and swap, the result is an exceptionally wide, organic ensemble.",
             cableIds: ["audio-left", "audio-right"]
           }
         ]
@@ -1076,7 +1076,7 @@ export const modules: ModuleSpec[] = [
       {
         id: "lopsided-pwm-throb",
         title: "lopsided pwm throb",
-        description: "PWM mode with a skewed modulation trajectory — the pulse lingers narrow and snaps through wide, turning even shimmer into a rhythmic, dub-flavored lean.",
+        description: "PWM mode with a skewed modulation trajectory, the pulse lingers narrow and snaps through wide, turning even shimmer into a rhythmic, dub-flavored lean.",
         difficulty: "intermediate",
         viewBox: "0 0 620 280",
         nodes: [
@@ -1160,12 +1160,12 @@ export const modules: ModuleSpec[] = [
           },
           {
             instruction: "Send a very slow LFO to V SHAPE CV.",
-            detail: "Shape CV now sweeps the base duty cycle underneath the voice engine's PWM — two layers of pulse motion at very different speeds.",
+            detail: "Shape CV now sweeps the base duty cycle underneath the voice engine's PWM, two layers of pulse motion at very different speeds.",
             cableIds: ["lfo-shape"]
           },
           {
             instruction: "Connect the outputs, then sweep ASYMMETRY upward.",
-            detail: "ASYMMETRY skews the modulation's trajectory: the pulse lingers on its narrow side and snaps through its wide side. The even shimmer becomes a lopsided, dub-flavored throb — push WIDTH past 100% to lean it between the speakers.",
+            detail: "ASYMMETRY skews the modulation's trajectory: the pulse lingers on its narrow side and snaps through its wide side. The even shimmer becomes a lopsided, dub-flavored throb, push WIDTH past 100% to lean it between the speakers.",
             cableIds: ["audio-left", "audio-right"]
           }
         ]
@@ -1218,17 +1218,17 @@ export const modules: ModuleSpec[] = [
         steps: [
           {
             instruction: "Patch the − output back into V SHAPE CV.",
-            detail: "The right channel now bends V's sigmoid at audio rate. Start with the V Shape attenuverter barely open (±15%) — the feedback ranges from gentle growl to total wavebreak.",
+            detail: "The right channel now bends V's sigmoid at audio rate. Start with the V Shape attenuverter barely open (±15%), the feedback ranges from gentle growl to total wavebreak.",
             cableIds: ["feedback"]
           },
           {
             instruction: "Take the + output to your mixer and flip REV. SYNC on.",
-            detail: "With Z an octave down, each of V's cycles now flips Z's direction while Z's output is shaping V — the loop folds in on itself. Raise FORMANT DEP. and the voice engine joins the argument.",
+            detail: "With Z an octave down, each of V's cycles now flips Z's direction while Z's output is shaping V, the loop folds in on itself. Raise FORMANT DEP. and the voice engine joins the argument.",
             cableIds: ["audio-out"]
           },
           {
             instruction: "Graduate to MUTUAL and ride REV. CHANCE around 70%.",
-            detail: "The flips turn probabilistic and the feedback staggers unpredictably. The crossfade knob is now your mix control between the clean V core and the wreckage — perform it.",
+            detail: "The flips turn probabilistic and the feedback staggers unpredictably. The crossfade knob is now your mix control between the clean V core and the wreckage, perform it.",
             cableIds: ["feedback", "audio-out"]
           }
         ]
@@ -1277,8 +1277,8 @@ export const modules: ModuleSpec[] = [
   {
     slug: "chiaroscuro",
     name: "chiaroscuro",
-    subtitle: "16-voice stereo vca in front of a five-headed distortion core — with level-following contrast, stereo tilt, and a four-mode sidechain",
-    summary: "A polyphonic stereo VCA feeding five switchable distortion topologies. VCA sets the clean level, DIST opens the algorithm, DRIVE pushes into it, MIX blends — and the wet path is level-matched continuously so dry to ruined never has to mean quiet to loud.",
+    subtitle: "16-voice stereo vca in front of a five-headed distortion core, with level-following contrast, stereo tilt, and a four-mode sidechain",
+    summary: "A polyphonic stereo VCA feeding five switchable distortion topologies. VCA sets the clean level, DIST opens the algorithm, DRIVE pushes into it, MIX blends, and the wet path is level-matched continuously so dry to ruined never has to mean quiet to loud.",
     category: "vcv rack module",
     status: "vca + distortion",
     accent: "#D7B56D",
@@ -1307,7 +1307,7 @@ export const modules: ModuleSpec[] = [
         size: 10,
         description: [
           "brightness follows the highest VCA gain across voices, up to unity",
-          "above unity it shifts white — up to 2× Linear, 4× Exponential",
+          "above unity it shifts white, up to 2× Linear, 4× Exponential",
           "dims while Duck Level sidechain ducks; color follows the display theme",
         ],
         tip: "white means above unity, into the soft knee.",
@@ -1320,11 +1320,11 @@ export const modules: ModuleSpec[] = [
         y: 13.9,
         size: 22,
         description: [
-          "resting gain, silence to unity. Factory setting is closed — silence from a new module is expected",
+          "resting gain, silence to unity. Factory setting is closed, silence from a new module is expected",
           "VCA CV adds at 10 V per unit; combined value clamps to 0–2× before the response curve",
           "linear through ordinary levels, soft knee above ±8 V, ceiling near ±11.7 V",
         ],
-        tip: "start at noon with DIST, DRIVE, MIX at zero — the clean VCA to judge against.",
+        tip: "start at noon with DIST, DRIVE, MIX at zero, the clean VCA to judge against.",
       },
       {
         id: "dist-jewel",
@@ -1335,7 +1335,7 @@ export const modules: ModuleSpec[] = [
         size: 10,
         description: [
           "color identifies TYPE; brightness combines DIST, DRIVE, MIX, with a faint glow when any is raised",
-          "values shown are post-sidechain — in Enhancement mode it stays dark between hits",
+          "values shown are post-sidechain, in Enhancement mode it stays dark between hits",
         ],
         tip: "dark with a patched sidechain means the trigger hasn't arrived yet.",
       },
@@ -1350,7 +1350,7 @@ export const modules: ModuleSpec[] = [
           "off: R IN feeds right (L normalled to R only while R is unpatched)",
           "link: left feeds both, even with right patched",
         ],
-        tip: "normalization runs one direction — an R-only patch leaves L silent.",
+        tip: "normalization runs one direction, an R-only patch leaves L silent.",
         diagrams: [
           { id: "link-off", label: "independent", icon: "Unlink", state: "down" },
           { id: "link-on", label: "l feeds both", icon: "Link", state: "up" },
@@ -1364,14 +1364,14 @@ export const modules: ModuleSpec[] = [
         y: 26.8,
         size: 18,
         description: [
-          "hard clip: narrowing-knee rail clipper — saturates low, sharp and confrontational high",
+          "hard clip: narrowing-knee rail clipper, saturates low, sharp and confrontational high",
           "tube sat: two asymmetric stages with sag; even harmonics and compression",
           "wave fold: reflective folder, rounded to sharp tips, several folds at top",
-          "bit crush: dithered bit reduction into jittered sample hold — near-clean to coarse grind",
+          "bit crush: dithered bit reduction into jittered sample hold, near-clean to coarse grind",
           "ring mod: internal carrier swept ~20 Hz–2 kHz by DIST, morphing sine → triangle → square",
-          "TYPE changes crossfade over 12 ms, manual or CV — no dropout",
+          "TYPE changes crossfade over 12 ms, manual or CV, no dropout",
         ],
-        tip: "sweep it live — the crossfade makes TYPE a performance control.",
+        tip: "sweep it live, the crossfade makes TYPE a performance control.",
         diagrams: [
           { id: "type-clip", label: "hard clip", icon: "Square", rotation: -135 },
           { id: "type-tube", label: "tube sat", icon: "Spline", rotation: -67.5 },
@@ -1389,7 +1389,7 @@ export const modules: ModuleSpec[] = [
         size: 12,
         description: [
           "lin: knob plus CV is the gain",
-          "exp: that value squared — sharper envelopes, CV boost to 4×",
+          "exp: that value squared, sharper envelopes, CV boost to 4×",
         ],
         tip: "EXP with Tube Sat and a fast envelope bites on loud attacks before the wet path opens.",
         diagrams: [
@@ -1405,7 +1405,7 @@ export const modules: ModuleSpec[] = [
         y: 38.5,
         size: 17,
         description: [
-          "opens the algorithm and governs intensity — fold count, bit depth, ring carrier",
+          "opens the algorithm and governs intensity, fold count, bit depth, ring carrier",
           "at zero (or MIX at zero) the engines bypass and reset on re-engage",
           "in Enhancement sidechain mode this is a maximum, not a fixed amount",
         ],
@@ -1418,8 +1418,8 @@ export const modules: ModuleSpec[] = [
         x: 50.0,
         y: 43.4,
         size: 17,
-        description: "pre-gain on the wet path only — how hard the VCA signal strikes the circuit.",
-        tip: "modulate DRIVE on a polyphonic Wave Fold chord — each voice owns its fold state.",
+        description: "pre-gain on the wet path only, how hard the VCA signal strikes the circuit.",
+        tip: "modulate DRIVE on a polyphonic Wave Fold chord, each voice owns its fold state.",
       },
       {
         id: "mix",
@@ -1433,7 +1433,7 @@ export const modules: ModuleSpec[] = [
           "adaptive makeup tracks both paths per voice and side, closing the clean/driven gain gap",
           "in Enhancement mode MIX stays at least 80% wet",
         ],
-        tip: "algorithms can still feel louder through spectra alone — character, not a level bug.",
+        tip: "algorithms can still feel louder through spectra alone, character, not a level bug.",
       },
       {
         id: "dist-atten",
@@ -1476,7 +1476,7 @@ export const modules: ModuleSpec[] = [
           "ties distortion depth to signal level; centered is off",
           "clockwise: loud passages dirty, quiet ones clean",
           "counter-clockwise: notes grit up as they decay, clean up when played hard",
-          "added on top of DIST, per voice — one quiet chord note can break up while the rest stay clear",
+          "added on top of DIST, per voice, one quiet chord note can break up while the rest stay clear",
         ],
         tip: "dirt that fades in: DIST low, MIX high, CONTRAST counter-clockwise.",
         diagrams: [
@@ -1494,7 +1494,7 @@ export const modules: ModuleSpec[] = [
         size: 13,
         description: [
           "splits distortion depth across sides, up to half the DIST range; centered is off",
-          "the one genuinely stereo control — everything before it is identical left and right",
+          "the one genuinely stereo control, everything before it is identical left and right",
         ],
         tip: "wide from mono: signal into L IN, R empty, turn TILT. Fold and Crush spread hardest.",
         diagrams: [
@@ -1533,7 +1533,7 @@ export const modules: ModuleSpec[] = [
         y: 79.0,
         size: 12,
         voltageRange: "0–10 V · mono",
-        description: "added to the switch position — 0–10 V traverses all five types from the first; crossfaded like manual moves.",
+        description: "added to the switch position, 0–10 V traverses all five types from the first; crossfaded like manual moves.",
         tip: "stepped random here is a different circuit on every note.",
       },
       {
@@ -1602,7 +1602,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 12,
         voltageRange: "audio · poly ≤16",
-        description: "polyphonic right input. No reverse normalization — R-only patches leave L silent.",
+        description: "polyphonic right input. No reverse normalization, R-only patches leave L silent.",
         tip: "patch only for true stereo sources; otherwise let L feed both.",
       },
       {
@@ -1614,7 +1614,7 @@ export const modules: ModuleSpec[] = [
         size: 12,
         voltageRange: "0–10 V · poly",
         description: "polyphonic amplitude control, 10 V per unit, added to the knob; each voice reads its matching channel.",
-        tip: "full knob plus +10 V reaches 2× Linear, 4× Exponential — the soft knee is part of the sound up there.",
+        tip: "full knob plus +10 V reaches 2× Linear, 4× Exponential, the soft knee is part of the sound up there.",
       },
       {
         id: "out-l",
@@ -1625,7 +1625,7 @@ export const modules: ModuleSpec[] = [
         size: 12,
         voltageRange: "audio · poly",
         description: "polyphonic left output, same channel count as inputs.",
-        tip: "the ±8 V soft knee sits last — it catches coupled peaks from any algorithm.",
+        tip: "the ±8 V soft knee sits last, it catches coupled peaks from any algorithm.",
       },
       {
         id: "out-r",
@@ -1648,7 +1648,7 @@ export const modules: ModuleSpec[] = [
         values: ["1x", "2x", "4x", "8x (high quality)"],
         description: [
           "4× factory setting; higher cuts foldback at more CPU",
-          "also tonal: Wave Fold changes most (lower rates keep more aliasing energy), Ring Mod modestly — check here when a recalled patch seems brighter or thicker"
+          "also tonal: Wave Fold changes most (lower rates keep more aliasing energy), Ring Mod modestly, check here when a recalled patch seems brighter or thicker"
         ]
       },
       {
@@ -1663,7 +1663,7 @@ export const modules: ModuleSpec[] = [
         group: "sidechain mode",
         label: "ducking (inverse)",
         kind: "choice",
-        description: "Hot sidechain reduces DIST and partly backs off DRIVE — clears dense effects around kicks or accents."
+        description: "Hot sidechain reduces DIST and partly backs off DRIVE, clears dense effects around kicks or accents."
       },
       {
         id: "sidechain-direct",
@@ -1677,7 +1677,7 @@ export const modules: ModuleSpec[] = [
         group: "sidechain mode",
         label: "duck level (classic)",
         kind: "choice",
-        description: "Classic ducking: hot sidechain turns the VCA down to about a tenth — like a VCA in front of a dirt box. The gain jewel dims as it ducks."
+        description: "Classic ducking: hot sidechain turns the VCA down to about a tenth, like a VCA in front of a dirt box. The gain jewel dims as it ducks."
       },
       {
         id: "display-theme",
@@ -1695,7 +1695,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "contrast and tilt",
-        body: "CONTRAST ties depth to signal level: clockwise dirties loud passages, counter-clockwise grits up decaying notes. Added on top of DIST per voice, so one quiet chord note can break up while the rest stay clear. TILT splits depth across sides by up to half the DIST range — the one genuinely stereo control."
+        body: "CONTRAST ties depth to signal level: clockwise dirties loud passages, counter-clockwise grits up decaying notes. Added on top of DIST per voice, so one quiet chord note can break up while the rest stay clear. TILT splits depth across sides by up to half the DIST range, the one genuinely stereo control."
       },
       {
         title: "sidechain and polyphony",
@@ -1778,7 +1778,7 @@ export const modules: ModuleSpec[] = [
           },
           {
             instruction: "Choose Bit Crush, raise DIST and DRIVE, and set Sidechain Mode to Enhancement.",
-            detail: "With Enhancement selected, DIST and DRIVE become maxima — nothing happens until the sidechain arrives. MIX is held to at least 80% wet so the effect is unmistakable when it does.",
+            detail: "With Enhancement selected, DIST and DRIVE become maxima, nothing happens until the sidechain arrives. MIX is held to at least 80% wet so the effect is unmistakable when it does.",
             cableIds: []
           },
           {
@@ -1793,7 +1793,7 @@ export const modules: ModuleSpec[] = [
   {
     slug: "evocation",
     name: "evocation",
-    subtitle: "draw one voltage by hand, then let four polyphonic playheads remember it differently — with a classic adsr mode on the same panel",
+    subtitle: "draw one voltage by hand, then let four polyphonic playheads remember it differently, with a classic adsr mode on the same panel",
     summary: "The touch strip records up to five seconds of vertical motion as a 0–10 V contour. Four lanes read that contour with independent speed, phase, loop direction, loop window, inversion, clock fit, and range. Flip MODE and the same lanes carry one polyphonic ADSR.",
     category: "vcv rack module",
     status: "gesture envelope",
@@ -1822,12 +1822,12 @@ export const modules: ModuleSpec[] = [
         y: 39.6,
         size: 29,
         description: [
-          "gesture mode: hold and move vertically — high records 10 V, low 0 V; time advances while held. Release to finish; recording stops after five seconds",
+          "gesture mode: hold and move vertically, high records 10 V, low 0 V; time advances while held. Release to finish; recording stops after five seconds",
           "captured at up to 960 samples/s and rebuilt into an interpolation table; saved with the patch",
           "a new recording stops playback and replaces the gesture",
           "adsr mode: horizontal sets stage time, vertical sets contour (or Sustain level). Editing never fires the envelope",
         ],
-        tip: "a quick flick is a valid gesture — the fastest hands make the shortest envelopes.",
+        tip: "a quick flick is a valid gesture, the fastest hands make the shortest envelopes.",
       },
       {
         id: "oled",
@@ -1842,7 +1842,7 @@ export const modules: ModuleSpec[] = [
           "click the top-center timing capsule to cycle clock fit; MEAS CLK shows while learning",
           "phosphor color follows the shared theme or a local setting",
         ],
-        tip: "narrow the markers around a textured fragment and raise SPEED — a bank of LFOs.",
+        tip: "narrow the markers around a textured fragment and raise SPEED, a bank of LFOs.",
       },
       {
         id: "speed",
@@ -1853,10 +1853,10 @@ export const modules: ModuleSpec[] = [
         size: 13,
         description: [
           "gesture: free playback of the selected lane, 0.05×–8× (factory 1×, 2×, 4×, 8×)",
-          "adsr: selected stage time — Attack/Release 1 ms–5 s, Decay 1 ms–2 s, Sustain 0–100% level",
+          "adsr: selected stage time, Attack/Release 1 ms–5 s, Decay 1 ms–2 s, Sustain 0–100% level",
           "clock-fitted lanes ignore this knob until returned to Free",
         ],
-        tip: "select a lane first — the knob edits whichever button is lit.",
+        tip: "select a lane first, the knob edits whichever button is lit.",
       },
       {
         id: "trim-lead",
@@ -1866,7 +1866,7 @@ export const modules: ModuleSpec[] = [
         y: 10.4,
         size: 8,
         description: "removes a quiet opening: below 1 V for 25 ms counts as silence, 12 ms of activity confirms the cut; hysteresis defeats noise spikes. NO TRIM with no usable gesture.",
-        tip: "trim before setting clock fit — it changes the free-running duration.",
+        tip: "trim before setting clock fit, it changes the free-running duration.",
       },
       {
         id: "phase",
@@ -1878,7 +1878,7 @@ export const modules: ModuleSpec[] = [
         description: [
           "gesture: offsets the selected lane through one turn of the gesture or loop window",
           "adsr: logarithmic below center, linear at center, exponential above; Sustain has no contour",
-          "phase never delays the trigger — it shifts which point is sampled",
+          "phase never delays the trigger, it shifts which point is sampled",
         ],
         tip: "four clock-fitted lanes at four phases turn one line into a tempo-locked canon.",
       },
@@ -1901,7 +1901,7 @@ export const modules: ModuleSpec[] = [
         size: 9,
         description: [
           "touch pad reversing the selected lane's range: 0–10 V becomes 10–0 V, −5/+5 V changes sign",
-          "shared — selecting another lane recalls its stored state and lamp",
+          "shared, selecting another lane recalls its stored state and lamp",
         ],
         tip: "in ADSR mode invert lane 4 alone: one gate, three rising and one falling destination.",
         diagrams: [
@@ -1937,9 +1937,9 @@ export const modules: ModuleSpec[] = [
         description: [
           "gesture: Off → Forward → Reverse → Ping-Pong → Off per lane",
           "forward wraps start to end, reverse end to start; ping-pong fires EOC only after a full round trip",
-          "adsr: Off/On cycle flag — one lane's LOOP retriggers the shared envelope",
+          "adsr: Off/On cycle flag, one lane's LOOP retriggers the shared envelope",
         ],
-        tip: "loop windows plus high speed reach audio rate — small windows become waveforms.",
+        tip: "loop windows plus high speed reach audio rate, small windows become waveforms.",
         diagrams: [
           { id: "loop-off", label: "off", icon: "Minus" },
           { id: "loop-fwd", label: "forward", icon: "ArrowRight" },
@@ -1956,10 +1956,10 @@ export const modules: ModuleSpec[] = [
         size: 8.5,
         voltageRange: "clock · mono",
         description: [
-          "tempo only — never triggers. Four rising edges set the beat; near-simultaneous pulses ignored, small drift smoothed, big jumps re-acquire",
+          "tempo only, never triggers. Four rising edges set the beat; near-simultaneous pulses ignored, small drift smoothed, big jumps re-acquire",
           "lanes then fit to 1/4–4 beats: whole gesture with LOOP off, the window in Forward/Reverse, each leg in Ping-Pong",
         ],
-        tip: "patch the clock before switching lanes to fitted — until a period exists, lanes keep free speed.",
+        tip: "patch the clock before switching lanes to fitted, until a period exists, lanes keep free speed.",
       },
       {
         id: "gate-in",
@@ -1984,7 +1984,7 @@ export const modules: ModuleSpec[] = [
         y: 41.3,
         size: 8.5,
         description: "fires every lane: wider patched channel count with poly cables, one voice with neither. Follows the context-menu trigger behavior.",
-        tip: "draw, release, press — the fastest way to audition a take.",
+        tip: "draw, release, press, the fastest way to audition a take.",
       },
       {
         id: "trigger-in",
@@ -1997,9 +1997,9 @@ export const modules: ModuleSpec[] = [
         description: [
           "gesture: each edge restarts its voice at the gesture start or loop edge; restarted lanes glide 12 ms",
           "keep active loops running protects traversing loops; one-shots, idle loops, and releases still restart",
-          "adsr: one-shot to Sustain, then auto-release — no held gate needed",
+          "adsr: one-shot to Sustain, then auto-release, no held gate needed",
         ],
-        tip: "polyphonic triggers give every voice four playheads — up to 64 at once.",
+        tip: "polyphonic triggers give every voice four playheads, up to 64 at once.",
       },
       {
         id: "lane-1",
@@ -2019,7 +2019,7 @@ export const modules: ModuleSpec[] = [
         y: 51.9,
         size: 9,
         description: "selects lane 2 (factory 2×); Decay in ADSR mode, 1 ms–2 s.",
-        tip: "leave factory speeds first — 1×/2×/4×/8× is one gesture at four scales.",
+        tip: "leave factory speeds first, 1×/2×/4×/8× is one gesture at four scales.",
       },
       {
         id: "lane-3",
@@ -2028,7 +2028,7 @@ export const modules: ModuleSpec[] = [
         x: 76.3,
         y: 51.9,
         size: 9,
-        description: "selects lane 3 (factory 4×); Sustain in ADSR mode — SPEED or strip height sets level.",
+        description: "selects lane 3 (factory 4×); Sustain in ADSR mode, SPEED or strip height sets level.",
         tip: "fit lanes to 1/2, 1, 2, 4 beats and this is the two-bar voice.",
       },
       {
@@ -2105,7 +2105,7 @@ export const modules: ModuleSpec[] = [
         size: 8.5,
         voltageRange: "1 ms · 10 V pulse",
         description: "end-of-cycle pulse for lane 2.",
-        tip: "with lane 2 at 2× this fires twice per lane-1 cycle — a free clock divider.",
+        tip: "with lane 2 at 2× this fires twice per lane-1 cycle, a free clock divider.",
       },
       {
         id: "eoc-3",
@@ -2149,7 +2149,7 @@ export const modules: ModuleSpec[] = [
         size: 8.5,
         voltageRange: "10 V while active · poly",
         description: "activity gate for lane 2.",
-        tip: "a looping lane's gate stays high — use EOC instead when you need an edge.",
+        tip: "a looping lane's gate stays high, use EOC instead when you need an edge.",
       },
       {
         id: "gate-out-3",
@@ -2160,7 +2160,7 @@ export const modules: ModuleSpec[] = [
         size: 8.5,
         voltageRange: "10 V while active · poly",
         description: "activity gate for lane 3.",
-        tip: "gate lengths shrink with speed — four gates of four lengths from one trigger.",
+        tip: "gate lengths shrink with speed, four gates of four lengths from one trigger.",
       },
       {
         id: "gate-out-4",
@@ -2171,7 +2171,7 @@ export const modules: ModuleSpec[] = [
         size: 8.5,
         voltageRange: "10 V while active · poly",
         description: "activity gate for lane 4.",
-        tip: "the shortest gate on the panel — ideal for a pluck VCA.",
+        tip: "the shortest gate on the panel, ideal for a pluck VCA.",
       },
       {
         id: "env-out-1",
@@ -2215,7 +2215,7 @@ export const modules: ModuleSpec[] = [
         size: 8.5,
         voltageRange: "0–10 V · poly",
         description: "lane 4's contour. In ADSR mode all outputs share the shape with their own range and invert.",
-        tip: "four mappings of one ADSR: 0–10, 0–5, bipolar, inverted — one gate, four compatible destinations.",
+        tip: "four mappings of one ADSR: 0–10, 0–5, bipolar, inverted, one gate, four compatible destinations.",
       },
     ],
     contextMenu: [
@@ -2273,20 +2273,20 @@ export const modules: ModuleSpec[] = [
         label: "display theme",
         kind: "choice",
         values: ["follow shapetaker theme", "phosphor", "lunar", "solar", "amber"],
-        description: "OLED phosphor color — shared theme or local; Recollect's screen follows too."
+        description: "OLED phosphor color, shared theme or local; Recollect's screen follows too."
       },
       {
         id: "quantize-adsr-phase",
         group: "compatibility",
         label: "quantize adsr phase cv",
         kind: "toggle",
-        description: "Saved for compatibility; currently no effect — ADSR contour CV is not in the signal path."
+        description: "Saved for compatibility; currently no effect, ADSR contour CV is not in the signal path."
       }
     ],
     manual: [
       {
         title: "gesture memory",
-        body: "The strip records height against time — five seconds max at up to 960 samples/s, rebuilt into an interpolation table. Trims remove silence at either end. Four lanes read one contour with independent SPEED (0.05×–8×), PHASE, loop windows, INVERT, clock fit, and range — up to 64 playheads at once."
+        body: "The strip records height against time, five seconds max at up to 960 samples/s, rebuilt into an interpolation table. Trims remove silence at either end. Four lanes read one contour with independent SPEED (0.05×–8×), PHASE, loop windows, INVERT, clock fit, and range, up to 64 playheads at once."
       },
       {
         title: "triggers, gates, clock",
@@ -2373,7 +2373,7 @@ export const modules: ModuleSpec[] = [
   {
     slug: "recollect",
     name: "recollect",
-    subtitle: "two persistent gesture memories for evocation — separate non-destructive transforms, continuous a/b morphing, and three dedicated outputs",
+    subtitle: "two persistent gesture memories for evocation, separate non-destructive transforms, continuous a/b morphing, and three dedicated outputs",
     summary: "A 10 HP expander that sits immediately to Evocation's right. Each completed recording lands in memory A or B; Reverse, Mirror, Smooth, Simplify, and Normalize reshape the selected memory without touching the take, and MORPH crossfades continuously between the two results.",
     category: "vcv rack module",
     status: "gesture expander",
@@ -2397,12 +2397,12 @@ export const modules: ModuleSpec[] = [
         y: 19.1,
         size: 62,
         description: [
-          "reads AWAITING EVOCATION until linked — Recollect must sit immediately to Evocation's right",
+          "reads AWAITING EVOCATION until linked, Recollect must sit immediately to Evocation's right",
           "A draws in theme color, B in amber; the result curve blends between them with MORPH",
           "A/B weights show crossfade amounts (empty dimmed); REC A/B shows the next destination, padlocked when protected; the bottom line summarizes transforms",
-          "a brief RAW overlay after transform changes compares the raw take — visual only, CV updates immediately",
+          "a brief RAW overlay after transform changes compares the raw take, visual only, CV updates immediately",
         ],
-        tip: "watch the A/B weights while turning MORPH — they show whether both memories are populated.",
+        tip: "watch the A/B weights while turning MORPH, they show whether both memories are populated.",
       },
       {
         id: "smooth",
@@ -2411,7 +2411,7 @@ export const modules: ModuleSpec[] = [
         x: 25.0,
         y: 40.1,
         size: 27,
-        description: "symmetrical low-pass smoothing of the selected memory — softens jitter without shifting timing. Applied after Reverse/Mirror, before Simplify/Normalize.",
+        description: "symmetrical low-pass smoothing of the selected memory, softens jitter without shifting timing. Applied after Reverse/Mirror, before Simplify/Normalize.",
         tip: "a little Smooth keeps the intent and drops the tremor.",
       },
       {
@@ -2422,7 +2422,7 @@ export const modules: ModuleSpec[] = [
         y: 40.1,
         size: 27,
         description: "replaces detail with fewer straight-line segments. Low values preserve the hand; high values reveal the geometry.",
-        tip: "push it far and a scribble becomes a staircase — the gesture as a stepped sequence.",
+        tip: "push it far and a scribble becomes a staircase, the gesture as a stepped sequence.",
       },
       {
         id: "morph",
@@ -2436,7 +2436,7 @@ export const modules: ModuleSpec[] = [
           "with both memories, durations interpolate too, changing Evocation's base length; clock fit overrides per lane",
           "with one memory, it supplies the result across the range",
         ],
-        tip: "record a rising A and falling B, Mirror B, then sweep — opposites become family.",
+        tip: "record a rising A and falling B, Mirror B, then sweep, opposites become family.",
       },
       {
         id: "select-a",
@@ -2448,7 +2448,7 @@ export const modules: ModuleSpec[] = [
         description: [
           "selects A for the next Evocation recording and for the transform controls",
           "selecting never overwrites. With alternation on (default), a take selects B after; locked A refuses capture and doesn't advance",
-          "trimming a fresh take counts as an edit — it updates the receiving memory without advancing",
+          "trimming a fresh take counts as an edit, it updates the receiving memory without advancing",
         ],
         tip: "lock a keeper in A, experiment in B, morph toward A as anchor.",
       },
@@ -2469,7 +2469,7 @@ export const modules: ModuleSpec[] = [
         x: 17.3,
         y: 76.9,
         size: 15,
-        description: "flips the selected memory in time before playback and morph — independent of Evocation's loop travel. First in transform order.",
+        description: "flips the selected memory in time before playback and morph, independent of Evocation's loop travel. First in transform order.",
         tip: "reverse only B and MORPH crossfades a gesture with its retrograde.",
       },
       {
@@ -2512,7 +2512,7 @@ export const modules: ModuleSpec[] = [
         size: 16,
         voltageRange: "0–10 V · poly",
         description: "the current A/B morph as fixed 0–10 V following lane 1. Falls back to whichever memory exists; empty endpoints output 0 V.",
-        tip: "Evocation's Envelope outputs already carry the morph per lane — this is the plain reference copy.",
+        tip: "Evocation's Envelope outputs already carry the morph per lane, this is the plain reference copy.",
       },
       {
         id: "morph-cv",
@@ -2575,7 +2575,7 @@ export const modules: ModuleSpec[] = [
         group: "transforms",
         label: "reset selected transforms",
         kind: "toggle",
-        description: "Return the selected memory's transforms to neutral — for fresh takes that should play unaltered."
+        description: "Return the selected memory's transforms to neutral, for fresh takes that should play unaltered."
       }
     ],
     manual: [
@@ -2585,11 +2585,11 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "transforms and morph",
-        body: "Transforms apply to the selected memory in order Reverse → Mirror → Smooth → Simplify → Normalize, leaving raw takes intact. MORPH crossfades results by phase position and interpolates durations — changing Evocation's base length unless clock fit holds. Morph CV adds 10 V full range from its first channel."
+        body: "Transforms apply to the selected memory in order Reverse → Mirror → Smooth → Simplify → Normalize, leaving raw takes intact. MORPH crossfades results by phase position and interpolates durations, changing Evocation's base length unless clock fit holds. Morph CV adds 10 V full range from its first channel."
       },
       {
         title: "outputs and evocation",
-        body: "With ≥1 valid memory, Evocation plays the morphed contour through its four lanes. A/MORPH/B OUT are fixed 0–10 V polyphonic views following lane 1. Removing Recollect returns Evocation to its local recording; reconnecting restores memories, transforms, locks, and Morph — all saved with the patch."
+        body: "With ≥1 valid memory, Evocation plays the morphed contour through its four lanes. A/MORPH/B OUT are fixed 0–10 V polyphonic views following lane 1. Removing Recollect returns Evocation to its local recording; reconnecting restores memories, transforms, locks, and Morph, all saved with the patch."
       }
     ],
     suggestedPatches: [
@@ -2685,7 +2685,7 @@ export const modules: ModuleSpec[] = [
   {
     slug: "involution",
     name: "involution",
-    subtitle: "two liquid 6-pole filters orbiting one lorenz strange attractor — with spread, cross-coupling, and four routing topologies",
+    subtitle: "two liquid 6-pole filters orbiting one lorenz strange attractor, with spread, cross-coupling, and four routing topologies",
     summary: "Two morphable filters that move from a deep 6-pole lowpass through resonant bandpass to highpass. SPREAD pulls their cutoffs apart, COUPLE circulates one lane into the other, and a Lorenz attractor supplies motion that never quite repeats.",
     category: "vcv rack module",
     status: "dual chaotic filter",
@@ -2728,7 +2728,7 @@ export const modules: ModuleSpec[] = [
         size: 20,
         description: [
           "base cutoff 20 Hz–20.5 kHz, with extra travel in the musical midrange",
-          "factory position is fully open — turn down before raising resonance",
+          "factory position is fully open, turn down before raising resonance",
           "voice 1 exact; voices 2–16 get fixed ±1.5-semitone offsets so chord peaks don't stack",
         ],
         tip: "with LINK CUTOFF, this drives both lanes and SPREAD is the only separation.",
@@ -2767,7 +2767,7 @@ export const modules: ModuleSpec[] = [
         x: 50.0,
         y: 22.2,
         size: 9,
-        description: "same as LINK CUTOFF for the RESONANCE knobs — A copies to B on engage, then they track.",
+        description: "same as LINK CUTOFF for the RESONANCE knobs, A copies to B on engage, then they track.",
         tip: "link resonance but not cutoff for differently tuned peaks at equal intensity.",
         diagrams: [
           { id: "link-res-off", label: "independent", icon: "Unlink", state: "down" },
@@ -2782,8 +2782,8 @@ export const modules: ModuleSpec[] = [
         y: 33.1,
         size: 10,
         description: [
-          "normal: bipolar CUTOFF A CV scaling — full means 10 V spans the range",
-          "1V/oct mode: tracking amount and direction — +1 an octave per volt, −1 reverse",
+          "normal: bipolar CUTOFF A CV scaling, full means 10 V spans the range",
+          "1V/oct mode: tracking amount and direction, +1 an octave per volt, −1 reverse",
         ],
         tip: "for played resonance, enable 1V/oct tracking and turn fully clockwise; the knob becomes base tuning.",
       },
@@ -2816,7 +2816,7 @@ export const modules: ModuleSpec[] = [
         x: 89.1,
         y: 33.1,
         size: 10,
-        description: "bipolar CUTOFF B CV scaling — or tracking amount/direction with B 1V/oct enabled.",
+        description: "bipolar CUTOFF B CV scaling, or tracking amount/direction with B 1V/oct enabled.",
         tip: "mirror A's attenuverter for symmetric motion; invert it for open-one-side/close-the-other.",
       },
       {
@@ -2828,9 +2828,9 @@ export const modules: ModuleSpec[] = [
         size: 13,
         description: [
           "ladder-style resonant feedback for A; the top range crosses into stabilized self-oscillation",
-          "in Liquid, resonant energy blooms the cutoff up then pulls it back — the seeking-and-settling the module is named for",
+          "in Liquid, resonant energy blooms the cutoff up then pulls it back, the seeking-and-settling the module is named for",
         ],
-        tip: "raise resonance before COUPLE — coupling needs audible peaks.",
+        tip: "raise resonance before COUPLE, coupling needs audible peaks.",
       },
       {
         id: "resonance-b",
@@ -2850,7 +2850,7 @@ export const modules: ModuleSpec[] = [
         y: 54.9,
         size: 9,
         voltageRange: "±10 V · poly",
-        description: "polyphonic resonance modulation for A. Full positive: +10 V adds 1.0 — the whole panel range; negative subtracts.",
+        description: "polyphonic resonance modulation for A. Full positive: +10 V adds 1.0, the whole panel range; negative subtracts.",
         tip: "per-voice envelopes here bloom each note's own peak instead of swelling the chord.",
       },
       {
@@ -2892,7 +2892,7 @@ export const modules: ModuleSpec[] = [
         y: 64.0,
         size: 9,
         voltageRange: "0–10 V · mono",
-        description: "shared A/B separation — 10 V adds the full three-octave spread atop the knob. Global: first channel only.",
+        description: "shared A/B separation, 10 V adds the full three-octave spread atop the knob. Global: first channel only.",
         tip: "a slow triangle breathes the cutoffs apart and together with neither lane moving alone.",
       },
       {
@@ -2903,7 +2903,7 @@ export const modules: ModuleSpec[] = [
         y: 64.0,
         size: 9,
         voltageRange: "gate ≥ 1 V",
-        description: "pauses both attractors while ≥1 V. A hold, not a reset — the field resumes exactly where it stopped. Independent of the CRT click latch.",
+        description: "pauses both attractors while ≥1 V. A hold, not a reset, the field resumes exactly where it stopped. Independent of the CRT click latch.",
         tip: "gate from a sequencer so chaos moves only between phrases.",
       },
       {
@@ -2914,7 +2914,7 @@ export const modules: ModuleSpec[] = [
         y: 65.6,
         size: 11,
         description: [
-          "Lorenz speed 0.01–10 Hz — shared by both lanes and every voice",
+          "Lorenz speed 0.01–10 Hz, shared by both lanes and every voice",
           "voice 4+ invert their axis, so big chords never march as one block",
         ],
         tip: "below 0.1 Hz is weather; above 2 Hz it sounds like a modulation source.",
@@ -2929,9 +2929,9 @@ export const modules: ModuleSpec[] = [
         description: [
           "feeds A's previous output into B and B into A through a saturated, bounded return",
           "low values tie stereo movement together; high values circulate harmonics and controlled instability",
-          "active in every routing — serial and cross-coupling coexist",
+          "active in every routing, serial and cross-coupling coexist",
         ],
-        tip: "raise slowly with both resonances high — the lanes answer each other in the last third.",
+        tip: "raise slowly with both resonances high, the lanes answer each other in the last third.",
       },
       {
         id: "spread",
@@ -2944,7 +2944,7 @@ export const modules: ModuleSpec[] = [
           "lowers A and raises B equally; at maximum the cutoffs sit three octaves apart",
           "a small per-voice offset remains so chord peaks never stack",
         ],
-        tip: "with cutoffs linked, SPREAD is the whole stereo image — spectral widening, not spatial.",
+        tip: "with cutoffs linked, SPREAD is the whole stereo image, spectral widening, not spatial.",
       },
       {
         id: "chaos-depth",
@@ -2957,7 +2957,7 @@ export const modules: ModuleSpec[] = [
           "scales Lorenz motion; A and B get different axes for cutoff, a third handles the rest where allowed",
           "Chaos Destination decides what moves: cutoff, cutoff plus opposing resonance, or the full field with Form and Couple",
         ],
-        tip: "start with Cutoff only — the full field is glorious but easy to overdo.",
+        tip: "start with Cutoff only, the full field is glorious but easy to overdo.",
       },
       {
         id: "form",
@@ -2970,8 +2970,8 @@ export const modules: ModuleSpec[] = [
           "0%: 6-pole lowpass",
           "50%: resonant bandpass",
           "100%: 2-pole highpass",
-          "the cascade and resonance run at every position — one instrument, not three modes",
-          "with Opposed Form, B moves backward — LP vs HP at the ends, meeting at bandpass",
+          "the cascade and resonance run at every position, one instrument, not three modes",
+          "with Opposed Form, B moves backward, LP vs HP at the ends, meeting at bandpass",
         ],
         tip: "opposing vowels: Opposed Form on, FORM near center, slow Form CV.",
         diagrams: [
@@ -2989,7 +2989,7 @@ export const modules: ModuleSpec[] = [
         size: 9,
         voltageRange: "audio · poly",
         description: "polyphonic audio input for A. A lone input normals to both lanes; mono broadcasts across the other input's voice count.",
-        tip: "leave B IN empty for true stereo filtering of mono — SPREAD and chaos image it.",
+        tip: "leave B IN empty for true stereo filtering of mono, SPREAD and chaos image it.",
       },
       {
         id: "audio-b-in",
@@ -3032,7 +3032,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 9,
         voltageRange: "0.5 Hz/V · mono",
-        description: "shared attractor speed — +0.5 Hz per volt from the first channel, clamped to 0.01–10 Hz.",
+        description: "shared attractor speed, +0.5 Hz per volt from the first channel, clamped to 0.01–10 Hz.",
         tip: "a brief positive pulse whips the attractor into a new orbit region.",
       },
       {
@@ -3055,7 +3055,7 @@ export const modules: ModuleSpec[] = [
         size: 9,
         voltageRange: "audio · poly",
         description: "polyphonic lane-A output. Linear to ±8 V, bending toward ±12 V; a module guard catches coupled peaks past ±10 V.",
-        tip: "in Mid/Side this is already the decoded left channel — no external decoder needed.",
+        tip: "in Mid/Side this is already the decoded left channel, no external decoder needed.",
       },
       {
         id: "audio-b-out",
@@ -3066,7 +3066,7 @@ export const modules: ModuleSpec[] = [
         size: 9,
         voltageRange: "audio · poly",
         description: "polyphonic lane-B output, same channel count as inputs.",
-        tip: "serial routing lands here — A into B means this jack carries the cascade.",
+        tip: "serial routing lands here, A into B means this jack carries the cascade.",
       },
     ],
     contextMenu: [
@@ -3076,7 +3076,7 @@ export const modules: ModuleSpec[] = [
         label: "screen theme",
         kind: "choice",
         values: ["follow shapetaker theme", "local phosphor color"],
-        description: "Shared Shapetaker theme or a local CRT phosphor. Rendering only — audio never changes."
+        description: "Shared Shapetaker theme or a local CRT phosphor. Rendering only, audio never changes."
       },
       {
         id: "screen-particles",
@@ -3107,7 +3107,7 @@ export const modules: ModuleSpec[] = [
         group: "filter routing",
         label: "opposed form (reverse b)",
         kind: "toggle",
-        description: "A follows FORM while B moves backward — LP vs HP at the ends, bandpass in the center. Form CV and full-field chaos preserve it."
+        description: "A follows FORM while B moves backward, LP vs HP at the ends, bandpass in the center. Form CV and full-field chaos preserve it."
       },
       {
         id: "chaos-destination",
@@ -3126,7 +3126,7 @@ export const modules: ModuleSpec[] = [
         group: "chaos",
         label: "freeze chaos field",
         kind: "toggle",
-        description: "Menu equivalent of clicking the CRT — latches both attractors until released."
+        description: "Menu equivalent of clicking the CRT, latches both attractors until released."
       },
       {
         id: "filter-character",
@@ -3158,11 +3158,11 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "liquid filters",
-        body: "Each lane cascades three 2-pole stages at 4× oversampling with ladder-style resonance, driven into asymmetric saturation while the low end stays out of the feedback loop. FORM crossfades real responses inside that core — 6-pole LP, resonant BP, 2-pole HP — with the cascade always running. In Liquid, transients breathe cutoff up and resonant blooms pull it back."
+        body: "Each lane cascades three 2-pole stages at 4× oversampling with ladder-style resonance, driven into asymmetric saturation while the low end stays out of the feedback loop. FORM crossfades real responses inside that core, 6-pole LP, resonant BP, 2-pole HP, with the cascade always running. In Liquid, transients breathe cutoff up and resonant blooms pull it back."
       },
       {
         title: "the lorenz field",
-        body: "A Lorenz attractor gives three non-repeating signals: separate axes for A/B cutoff, a third for resonance, Form, and Couple where permitted. DEPTH scales motion, RATE runs 0.01–10 Hz, a slower attractor adds drift. Click the CRT or hold FREEZE GATE to latch — a hold, never a reset."
+        body: "A Lorenz attractor gives three non-repeating signals: separate axes for A/B cutoff, a third for resonance, Form, and Couple where permitted. DEPTH scales motion, RATE runs 0.01–10 Hz, a slower attractor adds drift. Click the CRT or hold FREEZE GATE to latch, a hold, never a reset."
       },
       {
         title: "spread, couple, routing",
@@ -3251,7 +3251,7 @@ export const modules: ModuleSpec[] = [
   {
     slug: "specula",
     name: "specula",
-    subtitle: "dual peak meter with vu scales and mechanical needle ballistics — polyphonic detection, transparent pass-through",
+    subtitle: "dual peak meter with vu scales and mechanical needle ballistics, polyphonic detection, transparent pass-through",
     summary: "Two watchful needles with the inertia of a real movement: 15 ms rise, 450 ms fall, calibrated so a full-scale ±10 V signal reaches the red edge at +3 VU. Every input sample and every polyphonic channel is copied straight to the matching output.",
     category: "vcv rack module",
     status: "vu meter",
@@ -3282,9 +3282,9 @@ export const modules: ModuleSpec[] = [
         description: [
           "dial spans −20 to +3 VU; detector reads absolute peak with ±10 V as full scale",
           "0 VU is −3 dBFS (~7.08 V peak), +3 VU is 0 dBFS at the red edge; ±5 V audio reads ~−3 VU",
-          "needle rises in 15 ms, falls in 450 ms — fast for transients, slow enough to read",
+          "needle rises in 15 ms, falls in 450 ms, fast for transients, slow enough to read",
         ],
-        tip: "the red half is the final 3 dB — if it lives there, your interface is about to clip.",
+        tip: "the red half is the final 3 dB, if it lives there, your interface is about to clip.",
       },
       {
         id: "right-meter",
@@ -3294,11 +3294,11 @@ export const modules: ModuleSpec[] = [
         y: 63.0,
         size: 72,
         description: [
-          "same scale and ballistics as left, evaluated independently — no L-to-R normalization",
+          "same scale and ballistics as left, evaluated independently, no L-to-R normalization",
           "with poly cables the needle follows the hottest channel",
           "dial illumination (factory 62%) is artwork only",
         ],
-        tip: "insert into a poly cable to confirm a voice crosses threshold — though not which one.",
+        tip: "insert into a poly cable to confirm a voice crosses threshold, though not which one.",
       },
       {
         id: "left-in",
@@ -3319,7 +3319,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 16,
         voltageRange: "any · poly ≤16",
-        description: "independent input for the right meter. No normalization — patching only L leaves R dark.",
+        description: "independent input for the right meter. No normalization, patching only L leaves R dark.",
         tip: "meter a bipolar LFO to watch excursion without a scope.",
       },
       {
@@ -3342,7 +3342,7 @@ export const modules: ModuleSpec[] = [
         size: 16,
         voltageRange: "= input",
         description: "exact per-sample copy of R IN, channel count preserved.",
-        tip: "bit-transparent — safe on a recording bus.",
+        tip: "bit-transparent, safe on a recording bus.",
       },
     ],
     contextMenu: [
@@ -3351,7 +3351,7 @@ export const modules: ModuleSpec[] = [
         group: "meter display",
         label: "screen brightness",
         kind: "slider",
-        description: "Dial illumination, factory 62%. Artwork only — needle and signal untouched."
+        description: "Dial illumination, factory 62%. Artwork only, needle and signal untouched."
       }
     ],
     manual: [
@@ -3361,18 +3361,18 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "ballistics",
-        body: "A peak detector feeds a mechanical-style smoother: 15 ms rise, 450 ms fall. Peak-oriented metering with vintage motion, not standards RMS VU — equal-peak sine and transient can look different."
+        body: "A peak detector feeds a mechanical-style smoother: 15 ms rise, 450 ms fall. Peak-oriented metering with vintage motion, not standards RMS VU, equal-peak sine and transient can look different."
       },
       {
         title: "polyphony and pass-through",
-        body: "Each side takes ≤16 channels and shows the largest absolute voltage. Outputs copy inputs exactly; sides fully independent — no normalization, gain, or delay."
+        body: "Each side takes ≤16 channels and shows the largest absolute voltage. Outputs copy inputs exactly; sides fully independent, no normalization, gain, or delay."
       }
     ]
   },
   {
     slug: "utility-panel",
     name: "utility panel",
-    subtitle: "a blank panel that knows when the gap is the wrong size — resizable from 2 to 64 hp, with auto-fit to its neighbors",
+    subtitle: "a blank panel that knows when the gap is the wrong size, resizable from 2 to 64 hp, with auto-fit to its neighbors",
     summary: "Fills the unused space between modules without a drawer full of fixed-width blanks. Drag either edge to resize in whole-HP steps, or double-click to fit the surrounding gap. The leather grain stays at a consistent scale and the width is saved with the patch.",
     category: "vcv rack module",
     status: "resizable blank",
@@ -3398,7 +3398,7 @@ export const modules: ModuleSpec[] = [
         description: [
           "a strip along each edge is the resize handle: right moves the right boundary, left moves the left",
           "width rounds to whole HP, clamped 2–64 HP",
-          "Rack still owns collision — an overlapping size reverts",
+          "Rack still owns collision, an overlapping size reverts",
         ],
         tip: "grab the edge nearest the module you want anchored.",
       },
@@ -3443,7 +3443,7 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "resizing",
-        body: "Drag either edge: right moves the right boundary, left the left. Whole-HP rounding, 2–64. Overlapping sizes revert — Rack keeps collision checking."
+        body: "Drag either edge: right moves the right boundary, left the left. Whole-HP rounding, 2–64. Overlapping sizes revert, Rack keeps collision checking."
       },
       {
         title: "auto-fit",
@@ -3459,7 +3459,7 @@ export const modules: ModuleSpec[] = [
     slug: "incantation",
     name: "incantation",
     subtitle: "eight-band resonant filter array with a 24-pattern animation sequencer, envelope morphing, and analog-modeled drive",
-    summary: "Eight resonant bands, each gated by its own envelope and sequenced by selectable rhythmic patterns. A dynamic resonator rather than a static equalizer — it gives any source motion and vocalic character, and folds a mono input into a bouncing stereo field.",
+    summary: "Eight resonant bands, each gated by its own envelope and sequenced by selectable rhythmic patterns. A dynamic resonator rather than a static equalizer, it gives any source motion and vocalic character, and folds a mono input into a bouncing stereo field.",
     category: "vcv rack module",
     status: "resonant filter array",
     accent: "#5ec2ab",
@@ -3482,7 +3482,7 @@ export const modules: ModuleSpec[] = [
         y: 12.5,
         size: 12,
         description: [
-          "input gain before the array plus saturation after it — past center adds harmonics and compression without smearing bands",
+          "input gain before the array plus saturation after it, past center adds harmonics and compression without smearing bands",
           "0–200%, center is unity",
         ],
         tip: "center to start; past noon with High Q sounds like a circuit.",
@@ -3494,7 +3494,7 @@ export const modules: ModuleSpec[] = [
         x: 30.9,
         y: 16.0,
         size: 8,
-        description: "pattern bank A or B — 12 patterns each. Pattern 1 in both is static. Never overrides sweep mode.",
+        description: "pattern bank A or B, 12 patterns each. Pattern 1 in both is static. Never overrides sweep mode.",
         tip: "flip banks mid-phrase for a different rhythm at the same rate.",
         diagrams: [
           { id: "bank-a", label: "bank a", icon: "Circle", state: "down" },
@@ -3552,8 +3552,8 @@ export const modules: ModuleSpec[] = [
         y: 30.7,
         size: 8,
         description: [
-          "mids: eight bandpass, 200 Hz–3.4 kHz — guitars, synths, articulation",
-          "bass: band 1 a 110 Hz lowpass guarding the fundamental, bands 2–8 to 1.8 kHz — bass and drums",
+          "mids: eight bandpass, 200 Hz–3.4 kHz, guitars, synths, articulation",
+          "bass: band 1 a 110 Hz lowpass guarding the fundamental, bands 2–8 to 1.8 kHz, bass and drums",
         ],
         tip: "BASS with a drum loop keeps the kick while the top bounces.",
         diagrams: [
@@ -3568,7 +3568,7 @@ export const modules: ModuleSpec[] = [
         x: 50.0,
         y: 28.8,
         size: 12,
-        description: "12-position switch for patterns in the active bank. Position 1 is static — a fixed bank or eight externally sequenced bands.",
+        description: "12-position switch for patterns in the active bank. Position 1 is static, a fixed bank or eight externally sequenced bands.",
         tip: "external sequencing: pattern 1, sliders at zero, gates into the FILTER CV inputs.",
         diagrams: [
           { id: "pat-1", label: "1 · static", icon: "Minus", rotation: -135 },
@@ -3585,7 +3585,7 @@ export const modules: ModuleSpec[] = [
         size: 8,
         description: [
           "internal lfo: a sine sweeps all bands together, phaser-like; speed follows Rate, LFO/SWEEP CV trims it",
-          "external sweep: internal oscillator stops; CV at the jack shifts the bank directly — unpatched means no sweep",
+          "external sweep: internal oscillator stops; CV at the jack shifts the bank directly, unpatched means no sweep",
         ],
         tip: "external sweep with an envelope opens a vowel on every hit.",
         diagrams: [
@@ -3602,7 +3602,7 @@ export const modules: ModuleSpec[] = [
         size: 12,
         description: [
           "0–4: sharp attack, choppy decay",
-          "5: attack equals decay — tremolo crossfades",
+          "5: attack equals decay, tremolo crossfades",
           "6–10: slow swell, abrupt decay, like reversed audio",
         ],
         tip: "7 for backwards pads; 2 when the pattern should read as rhythm.",
@@ -3612,30 +3612,30 @@ export const modules: ModuleSpec[] = [
           { id: "env-swell", label: "reverse swell", icon: "ChevronUp", rotation: 135 },
         ],
       },
-      { id: "fader-1", label: "filter 1", type: "knob", x: 9.8, y: 54.9, size: 7, description: "maximum level of band 1 — the lowest, a 110 Hz lowpass in BASS. Caps glow with band activity.", tip: "the context menu sets all sliders to 0%, 50%, 100%, or random in one move." },
+      { id: "fader-1", label: "filter 1", type: "knob", x: 9.8, y: 54.9, size: 7, description: "maximum level of band 1, the lowest, a 110 Hz lowpass in BASS. Caps glow with band activity.", tip: "the context menu sets all sliders to 0%, 50%, 100%, or random in one move." },
       { id: "fader-2", label: "filter 2", type: "knob", x: 21.3, y: 54.9, size: 7, description: "maximum level of band 2. Even bands pan right in mono-to-stereo operation.", tip: "pull the even bands down for a lopsided image." },
-      { id: "fader-3", label: "filter 3", type: "knob", x: 32.8, y: 54.9, size: 7, description: "maximum level of band 3 (odd — left in mono-to-stereo).", tip: "odd bands high, even bands low: the animation leans left." },
+      { id: "fader-3", label: "filter 3", type: "knob", x: 32.8, y: 54.9, size: 7, description: "maximum level of band 3 (odd, left in mono-to-stereo).", tip: "odd bands high, even bands low: the animation leans left." },
       { id: "fader-4", label: "filter 4", type: "knob", x: 44.3, y: 54.9, size: 7, description: "maximum level of band 4.", tip: "the middle bands carry most of the vowel." },
       { id: "fader-5", label: "filter 5", type: "knob", x: 55.7, y: 54.9, size: 7, description: "maximum level of band 5.", tip: "a single band at full with the rest at zero is a resonant ping under any pattern." },
-      { id: "fader-6", label: "filter 6", type: "knob", x: 67.2, y: 54.9, size: 7, description: "maximum level of band 6.", tip: "High Q narrows every band — revisit the sliders after switching it on." },
+      { id: "fader-6", label: "filter 6", type: "knob", x: 67.2, y: 54.9, size: 7, description: "maximum level of band 6.", tip: "High Q narrows every band, revisit the sliders after switching it on." },
       { id: "fader-7", label: "filter 7", type: "knob", x: 78.7, y: 54.9, size: 7, description: "maximum level of band 7.", tip: "the upper bands are where MIDS voicing gets its sibilance." },
-      { id: "fader-8", label: "filter 8", type: "knob", x: 90.2, y: 54.9, size: 7, description: "maximum level of band 8 — 3.4 kHz MIDS, 1.8 kHz BASS.", tip: "roll it back on bright sources before reaching for Drive." },
+      { id: "fader-8", label: "filter 8", type: "knob", x: 90.2, y: 54.9, size: 7, description: "maximum level of band 8, 3.4 kHz MIDS, 1.8 kHz BASS.", tip: "roll it back on bright sources before reaching for Drive." },
       { id: "filter-cv-1", label: "filter 1 cv", type: "jack", x: 9.8, y: 78.6, size: 8.5, voltageRange: "±5 V", description: "direct level control for band 1, added to its slider. The context menu bypasses all eight at once.", tip: "external envelopes here replace internal patterns when Pattern is 1." },
       { id: "filter-cv-2", label: "filter 2 cv", type: "jack", x: 21.3, y: 78.6, size: 8.5, voltageRange: "±5 V", description: "direct level control for band 2.", tip: "a Euclidean gate per band is a rhythm no internal pattern has." },
-      { id: "filter-cv-3", label: "filter 3 cv", type: "jack", x: 32.8, y: 78.6, size: 8.5, voltageRange: "±5 V", description: "direct level control for band 3.", tip: "negative CV pulls a band below its slider — useful for carving a hole on the beat." },
+      { id: "filter-cv-3", label: "filter 3 cv", type: "jack", x: 32.8, y: 78.6, size: 8.5, voltageRange: "±5 V", description: "direct level control for band 3.", tip: "negative CV pulls a band below its slider, useful for carving a hole on the beat." },
       { id: "filter-cv-4", label: "filter 4 cv", type: "jack", x: 44.3, y: 78.6, size: 8.5, voltageRange: "±5 V", description: "direct level control for band 4.", tip: "one LFO into two neighboring bands, one inverted, hands the vowel back and forth." },
       { id: "filter-cv-5", label: "filter 5 cv", type: "jack", x: 55.7, y: 78.6, size: 8.5, voltageRange: "±5 V", description: "direct level control for band 5.", tip: "sample-and-hold here scatters the resonance on every step." },
       { id: "filter-cv-6", label: "filter 6 cv", type: "jack", x: 67.2, y: 78.6, size: 8.5, voltageRange: "±5 V", description: "direct level control for band 6.", tip: "slow ramps across the eight inputs make a formant sweep the patterns cannot." },
       { id: "filter-cv-7", label: "filter 7 cv", type: "jack", x: 78.7, y: 78.6, size: 8.5, voltageRange: "±5 V", description: "direct level control for band 7.", tip: "gate the top two bands from a hi-hat pattern for articulated air." },
       { id: "filter-cv-8", label: "filter 8 cv", type: "jack", x: 90.2, y: 78.6, size: 8.5, voltageRange: "±5 V", description: "direct level control for band 8.", tip: "Filter CV → Bypass in the context menu silences all eight jacks without unpatching." },
       { id: "in-l", label: "audio l / mono", type: "jack", x: 9.8, y: 89.1, size: 8.5, voltageRange: "audio · poly ≤16", description: "left/mono input. Patch only this and take both outs for mono-to-stereo: odd bands left, even right, animation bouncing. Poly signals process per channel in true stereo.", tip: "the signature move: left in, both outs." },
-      { id: "in-r", label: "audio r", type: "jack", x: 21.3, y: 89.1, size: 8.5, voltageRange: "audio · poly ≤16", description: "right input — patch both inputs for independent per-side processing.", tip: "with R patched, odd/even panning is off; each side runs its own array." },
+      { id: "in-r", label: "audio r", type: "jack", x: 21.3, y: 89.1, size: 8.5, voltageRange: "audio · poly ≤16", description: "right input, patch both inputs for independent per-side processing.", tip: "with R patched, odd/even panning is off; each side runs its own array." },
       { id: "env-cv", label: "envelope cv", type: "jack", x: 32.8, y: 89.1, size: 8.5, voltageRange: "cv", description: "modulates Envelope shape, choppy through tremolo to reverse swell.", tip: "an LFO here morphs the same pattern between rhythm and swell." },
-      { id: "rate-cv", label: "rate cv", type: "jack", x: 44.3, y: 89.1, size: 8.5, voltageRange: "1 V/oct", description: "1V/oct rate modulation — each volt doubles the rate, scaling the knob. ±5 V sweeps five octaves from any position. Applying CV releases tapped tempo.", tip: "a sequencer step of +1 V is exactly double-time." },
+      { id: "rate-cv", label: "rate cv", type: "jack", x: 44.3, y: 89.1, size: 8.5, voltageRange: "1 V/oct", description: "1V/oct rate modulation, each volt doubles the rate, scaling the knob. ±5 V sweeps five octaves from any position. Applying CV releases tapped tempo.", tip: "a sequencer step of +1 V is exactly double-time." },
       { id: "sweep-cv", label: "lfo / sweep cv", type: "jack", x: 55.7, y: 89.1, size: 8.5, voltageRange: "cv", description: "internal mode: trims sweep-oscillator rate. External mode: shifts the whole bank directly. ~2 ms smoothing keeps audio-rate input stable.", tip: "external sweep + envelope follower on the input = a talk-box that tracks dynamics." },
       { id: "mix-cv", label: "mix cv", type: "jack", x: 67.2, y: 89.1, size: 8.5, voltageRange: "cv", description: "modulates the dry/wet blend.", tip: "gate it from the pattern's own downbeat for a wet burst per bar." },
       { id: "out-l", label: "left / mono out", type: "jack", x: 78.7, y: 89.1, size: 8.5, voltageRange: "audio · poly", description: "main left output. With right unpatched, this carries the full mono bank.", tip: "mono out on its own is a classic fixed filter bank with a sequencer." },
-      { id: "out-r", label: "right out", type: "jack", x: 90.2, y: 89.1, size: 8.5, voltageRange: "audio · poly", description: "patching selects stereo topology without folding poly to mono — both outputs stay polyphonic.", tip: "patch even on mono sources: that enables the odd/even panning." },
+      { id: "out-r", label: "right out", type: "jack", x: 90.2, y: 89.1, size: 8.5, voltageRange: "audio · poly", description: "patching selects stereo topology without folding poly to mono, both outputs stay polyphonic.", tip: "patch even on mono sources: that enables the odd/even panning." },
     ],
     contextMenu: [
       {
@@ -3644,7 +3644,7 @@ export const modules: ModuleSpec[] = [
         label: "filter resonance",
         kind: "choice",
         values: ["normal", "high q"],
-        description: "High Q narrows the bands for sharper resonances — pinging and pronounced vowels."
+        description: "High Q narrows the bands for sharper resonances, pinging and pronounced vowels."
       },
       {
         id: "filter-cv",
@@ -3752,7 +3752,7 @@ export const modules: ModuleSpec[] = [
         steps: [
           {
             instruction: "Patch the pad into AUDIO L / MONO only, set MIX to 100%, and raise all eight sliders.",
-            detail: "Leave the right input empty — that is what enables odd-left, even-right routing. Choose MIDS and an animated pattern in bank A, then set Rate around 0.5 Hz.",
+            detail: "Leave the right input empty, that is what enables odd-left, even-right routing. Choose MIDS and an animated pattern in bank A, then set Rate around 0.5 Hz.",
             cableIds: ["audio"]
           },
           {
@@ -3762,7 +3762,7 @@ export const modules: ModuleSpec[] = [
           },
           {
             instruction: "Flip Sweep Mode to External and patch an envelope follower into LFO / SWEEP CV.",
-            detail: "The internal sine stops and the follower shifts the whole bank up on loud passages and back down as the pad decays — a formant that tracks dynamics. Nudge Envelope toward 7 for swells.",
+            detail: "The internal sine stops and the follower shifts the whole bank up on loud passages and back down as the pad decays, a formant that tracks dynamics. Nudge Envelope toward 7 for swells.",
             cableIds: ["sweep"]
           }
         ]
@@ -3772,7 +3772,7 @@ export const modules: ModuleSpec[] = [
   {
     slug: "torsion",
     name: "torsion",
-    subtitle: "cz-inspired phase distortion oscillator — five warp shapes, dual lines with cross-mod and ring mod, a six-stage rate/level dcw envelope, sub, and bbd chorus",
+    subtitle: "cz-inspired phase distortion oscillator, five warp shapes, dual lines with cross-mod and ring mod, a six-stage rate/level dcw envelope, sub, and bbd chorus",
     summary: "Phase distortion in the CZ tradition, expanded for the modular world. The carrier is always a pure sine; every harmonic comes from warping its phase under a six-stage envelope whose stages are true rate/level pairs. Two lines with five ratios, bidirectional sync, feedback, and a bucket-brigade chorus finish the voice.",
     category: "vcv rack module",
     status: "phase distortion osc",
@@ -3802,7 +3802,7 @@ export const modules: ModuleSpec[] = [
       { id: "symmetry", label: "symmetry", type: "knob", x: 54.7, y: 14.8, size: 13, description: "biases the distortion curve. 50% neutral; either side warps harmonics in opposite directions.", tip: "off-center symmetry on Resonant is the difference between filter sweep and vowel." },
       { id: "sync", label: "bidirectional sync", type: "switch", x: 72.4, y: 14.8, size: 9, description: [
           "off: both lines free-run",
-          "a resets b: B restarts each A cycle — locked harmonics at integer ratios, repeating contours at 3:2 or with Detune",
+          "a resets b: B restarts each A cycle, locked harmonics at integer ratios, repeating contours at 3:2 or with Detune",
           "b resets a: the reverse",
         ], tip: "sync plus 3:2 plus DCW envelope is the classic scream.",
         diagrams: [
@@ -3817,7 +3817,7 @@ export const modules: ModuleSpec[] = [
           "double sine: hollow, square-like",
           "saw pulse: biting, brass-like hybrid",
           "pulse: sharp narrow pulses for leads",
-        ], tip: "the carrier stays pure sine — every harmonic is the warp.",
+        ], tip: "the carrier stays pure sine, every harmonic is the warp.",
         diagrams: [
           { id: "wa-sine", label: "single sine", icon: "Waves", rotation: -135 },
           { id: "wa-res", label: "resonant", icon: "Activity", rotation: -67.5 },
@@ -3835,13 +3835,13 @@ export const modules: ModuleSpec[] = [
           { id: "ratio-31", label: "3:1", icon: "Plus" },
         ] },
       { id: "stage-rate", label: "stage rate", type: "knob", x: 88.5, y: 30.2, size: 13, description: "master envelope speed, ×0.25–×4. Design shape with sliders; perform duration here. Its CV input gives envelope-time tracking in one cable.", tip: "key-follow shortens the envelope as pitch rises, like the hardware." },
-      { id: "torsion", label: "torsion", type: "knob", x: 11.5, y: 45.9, size: 13, description: "phase-distortion depth — how far the DCW envelope warps the sine. Fixed lines still follow knob and CV; only envelope movement bypasses.", tip: "at zero you get a sine whatever the envelope does." },
+      { id: "torsion", label: "torsion", type: "knob", x: 11.5, y: 45.9, size: 13, description: "phase-distortion depth, how far the DCW envelope warps the sine. Fixed lines still follow knob and CV; only envelope movement bypasses.", tip: "at zero you get a sine whatever the envelope does." },
       { id: "level-1", label: "stage 1 level", type: "knob", x: 25.6, y: 44.0, size: 8, description: "stage 1 target level. The envelope interpolates between stages; sliders glow with activity.", tip: "stage 1 high, 2 low, 3 high is the two-peak brass attack." },
       { id: "level-2", label: "stage 2 level", type: "knob", x: 35.4, y: 44.0, size: 8, description: "target level of stage 2.", tip: "a dip here after a high stage 1 is the CZ 'wow'." },
-      { id: "level-3", label: "stage 3 level", type: "knob", x: 45.1, y: 44.0, size: 8, description: "target level of stage 3.", tip: "the default sustain stage — hold it where the body of the note should sit." },
+      { id: "level-3", label: "stage 3 level", type: "knob", x: 45.1, y: 44.0, size: 8, description: "target level of stage 3.", tip: "the default sustain stage, hold it where the body of the note should sit." },
       { id: "level-4", label: "stage 4 level", type: "knob", x: 54.9, y: 44.0, size: 8, description: "target level of stage 4.", tip: "stages between the sustain and end stage become a sculpted, multi-segment release." },
       { id: "level-5", label: "stage 5 level", type: "knob", x: 64.6, y: 44.0, size: 8, description: "target level of stage 5.", tip: "a rise here during release gives a note that blooms as it leaves." },
-      { id: "level-6", label: "stage 6 level", type: "knob", x: 74.4, y: 44.0, size: 8, description: "target level of stage 6 — the end stage by default.", tip: "set End stage earlier in the context menu to use fewer stages." },
+      { id: "level-6", label: "stage 6 level", type: "knob", x: 74.4, y: 44.0, size: 8, description: "target level of stage 6, the end stage by default.", tip: "set End stage earlier in the context menu to use fewer stages." },
       { id: "feedback", label: "feedback", type: "knob", x: 88.5, y: 45.9, size: 13, description: "output fed back into oscillator phase for tearing overtones. Source (clean oscillators or final output) in the context menu.", tip: "if aliasing shows, raise Oversampling before taming the knob." },
       { id: "torsion-atten", label: "torsion cv attenuverter", type: "knob", x: 11.5, y: 59.7, size: 10, description: "bipolar scaling for TORSION CV.", tip: "negative amounts from an envelope make the note clean up as it opens." },
       { id: "feedback-atten", label: "feedback cv attenuverter", type: "knob", x: 88.5, y: 59.7, size: 10, description: "bipolar scaling for FEEDBACK CV.", tip: "velocity to feedback is the cheapest way to make hard notes tear." },
@@ -3851,12 +3851,12 @@ export const modules: ModuleSpec[] = [
       { id: "rate-3", label: "stage 3 rate", type: "knob", x: 45.1, y: 70.5, size: 8, description: "speed of stage 3.", tip: "with Loop on, the rates from stage 1 to the sustain stage set the cycle's rhythm." },
       { id: "rate-4", label: "stage 4 rate", type: "knob", x: 54.9, y: 70.5, size: 8, description: "speed of stage 4.", tip: "a stuttering fall: alternate fast and slow rates through the release stages." },
       { id: "rate-5", label: "stage 5 rate", type: "knob", x: 64.6, y: 70.5, size: 8, description: "speed of stage 5.", tip: "rates below center lengthen the tail without touching STAGE RATE." },
-      { id: "rate-6", label: "stage 6 rate", type: "knob", x: 74.4, y: 70.5, size: 8, description: "speed of stage 6.", tip: "very fast final stages can click — the click suppressor helps, but sharp warps still snap." },
+      { id: "rate-6", label: "stage 6 rate", type: "knob", x: 74.4, y: 70.5, size: 8, description: "speed of stage 6.", tip: "very fast final stages can click, the click suppressor helps, but sharp warps still snap." },
       { id: "osc-interaction", label: "oscillator interaction", type: "switch", x: 11.5, y: 78.6, size: 9, description: [
           "independent: A and B run autonomously, mix at output",
-          "cross phase mod: mutual phase modulation — bell-like or chaotic",
+          "cross phase mod: mutual phase modulation, bell-like or chaotic",
           "b dcw follows a: A's output modulates B's depth",
-          "ring mod: the lines multiply — metallic sums and differences",
+          "ring mod: the lines multiply, metallic sums and differences",
         ], tip: "cross phase mod with heavy feedback wants 8× oversampling.",
         diagrams: [
           { id: "int-ind", label: "independent", icon: "Minus" },
@@ -3882,8 +3882,8 @@ export const modules: ModuleSpec[] = [
       { id: "sustain-stage", group: "envelope", label: "sustain stage", kind: "choice", values: ["stage 1", "stage 2", "stage 3", "stage 4", "stage 5", "stage 6"], description: "The stage a held gate parks on; stages after it become the release path." },
       { id: "end-stage", group: "envelope", label: "end stage", kind: "choice", values: ["stage 1", "stage 2", "stage 3", "stage 4", "stage 5", "stage 6"], description: "Where the sequence finishes. Set early for fewer stages; equal to sustain for classic hold-and-release." },
       { id: "loop", group: "envelope", label: "loop", kind: "toggle", description: "Gate loops stage 1 to sustain while held. Nothing at Gate/Trig cycles the full sequence as a shape LFO." },
-      { id: "dcw-relationship", group: "phase distortion", label: "dcw relationship", kind: "choice", values: ["parallel — both follow envelope", "opposed — b follows inverted envelope", "a envelope / b fixed", "a fixed / b envelope"], description: "How the contour splits across lines. Fixed lines still follow knob, CV, key follow, velocity — only envelope movement bypasses." },
-      { id: "key-follow", group: "phase distortion", label: "key follow (depth + envelope time)", kind: "toggle", description: "Pitch scales depth and envelope time, as hardware — higher notes brighter and shorter." },
+      { id: "dcw-relationship", group: "phase distortion", label: "dcw relationship", kind: "choice", values: ["parallel, both follow envelope", "opposed, b follows inverted envelope", "a envelope / b fixed", "a fixed / b envelope"], description: "How the contour splits across lines. Fixed lines still follow knob, CV, key follow, velocity, only envelope movement bypasses." },
+      { id: "key-follow", group: "phase distortion", label: "key follow (depth + envelope time)", kind: "toggle", description: "Pitch scales depth and envelope time, as hardware, higher notes brighter and shorter." },
       { id: "velocity", group: "phase distortion", label: "velocity sensitivity (depth)", kind: "toggle", description: "Gate level scales distortion depth." },
       { id: "oversampling", group: "engine", label: "oversampling", kind: "choice", values: ["1x", "2x", "4x", "8x"], description: "New modules default 4×. Raise when feedback or cross phase mod aliases." },
       { id: "feedback-source", group: "engine", label: "feedback source", kind: "choice", values: ["classic (output)", "clean (oscillators)"], description: "Feedback from the final output (Classic, default) or the clean pre-chorus oscillators." },
@@ -3894,7 +3894,7 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "phase distortion engine",
-        body: "DCW warps the phase of a pure sine under TORSION; every harmonic is the warp itself. Five shapes per line — single sine, resonant, double sine, saw pulse, pulse — with SYMMETRY biasing the curve. DCW Relationship splits the envelope across lines, opposes it, or fixes one line at current depth."
+        body: "DCW warps the phase of a pure sine under TORSION; every harmonic is the warp itself. Five shapes per line, single sine, resonant, double sine, saw pulse, pulse, with SYMMETRY biasing the curve. DCW Relationship splits the envelope across lines, opposes it, or fixes one line at current depth."
       },
       {
         title: "six-stage dcw envelope",
@@ -3978,7 +3978,7 @@ export const modules: ModuleSpec[] = [
   {
     slug: "reverie",
     name: "reverie",
-    subtitle: "dattorro plate reverb wrapped in five character modes — field blur, afterimage, reverse, lo-fi, and modulated",
+    subtitle: "dattorro plate reverb wrapped in five character modes, field blur, afterimage, reverse, lo-fi, and modulated",
     summary: "A finely tuned plate tank surrounded by five pre- and post-processors: shoegaze chorus and shimmer, ghostly spectral resonance with sub-octave shadows, reverse granular swells, degraded wow-and-flutter texture, and deep classic modulation. One small blend knob fades the chosen mode in without disturbing the plate.",
     category: "vcv rack module",
     status: "multi-mode reverb",
@@ -3995,28 +3995,28 @@ export const modules: ModuleSpec[] = [
     media: {},
     controls: [
       { id: "mode-led", label: "mode jewel", type: "meter", x: 50.0, y: 12.2, size: 9, description: "jewel color follows the mode: teal Field Blur, purple Afterimage, amber Reverse, blue Lo-Fi, cyan Modulated.", tip: "the screens below name the two parameters for whatever color is lit." },
-      { id: "decay", label: "decay", type: "knob", x: 20.8, y: 15.3, size: 23, description: "regeneration in the polyphonic Dattorro tank, short room to near-infinite. An output limiter keeps extremes from clipping.", tip: "start at 50% — long enough to hear the modes, short enough to hear the source." },
-      { id: "mix", label: "mix", type: "knob", x: 79.2, y: 15.3, size: 23, description: "dry/wet balance. The dry path is uncolored below the limiter's knee — safe as an insert.", tip: "Rack bypass passes dry audio rather than muting." },
+      { id: "decay", label: "decay", type: "knob", x: 20.8, y: 15.3, size: 23, description: "regeneration in the polyphonic Dattorro tank, short room to near-infinite. An output limiter keeps extremes from clipping.", tip: "start at 50%, long enough to hear the modes, short enough to hear the source." },
+      { id: "mix", label: "mix", type: "knob", x: 79.2, y: 15.3, size: 23, description: "dry/wet balance. The dry path is uncolored below the limiter's knee, safe as an insert.", tip: "Rack bypass passes dry audio rather than muting." },
       { id: "tone", label: "tone", type: "knob", x: 50.0, y: 27.5, size: 16, description: "tank damping. Counter-clockwise absorbs highs for dark decay; clockwise opens a brilliant tail.", tip: "dark tone with long decay sits behind a mix instead of on top." },
       { id: "param-1", label: "param 1", type: "knob", x: 20.8, y: 38.7, size: 16, description: [
           "field blur · chor: stereo chorus depth and thickness on the tail",
-          "afterimage · rate: in-tank modulation — a wandering, unstable image",
+          "afterimage · rate: in-tank modulation, a wandering, unstable image",
           "reverse · size: grain-buffer window ahead of the tank",
           "lo-fi · degd: sample crush, saturation, lowpass 18 kHz → 1.5 kHz",
           "modulated · dpth: internal tank modulation depth",
         ], tip: "the left LCD names this for the current mode; so does the context menu." },
       { id: "param-2", label: "param 2", type: "knob", x: 79.2, y: 38.7, size: 16, description: [
           "field blur · shmr: regenerative octave-up shimmer fed back into the tank",
-          "afterimage · diff: spectral intensity — resonant bandpass plus octave-down shadow",
+          "afterimage · diff: spectral intensity, resonant bandpass plus octave-down shadow",
           "reverse · fdbk: plate output back into the reverse buffer, self-oscillating at max",
           "lo-fi · wow: wow and flutter like warped media",
           "modulated · tune: asymmetric post-tank chorus rates for width",
         ], tip: "SHMR past halfway with long decay is the cascading harmonic wash." },
       { id: "mode", label: "mode", type: "knob", x: 50.0, y: 44.6, size: 16, description: [
-          "field blur: soft focus — stereo chorus plus regenerative shimmer",
+          "field blur: soft focus, stereo chorus plus regenerative shimmer",
           "afterimage: spectral resonance with sub-octave shadows",
           "reverse: reverse granular buffer ahead of the tank",
-          "lo-fi: mechanical failure — crush, saturation, lowpass, wow/flutter",
+          "lo-fi: mechanical failure, crush, saturation, lowpass, wow/flutter",
           "modulated: classic deeply modulated hall/plate",
         ], tip: "mode switches instantly; ride EFFECT BLEND to fade one in instead.",
         diagrams: [
@@ -4033,7 +4033,7 @@ export const modules: ModuleSpec[] = [
           "master scale for the mode's parameters. Fully counter-clockwise zeroes them for a pristine plate",
           "clockwise reintroduces PARAM 1/2 settings, fading textures without losing their relationship",
         ], tip: "dial the mode in, then perform it with this one knob." },
-      { id: "param-2-atten", label: "param 2 cv attenuverter", type: "knob", x: 87.6, y: 57.3, size: 11, description: "attenuverter for PARAM 2 CV.", tip: "in Reverse keep it modest — FDBK self-oscillates at the top." },
+      { id: "param-2-atten", label: "param 2 cv attenuverter", type: "knob", x: 87.6, y: 57.3, size: 11, description: "attenuverter for PARAM 2 CV.", tip: "in Reverse keep it modest, FDBK self-oscillates at the top." },
       { id: "decay-atten", label: "decay cv attenuverter", type: "knob", x: 30.7, y: 67.6, size: 11, description: "attenuverter for DECAY CV.", tip: "an inverted envelope shortens the tail on hits and blooms it between." },
       { id: "mix-atten", label: "mix cv attenuverter", type: "knob", x: 69.3, y: 67.6, size: 11, description: "attenuverter for MIX CV.", tip: "gate the mix for reverb only on held notes." },
       { id: "param-1-cv", label: "param 1 cv", type: "jack", x: 12.4, y: 77.3, size: 10.5, voltageRange: "cv", description: "modulates PARAM 1 through its attenuverter. One-pole smoothing on all params makes audio-rate CV safe.", tip: "in Lo-Fi a slow ramp here is a tape machine dying over eight bars." },
@@ -4044,12 +4044,12 @@ export const modules: ModuleSpec[] = [
           "left triangle: input level",
           "right triangle: output level",
           "top triangle: mode effect energy",
-          "center: wet level and phase — pulsing stepped in Lo-Fi, sweeping in Reverse",
+          "center: wet level and phase, pulsing stepped in Lo-Fi, sweeping in Reverse",
         ], tip: "center lit with no input means Reverse FDBK or Afterimage is self-sustaining." },
       { id: "in-l", label: "audio in l", type: "jack", x: 9.9, y: 88.4, size: 10.5, voltageRange: "audio · poly ≤16", description: "left audio input, normalled to right for mono-to-stereo. Polyphonic to 16, tank and modes instanced per voice.", tip: "a polyphonic chord here gets sixteen plates, not one." },
-      { id: "in-r", label: "audio in r", type: "jack", x: 24.5, y: 88.4, size: 10.5, voltageRange: "audio · poly ≤16", description: "right audio input for true stereo sources.", tip: "leave empty for mono — normalization does the work." },
+      { id: "in-r", label: "audio in r", type: "jack", x: 24.5, y: 88.4, size: 10.5, voltageRange: "audio · poly ≤16", description: "right audio input for true stereo sources.", tip: "leave empty for mono, normalization does the work." },
       { id: "out-l", label: "audio out l", type: "jack", x: 75.5, y: 88.4, size: 10.5, voltageRange: "audio · poly", description: "left output through a soft-knee limiter: linear below the knee, tanh above to catch resonant peaks.", tip: "nominal ±5 V dry passes bit-transparent." },
-      { id: "out-r", label: "audio out r", type: "jack", x: 90.1, y: 88.4, size: 10.5, voltageRange: "audio · poly", description: "right output.", tip: "Modulated TUNE is the only left/right detune — check width here." },
+      { id: "out-r", label: "audio out r", type: "jack", x: 90.1, y: 88.4, size: 10.5, voltageRange: "audio · poly", description: "right output.", tip: "Modulated TUNE is the only left/right detune, check width here." },
     ],
     contextMenu: [
       {
@@ -4058,7 +4058,7 @@ export const modules: ModuleSpec[] = [
         label: "current mode parameters",
         kind: "choice",
         values: ["param 1: full name", "param 2: full name"],
-        description: "Full names of the active mode's two parameters — what the dot-matrix screens abbreviate."
+        description: "Full names of the active mode's two parameters, what the dot-matrix screens abbreviate."
       }
     ],
     manual: [
@@ -4140,7 +4140,7 @@ export const modules: ModuleSpec[] = [
           },
           {
             instruction: "Set PARAM 2 (SHMR) to about 60% and patch a very slow LFO into PARAM 2 CV.",
-            detail: "Turn the attenuverter to about half. The octave-up regeneration now rises and falls over twelve seconds or so — the tail inhales harmonics and lets them go.",
+            detail: "Turn the attenuverter to about half. The octave-up regeneration now rises and falls over twelve seconds or so, the tail inhales harmonics and lets them go.",
             cableIds: ["lfo"]
           },
           {
@@ -4156,7 +4156,7 @@ export const modules: ModuleSpec[] = [
     slug: "tessellation",
     name: "tessellation",
     subtitle: "three stereo delay lines with golden-ratio subdivisions, vintage voicing modes, and a circulating cross-feedback network",
-    summary: "A rhythmic polytap delay where line 1 is the master timebase and lines 2 and 3 follow in musical — or irrational golden-ratio — subdivisions. Three voicings per line, a global modulation LFO, kill switches that keep recording while muted, and X-FEED to turn the whole module into one circulating wash.",
+    summary: "A rhythmic polytap delay where line 1 is the master timebase and lines 2 and 3 follow in musical, or irrational golden-ratio, subdivisions. Three voicings per line, a global modulation LFO, kill switches that keep recording while muted, and X-FEED to turn the whole module into one circulating wash.",
     category: "vcv rack module",
     status: "triple delay",
     accent: "#8c7aa3",
@@ -4178,32 +4178,32 @@ export const modules: ModuleSpec[] = [
       { id: "time-1", label: "time 1", type: "knob", x: 11.9, y: 15.6, size: 11, description: "master timebase, 20 ms–1.6 s. Knob, TAP TEMPO, or EXT CLK IN.", tip: "everything else measures against this knob." },
       { id: "voice-1", label: "voice 1", type: "switch", x: 24.6, y: 15.6, size: 6.5, description: [
           "24/96 (up): pristine full-bandwidth digital",
-          "adm (center): delta-modulation compander grit — soft drive, compressed, saturated",
+          "adm (center): delta-modulation compander grit, soft drive, compressed, saturated",
           "12-bit (down): SDD-style converters with pre-emphasis, dither, stepped conversion, DAC filter",
-        ], tip: "factory ships line 1 clean, 2 ADM, 3 12-bit — three eras stacked.",
+        ], tip: "factory ships line 1 clean, 2 ADM, 3 12-bit, three eras stacked.",
         diagrams: [
           { id: "v1-2496", label: "24/96", icon: "Minus" },
           { id: "v1-adm", label: "adm", icon: "Activity" },
           { id: "v1-12", label: "12-bit", icon: "Grid3x3" },
         ] },
-      { id: "mix-1", label: "mix 1", type: "knob", x: 37.3, y: 15.6, size: 9.5, description: "line 1's wet/dry balance. The jewel by the kill row shows output level.", tip: "mix is per line — quiet line 3 under loud line 1 is a rhythm, not a wash." },
+      { id: "mix-1", label: "mix 1", type: "knob", x: 37.3, y: 15.6, size: 9.5, description: "line 1's wet/dry balance. The jewel by the kill row shows output level.", tip: "mix is per line, quiet line 3 under loud line 1 is a rhythm, not a wash." },
       { id: "repeats-1", label: "repeats 1", type: "knob", x: 54.5, y: 15.6, size: 9.5, description: "line-1 feedback. High settings approach unity; bright TONE can exceed it into the soft limiters.", tip: "REPEATS CV moves all three lines at once." },
-      { id: "tone-1", label: "tone 1", type: "knob", x: 71.7, y: 15.6, size: 9.5, description: "tilt filter inside line 1's loop. Center flat, CCW darkens, CW boosts highs — in-loop boost pushes past unity into saturated wash. 18 Hz rumble filter keeps DC out when self-oscillating.", tip: "dark on 1, bright on 3: repeats age in different directions." },
-      { id: "tap", label: "tap tempo", type: "switch", x: 83.9, y: 15.6, size: 7, description: "momentary tap for line-1 master tempo. Lamp blinks master phase — also monitors external clock.", tip: "tap the downbeats; subdivided lines follow." },
+      { id: "tone-1", label: "tone 1", type: "knob", x: 71.7, y: 15.6, size: 9.5, description: "tilt filter inside line 1's loop. Center flat, CCW darkens, CW boosts highs, in-loop boost pushes past unity into saturated wash. 18 Hz rumble filter keeps DC out when self-oscillating.", tip: "dark on 1, bright on 3: repeats age in different directions." },
+      { id: "tap", label: "tap tempo", type: "switch", x: 83.9, y: 15.6, size: 7, description: "momentary tap for line-1 master tempo. Lamp blinks master phase, also monitors external clock.", tip: "tap the downbeats; subdivided lines follow." },
       { id: "ext-clk", label: "ext clk in", type: "jack", x: 92.7, y: 15.6, size: 6.5, voltageRange: "clock", description: "overrides line-1 timebase with external clock; lines 2/3 keep their subdivisions.", tip: "clock from your sequencer and golden ratios lock to the song." },
       { id: "time-2", label: "time 2", type: "knob", x: 11.9, y: 35.0, size: 11, description: "line-2 time. Free: plain 20 ms–1.6 s. Subdivided: 0.5×–2× trim on the factor. Golden: sweeps φ⁻², φ⁻¹, unity, φ, φ².", tip: "in Golden, park between detents for repeats that never land." },
-      { id: "voice-2", label: "voice 2", type: "switch", x: 24.6, y: 35.0, size: 6.5, description: "24/96, ADM, or 12-bit for line 2.", tip: "different voices per line before raising X-FEED — circulation picks up all three.",
+      { id: "voice-2", label: "voice 2", type: "switch", x: 24.6, y: 35.0, size: 6.5, description: "24/96, ADM, or 12-bit for line 2.", tip: "different voices per line before raising X-FEED, circulation picks up all three.",
         diagrams: [
           { id: "v2-2496", label: "24/96", icon: "Minus" },
           { id: "v2-adm", label: "adm", icon: "Activity" },
           { id: "v2-12", label: "12-bit", icon: "Grid3x3" },
         ] },
-      { id: "mix-2", label: "mix 2", type: "knob", x: 37.3, y: 35.0, size: 9.5, description: "wet/dry for line 2.", tip: "as X-FEED rises, less dry enters lines 2/3 — MIX 2 becomes circulation level." },
+      { id: "mix-2", label: "mix 2", type: "knob", x: 37.3, y: 35.0, size: 9.5, description: "wet/dry for line 2.", tip: "as X-FEED rises, less dry enters lines 2/3, MIX 2 becomes circulation level." },
       { id: "repeats-2", label: "repeats 2", type: "knob", x: 54.5, y: 35.0, size: 9.5, description: "feedback for line 2.", tip: "keep below line 1's on short subdivisions, or fast taps swamp the pulse." },
       { id: "tone-2", label: "tone 2", type: "knob", x: 71.7, y: 35.0, size: 9.5, description: "tilt filter in line 2's loop.", tip: "ADM plus slightly bright tone is the early-digital-delay sound." },
       { id: "subdiv-2", label: "subdivision 2", type: "knob", x: 89.0, y: 35.0, size: 9.5, description: [
           "triplet, eighth, golden, dotted 8th, dotted quarter, free",
-          "golden locks to powers of φ — irrational ratios that resist metallic combing",
+          "golden locks to powers of φ, irrational ratios that resist metallic combing",
           "free unlinks from line 1 entirely",
         ], tip: "golden on both lines plus X-FEED is the golden wash.",
         diagrams: [
@@ -4214,7 +4214,7 @@ export const modules: ModuleSpec[] = [
           { id: "sd2-dq", label: "dotted quarter", icon: "ChevronsUp", rotation: 81 },
           { id: "sd2-free", label: "free", icon: "Unlink", rotation: 135 },
         ] },
-      { id: "time-3", label: "time 3", type: "knob", x: 11.9, y: 54.5, size: 11, description: "line-3 time — free, or 0.5×–2× trim with line 2's golden detents.", tip: "golden short on 2, golden long on 3 brackets line 1 both sides." },
+      { id: "time-3", label: "time 3", type: "knob", x: 11.9, y: 54.5, size: 11, description: "line-3 time, free, or 0.5×–2× trim with line 2's golden detents.", tip: "golden short on 2, golden long on 3 brackets line 1 both sides." },
       { id: "voice-3", label: "voice 3", type: "switch", x: 24.6, y: 54.5, size: 6.5, description: "24/96, ADM, or 12-bit for line 3.", tip: "12-bit on the longest line: the oldest echo sounds oldest.",
         diagrams: [
           { id: "v3-2496", label: "24/96", icon: "Minus" },
@@ -4222,15 +4222,15 @@ export const modules: ModuleSpec[] = [
           { id: "v3-12", label: "12-bit", icon: "Grid3x3" },
         ] },
       { id: "mix-3", label: "mix 3", type: "knob", x: 37.3, y: 54.5, size: 9.5, description: "wet/dry for line 3.", tip: "the third line is the one to sneak in last." },
-      { id: "repeats-3", label: "repeats 3", type: "knob", x: 54.5, y: 54.5, size: 9.5, description: "feedback for line 3.", tip: "line 3 is where runaway starts — keep a finger near KILL 3." },
+      { id: "repeats-3", label: "repeats 3", type: "knob", x: 54.5, y: 54.5, size: 9.5, description: "feedback for line 3.", tip: "line 3 is where runaway starts, keep a finger near KILL 3." },
       { id: "tone-3", label: "tone 3", type: "knob", x: 71.7, y: 54.5, size: 9.5, description: "tilt filter in line 3's loop.", tip: "roll dark to keep 12-bit dither from piling in circulation." },
       { id: "subdiv-3", label: "subdivision 3", type: "knob", x: 89.0, y: 54.5, size: 9.5, description: "same six positions as line 2, for line 3.", tip: "dotted quarter on 3 against triplet on 2 is a polyrhythm from one tempo." },
-      { id: "kill-1", label: "kill 1", type: "switch", x: 70.4, y: 66.5, size: 7, description: "latching mute for line 1 — silences output and severs cross-feedback while the buffer keeps recording; release resumes seamlessly.", tip: "the panic button when the network runs away." },
+      { id: "kill-1", label: "kill 1", type: "switch", x: 70.4, y: 66.5, size: 7, description: "latching mute for line 1, silences output and severs cross-feedback while the buffer keeps recording; release resumes seamlessly.", tip: "the panic button when the network runs away." },
       { id: "kill-2", label: "kill 2", type: "switch", x: 80.4, y: 66.5, size: 7, description: "latching mute for line 2, buffer still recording.", tip: "chop in rhythm for gated echoes that resume where they left off." },
       { id: "kill-3", label: "kill 3", type: "switch", x: 90.5, y: 66.5, size: 7, description: "latching mute for line 3.", tip: "kill 3 and 2 and circulation collapses to one line without losing the buffers." },
       { id: "xfeed", label: "x-feed", type: "knob", x: 11.9, y: 73.9, size: 9.5, description: [
           "at zero the lines process dry in parallel",
-          "rising adds circular routing 1 → 2 → 3 → 1. At max, less dry enters lines 2/3 — one massive circulating network",
+          "rising adds circular routing 1 → 2 → 3 → 1. At max, less dry enters lines 2/3, one massive circulating network",
           "the network may run past unity into its soft limiters",
         ], tip: "raise slowly with three different voicings and repeats blur into one another." },
       { id: "pingpong", label: "ping-pong", type: "switch", x: 24.6, y: 73.9, size: 6.5, description: [
@@ -4247,26 +4247,26 @@ export const modules: ModuleSpec[] = [
       { id: "mod-rate", label: "mod rate", type: "knob", x: 54.5, y: 73.9, size: 9.5, description: "global modulation LFO speed, 0.1–2.0 Hz.", tip: "very slow rates drift the golden ratios so nothing repeats exactly." },
       { id: "in-l", label: "in l", type: "jack", x: 10.2, y: 89.1, size: 6.5, voltageRange: "audio", description: "left audio input, normalled to mono alone. Disconnecting inputs clears buffers against clicks and runaway.", tip: "mono in, PING-PONG on: instant stereo." },
       { id: "in-r", label: "in r", type: "jack", x: 20.3, y: 89.1, size: 6.5, voltageRange: "audio", description: "right audio input.", tip: "patch true stereo and leave PING-PONG off to keep the original image." },
-      { id: "time-1-cv", label: "time 1 cv", type: "jack", x: 30.3, y: 89.1, size: 6.5, voltageRange: "bipolar cv", description: "modulates line-1 time — and lines 2/3 through the subdivisions.", tip: "slow CV bends the grid; fast CV pitch-shifts it." },
+      { id: "time-1-cv", label: "time 1 cv", type: "jack", x: 30.3, y: 89.1, size: 6.5, voltageRange: "bipolar cv", description: "modulates line-1 time, and lines 2/3 through the subdivisions.", tip: "slow CV bends the grid; fast CV pitch-shifts it." },
       { id: "time-2-cv", label: "time 2 cv", type: "jack", x: 40.3, y: 89.1, size: 6.5, voltageRange: "bipolar cv", description: "modulates line-2 time independently.", tip: "an envelope here smears line 2 on every hit." },
       { id: "time-3-cv", label: "time 3 cv", type: "jack", x: 50.3, y: 89.1, size: 6.5, voltageRange: "bipolar cv", description: "modulates line-3 time independently.", tip: "random voltage here makes the longest line most unstable." },
       { id: "mod-cv", label: "mod cv", type: "jack", x: 60.4, y: 89.1, size: 6.5, voltageRange: "cv", description: "modulates global MOD DEPTH.", tip: "gate it to add flutter only on the chorus." },
       { id: "repeats-cv", label: "repeats cv", type: "jack", x: 70.4, y: 89.1, size: 6.5, voltageRange: "cv", description: "global feedback modulation for all three lines.", tip: "an envelope follower here rings loud passages longer." },
-      { id: "out-l", label: "out l", type: "jack", x: 80.4, y: 89.1, size: 6.5, voltageRange: "audio", description: "left stereo output.", tip: "soft limiters sit here — runaway is loud but bounded." },
+      { id: "out-l", label: "out l", type: "jack", x: 80.4, y: 89.1, size: 6.5, voltageRange: "audio", description: "left stereo output.", tip: "soft limiters sit here, runaway is loud but bounded." },
       { id: "out-r", label: "out r", type: "jack", x: 90.5, y: 89.1, size: 6.5, voltageRange: "audio", description: "right stereo output.", tip: "check inverted PING-PONG width here before committing to mono." },
     ],
     manual: [
       {
         title: "three delay lines",
-        body: "Three parallel stereo lines, 20 ms–1.6 s. Line 1 is master — knob, tap, or external clock. Lines 2/3 lock via triplet, eighth, dotted, or golden subdivisions with 0.5×–2× trims, or run free. A global LFO modulates all three times with stereo offset."
+        body: "Three parallel stereo lines, 20 ms–1.6 s. Line 1 is master, knob, tap, or external clock. Lines 2/3 lock via triplet, eighth, dotted, or golden subdivisions with 0.5×–2× trims, or run free. A global LFO modulates all three times with stereo offset."
       },
       {
         title: "voicing and tone",
-        body: "Per line: pristine 24/96, ADM compander grit, or 12-bit vintage converters with pre-emphasis, dither, DAC filter. TONE tilts inside each loop: dark one way, high boost the other — in-loop boost pushes past unity into saturated wash, held by soft limiters and an 18 Hz rumble filter."
+        body: "Per line: pristine 24/96, ADM compander grit, or 12-bit vintage converters with pre-emphasis, dither, DAC filter. TONE tilts inside each loop: dark one way, high boost the other, in-loop boost pushes past unity into saturated wash, held by soft limiters and an 18 Hz rumble filter."
       },
       {
         title: "x-feed and kill",
-        body: "X-FEED routes 1 → 2 → 3 → 1 into a circulating network allowed past unity. Golden subdivisions resist comb filtering. KILL switches mute and sever a line while its buffer records, so echoes resume on release — performance tools and panic buttons."
+        body: "X-FEED routes 1 → 2 → 3 → 1 into a circulating network allowed past unity. Golden subdivisions resist comb filtering. KILL switches mute and sever a line while its buffer records, so echoes resume on release, performance tools and panic buttons."
       }
     ],
     suggestedPatches: [
@@ -4349,8 +4349,8 @@ export const modules: ModuleSpec[] = [
   {
     slug: "athanor",
     name: "athanor",
-    subtitle: "chord-and-strum instrument modeled on the 1984 suzuki om-84 omnichord — 84 chords, a 13-position sonicstrings strip, and a 51-step chord memory",
-    summary: "Twelve root buttons in circle-of-fifths order and seven quality buttons select any of the OM-84's 84 chords. A brass touch strip strums four octaves of the voicing, a divider-style organ chord holds underneath, and a melody voice tracks V/oct. Panel layout is still in flux — control positions here will move.",
+    subtitle: "chord-and-strum instrument modeled on the 1984 suzuki om-84 omnichord, 84 chords, a 13-position sonicstrings strip, and a 51-step chord memory",
+    summary: "Twelve root buttons in circle-of-fifths order and seven quality buttons select any of the OM-84's 84 chords. A brass touch strip strums four octaves of the voicing, a divider-style organ chord holds underneath, and a melody voice tracks V/oct. Panel layout is still in flux, control positions here will move.",
     category: "vcv rack module",
     status: "chord strummer",
     accent: "#cf8e5c",
@@ -4366,10 +4366,10 @@ export const modules: ModuleSpec[] = [
     media: {},
     controls: [
       { id: "master", label: "master", type: "knob", x: 8.5, y: 14.0, size: 9, description: "MIX output level. Factory 72%.", tip: "STRUM and CHORD buses ignore this knob." },
-      { id: "voice-1", label: "voice 1", type: "knob", x: 25.1, y: 14.0, size: 9, description: "vibrato string layer of the SonicStrings strip.", tip: "the wobbly one — the Omnichord's signature." },
+      { id: "voice-1", label: "voice 1", type: "knob", x: 25.1, y: 14.0, size: 9, description: "vibrato string layer of the SonicStrings strip.", tip: "the wobbly one, the Omnichord's signature." },
       { id: "voice-2", label: "voice 2", type: "knob", x: 41.6, y: 14.0, size: 9, description: "steadier string layer.", tip: "voice 2 alone is closer to a harp; both together is the record." },
       { id: "sustain", label: "sustain", type: "knob", x: 58.2, y: 14.0, size: 9, description: "decay of all 13 ringing strip regions. SUS CV adds.", tip: "long sustain and a slow drag is the arpeggio that never resolves." },
-      { id: "chord-level", label: "chord", type: "knob", x: 74.7, y: 14.0, size: 9, description: "continuous three-oscillator organ chord level.", tip: "panel-only — patch an external VCA for voltage control." },
+      { id: "chord-level", label: "chord", type: "knob", x: 74.7, y: 14.0, size: 9, description: "continuous three-oscillator organ chord level.", tip: "panel-only, patch an external VCA for voltage control." },
       { id: "key-level", label: "key", type: "knob", x: 91.3, y: 14.0, size: 9, description: "monophonic melody voice level, driven by MELODY V/oct and M.GATE.", tip: "TRANSPOSE skips the melody voice, as on the OM-84." },
       { id: "roots", label: "root buttons", type: "switch", x: 51.6, y: 26.5, size: 8, description: [
           "twelve root buttons in the OM-84's circle-of-fifths order; selecting plays the chord with the active quality",
@@ -4377,36 +4377,36 @@ export const modules: ModuleSpec[] = [
           "a change fires a 5 ms TRIG pulse and updates polyphonic PITCH",
         ], tip: "with ROOT CV patched the buttons go quiet; unpatch and they wake." },
       { id: "qualities", label: "quality buttons", type: "switch", x: 50.0, y: 38.5, size: 8, description: [
-          "maj · min · 7th · maj7 · min7 · dim · aug — dedicated buttons, not the OM-84's multi-button combinations",
+          "maj · min · 7th · maj7 · min7 · dim · aug, dedicated buttons, not the OM-84's multi-button combinations",
           "sevenths and diminished keep the hardware's three-note fifth omission: C dim is A3/C4/E♭4",
           "quality persists across root changes, and vice versa",
-        ], tip: "84 chords from 12 × 7 — the original set as two dimensions." },
+        ], tip: "84 chords from 12 × 7, the original set as two dimensions." },
       { id: "display", label: "display", type: "meter", x: 28.6, y: 48.6, size: 14, description: "chord name, memory position, record/play status.", tip: "confirms each ENTER with the stored chord in record mode." },
       { id: "tune", label: "tune", type: "knob", x: 9.8, y: 61.5, size: 9, description: "whole instrument ±50 cents. Included in PITCH so external voices track.", tip: "the original's recessed tuning screw, as a knob." },
       { id: "transpose", label: "transpose", type: "knob", x: 25.9, y: 61.5, size: 9, description: "chord and strum ±12 semitones. Melody voice untouched, as on hardware.", tip: "down an octave for the bass-register strum." },
       { id: "mem", label: "mem", type: "switch", x: 42.9, y: 61.5, size: 8, description: "latching 51-chord memory enable. MEM on, REC off: ENTER/ADV steps through; past the last lands on a silent end, no wrap.", tip: "REPEAT in playback returns to a silent ready state." },
-      { id: "rec", label: "rec", type: "switch", x: 53.7, y: 61.5, size: 8, description: "latching record. Select a chord, ENTER to store — the chord stops to confirm. ENTER with silence stores a blank. REC off arms playback silently.", tip: "REPEAT deletes and recalls the last entry for fixes." },
-      { id: "repeat", label: "repeat", type: "switch", x: 65.3, y: 61.5, size: 8, description: "record: delete and recall the last entry. Playback: return to the silent ready state before entry 1.", tip: "Cancel/Omit/Skip aren't implemented — REPEAT is the whole toolkit." },
+      { id: "rec", label: "rec", type: "switch", x: 53.7, y: 61.5, size: 8, description: "latching record. Select a chord, ENTER to store, the chord stops to confirm. ENTER with silence stores a blank. REC off arms playback silently.", tip: "REPEAT deletes and recalls the last entry for fixes." },
+      { id: "repeat", label: "repeat", type: "switch", x: 65.3, y: 61.5, size: 8, description: "record: delete and recall the last entry. Playback: return to the silent ready state before entry 1.", tip: "Cancel/Omit/Skip aren't implemented, REPEAT is the whole toolkit." },
       { id: "enter", label: "enter", type: "switch", x: 77.8, y: 61.5, size: 8, description: "record: store the chord (or blank). Playback: play the first entry, then advance per press.", tip: "ADV does the same under trigger control." },
       { id: "off", label: "off", type: "switch", x: 92.2, y: 61.5, size: 8, description: "silences organ and all ringing strip voices. Any root, quality, or strip touch resumes.", tip: "the Instant Off pad, as a button." },
       { id: "strip", label: "sonicstrings strip", type: "meter", x: 50.0, y: 73.5, size: 12, description: [
           "13-position strumplate: four three-note octaves plus the first pitch of a fifth, per Suzuki's diagrams",
           "drag for rising/falling four-octave arpeggios, or touch directly. Remaps on every chord change",
           "all 13 regions ring independently under SUSTAIN",
-        ], tip: "STRUM CV maps 0–10 V across regions, triggering each newly crossed — a sequencer can play the strip." },
+        ], tip: "STRUM CV maps 0–10 V across regions, triggering each newly crossed, a sequencer can play the strip." },
       { id: "in-root", label: "root cv", type: "jack", x: 7.2, y: 84.3, size: 7.5, voltageRange: "1 V/oct · 0 V = C", description: "quantized root at 1 V/oct. Octaves wrap to pitch class. Buttons inactive while patched.", tip: "a quantizer chooses roots; three gates choose quality." },
-      { id: "in-maj", label: "maj gate", type: "jack", x: 17.9, y: 84.3, size: 7.5, voltageRange: "gate", description: "quality gate. MAJ/MIN/7TH combinations encode all seven qualities — MAJ7, MIN7, DIM, AUG from pairs and triples. Any patched gate replaces manual selection.", tip: "three ordinary gates — no tables, no scrolling index." },
+      { id: "in-maj", label: "maj gate", type: "jack", x: 17.9, y: 84.3, size: 7.5, voltageRange: "gate", description: "quality gate. MAJ/MIN/7TH combinations encode all seven qualities, MAJ7, MIN7, DIM, AUG from pairs and triples. Any patched gate replaces manual selection.", tip: "three ordinary gates, no tables, no scrolling index." },
       { id: "in-min", label: "min gate", type: "jack", x: 28.6, y: 84.3, size: 7.5, voltageRange: "gate", description: "quality gate, combined with MAJ and 7TH.", tip: "MIN + 7TH is minor seventh." },
       { id: "in-7th", label: "7th gate", type: "jack", x: 39.4, y: 84.3, size: 7.5, voltageRange: "gate", description: "quality gate, combined with MAJ and MIN.", tip: "MAJ + 7TH is major seventh." },
-      { id: "in-strum", label: "strum cv", type: "jack", x: 50.1, y: 84.3, size: 7.5, voltageRange: "0–10 V", description: "0–10 V across the 13 regions, triggering each newly crossed — a ramp strums, steps pick.", tip: "a slow triangle is an endless up-and-down arpeggio." },
+      { id: "in-strum", label: "strum cv", type: "jack", x: 50.1, y: 84.3, size: 7.5, voltageRange: "0–10 V", description: "0–10 V across the 13 regions, triggering each newly crossed, a ramp strums, steps pick.", tip: "a slow triangle is an endless up-and-down arpeggio." },
       { id: "in-adv", label: "adv", type: "jack", x: 60.8, y: 84.3, size: 7.5, voltageRange: "trigger", description: "advances chord memory one entry per trigger in playback, like ENTER.", tip: "clock from a sequencer bar output for progressions that follow the song." },
-      { id: "in-sus", label: "sus cv", type: "jack", x: 71.6, y: 84.3, size: 7.5, voltageRange: "cv", description: "additive decay control atop the SUSTAIN knob.", tip: "the one level control with a jack — the rest are panel-only." },
-      { id: "in-melody", label: "melody v/oct", type: "jack", x: 82.3, y: 84.3, size: 7.5, voltageRange: "1 V/oct", description: "mono keyboard-voice pitch, unrestricted range — wider than the OM-84's C-to-G.", tip: "TUNE applies; TRANSPOSE does not." },
+      { id: "in-sus", label: "sus cv", type: "jack", x: 71.6, y: 84.3, size: 7.5, voltageRange: "cv", description: "additive decay control atop the SUSTAIN knob.", tip: "the one level control with a jack, the rest are panel-only." },
+      { id: "in-melody", label: "melody v/oct", type: "jack", x: 82.3, y: 84.3, size: 7.5, voltageRange: "1 V/oct", description: "mono keyboard-voice pitch, unrestricted range, wider than the OM-84's C-to-G.", tip: "TUNE applies; TRANSPOSE does not." },
       { id: "in-mgate", label: "m.gate", type: "jack", x: 93.1, y: 84.3, size: 7.5, voltageRange: "gate", description: "melody-voice gate.", tip: "level is set by KEY." },
       { id: "out-mix", label: "mix", type: "jack", x: 23.2, y: 94.6, size: 7.5, voltageRange: "audio", description: "complete instrument mix under MASTER.", tip: "the mono output the original had, plus everything it didn't." },
       { id: "out-strum", label: "strum", type: "jack", x: 36.6, y: 94.6, size: 7.5, voltageRange: "audio", description: "SonicStrings bus alone.", tip: "send strum to its own reverb, keep organ dry." },
       { id: "out-chord", label: "chord", type: "jack", x: 50.0, y: 94.6, size: 7.5, voltageRange: "audio", description: "organ chord bus alone. Releases decay ~85 ms rather than cutting.", tip: "a separate bus means a separate filter for the pad." },
-      { id: "out-pitch", label: "pitch", type: "jack", x: 63.4, y: 94.6, size: 7.5, voltageRange: "V/oct · 3 ch", description: "3-channel polyphonic V/oct for the voicing, TUNE included — external voices track exactly.", tip: "drive three oscillators from this plus TRIG for an external Omnichord." },
+      { id: "out-pitch", label: "pitch", type: "jack", x: 63.4, y: 94.6, size: 7.5, voltageRange: "V/oct · 3 ch", description: "3-channel polyphonic V/oct for the voicing, TUNE included, external voices track exactly.", tip: "drive three oscillators from this plus TRIG for an external Omnichord." },
       { id: "out-trig", label: "trig", type: "jack", x: 76.8, y: 94.6, size: 7.5, voltageRange: "5 ms pulse", description: "5 ms pulse on every chord change, including memory advances.", tip: "retrigger envelopes for PITCH-driven voices." },
     ],
     contextMenu: [
@@ -4425,7 +4425,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "sonicstrings and voices",
-        body: "The brass strip is a 13-position strumplate — four three-note octaves plus one — remapped per chord. VOICE 1 vibrato, VOICE 2 steady, SUSTAIN decays all 13 regions, STRUM CV plays 0–10 V. Divider-style squares, hardware-inspired filtering, gentle saturation — no Omnichord samples. CHORD holds the organ; MELODY/M.GATE drive a mono voice at KEY level."
+        body: "The brass strip is a 13-position strumplate, four three-note octaves plus one, remapped per chord. VOICE 1 vibrato, VOICE 2 steady, SUSTAIN decays all 13 regions, STRUM CV plays 0–10 V. Divider-style squares, hardware-inspired filtering, gentle saturation, no Omnichord samples. CHORD holds the organ; MELODY/M.GATE drive a mono voice at KEY level."
       },
       {
         title: "chord memory",
@@ -4436,8 +4436,8 @@ export const modules: ModuleSpec[] = [
   {
     slug: "fatebinder",
     name: "fatebinder",
-    subtitle: "four euclidean-articulated lfos with a radar-screen playhead — the rhythm leans on the outputs, it never steps them",
-    summary: "Four related LFOs articulated by a rhythm you can see. The radar sweep is the playhead; when it crosses a blip, that lane inhales, surges, or shifts — but the outputs stay continuous. No steps, no clicks.",
+    subtitle: "four euclidean-articulated lfos with a radar-screen playhead, the rhythm leans on the outputs, it never steps them",
+    summary: "Four related LFOs articulated by a rhythm you can see. The radar sweep is the playhead; when it crosses a blip, that lane inhales, surges, or shifts, but the outputs stay continuous. No steps, no clicks.",
     category: "vcv rack module",
     status: "rhythmic quad lfo",
     accent: "#d7b56d",
@@ -4460,15 +4460,15 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "reading the radar",
-        body: "Four concentric rings are the lanes — A teal, B violet, C azure, D amber. Small stationary dots are Euclidean steps; one larger moving dot per ring is the LFO itself. The amber sweep is the playhead, one revolution per cycle."
+        body: "Four concentric rings are the lanes, A teal, B violet, C azure, D amber. Small stationary dots are Euclidean steps; one larger moving dot per ring is the LFO itself. The amber sweep is the playhead, one revolution per cycle."
       },
       {
         title: "articulation",
-        body: "Blips never touch outputs directly — they kick slewed envelopes modulating each lane's amplitude, rate, and waveform. Intensity crossfades LFO to rhythm: zero is a pure quad LFO; raised, every hit breathes harder. Memory sets how long articulations linger."
+        body: "Blips never touch outputs directly, they kick slewed envelopes modulating each lane's amplitude, rate, and waveform. Intensity crossfades LFO to rhythm: zero is a pure quad LFO; raised, every hit breathes harder. Memory sets how long articulations linger."
       },
       {
         title: "scenes and outputs",
-        body: "Six scenes — Tide, Pulse, Drift, Teeth, Eclipse, Fracture — set blip behaviour and lane rate ratios. A–D are correlated motions; TRIG and ACCENT make the rhythm patchable. Bind rerolls the pattern; Freeze holds the sweep mid-breath."
+        body: "Six scenes, Tide, Pulse, Drift, Teeth, Eclipse, Fracture, set blip behaviour and lane rate ratios. A–D are correlated motions; TRIG and ACCENT make the rhythm patchable. Bind rerolls the pattern; Freeze holds the sweep mid-breath."
       }
     ]
   },
@@ -4494,11 +4494,11 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "channels and looper",
-        body: "Four polyphonic channels with level, pan, bus assignment. Arm a channel and the buffer waits for the downbeat, records the bar length, and plays back instantly. Loops on the morph busses degrade gracefully — a fraction of the saturated, filtered output writes back each pass."
+        body: "Four polyphonic channels with level, pan, bus assignment. Arm a channel and the buffer waits for the downbeat, records the bar length, and plays back instantly. Loops on the morph busses degrade gracefully, a fraction of the saturated, filtered output writes back each pass."
       },
       {
         title: "morphing busses",
-        body: "Slot A: Ensemble, Phasewash, Tape; slot B: Jet, Trem/Pan, Shimmer — each with Rate, Depth, Texture under CV. A channel on A+B crossfades slots with its morph knob; patching Returns swaps in external processors."
+        body: "Slot A: Ensemble, Phasewash, Tape; slot B: Jet, Trem/Pan, Shimmer, each with Rate, Depth, Texture under CV. A channel on A+B crossfades slots with its morph knob; patching Returns swaps in external processors."
       },
       {
         title: "glue compressor",
@@ -4528,7 +4528,7 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "generative sequencer",
-        body: "Five patterns set the groove — four fixed styles plus a generative fifth that rerolls on selection. Variations A–F escalate bare to dense, Fill arms a turnaround, Density and Humanize add ghost notes and micro-timing."
+        body: "Five patterns set the groove, four fixed styles plus a generative fifth that rerolls on selection. Variations A–F escalate bare to dense, Fill arms a turnaround, Density and Humanize add ghost notes and micro-timing."
       },
       {
         title: "hybrid voices",
@@ -4544,7 +4544,7 @@ export const modules: ModuleSpec[] = [
     slug: "nocturne-tv",
     name: "nocturne tv",
     subtitle: "vhs-era crt video synthesizer with four render engines, fourteen aesthetic programs, and cv-controlled chaos",
-    summary: "A purely visual module that converts CV and audio into evolving video art — sync tearing, luma keying, recursive feedback, and glitched tape mechanics, rendered through fourteen aesthetic programs.",
+    summary: "A purely visual module that converts CV and audio into evolving video art, sync tearing, luma keying, recursive feedback, and glitched tape mechanics, rendered through fourteen aesthetic programs.",
     category: "vcv rack module",
     status: "video synth",
     accent: "#5ec2ab",
@@ -4578,7 +4578,7 @@ export const modules: ModuleSpec[] = [
     slug: "divergence",
     name: "divergence",
     subtitle: "1-to-3 sequential stereo routing switch with polyphonic fidelity and jewel-lamp lane indication",
-    summary: "A precision router that sends one stereo source to one of three stereo destinations, advanced by pushbutton or trigger. Pristine switching — no attenuation, no slew, exact voltages.",
+    summary: "A precision router that sends one stereo source to one of three stereo destinations, advanced by pushbutton or trigger. Pristine switching, no attenuation, no slew, exact voltages.",
     category: "vcv rack module",
     status: "stereo router",
     accent: "#68B7C8",
@@ -4600,11 +4600,11 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "signal integrity",
-        body: "Polyphonic channel counts preserved — the active lane carries exact input voltages, inactive lanes output precisely zero. Mono normalizes left-to-right automatically."
+        body: "Polyphonic channel counts preserved, the active lane carries exact input voltages, inactive lanes output precisely zero. Mono normalizes left-to-right automatically."
       },
       {
         title: "indication",
-        body: "The main jewel shows the active lane by color — dark teal A, dark green B, shapetaker purple C — with per-lane LEDs between output pairs for confirmation at the jacks."
+        body: "The main jewel shows the active lane by color, dark teal A, dark green B, shapetaker purple C, with per-lane LEDs between output pairs for confirmation at the jacks."
       }
     ]
   },
@@ -4612,7 +4612,7 @@ export const modules: ModuleSpec[] = [
     slug: "augury",
     name: "augury",
     subtitle: "polyphonic chord identifier scoring 31 templates, with a live crt readout and root, type, and confidence cv outputs",
-    summary: "Feed it polyphonic pitches and it names the chord — root, quality, inversion, and spelling — on a CRT-style display, while emitting the analysis as control voltages. Audio passes through untouched.",
+    summary: "Feed it polyphonic pitches and it names the chord, root, quality, inversion, and spelling, on a CRT-style display, while emitting the analysis as control voltages. Audio passes through untouched.",
     category: "vcv rack module",
     status: "chord analyzer",
     accent: "#5ec2ab",
@@ -4638,14 +4638,14 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "cv outputs",
-        body: "ROOT emits 1 V/oct for the root, TYPE steps 0.4 V per template index, CONF scales 0–10 V with confidence — enough to drive arpeggiators or a voice following a generative progression."
+        body: "ROOT emits 1 V/oct for the root, TYPE steps 0.4 V per template index, CONF scales 0–10 V with confidence, enough to drive arpeggiators or a voice following a generative progression."
       }
     ]
   },
   {
     slug: "reliquary",
     name: "reliquary",
-    subtitle: "granular memory instrument — a 60-second buffer that forgets, where recall reinforces and neglect dissolves into the vessel resonator",
+    subtitle: "granular memory instrument, a 60-second buffer that forgets, where recall reinforces and neglect dissolves into the vessel resonator",
     summary: "A granular buffer treated as memory rather than tape. Regions fade unless recalled; replaying them reinforces their vitality. As memories degrade they excite the Vessel, an inharmonic modal resonator that slowly replaces what is forgotten.",
     category: "vcv rack module",
     status: "granular memory",
@@ -4664,7 +4664,7 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "memory buffer",
-        body: "Recall draws grains from ≤60 s of history; Size, Density, Dispersion, Pitch shape the cloud. Every region has a vitality that decays — faded memories return darker, wobblier, quieter."
+        body: "Recall draws grains from ≤60 s of history; Size, Density, Dispersion, Pitch shape the cloud. Every region has a vitality that decays, faded memories return darker, wobblier, quieter."
       },
       {
         title: "consolidation",
@@ -4672,14 +4672,14 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "the vessel",
-        body: "An eight-mode inharmonic resonator rings beneath the grains — degraded memories excite it hardest, so the body gradually replaces forgotten audio. A YIN tracker keeps it tuned to the input, with lane voicings for smeared, shoegaze glissandi."
+        body: "An eight-mode inharmonic resonator rings beneath the grains, degraded memories excite it hardest, so the body gradually replaces forgotten audio. A YIN tracker keeps it tuned to the input, with lane voicings for smeared, shoegaze glissandi."
       }
     ]
   },
   {
     slug: "alembic",
     name: "alembic",
-    subtitle: "transmutation's output expander — twelve breakout jacks for transport, expression, and voices, with no controls of its own",
+    subtitle: "transmutation's output expander, twelve breakout jacks for transport, expression, and voices, with no controls of its own",
     summary: "sits immediately to transmutation's right and brings out twelve signals the 40 hp panel has no room for. every jack is a view of a value transmutation already computed: clock and reset pulses, phrase and scene events, per-lane velocity and accent, and bass and harmony cv with gates. there are no knobs, no switches, and no inputs.",
     category: "vcv rack module",
     status: "output expander",
@@ -4703,7 +4703,7 @@ export const modules: ModuleSpec[] = [
         y: 17.4,
         size: 22,
         description: "expander-link state to the transmutation on the left: green transporting, amber stopped, red unusable message, dark nothing on the left.",
-        tip: "dark jewel means alembic isn't immediately to transmutation's right — move it till the lamp lights.",
+        tip: "dark jewel means alembic isn't immediately to transmutation's right, move it till the lamp lights.",
       },
       {
         id: "clock",
@@ -4735,7 +4735,7 @@ export const modules: ModuleSpec[] = [
         y: 39.2,
         size: 24,
         voltageRange: "10V pulse, 1 ms",
-        description: "10 V, 1 ms pulse at each phrase end — the shared harmony loop boundary. For fills or once-per-phrase modulation.",
+        description: "10 V, 1 ms pulse at each phrase end, the shared harmony loop boundary. For fills or once-per-phrase modulation.",
         tip: "run through a Bernoulli gate for probabilistic phrase-boundary fills.",
       },
       {
@@ -4746,7 +4746,7 @@ export const modules: ModuleSpec[] = [
         y: 39.2,
         size: 24,
         voltageRange: "10V pulse, 1 ms",
-        description: "10 V, 1 ms pulse when a variation launches (not when queued) — always on the audible change. For sample-and-holds, switches, envelope triggers.",
+        description: "10 V, 1 ms pulse when a variation launches (not when queued), always on the audible change. For sample-and-holds, switches, envelope triggers.",
         tip: "sample slow random per scene pulse for a modulation offset per scene.",
       },
       {
@@ -4757,7 +4757,7 @@ export const modules: ModuleSpec[] = [
         y: 51.8,
         size: 24,
         voltageRange: "0-10V · poly ≤6",
-        description: "lane-A per-voice velocity: 0-10 V, ≤6 channels. Latched on attack, held through release — mid-note edits never move CV under sustaining envelopes. Not audible alone — patch to a VCA or envelope depth.",
+        description: "lane-A per-voice velocity: 0-10 V, ≤6 channels. Latched on attack, held through release, mid-note edits never move CV under sustaining envelopes. Not audible alone, patch to a VCA or envelope depth.",
         tip: "patch beside the lane's audio into a poly VCA for per-voice dynamics, no extra modules.",
       },
       {
@@ -4791,7 +4791,7 @@ export const modules: ModuleSpec[] = [
         size: 24,
         voltageRange: "0/10V gate · poly ≤6",
         description: "lane-B accent, matching acc A: 10 V while an accented lane-B voice's gate is up. Pair with vel B to separate loudness from accent.",
-        tip: "drive a hi-hat accent from acc B while vel B shapes decay — a two-dimensional groove.",
+        tip: "drive a hi-hat accent from acc B while vel B shapes decay, a two-dimensional groove.",
       },
       {
         id: "harm-cv",
@@ -4801,8 +4801,8 @@ export const modules: ModuleSpec[] = [
         y: 77.4,
         size: 24,
         voltageRange: "1V/OCT · poly ≤6",
-        description: "scene's voiced global harmony as pitch CV, ≤6 channels, present even while lane A rests. The engine lacks this feature yet, so it sits at 0 V for now — live with no alembic change once the engine grows it.",
-        tip: "hover the jack — the tooltip reports whether your transmutation version supplies harmony.",
+        description: "scene's voiced global harmony as pitch CV, ≤6 channels, present even while lane A rests. The engine lacks this feature yet, so it sits at 0 V for now, live with no alembic change once the engine grows it.",
+        tip: "hover the jack, the tooltip reports whether your transmutation version supplies harmony.",
       },
       {
         id: "harm-gate",
@@ -4823,7 +4823,7 @@ export const modules: ModuleSpec[] = [
         y: 90.0,
         size: 24,
         voltageRange: "1V/OCT",
-        description: "lowest sounding lane-A voice as pitch CV. Held through release so tails don't jump — only the gate falls. Live today; needs no engine state beyond the voices.",
+        description: "lowest sounding lane-A voice as pitch CV. Held through release so tails don't jump, only the gate falls. Live today; needs no engine state beyond the voices.",
         tip: "double the lowest voice an octave down on a dedicated bass oscillator.",
       },
       {
@@ -4841,15 +4841,15 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "what it is",
-        body: "Alembic is Transmutation's output expander: twelve jacks, no controls. It sits immediately right and exposes values Transmutation computed — no knobs, switches, or inputs; nothing musical of its own."
+        body: "Alembic is Transmutation's output expander: twelve jacks, no controls. It sits immediately right and exposes values Transmutation computed, no knobs, switches, or inputs; nothing musical of its own."
       },
       {
         title: "the twelve outputs",
-        body: "Three groups of two pairs. Transport: CLOCK, RESET, PHRASE, SCENE — 10 V, 1 ms pulses on clock, resets, phrase ends, launched scenes. Expression: VEL A/B, ACC A/B — per-lane velocity (0-10 V, latched at attack) and accent (10 V while an accented gate is up), polyphonic ≤6. Voices: BASS CV/GATE (lane A's lowest voice) and HARM CV/GATE (shared harmony). Left is A, right is B in expression; left is CV, right its gate in voices."
+        body: "Three groups of two pairs. Transport: CLOCK, RESET, PHRASE, SCENE, 10 V, 1 ms pulses on clock, resets, phrase ends, launched scenes. Expression: VEL A/B, ACC A/B, per-lane velocity (0-10 V, latched at attack) and accent (10 V while an accented gate is up), polyphonic ≤6. Voices: BASS CV/GATE (lane A's lowest voice) and HARM CV/GATE (shared harmony). Left is A, right is B in expression; left is CV, right its gate in voices."
       },
       {
         title: "link lamp and broken link",
-        body: "LINK jewel: green transporting, amber stopped, red unusable message, dark nothing left. Removing the Transmutation drops all gates and CVs to zero with tooltips reporting the break — Alembic never replays its last message."
+        body: "LINK jewel: green transporting, amber stopped, red unusable message, dark nothing left. Removing the Transmutation drops all gates and CVs to zero with tooltips reporting the break, Alembic never replays its last message."
       },
       {
         title: "timing",
@@ -4857,14 +4857,14 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "jacks waiting on the engine",
-        body: "Voiced global harmony isn't in the engine yet, so HARM CV/GATE sit at 0 V. The producer declares what it supplies; Alembic holds the rest quiet with tooltips reporting state. New engine features light those jacks with no alembic change — velocity and accent were once in that state."
+        body: "Voiced global harmony isn't in the engine yet, so HARM CV/GATE sit at 0 V. The producer declares what it supplies; Alembic holds the rest quiet with tooltips reporting state. New engine features light those jacks with no alembic change, velocity and accent were once in that state."
       }
     ]
   },
   {
     slug: "campanile",
     name: "campanile",
-    subtitle: "three bells walk a polyphonic chord on interlocking paths — seven spreads, polyrhythmic ratios, ratchet, register-safe bass",
+    subtitle: "three bells walk a polyphonic chord on interlocking paths, seven spreads, polyrhythmic ratios, ratchet, register-safe bass",
     summary: "patch a polyphonic V/oct chord into CHORD and three related melody lines come out of A, B and C, with a three-channel gate, a bass pitch that stays in its register, and a slower chord trigger. PATTERN sets how one bell walks the chord, SPREAD sets how the other two relate to it, and RATIO puts them on different rhythms. the blue-line display reads like change-ringing notation: time runs down the screen and pitch classes run left to right.",
     category: "vcv rack module",
     status: "change-ringing arpeggiator",
@@ -4893,7 +4893,7 @@ export const modules: ModuleSpec[] = [
           "Random avoids immediate repeats where possible; As played keeps channel order; Converge walks outside in",
           "octave duplicates fold out before RANGE extends, so the pool holds distinct pitch classes; all but As played walk ascending",
         ],
-        tip: "learn spreads on Up first — patterns change the path, spreads the relationship.",
+        tip: "learn spreads on Up first, patterns change the path, spreads the relationship.",
       },
       {
         id: "spread",
@@ -4905,7 +4905,7 @@ export const modules: ModuleSpec[] = [
         description: [
           "how the three bells relate: Unison, Octave (default), Chord, Canon, Contrary, Hunt, Dodge",
           "Unison: same note. Octave: pitch, +1, +2 octaves. Chord: three adjacent places in parallel",
-          "Canon: B two rows behind A, C two behind B — a three-part round. Contrary: A forward vs B/C backward, C an octave up",
+          "Canon: B two rows behind A, C two behind B, a three-part round. Contrary: A forward vs B/C backward, C an octave up",
           "Hunt/Dodge walk golden-ratio strides that keep evolving; a collision pass keeps bells on distinct classes with ≥3 in the chord",
         ],
         tip: "Hunt with RANGE 3 and three contrasting oscillators shows what the module is for.",
@@ -4918,7 +4918,7 @@ export const modules: ModuleSpec[] = [
         y: 15.6,
         size: 12,
         description: "extends the pool upward 1–4 octaves, default 2. Widens the walk without transposing the source chord.",
-        tip: "raise RANGE when a line feels cramped — the chord stays, the walk lengthens.",
+        tip: "raise RANGE when a line feels cramped, the chord stays, the walk lengthens.",
       },
       {
         id: "pattern-trim",
@@ -4927,7 +4927,7 @@ export const modules: ModuleSpec[] = [
         x: 13.5,
         y: 33.2,
         size: 8,
-        description: "PATTERN CV attenuverter. Full CW: 0–10 V spans the pattern list, added to the knob. Quantized — halfway between settings means nothing.",
+        description: "PATTERN CV attenuverter. Full CW: 0–10 V spans the pattern list, added to the knob. Quantized, halfway between settings means nothing.",
         tip: "stepped random with the trim barely open wanders between neighboring patterns.",
       },
       {
@@ -4958,7 +4958,7 @@ export const modules: ModuleSpec[] = [
         y: 49.7,
         size: 12,
         description: "internal note-clock 0.25–16 Hz, default 2 Hz. Sets bell advance until CLK takes over completely.",
-        tip: "compose with CLK unpatched, patch master clock last — the pattern survives.",
+        tip: "compose with CLK unpatched, patch master clock last, the pattern survives.",
       },
       {
         id: "gate-length",
@@ -4978,7 +4978,7 @@ export const modules: ModuleSpec[] = [
         y: 49.7,
         size: 10,
         description: "bass update and CHORD trigger rate: every 4, 8, 16, 32 note rows, default 16. Longer divisions let bells roam over steady bass.",
-        tip: "at 32 with a slow clock the bass becomes a section marker — pair with a long filter sweep.",
+        tip: "at 32 with a slow clock the bass becomes a section marker, pair with a long filter sweep.",
       },
       {
         id: "bass",
@@ -5021,7 +5021,7 @@ export const modules: ModuleSpec[] = [
           "RAT (lower, default): every bell advances each row and fires its number of strikes inside it",
           "RHY (upper): number N strikes every Nth row, holding pitch and stretching its gate across its period",
         ],
-        tip: "flip live mid-pattern — pitches keep walking while rhythm reorganizes.",
+        tip: "flip live mid-pattern, pitches keep walking while rhythm reorganizes.",
       },
       {
         id: "shape",
@@ -5031,7 +5031,7 @@ export const modules: ModuleSpec[] = [
         y: 65.9,
         size: 10,
         description: "skews ratchet strikes in the row; RAT mode only. Center even, left clusters at the start (DRAG), right tightens toward the end (ROLL).",
-        tip: "1:2:4 RAT with short gates, then sweep SHAPE — march to stagger to flam.",
+        tip: "1:2:4 RAT with short gates, then sweep SHAPE, march to stagger to flam.",
       },
       {
         id: "call",
@@ -5040,7 +5040,7 @@ export const modules: ModuleSpec[] = [
         x: 63.2,
         y: 65.9,
         size: 8,
-        description: "momentary shift of all three paths from the next row. Deterministic, on the note clock — same call, same place, same result. Button lights while sounding, including input triggers.",
+        description: "momentary shift of all three paths from the next row. Deterministic, on the note clock, same call, same place, same result. Button lights while sounding, including input triggers.",
         tip: "tap every few bars in a Canon to rotate the round without stopping.",
       },
       {
@@ -5052,7 +5052,7 @@ export const modules: ModuleSpec[] = [
         size: 8,
         voltageRange: "0-10V",
         description: "stepped CV over the ratio list via the RATIO trim. Adds to the knob, quantized.",
-        tip: "quantized, so audio-rate modulation aliases into stepped chaos — usually a feature.",
+        tip: "quantized, so audio-rate modulation aliases into stepped chaos, usually a feature.",
       },
       {
         id: "clk",
@@ -5063,7 +5063,7 @@ export const modules: ModuleSpec[] = [
         size: 8,
         voltageRange: "clock",
         description: "external note clock. Each rising edge advances one row; RATE ignored while patched.",
-        tip: "swing the incoming clock — every ratio and the chord divider follow together.",
+        tip: "swing the incoming clock, every ratio and the chord divider follow together.",
       },
       {
         id: "reset",
@@ -5140,7 +5140,7 @@ export const modules: ModuleSpec[] = [
         size: 8,
         voltageRange: "V/oct · poly ≤16",
         description: "the note pool: polyphonic V/oct, ≤16 channels. Octave duplicates fold to ≤12 pitch classes, then RANGE extends upward.",
-        tip: "feed from a chord sequencer and change freely — bells re-voice next row without glitching.",
+        tip: "feed from a chord sequencer and change freely, bells re-voice next row without glitching.",
       },
       {
         id: "a",
@@ -5150,7 +5150,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 8,
         voltageRange: "V/oct",
-        description: "bell-A pitch V/oct. Holds last voltage with no chord patched — oscillators don't fall to C4.",
+        description: "bell-A pitch V/oct. Holds last voltage with no chord patched, oscillators don't fall to C4.",
         tip: "start with A alone, add B and C once the figure feels right.",
       },
       {
@@ -5162,7 +5162,7 @@ export const modules: ModuleSpec[] = [
         size: 8,
         voltageRange: "V/oct",
         description: "bell-B pitch, related to A by SPREAD. Holds last voltage with no chord.",
-        tip: "give B a contrasting timbre — spreads are written as separate lines.",
+        tip: "give B a contrasting timbre, spreads are written as separate lines.",
       },
       {
         id: "c",
@@ -5173,7 +5173,7 @@ export const modules: ModuleSpec[] = [
         size: 8,
         voltageRange: "V/oct",
         description: "bell-C pitch, the figure's third line. Holds last voltage with no chord.",
-        tip: "in Octave spread C sits two octaves above A — balance with a sub two down.",
+        tip: "in Octave spread C sits two octaves above A, balance with a sub two down.",
       },
       {
         id: "gate",
@@ -5194,8 +5194,8 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 8,
         voltageRange: "V/oct",
-        description: "the literal lowest incoming chord note — not an inferred root, so inversions keep their lowest note. Folds into the BASS window; moves only on the chord clock plus one catch-up row on chord change.",
-        tip: "BASS into a sub with CHORD triggering its envelope — bass that never fights the bells.",
+        description: "the literal lowest incoming chord note, not an inferred root, so inversions keep their lowest note. Folds into the BASS window; moves only on the chord clock plus one catch-up row on chord change.",
+        tip: "BASS into a sub with CHORD triggering its envelope, bass that never fights the bells.",
       },
       {
         id: "chord-out",
@@ -5205,7 +5205,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 8,
         voltageRange: "10V trigger",
-        description: "10 V trigger per chord-clock tick — every 4/8/16/32 rows. Context menu can restrict to rows where the chord changed.",
+        description: "10 V trigger per chord-clock tick, every 4/8/16/32 rows. Context menu can restrict to rows where the chord changed.",
         tip: "advance a chord sequencer from it and harmony steps with the bass.",
       },
       {
@@ -5220,7 +5220,7 @@ export const modules: ModuleSpec[] = [
           "A/B/C in teal, purple, amber matching the jacks; shared columns fan apart so unisons read as three",
           "top readout shows pattern, spread, sounding pitches, bass, ratio mode, pool size; a rule marks bass/chord-trigger rows",
         ],
-        tip: "watch the horizontal rule — it shows when the next bass move and trigger land.",
+        tip: "watch the horizontal rule, it shows when the next bass move and trigger land.",
       },
     ],
     contextMenu: [
@@ -5237,20 +5237,20 @@ export const modules: ModuleSpec[] = [
         group: "Chord trigger",
         label: "Only on chord change",
         kind: "toggle",
-        description: "Off: CHORD fires every chord-clock division. On: only where the input chord changed — static harmony stays silent."
+        description: "Off: CHORD fires every chord-clock division. On: only where the input chord changed, static harmony stays silent."
       },
       {
         id: "theme-follow",
         group: "Theme",
         label: "Follow global theme",
         kind: "toggle",
-        description: "Follows the shared phosphor theme; a local pick disables following. Display only — never touches sound."
+        description: "Follows the shared phosphor theme; a local pick disables following. Display only, never touches sound."
       }
     ],
     manual: [
       {
         title: "what it does",
-        body: "Campanile is a change-ringing arpeggiator: patch polyphonic V/oct into CHORD and three bells walk it on A/B/C, with a 3-channel gate, register-safe bass, and a slower chord trigger. PATTERN walks one bell, SPREAD relates the other two, RATIO rhythms them. Ringing ideas as a model — not traditional methods or legal changes."
+        body: "Campanile is a change-ringing arpeggiator: patch polyphonic V/oct into CHORD and three bells walk it on A/B/C, with a 3-channel gate, register-safe bass, and a slower chord trigger. PATTERN walks one bell, SPREAD relates the other two, RATIO rhythms them. Ringing ideas as a model, not traditional methods or legal changes."
       },
       {
         title: "patterns and spreads",
@@ -5262,18 +5262,18 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "two clocks",
-        body: "The note clock (CLK or 0.25–16 Hz RATE) advances bells; the chord clock divides it by 4/8/16/32 and alone moves BASS and CHORD. Chord changes latch an extra bass update next row — no 32-row waits. RST returns path, call, divider, and clock measurement to start."
+        body: "The note clock (CLK or 0.25–16 Hz RATE) advances bells; the chord clock divides it by 4/8/16/32 and alone moves BASS and CHORD. Chord changes latch an extra bass update next row, no 32-row waits. RST returns path, call, divider, and clock measurement to start."
       },
       {
         title: "calls and the display",
-        body: "CALL (button or trigger) shifts all three paths from the next row — deterministic, on the note clock. The blue-line display plots nine rows, time down, pitch left to right, bells in teal/purple/amber, ruling lines where bass and chord trigger update."
+        body: "CALL (button or trigger) shifts all three paths from the next row, deterministic, on the note clock. The blue-line display plots nine rows, time down, pitch left to right, bells in teal/purple/amber, ruling lines where bass and chord trigger update."
       }
     ]
   },
   {
     slug: "concordance",
     name: "concordance",
-    subtitle: "master-clock divide-down paraphonic ensemble with twelve pitch-class clocks, traveler band filter and eight-stop registration — polyphonic in, stereo pair out",
+    subtitle: "master-clock divide-down paraphonic ensemble with twelve pitch-class clocks, traveler band filter and eight-stop registration, polyphonic in, stereo pair out",
     summary: "twelve pitch-class clocks divide down from one master tuning source, so every octave tap stays in exact power-of-two lock while the filter, articulation and ensemble are shared across all voices. Eight named stops rewrite the panel to complete instrument settings, and a magic-eye tube reads output level after swell and level. V/OCT and gate accept up to 16 polyphonic channels; LEFT and RIGHT are a mono stereo pair.",
     category: "vcv rack module",
     status: "paraphonic ensemble",
@@ -5296,8 +5296,8 @@ export const modules: ModuleSpec[] = [
         x: 17.7,
         y: 50.0,
         size: 14,
-        description: "one of eight whole-instrument stops: Newsreel, Tutti, Vox humana, Tibia, Celeste, Bourdon, Regal, Aeolian. A stop writes its values into the panel — wave, expand, drawbars, envelope, traveler, vibrato, ensemble, voicing — then leaves everything editable; tune untouched. Loads only on selection change.",
-        tip: "the tooltip names the current stop — turn to one, read what it set, edit from there.",
+        description: "one of eight whole-instrument stops: Newsreel, Tutti, Vox humana, Tibia, Celeste, Bourdon, Regal, Aeolian. A stop writes its values into the panel, wave, expand, drawbars, envelope, traveler, vibrato, ensemble, voicing, then leaves everything editable; tune untouched. Loads only on selection change.",
+        tip: "the tooltip names the current stop, turn to one, read what it set, edit from there.",
       },
       {
         id: "tune",
@@ -5316,7 +5316,7 @@ export const modules: ModuleSpec[] = [
         x: 9.6,
         y: 66.9,
         size: 9,
-        description: "ramp, square, narrow pulse, or a string stack of 8' saw with phase-locked 4' octave. Level-matched — switching changes timbre only.",
+        description: "ramp, square, narrow pulse, or a string stack of 8' saw with phase-locked 4' octave. Level-matched, switching changes timbre only.",
         tip: "the string stack through a narrow traveler band is the closest to a real ensemble keyboard.",
       },
       {
@@ -5326,7 +5326,7 @@ export const modules: ModuleSpec[] = [
         x: 41.9,
         y: 66.9,
         size: 13,
-        description: "blends a quieter, key-dependent stretched copy around the locked divider core — zero is strictly divided, higher loosens into PE-1000 honky-tonk expansion.",
+        description: "blends a quieter, key-dependent stretched copy around the locked divider core, zero is strictly divided, higher loosens into PE-1000 honky-tonk expansion.",
         tip: "a little under slow chords; more under stabs, where beating hides in the attack.",
       },
       {
@@ -5336,7 +5336,7 @@ export const modules: ModuleSpec[] = [
         x: 9.6,
         y: 33.1,
         size: 13,
-        description: "shared envelope attack, 2 ms–3.2 s. One envelope drives every voice — new chords swell as a section.",
+        description: "shared envelope attack, 2 ms–3.2 s. One envelope drives every voice, new chords swell as a section.",
         tip: "slow attacks with Tibia score a landscape with two fingers.",
       },
       {
@@ -5357,7 +5357,7 @@ export const modules: ModuleSpec[] = [
         y: 33.1,
         size: 13,
         description: "shared envelope release, 25 ms–11 s. How long chords ring after the last gate falls.",
-        tip: "match release to the room — long tails want long reverbs.",
+        tip: "match release to the room, long tails want long reverbs.",
       },
       {
         id: "breath",
@@ -5376,7 +5376,7 @@ export const modules: ModuleSpec[] = [
         x: 50.0,
         y: 12.1,
         size: 10,
-        description: "traveler band lower edge, 22 Hz–2.3 kHz. Both faders run low to high left to right — the band is the gap between handles.",
+        description: "traveler band lower edge, 22 Hz–2.3 kHz. Both faders run low to high left to right, the band is the gap between handles.",
         tip: "close to a slit at high peak and sweep both handles for a formant wah.",
       },
       {
@@ -5406,7 +5406,7 @@ export const modules: ModuleSpec[] = [
         x: 90.4,
         y: 16.2,
         size: 10,
-        description: "mellow-tab tone control: darkens the band, rounding chords with warmth toward the top — the dry bus never distorts outright. Vintage tops at tanh drive 1.6; Modern turns the top half into overdrive to drive 3.4.",
+        description: "mellow-tab tone control: darkens the band, rounding chords with warmth toward the top, the dry bus never distorts outright. Vintage tops at tanh drive 1.6; Modern turns the top half into overdrive to drive 3.4.",
         tip: "Modern range, high peak, closed band: a screaming formant filter that still tracks chords.",
       },
       {
@@ -5416,7 +5416,7 @@ export const modules: ModuleSpec[] = [
         x: 75.4,
         y: 33.1,
         size: 13,
-        description: "vibrato to 38 cents on the shared master clock — the whole chord bends as one. By default swells in over ~1 s after the phrase's first key, PE-1000 style; context menu makes it constant.",
+        description: "vibrato to 38 cents on the shared master clock, the whole chord bends as one. By default swells in over ~1 s after the phrase's first key, PE-1000 style; context menu makes it constant.",
         tip: "deep slow vibrato with delayed onset sells a chord as bowed, not keyed.",
       },
       {
@@ -5436,8 +5436,8 @@ export const modules: ModuleSpec[] = [
         x: 58.1,
         y: 66.9,
         size: 13,
-        description: "chorus amount. The wet path runs through a BBD-style input limiter — squashes and warms like hardware while dry stays clean.",
-        tip: "halfway is the string-machine seat; full is seasick — both useful.",
+        description: "chorus amount. The wet path runs through a BBD-style input limiter, squashes and warms like hardware while dry stays clean.",
+        tip: "halfway is the string-machine seat; full is seasick, both useful.",
       },
       {
         id: "width",
@@ -5446,7 +5446,7 @@ export const modules: ModuleSpec[] = [
         x: 74.2,
         y: 66.9,
         size: 13,
-        description: "chorus-tap separation — narrows or widens the wet stereo image around the dry center.",
+        description: "chorus-tap separation, narrows or widens the wet stereo image around the dry center.",
         tip: "narrow before a mono system so the chorus survives the sum.",
       },
       {
@@ -5476,7 +5476,7 @@ export const modules: ModuleSpec[] = [
         x: 90.4,
         y: 50.0,
         size: 13,
-        description: "output level, plain gain after everything. The magic eye reads after it — turning down closes the eye.",
+        description: "output level, plain gain after everything. The magic eye reads after it, turning down closes the eye.",
         tip: "set the loudest stop first, then match the rest while auditioning.",
       },
       {
@@ -5486,7 +5486,7 @@ export const modules: ModuleSpec[] = [
         x: 50.0,
         y: 50.0,
         size: 20,
-        description: "output meter as a magic-eye tube. The dark wedge is wide at rest and closes as output grows — a shut eye means singing. Reads after LEVEL/SWELL, 8 ms rise, 120 ms fall; follows the shared palette: Phosphor, Lunar, Solar, Amber.",
+        description: "output meter as a magic-eye tube. The dark wedge is wide at rest and closes as output grows, a shut eye means singing. Reads after LEVEL/SWELL, 8 ms rise, 120 ms fall; follows the shared palette: Phosphor, Lunar, Solar, Amber.",
         tip: "ride SWELL until the wedge just kisses shut on peaks.",
       },
       {
@@ -5498,7 +5498,7 @@ export const modules: ModuleSpec[] = [
         size: 9,
         voltageRange: "1V/OCT · poly ≤16",
         description: "polyphonic pitch, ≤16 channels, quantized to semitones around C4 at 0 V. Unpatched assumes 0 V.",
-        tip: "a mono sequence on channel 1 alone still plays — a chord of one is valid.",
+        tip: "a mono sequence on channel 1 alone still plays, a chord of one is valid.",
       },
       {
         id: "gate",
@@ -5508,7 +5508,7 @@ export const modules: ModuleSpec[] = [
         y: 79.0,
         size: 9,
         voltageRange: "gate · poly ≤16",
-        description: "polyphonic gates, high ≥1 V. Unpatched, every channel reads held — drones at C4 until a gate is patched.",
+        description: "polyphonic gates, high ≥1 V. Unpatched, every channel reads held, drones at C4 until a gate is patched.",
         tip: "mult one gate to every channel for block chords breathing as one section.",
       },
       {
@@ -5519,7 +5519,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 9,
         voltageRange: "1 V per stop",
-        description: "1 V per stop, added to REGISTRATION — a sequencer steps through the eight stops. New stops load only on change.",
+        description: "1 V per stop, added to REGISTRATION, a sequencer steps through the eight stops. New stops load only on change.",
         tip: "slow stepped random re-registers between phrases.",
       },
       {
@@ -5563,7 +5563,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 9,
         voltageRange: "bipolar, 0.1 per volt",
-        description: "bipolar CV adding to SWELL at a tenth of travel per volt — loudness, brightness, width in one gesture.",
+        description: "bipolar CV adding to SWELL at a tenth of travel per volt, loudness, brightness, width in one gesture.",
         tip: "a slow LFO breathes the whole section without touching a knob.",
       },
       {
@@ -5575,7 +5575,7 @@ export const modules: ModuleSpec[] = [
         size: 9,
         voltageRange: "mono audio",
         description: "left of the stereo output pair, mono. Polyphony lives inside so filter, articulation, ensemble stay shared.",
-        tip: "this jack alone is a valid mono feed — chorus folds down cleanly.",
+        tip: "this jack alone is a valid mono feed, chorus folds down cleanly.",
       },
       {
         id: "right",
@@ -5595,7 +5595,7 @@ export const modules: ModuleSpec[] = [
         group: "drawbars",
         label: "16'",
         kind: "slider",
-        description: "16' rank mix, an octave below — the bass foundation. All ranks stay phase-locked, so bars change timbre, never tuning."
+        description: "16' rank mix, an octave below, the bass foundation. All ranks stay phase-locked, so bars change timbre, never tuning."
       },
       {
         id: "drawbar-8",
@@ -5616,14 +5616,14 @@ export const modules: ModuleSpec[] = [
         group: "drawbars",
         label: "2 2/3'",
         kind: "slider",
-        description: "2 2/3' rank mix, a twelfth up — the reedy quint colour."
+        description: "2 2/3' rank mix, a twelfth up, the reedy quint colour."
       },
       {
         id: "drawbar-2",
         group: "drawbars",
         label: "2'",
         kind: "slider",
-        description: "2' rank mix, two octaves up — the bright top."
+        description: "2' rank mix, two octaves up, the bright top."
       },
       {
         id: "registration",
@@ -5668,7 +5668,7 @@ export const modules: ModuleSpec[] = [
         label: "living ensemble",
         kind: "choice",
         values: ["off", "subtle", "natural", "loose"],
-        description: "Per-pitch-class tuning and level drift — Subtle ±3.2, Natural ±7.0, Loose ±15.0 cents: twelve players, not one machine. Off is bit-identical to its absence."
+        description: "Per-pitch-class tuning and level drift, Subtle ±3.2, Natural ±7.0, Loose ±15.0 cents: twelve players, not one machine. Off is bit-identical to its absence."
       },
       {
         id: "section-movement",
@@ -5676,7 +5676,7 @@ export const modules: ModuleSpec[] = [
         label: "section movement",
         kind: "choice",
         values: ["off", "subtle", "natural", "loose"],
-        description: "How players come and go during a held chord — Living ensemble is who they are, this is their movement. Only rearranges while sounding."
+        description: "How players come and go during a held chord, Living ensemble is who they are, this is their movement. Only rearranges while sounding."
       },
       {
         id: "oversampling",
@@ -5684,7 +5684,7 @@ export const modules: ModuleSpec[] = [
         label: "saturation oversampling",
         kind: "choice",
         values: ["1× (off)", "2× (default)", "4×", "8×"],
-        description: "Saturation is the only stage making harmonics above Nyquist — higher factors stop bright chords folding back, at more CPU."
+        description: "Saturation is the only stage making harmonics above Nyquist, higher factors stop bright chords folding back, at more CPU."
       },
       {
         id: "split-point",
@@ -5706,30 +5706,30 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "twelve clocks, one instrument",
-        body: "Twelve pitch-class clocks off one master source, octave taps locked in power-of-two. Filter, articulation, ensemble all shared — paraphonic, not polyphonic. TUNE, vibrato, drift act on the same clock, so the chord moves as one instrument; tone cues from early poly keyboards like the PE-1000."
+        body: "Twelve pitch-class clocks off one master source, octave taps locked in power-of-two. Filter, articulation, ensemble all shared, paraphonic, not polyphonic. TUNE, vibrato, drift act on the same clock, so the chord moves as one instrument; tone cues from early poly keyboards like the PE-1000."
       },
       {
         title: "stops and drawbars",
-        body: "REGISTRATION holds eight stops: Newsreel, Tutti, Vox humana, Tibia, Celeste, Bourdon, Regal, Aeolian. Turning to one writes its values into the panel — a combination left editable, not a preset slot. The five context-menu drawbars (16, 8, 4, 2 2/3, 2') stay phase-locked; each stop sets all five."
+        body: "REGISTRATION holds eight stops: Newsreel, Tutti, Vox humana, Tibia, Celeste, Bourdon, Regal, Aeolian. Turning to one writes its values into the panel, a combination left editable, not a preset slot. The five context-menu drawbars (16, 8, 4, 2 2/3, 2') stay phase-locked; each stop sets all five."
       },
       {
         title: "playing it",
-        body: "Send matching polyphonic V/OCT and GATE, take LEFT and RIGHT, ENSEMBLE near halfway, try the eight stops. The traveler is LOW over HIGH, both low-to-high left to right — the band is the gap, PEAK resonates both edges, SOFT darkens mellow-tab style. LEVEL is plain gain; SWELL leans the instrument louder, brighter, wider at once."
+        body: "Send matching polyphonic V/OCT and GATE, take LEFT and RIGHT, ENSEMBLE near halfway, try the eight stops. The traveler is LOW over HIGH, both low-to-high left to right, the band is the gap, PEAK resonates both edges, SOFT darkens mellow-tab style. LEVEL is plain gain; SWELL leans the instrument louder, brighter, wider at once."
       },
       {
         title: "articulation and vibrato",
-        body: "ATTACK/DECAY/RELEASE drive the shared envelope; BREATH picks one paraphonic envelope, bass/treble groups split at C2/C3/C4, or PE-style grouped attack with individual key decay. Vibrato rides the shared clock, swelling in ~1 s after the phrase's first key unless set constant. Vintage drift wanders ±0.9 cents — off, and every relationship stays exact."
+        body: "ATTACK/DECAY/RELEASE drive the shared envelope; BREATH picks one paraphonic envelope, bass/treble groups split at C2/C3/C4, or PE-style grouped attack with individual key decay. Vibrato rides the shared clock, swelling in ~1 s after the phrase's first key unless set constant. Vintage drift wanders ±0.9 cents, off, and every relationship stays exact."
       },
       {
         title: "factory library",
-        body: "25 instruments in five folders: Keys, Pads, Bass, Leads, Percussion. Each preset stores panel plus context-menu state — loading never inherits from the previous patch."
+        body: "25 instruments in five folders: Keys, Pads, Bass, Leads, Percussion. Each preset stores panel plus context-menu state, loading never inherits from the previous patch."
       }
     ]
   },
   {
     slug: "crucible",
     name: "crucible",
-    subtitle: "transmutation's input expander — ten jacks for record, harmony, performance, mute and solo, no controls, no outputs",
+    subtitle: "transmutation's input expander, ten jacks for record, harmony, performance, mute and solo, no controls, no outputs",
     summary: "crucible sits directly to transmutation's left and puts ten of its performance controls on cables, from the record pair to mute and solo. it adds nothing musical: every jack drives something transmutation already does, and the link lamp shows when the two modules are talking.",
     category: "vcv rack module",
     status: "input expander",
@@ -5768,7 +5768,7 @@ export const modules: ModuleSpec[] = [
         size: 34,
         voltageRange: "gate · poly ≤6",
         description: "gate transmutation records from, polyphonic ≤6. Mono strikes every held pitch at once; poly strikes only its channel.",
-        tip: "patch the pair or neither — pitch alone records nothing.",
+        tip: "patch the pair or neither, pitch alone records nothing.",
       },
       {
         id: "transpose",
@@ -5780,9 +5780,9 @@ export const modules: ModuleSpec[] = [
         voltageRange: "1V/oct",
         description: [
           "shifts both lanes by whole semitones at 1 V/oct. Adds to the panel knob like tune CV, so the knob still works patched",
-          "±2 V covers ±24 semitones. Between-semitone voltages round — the module can't play between",
+          "±2 V covers ±24 semitones. Between-semitone voltages round, the module can't play between",
         ],
-        tip: "drive from a keyboard or quantizer for key changes — no scaling module needed.",
+        tip: "drive from a keyboard or quantizer for key changes, no scaling module needed.",
       },
       {
         id: "tension",
@@ -5792,7 +5792,7 @@ export const modules: ModuleSpec[] = [
         y: 38.9,
         size: 34,
         voltageRange: "0-10V",
-        description: "voicing openness, 0–10 V. Replaces the panel value rather than adding — the panel rests at full, so an adding jack would do nothing.",
+        description: "voicing openness, 0–10 V. Replaces the panel value rather than adding, the panel rests at full, so an adding jack would do nothing.",
         tip: "a slow envelope breathes colour through the chords across a phrase.",
       },
       {
@@ -5805,7 +5805,7 @@ export const modules: ModuleSpec[] = [
         voltageRange: "gate",
         description: [
           "gate: while high, fill-marked steps play and non-fill stay silent. OR'd with the panel button",
-          "switches high at 1 V, releases below 0.2 V — slow or noisy edges don't chatter",
+          "switches high at 1 V, releases below 0.2 V, slow or noisy edges don't chatter",
         ],
         tip: "fire from a manual gate or irregular clock division for fills on demand.",
       },
@@ -5818,8 +5818,8 @@ export const modules: ModuleSpec[] = [
         size: 34,
         voltageRange: "0-10V",
         description: [
-          "picks one of 16 scenes, 0–10 V. Fires only on scene change — holding a voltage never relaunches",
-          "boundaries every 0.625 V need a quarter-step of overtravel — parked voltages never flip between scenes",
+          "picks one of 16 scenes, 0–10 V. Fires only on scene change, holding a voltage never relaunches",
+          "boundaries every 0.625 V need a quarter-step of overtravel, parked voltages never flip between scenes",
           "manual launching takes the wheel until the voltage moves on; unpatching forgets, so replugging chooses fresh",
         ],
         tip: "slow stepped voltage changes scenes from a pattern, not by hand.",
@@ -5832,7 +5832,7 @@ export const modules: ModuleSpec[] = [
         y: 64.0,
         size: 34,
         voltageRange: "gate",
-        description: "gate silencing lane A while high. OR'd with the panel switch — hand-muted stays muted whatever the cable does.",
+        description: "gate silencing lane A while high. OR'd with the panel switch, hand-muted stays muted whatever the cable does.",
         tip: "sequence mutes from a gate sequencer for hands-free arrangement.",
       },
       {
@@ -5843,7 +5843,7 @@ export const modules: ModuleSpec[] = [
         y: 72.4,
         size: 34,
         voltageRange: "gate",
-        description: "gate silencing lane B while high. OR'd with the panel switch — hand and cable never fight.",
+        description: "gate silencing lane B while high. OR'd with the panel switch, hand and cable never fight.",
         tip: "mult one gate to both mutes to drop both lanes at once.",
       },
       {
@@ -5876,32 +5876,32 @@ export const modules: ModuleSpec[] = [
         y: 97.5,
         size: 20,
         description: [
-          "lit when a transmutation sits immediately right. Unlit means the jacks reach nothing — crucible only drives its direct neighbor",
+          "lit when a transmutation sits immediately right. Unlit means the jacks reach nothing, crucible only drives its direct neighbor",
           "green while cables carry voltages, amber when linked but all sockets empty, dark with nothing beside",
         ],
-        tip: "no response anywhere? check this lamp first — a dragged-away transmutation releases every jack.",
+        tip: "no response anywhere? check this lamp first, a dragged-away transmutation releases every jack.",
       },
     ],
     manual: [
       {
         title: "what it is",
-        body: "crucible is transmutation's input expander: ten jacks in one 4 HP column for the record pair, transpose, tension, fill, scene, mute, solo. It sits immediately left; the link lamp lights when the two talk. Nothing musical of its own — every jack drives an existing transmutation control, and nothing comes back out except through transmutation."
+        body: "crucible is transmutation's input expander: ten jacks in one 4 HP column for the record pair, transpose, tension, fill, scene, mute, solo. It sits immediately left; the link lamp lights when the two talk. Nothing musical of its own, every jack drives an existing transmutation control, and nothing comes back out except through transmutation."
       },
       {
         title: "playing it",
-        body: "hold mute A high to silence lane A; 0–10 V into tension opens and closes voicings; slow steps into scene change scenes from a pattern. transpose adds to its knob like tune CV; tension replaces its panel value. the record pair needs both cables — pitch alone records nothing."
+        body: "hold mute A high to silence lane A; 0–10 V into tension opens and closes voicings; slow steps into scene change scenes from a pattern. transpose adds to its knob like tune CV; tension replaces its panel value. the record pair needs both cables, pitch alone records nothing."
       },
       {
         title: "gates do not chatter",
-        body: "every gate goes high at 1 V and releases below 0.2 V — two thresholds, so slow or noisy edges flip once. fill, mute, solo OR with their panel controls; solo wins over mute, as on the panel."
+        body: "every gate goes high at 1 V and releases below 0.2 V, two thresholds, so slow or noisy edges flip once. fill, mute, solo OR with their panel controls; solo wins over mute, as on the panel."
       },
       {
         title: "scene select holds its choice",
-        body: "16 scenes over 10 V means boundaries every 0.625 V — inside ordinary bus noise — so the jack needs a quarter-step of overtravel past a boundary, and parked voltages never flip. select is an event: it fires only on change, manual takes the wheel until the voltage moves on, and unpatching forgets so replugging chooses fresh."
+        body: "16 scenes over 10 V means boundaries every 0.625 V, inside ordinary bus noise, so the jack needs a quarter-step of overtravel past a boundary, and parked voltages never flip. select is an event: it fires only on change, manual takes the wheel until the voltage moves on, and unpatching forgets so replugging chooses fresh."
       },
       {
         title: "empty sockets and unlinking",
-        body: "every jack reports cable presence separately from voltage: 0 V patched is a value; unpatched leaves the panel control untouched. jacks never move transmutation's knobs, so pulling cables restores the panel exactly. dragging the transmutation away releases every jack — transpose to panel value, tension to full, no gate left held."
+        body: "every jack reports cable presence separately from voltage: 0 V patched is a value; unpatched leaves the panel control untouched. jacks never move transmutation's knobs, so pulling cables restores the panel exactly. dragging the transmutation away releases every jack, transpose to panel value, tension to full, no gate left held."
       }
     ]
   },
@@ -5933,8 +5933,8 @@ export const modules: ModuleSpec[] = [
         size: 60,
         description: [
           "round CRT shared by all four channels in waveform mode; 1x2 & 3x4 splits it into two vector figures, I vs II and III vs IV",
-          "each lane captures a 256-point min/max envelope per sweep; the beam clips to the circle — past-edge traces simply aren't there",
-          "the trigger line shows only in normal/single — in auto or vector the threshold knob still sets the counter crossing with no line drawn",
+          "each lane captures a 256-point min/max envelope per sweep; the beam clips to the circle, past-edge traces simply aren't there",
+          "the trigger line shows only in normal/single, in auto or vector the threshold knob still sets the counter crossing with no line drawn",
         ],
         tip: "with cursors on, click the face to grab the nearest cursor and drag; otherwise the face isn't clickable.",
       },
@@ -5945,7 +5945,7 @@ export const modules: ModuleSpec[] = [
         x: 10.6,
         y: 15.82,
         size: 11,
-        description: "slides channel I's trace ±10 V to separate stacked signals. Display only — never changes OUT-I.",
+        description: "slides channel I's trace ±10 V to separate stacked signals. Display only, never changes OUT-I.",
         tip: "offset voices a few volts apart to read four lines, not one blur.",
       },
       {
@@ -5955,7 +5955,7 @@ export const modules: ModuleSpec[] = [
         x: 89.4,
         y: 15.82,
         size: 11,
-        description: "slides channel II's trace ±10 V to separate stacked signals. Display only — never changes OUT-II.",
+        description: "slides channel II's trace ±10 V to separate stacked signals. Display only, never changes OUT-II.",
         tip: "offset voices a few volts apart to read four lines, not one blur.",
       },
       {
@@ -5965,7 +5965,7 @@ export const modules: ModuleSpec[] = [
         x: 10.6,
         y: 53.84,
         size: 11,
-        description: "slides channel III's trace ±10 V to separate stacked signals. Display only — never changes OUT-III.",
+        description: "slides channel III's trace ±10 V to separate stacked signals. Display only, never changes OUT-III.",
         tip: "offset voices a few volts apart to read four lines, not one blur.",
       },
       {
@@ -5975,7 +5975,7 @@ export const modules: ModuleSpec[] = [
         x: 89.4,
         y: 53.84,
         size: 11,
-        description: "slides channel IV's trace ±10 V to separate stacked signals. Display only — never changes OUT-IV.",
+        description: "slides channel IV's trace ±10 V to separate stacked signals. Display only, never changes OUT-IV.",
         tip: "offset voices a few volts apart to read four lines, not one blur.",
       },
       {
@@ -5987,7 +5987,7 @@ export const modules: ModuleSpec[] = [
         size: 7,
         description: [
           "channel I vertical scale in V/screen, 9 detents: 20, 10, 5, 2.5, 1.25, 0.625, 0.31, 0.16, 0.08",
-          "starts at 10 V/screen — ±5 V fills the tube edge to edge. Display only — gain never touches outputs",
+          "starts at 10 V/screen, ±5 V fills the tube edge to edge. Display only, gain never touches outputs",
           "while any gain knob moves, every readout shows its own V/screen for 1.6 s instead of the statistic",
         ],
         tip: "frame the loudest voice first, then stack the rest with position.",
@@ -6001,7 +6001,7 @@ export const modules: ModuleSpec[] = [
         size: 7,
         description: [
           "channel II vertical scale in V/screen, 9 detents: 20, 10, 5, 2.5, 1.25, 0.625, 0.31, 0.16, 0.08",
-          "starts at 10 V/screen — ±5 V fills the tube edge to edge. Display only — gain never touches outputs",
+          "starts at 10 V/screen, ±5 V fills the tube edge to edge. Display only, gain never touches outputs",
           "while any gain knob moves, every readout shows its own V/screen for 1.6 s instead of the statistic",
         ],
         tip: "frame the loudest voice first, then stack the rest with position.",
@@ -6015,7 +6015,7 @@ export const modules: ModuleSpec[] = [
         size: 7,
         description: [
           "channel III vertical scale in V/screen, 9 detents: 20, 10, 5, 2.5, 1.25, 0.625, 0.31, 0.16, 0.08",
-          "starts at 10 V/screen — ±5 V fills the tube edge to edge. Display only — gain never touches outputs",
+          "starts at 10 V/screen, ±5 V fills the tube edge to edge. Display only, gain never touches outputs",
           "while any gain knob moves, every readout shows its own V/screen for 1.6 s instead of the statistic",
         ],
         tip: "frame the loudest voice first, then stack the rest with position.",
@@ -6029,7 +6029,7 @@ export const modules: ModuleSpec[] = [
         size: 7,
         description: [
           "channel IV vertical scale in V/screen, 9 detents: 20, 10, 5, 2.5, 1.25, 0.625, 0.31, 0.16, 0.08",
-          "starts at 10 V/screen — ±5 V fills the tube edge to edge. Display only — gain never touches outputs",
+          "starts at 10 V/screen, ±5 V fills the tube edge to edge. Display only, gain never touches outputs",
           "while any gain knob moves, every readout shows its own V/screen for 1.6 s instead of the statistic",
         ],
         tip: "frame the loudest voice first, then stack the rest with position.",
@@ -6043,7 +6043,7 @@ export const modules: ModuleSpec[] = [
         size: 11,
         description: [
           "four-digit channel-I readout: peak-to-peak, min, max, frequency, rms, or V/screen, refreshed bench-meter style",
-          "click to hide/show the trace — muted lanes read blank. Min/max/rms span the sweep buffer across all poly channels; frequency counts first-channel crossings only",
+          "click to hide/show the trace, muted lanes read blank. Min/max/rms span the sweep buffer across all poly channels; frequency counts first-channel crossings only",
         ],
         tip: "click a readout to solo the trace you're tuning without repatching.",
       },
@@ -6056,7 +6056,7 @@ export const modules: ModuleSpec[] = [
         size: 11,
         description: [
           "four-digit channel-II readout: peak-to-peak, min, max, frequency, rms, or V/screen, refreshed bench-meter style",
-          "click to hide/show the trace — muted lanes read blank. Min/max/rms span the sweep buffer across all poly channels; frequency counts first-channel crossings only",
+          "click to hide/show the trace, muted lanes read blank. Min/max/rms span the sweep buffer across all poly channels; frequency counts first-channel crossings only",
         ],
         tip: "click a readout to solo the trace you're tuning without repatching.",
       },
@@ -6069,7 +6069,7 @@ export const modules: ModuleSpec[] = [
         size: 11,
         description: [
           "four-digit channel-III readout: peak-to-peak, min, max, frequency, rms, or V/screen, refreshed bench-meter style",
-          "click to hide/show the trace — muted lanes read blank. Min/max/rms span the sweep buffer across all poly channels; frequency counts first-channel crossings only",
+          "click to hide/show the trace, muted lanes read blank. Min/max/rms span the sweep buffer across all poly channels; frequency counts first-channel crossings only",
         ],
         tip: "click a readout to solo the trace you're tuning without repatching.",
       },
@@ -6082,7 +6082,7 @@ export const modules: ModuleSpec[] = [
         size: 11,
         description: [
           "four-digit channel-IV readout: peak-to-peak, min, max, frequency, rms, or V/screen, refreshed bench-meter style",
-          "click to hide/show the trace — muted lanes read blank. Min/max/rms span the sweep buffer across all poly channels; frequency counts first-channel crossings only",
+          "click to hide/show the trace, muted lanes read blank. Min/max/rms span the sweep buffer across all poly channels; frequency counts first-channel crossings only",
         ],
         tip: "click a readout to solo the trace you're tuning without repatching.",
       },
@@ -6097,7 +6097,7 @@ export const modules: ModuleSpec[] = [
           "waveform draws all four channels against time; 1x2 & 3x4 draws two vector figures, I vs II and III vs IV",
           "vector mode bypasses triggering: threshold still sets the counter crossing, but no sweep waits on it",
         ],
-        tip: "quadrature sines into I and II draw the classic circle — detune one voice and watch it turn.",
+        tip: "quadrature sines into I and II draw the classic circle, detune one voice and watch it turn.",
       },
       {
         id: "trig-mode",
@@ -6107,7 +6107,7 @@ export const modules: ModuleSpec[] = [
         y: 64.91,
         size: 7,
         description: [
-          "auto (down) draws with or without a crossing — always a picture while hunting; normal (center) draws only on real crossings",
+          "auto (down) draws with or without a crossing, always a picture while hunting; normal (center) draws only on real crossings",
           "single (up) holds until Arm single sweep, then captures one sweep on the next crossing and holds it",
         ],
         tip: "start in auto to find the signal, then normal once the trace stands still.",
@@ -6121,9 +6121,9 @@ export const modules: ModuleSpec[] = [
         size: 11,
         description: [
           "horizontal scale, 15 detents from 1 ms to 50 s in the 1-2-5 bench sequence",
-          "starts at 500 ms/screen. At ≥1 s/screen the display can roll instead of sweeping when Roll is on — the readable way to watch envelopes and slow LFOs",
+          "starts at 500 ms/screen. At ≥1 s/screen the display can roll instead of sweeping when Roll is on, the readable way to watch envelopes and slow LFOs",
         ],
-        tip: "frame a few cycles, not dozens — crowded sweeps hide clipping and ringing.",
+        tip: "frame a few cycles, not dozens, crowded sweeps hide clipping and ringing.",
       },
       {
         id: "threshold",
@@ -6136,7 +6136,7 @@ export const modules: ModuleSpec[] = [
           "trigger threshold −10 to +10 V; sweeps start when the source crosses it on the selected edge",
           "also the crossing level for all four frequency counters, even where no trigger line is drawn",
         ],
-        tip: "park mid-swing of the trigger source — near peaks it fires on noise.",
+        tip: "park mid-swing of the trigger source, near peaks it fires on noise.",
       },
       {
         id: "stat-p2p",
@@ -6146,7 +6146,7 @@ export const modules: ModuleSpec[] = [
         y: 75.55,
         size: 7,
         description: "peak-to-peak volts on all four readouts. One of four radio buttons, exactly one lit; the menu adds rms and V/screen.",
-        tip: "p2p is the fastest clipping check — near 20 V is out of rack headroom.",
+        tip: "p2p is the fastest clipping check, near 20 V is out of rack headroom.",
       },
       {
         id: "stat-min",
@@ -6176,7 +6176,7 @@ export const modules: ModuleSpec[] = [
         y: 75.55,
         size: 7,
         description: "each lane's frequency in Hz, counted from first-channel threshold crossings, lightly smoothed. One of four radio buttons.",
-        tip: "dashes on a slow LFO mean the threshold sits outside the swing — move it mid-range.",
+        tip: "dashes on a slow LFO mean the threshold sits outside the swing, move it mid-range.",
       },
       {
         id: "in-1",
@@ -6241,7 +6241,7 @@ export const modules: ModuleSpec[] = [
         y: 89.29,
         size: 7,
         voltageRange: "gate",
-        description: "holds trace and readouts at ≥1 V — same as the Freeze menu latch. Outputs keep passing signal while held.",
+        description: "holds trace and readouts at ≥1 V, same as the Freeze menu latch. Outputs keep passing signal while held.",
         tip: "gate here to freeze a transient mid-flight and measure at leisure.",
       },
       {
@@ -6252,7 +6252,7 @@ export const modules: ModuleSpec[] = [
         y: 89.29,
         size: 7,
         voltageRange: "= input",
-        description: "exact per-sample copy of CH-I, channel count included. No gain, filtering, or delay — dioptra sits anywhere.",
+        description: "exact per-sample copy of CH-I, channel count included. No gain, filtering, or delay, dioptra sits anywhere.",
         tip: "place just before the output module: last seen is last heard.",
       },
       {
@@ -6263,7 +6263,7 @@ export const modules: ModuleSpec[] = [
         y: 89.29,
         size: 7,
         voltageRange: "= input",
-        description: "exact per-sample copy of CH-II, channel count included. No gain, filtering, or delay — dioptra sits anywhere.",
+        description: "exact per-sample copy of CH-II, channel count included. No gain, filtering, or delay, dioptra sits anywhere.",
         tip: "place just before the output module: last seen is last heard.",
       },
       {
@@ -6274,7 +6274,7 @@ export const modules: ModuleSpec[] = [
         y: 89.29,
         size: 7,
         voltageRange: "= input",
-        description: "exact per-sample copy of CH-III, channel count included. No gain, filtering, or delay — dioptra sits anywhere.",
+        description: "exact per-sample copy of CH-III, channel count included. No gain, filtering, or delay, dioptra sits anywhere.",
         tip: "place just before the output module: last seen is last heard.",
       },
       {
@@ -6285,7 +6285,7 @@ export const modules: ModuleSpec[] = [
         y: 89.29,
         size: 7,
         voltageRange: "= input",
-        description: "exact per-sample copy of CH-IV, channel count included. No gain, filtering, or delay — dioptra sits anywhere.",
+        description: "exact per-sample copy of CH-IV, channel count included. No gain, filtering, or delay, dioptra sits anywhere.",
         tip: "place just before the output module: last seen is last heard.",
       },
     ],
@@ -6312,7 +6312,7 @@ export const modules: ModuleSpec[] = [
         label: "pre-trigger",
         kind: "choice",
         values: ["Off", "25% of screen", "50% of screen"],
-        description: "Fills the sweep front with pre-crossing history — shows what caused the event, not just what followed."
+        description: "Fills the sweep front with pre-crossing history, shows what caused the event, not just what followed."
       },
       {
         id: "trigger-independent",
@@ -6348,7 +6348,7 @@ export const modules: ModuleSpec[] = [
         group: "channels",
         label: "ac coupling",
         kind: "toggle",
-        description: "Per-channel DC blockers for 1–4 — zoom into ripple or hum on a large offset."
+        description: "Per-channel DC blockers for 1–4, zoom into ripple or hum on a large offset."
       },
       {
         id: "freeze",
@@ -6369,7 +6369,7 @@ export const modules: ModuleSpec[] = [
         group: "persistence",
         label: "persistence",
         kind: "toggle",
-        description: "Decaying afterglow behind the beam — repeated sweeps build where the trace spends time."
+        description: "Decaying afterglow behind the beam, repeated sweeps build where the trace spends time."
       },
       {
         id: "averaging",
@@ -6384,7 +6384,7 @@ export const modules: ModuleSpec[] = [
         group: "roll below 1 s/screen",
         label: "roll below 1 s/screen",
         kind: "toggle",
-        description: "At ≥1 s/screen the display scrolls instead of sweeping — the readable way to watch slow signals."
+        description: "At ≥1 s/screen the display scrolls instead of sweeping, the readable way to watch slow signals."
       },
       {
         id: "math",
@@ -6400,7 +6400,7 @@ export const modules: ModuleSpec[] = [
         label: "beam crackle",
         kind: "choice",
         values: ["Off", "Light", "Heavy"],
-        description: "A tired tube's beam noise. Cosmetic, off by default — a scope being read shouldn't lie about trace position."
+        description: "A tired tube's beam noise. Cosmetic, off by default, a scope being read shouldn't lie about trace position."
       },
       {
         id: "theme",
@@ -6426,14 +6426,14 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "sitting inline",
-        body: "Every input copies exactly to its output, sample and channel for channel — insert anywhere without changing sound. FREEZE holds the picture without stopping passthrough, slow timebases can roll, persistence afterglows the beam. Crackle and theme are cosmetic only."
+        body: "Every input copies exactly to its output, sample and channel for channel, insert anywhere without changing sound. FREEZE holds the picture without stopping passthrough, slow timebases can roll, persistence afterglows the beam. Crackle and theme are cosmetic only."
       },
     ]
   },
   {
     slug: "entanglement",
     name: "entanglement",
-    subtitle: "eight-operator fm oscillator in a mutating modulation constellation — hereditary algorithms, a morphing topology, stereo carriers",
+    subtitle: "eight-operator fm oscillator in a mutating modulation constellation, hereditary algorithms, a morphing topology, stereo carriers",
     summary: "eight operators wired as a sparse modulation constellation that inherits, mutates and diverges: press mutate and the current descendant becomes the origin while a related one is generated, then entangle travels between the two through a genuine hybrid graph. eight lit faders edit ratio, level, contour, bias and detune per operator under the layer switch, and up to six polyphonic voices sound through saturated stereo carriers plus a ghost bus of the hidden modulators.",
     category: "vcv rack module",
     status: "eight-operator fm oscillator",
@@ -6458,9 +6458,9 @@ export const modules: ModuleSpec[] = [
         size: 12,
         description: [
           "coarse tunes ±3 octaves in snapped whole-octave steps; fine trims ±100 cents",
-          "one concentric control — outer ring coarse, inner cap fine. Their sum offsets every voice's v/oct before the converter, clamped ±30 V",
+          "one concentric control, outer ring coarse, inner cap fine. Their sum offsets every voice's v/oct before the converter, clamped ±30 V",
         ],
-        tip: "park coarse on an octave and tune with fine — the snap keeps layered takes honest.",
+        tip: "park coarse on an octave and tune with fine, the snap keeps layered takes honest.",
       },
       {
         id: "screen",
@@ -6470,12 +6470,12 @@ export const modules: ModuleSpec[] = [
         y: 20.5,
         size: 43,
         description: [
-          "eight operators as numbered chips matching the faders, with live modulation edges — the display follows the audio morph exactly",
-          "edges arriving as entangle turns warm up, leaving ones cool down — the middle shows a graph genuinely partway between",
+          "eight operators as numbered chips matching the faders, with live modulation edges, the display follows the audio morph exactly",
+          "edges arriving as entangle turns warm up, leaving ones cool down, the middle shows a graph genuinely partway between",
           "a corner ring marks self-feedback, brightening with amount: amber on phosphor/lunar, cyan on solar/amber",
           "the header names both endpoint algorithms with a morph-position bar; carriers glow brighter, halos follow activity",
         ],
-        tip: "read the header before you mutate — it names the family you're leaving.",
+        tip: "read the header before you mutate, it names the family you're leaving.",
       },
       {
         id: "tension",
@@ -6488,7 +6488,7 @@ export const modules: ModuleSpec[] = [
           "global modulation index: near-pure carriers at bottom, vocal and electric mids, folded metallic spectra at top",
           "knob plus CV at 0.1/V, raised to the 1.45 power and scaled by evolve and affinity to ~5.3 radians max",
         ],
-        tip: "back tension off before raising evolve — the index grows with both, and both maxed is deliberate chaos.",
+        tip: "back tension off before raising evolve, the index grows with both, and both maxed is deliberate chaos.",
       },
       {
         id: "layer",
@@ -6498,10 +6498,10 @@ export const modules: ModuleSpec[] = [
         y: 31.0,
         size: 8,
         description: [
-          "which attribute the eight faders edit: ratio, level, contour, bias, detune — fresh modules open on level",
-          "switching never moves a parameter: new caps travel from where old ones stood — fast double-flicks continue the motion",
+          "which attribute the eight faders edit: ratio, level, contour, bias, detune, fresh modules open on level",
+          "switching never moves a parameter: new caps travel from where old ones stood, fast double-flicks continue the motion",
         ],
-        tip: "flick to ratio for tuning, back to level for balance — caps glide, sound never jumps.",
+        tip: "flick to ratio for tuning, back to level for balance, caps glide, sound never jumps.",
         diagrams: [
           { id: "layer-ratio", label: "ratio", rotation: -135 },
           { id: "layer-level", label: "level", rotation: -67.5 },
@@ -6518,10 +6518,10 @@ export const modules: ModuleSpec[] = [
         y: 31.0,
         size: 11,
         description: [
-          "spreads carriers across stereo and adds complementary modulation-depth side signal — FM detail, not panning, with the mono centre strong",
+          "spreads carriers across stereo and adds complementary modulation-depth side signal, FM detail, not panning, with the mono centre strong",
           "pan follows carrier constellation placement × width; the side term grows with width², alternating polarity across carriers",
         ],
-        tip: "at zero both sides carry the same centred mix — either jack for mono.",
+        tip: "at zero both sides carry the same centred mix, either jack for mono.",
       },
       {
         id: "symmetry",
@@ -6547,7 +6547,7 @@ export const modules: ModuleSpec[] = [
           "favours deeper, more interconnected graphs when mutating, and raises how much those relationships are heard live",
           "higher attaches strays deeper, adds ≤3 cross-links, allows feedback on ≤4 operators, scales live index 0.82–1.05",
         ],
-        tip: "raise affinity before a mutate when the graph feels thin — the child comes back denser.",
+        tip: "raise affinity before a mutate when the graph feels thin, the child comes back denser.",
       },
       {
         id: "entangle",
@@ -6557,7 +6557,7 @@ export const modules: ModuleSpec[] = [
         y: 48.9,
         size: 14,
         description: [
-          "travels A to B by morphing the topology itself — edges, feedback, carrier roles, power, stereo placement — while two ratio-locked banks crossfade underneath",
+          "travels A to B by morphing the topology itself, edges, feedback, carrier roles, power, stereo placement, while two ratio-locked banks crossfade underneath",
           "both ends harmonic; the middle is a genuine hybrid graph, not an output crossfade",
           "CV and menu orbit add to the knob before a 4 ms slew; the collar lights with the sum",
         ],
@@ -6585,9 +6585,9 @@ export const modules: ModuleSpec[] = [
         size: 12,
         description: [
           "adds harmonic colour and lengthens spectral contours",
-          "attack stretches 4→50 ms, lifetimes 25 ms→1.75 s, modulator sustain rises — gated low is struck transients, high blooms and sustains",
+          "attack stretches 4→50 ms, lifetimes 25 ms→1.75 s, modulator sustain rises, gated low is struck transients, high blooms and sustains",
         ],
-        tip: "unpatched gate drones with contours still — patch a gate to hear evolve move.",
+        tip: "unpatched gate drones with contours still, patch a gate to hear evolve move.",
       },
       {
         id: "mutate",
@@ -6601,25 +6601,25 @@ export const modules: ModuleSpec[] = [
           "every press yields one generation; mid-transition triggers queue one more",
           "the key lip flashes on press while the screen marker travels out and back",
         ],
-        tip: "sequence the mutate jack and sweep entangle between hits — each generation gets a performance.",
+        tip: "sequence the mutate jack and sweep entangle between hits, each generation gets a performance.",
       },
-      { id: "fader-1", label: "operator 1", type: "knob", x: 20.3, y: 74.0, size: 8, description: ["operator 1 — the invariant root carrier, always audible at ×1 and centre — for the showing layer: ratio ×0.5–×2, level, contour, bias toward 2nd/3rd/5th, detune ±25 cents.", "edits apply to both banks, so identity holds while topology mutates."], tip: "balance against operator 1 first — the root everything hangs from." },
-      { id: "fader-2", label: "operator 2", type: "knob", x: 30.0, y: 74.0, size: 8, description: "operator 2 for the layer in force — ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents) — both banks.", tip: "in ratio layer, ×0.5 here against ×1 elsewhere drops an octave without touching pitch." },
-      { id: "fader-3", label: "operator 3", type: "knob", x: 39.7, y: 74.0, size: 8, description: "operator 3 for the layer in force — ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents) — both banks.", tip: "pull level on a harsh modulator, not a carrier — the screen shows which is which." },
-      { id: "fader-4", label: "operator 4", type: "knob", x: 49.4, y: 74.0, size: 8, description: "operator 4 for the layer in force — ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents) — both banks.", tip: "long contour on one operator, short on the rest — bloom staged across the attack." },
-      { id: "fader-5", label: "operator 5", type: "knob", x: 59.1, y: 74.0, size: 8, description: "operator 5 for the layer in force — ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents) — both banks.", tip: "bias up on carriers, down on modulators — colour voices strongest where heard." },
-      { id: "fader-6", label: "operator 6", type: "knob", x: 68.8, y: 74.0, size: 8, description: "operator 6 for the layer in force — ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents) — both banks.", tip: "detune in small opposing pairs for beating and stereo life; zero is exactly harmonic." },
-      { id: "fader-7", label: "operator 7", type: "knob", x: 78.5, y: 74.0, size: 8, description: "operator 7 for the layer in force — ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents) — both banks.", tip: "ghost carries what carriers hide — solo it while setting modulator levels." },
-      { id: "fader-8", label: "operator 8", type: "knob", x: 88.2, y: 74.0, size: 8, description: "operator 8 for the layer in force — ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents) — both banks.", tip: "set all eight in level first, then work one layer at a time — caps travel, nothing jumps." },
-      { id: "voct", label: "v/oct", type: "jack", x: 10.0, y: 81.1, size: 8, voltageRange: "1V/oct · poly ≤6", description: "pitch, 1 V/oct, ≤6 voices — count follows the wider of v/oct and gate. Coarse/fine offset before the converter; pitches clamp ±30 V.", tip: "a poly cable here with a mono gate still voices every channel." },
-      { id: "gate", label: "gate in", type: "jack", x: 10.0, y: 93.2, size: 8, voltageRange: "gate · poly ≤6", description: "note gate: >1 V gated, articulation follows evolve — struck transients low, bloom and sustain high. Unpatched drones with contours still.", tip: "for freer drones, also turn off reset phases on gate." },
-      { id: "entangle-cv", label: "entangle cv", type: "jack", x: 21.5, y: 93.2, size: 8, voltageRange: "±10 V", description: "modulates entangle at 0.1/V — +10 V sweeps full A-to-B. Adds to knob and orbit before the 4 ms slew; collar lights with the result.", tip: "slow triangle plus centred knob plays both constellations in turn." },
+      { id: "fader-1", label: "operator 1", type: "knob", x: 20.3, y: 74.0, size: 8, description: ["operator 1, the invariant root carrier, always audible at ×1 and centre, for the showing layer: ratio ×0.5–×2, level, contour, bias toward 2nd/3rd/5th, detune ±25 cents.", "edits apply to both banks, so identity holds while topology mutates."], tip: "balance against operator 1 first, the root everything hangs from." },
+      { id: "fader-2", label: "operator 2", type: "knob", x: 30.0, y: 74.0, size: 8, description: "operator 2 for the layer in force, ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents), both banks.", tip: "in ratio layer, ×0.5 here against ×1 elsewhere drops an octave without touching pitch." },
+      { id: "fader-3", label: "operator 3", type: "knob", x: 39.7, y: 74.0, size: 8, description: "operator 3 for the layer in force, ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents), both banks.", tip: "pull level on a harsh modulator, not a carrier, the screen shows which is which." },
+      { id: "fader-4", label: "operator 4", type: "knob", x: 49.4, y: 74.0, size: 8, description: "operator 4 for the layer in force, ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents), both banks.", tip: "long contour on one operator, short on the rest, bloom staged across the attack." },
+      { id: "fader-5", label: "operator 5", type: "knob", x: 59.1, y: 74.0, size: 8, description: "operator 5 for the layer in force, ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents), both banks.", tip: "bias up on carriers, down on modulators, colour voices strongest where heard." },
+      { id: "fader-6", label: "operator 6", type: "knob", x: 68.8, y: 74.0, size: 8, description: "operator 6 for the layer in force, ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents), both banks.", tip: "detune in small opposing pairs for beating and stereo life; zero is exactly harmonic." },
+      { id: "fader-7", label: "operator 7", type: "knob", x: 78.5, y: 74.0, size: 8, description: "operator 7 for the layer in force, ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents), both banks.", tip: "ghost carries what carriers hide, solo it while setting modulator levels." },
+      { id: "fader-8", label: "operator 8", type: "knob", x: 88.2, y: 74.0, size: 8, description: "operator 8 for the layer in force, ratio (×0.5–×2, seven steps), level, contour, bias, detune (±25 cents), both banks.", tip: "set all eight in level first, then work one layer at a time, caps travel, nothing jumps." },
+      { id: "voct", label: "v/oct", type: "jack", x: 10.0, y: 81.1, size: 8, voltageRange: "1V/oct · poly ≤6", description: "pitch, 1 V/oct, ≤6 voices, count follows the wider of v/oct and gate. Coarse/fine offset before the converter; pitches clamp ±30 V.", tip: "a poly cable here with a mono gate still voices every channel." },
+      { id: "gate", label: "gate in", type: "jack", x: 10.0, y: 93.2, size: 8, voltageRange: "gate · poly ≤6", description: "note gate: >1 V gated, articulation follows evolve, struck transients low, bloom and sustain high. Unpatched drones with contours still.", tip: "for freer drones, also turn off reset phases on gate." },
+      { id: "entangle-cv", label: "entangle cv", type: "jack", x: 21.5, y: 93.2, size: 8, voltageRange: "±10 V", description: "modulates entangle at 0.1/V, +10 V sweeps full A-to-B. Adds to knob and orbit before the 4 ms slew; collar lights with the result.", tip: "slow triangle plus centred knob plays both constellations in turn." },
       { id: "tension-cv", label: "tension cv", type: "jack", x: 33.3, y: 93.2, size: 8, voltageRange: "±10 V", description: "modulates tension at 0.1/V, clamped to knob range; collar shows the sum.", tip: "an envelope here turns static chords into struck fm brass." },
-      { id: "width-cv", label: "width cv", type: "jack", x: 45.2, y: 93.2, size: 8, voltageRange: "±10 V", description: "modulates width at 0.1/V, clamped and collar-lit like the other morph controls.", tip: "open the image only on accents — narrow verses, wide hits." },
+      { id: "width-cv", label: "width cv", type: "jack", x: 45.2, y: 93.2, size: 8, voltageRange: "±10 V", description: "modulates width at 0.1/V, clamped and collar-lit like the other morph controls.", tip: "open the image only on accents, narrow verses, wide hits." },
       { id: "mutate-trig", label: "mutate trig", type: "jack", x: 57.0, y: 93.2, size: 8, voltageRange: "trigger", description: "fires mutation like the panel key. Mid-transition triggers queue one more generation rather than interrupting.", tip: "trigger from a divided clock so the graph evolves one generation per bar." },
-      { id: "ghost", label: "ghost", type: "jack", x: 68.5, y: 93.2, size: 8, voltageRange: "±5 V · poly ≤6", description: "the normally inaudible modulators at reduced weight — the graph's hidden machinery, tracking voice count like the main pair.", tip: "run ghost through a lowpass in parallel — the modulators make a shadow voice." },
-      { id: "left-out", label: "left out", type: "jack", x: 79.7, y: 93.2, size: 8, voltageRange: "±5 V · poly ≤6", description: "left of the saturated stereo carrier mix — tanh, sinc-decimated, dc-blocked — engraved + on the panel. Tracks v/oct/gate count to six voices.", tip: "at width 0 this matches the right's centred mix — either for mono." },
-      { id: "right-out", label: "right out", type: "jack", x: 90.9, y: 93.2, size: 8, voltageRange: "±5 V · poly ≤6", description: "right of the saturated stereo carrier mix, engraved −. Same processing and count as left.", tip: "width's modulation-depth side signal lives between the jacks — audition on headphones." },
+      { id: "ghost", label: "ghost", type: "jack", x: 68.5, y: 93.2, size: 8, voltageRange: "±5 V · poly ≤6", description: "the normally inaudible modulators at reduced weight, the graph's hidden machinery, tracking voice count like the main pair.", tip: "run ghost through a lowpass in parallel, the modulators make a shadow voice." },
+      { id: "left-out", label: "left out", type: "jack", x: 79.7, y: 93.2, size: 8, voltageRange: "±5 V · poly ≤6", description: "left of the saturated stereo carrier mix, tanh, sinc-decimated, dc-blocked, engraved + on the panel. Tracks v/oct/gate count to six voices.", tip: "at width 0 this matches the right's centred mix, either for mono." },
+      { id: "right-out", label: "right out", type: "jack", x: 90.9, y: 93.2, size: 8, voltageRange: "±5 V · poly ≤6", description: "right of the saturated stereo carrier mix, engraved −. Same processing and count as left.", tip: "width's modulation-depth side signal lives between the jacks, audition on headphones." },
     ],
     contextMenu: [
       {
@@ -6635,7 +6635,7 @@ export const modules: ModuleSpec[] = [
         group: "reset phases on gate",
         label: "reset phases on gate",
         kind: "toggle",
-        description: "On: struck and sequenced sounds keep dependable attacks — rapid retriggers still preserve phase while releases ring, so no clicks. Off: freer drones."
+        description: "On: struck and sequenced sounds keep dependable attacks, rapid retriggers still preserve phase while releases ring, so no clicks. Off: freer drones."
       },
       {
         id: "algorithm",
@@ -6675,13 +6675,13 @@ export const modules: ModuleSpec[] = [
         label: "oversampling",
         kind: "choice",
         values: ["1x (economy)", "2x", "4x (default, reference)", "8x (maximum)"],
-        description: "4x default and reference voicing — not purely quality, since self-feedback delays one oversampled sample and voices differently per factor. 8x is where the index ceiling never engages at 44.1/48 kHz, at ~2× the cost of 4x."
+        description: "4x default and reference voicing, not purely quality, since self-feedback delays one oversampled sample and voices differently per factor. 8x is where the index ceiling never engages at 44.1/48 kHz, at ~2× the cost of 4x."
       }
     ],
     manual: [
       {
         title: "two constellations, one voice",
-        body: "Entanglement is an eight-operator FM oscillator whose algorithm is a living structure. A and B descend from 32 curated structures, and ENTANGLE morphs the topology between them — edges, feedback, carrier roles, power, stereo placement — over two ratio-locked banks crossfading underneath. Both ends harmonic, the middle a genuine hybrid graph, never an output crossfade; the screen tracks the morph exactly."
+        body: "Entanglement is an eight-operator FM oscillator whose algorithm is a living structure. A and B descend from 32 curated structures, and ENTANGLE morphs the topology between them, edges, feedback, carrier roles, power, stereo placement, over two ratio-locked banks crossfading underneath. Both ends harmonic, the middle a genuine hybrid graph, never an output crossfade; the screen tracks the morph exactly."
       },
       {
         title: "playing the panel",
@@ -6693,7 +6693,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "mutation and generations",
-        body: "MUTATE finishes a 12 ms journey to the current descendant, promotes it to origin, grows a related child, and aims the origin at the knob's nearest end — every press one generation. MUTATION sets inheritance, near-clone to new structure; AFFINITY favours deeper graphs; SYMMETRY favours simple ratios. Every descendant is checked so all operators keep a path to a carrier; mutation, direction, and both constellations save with the patch."
+        body: "MUTATE finishes a 12 ms journey to the current descendant, promotes it to origin, grows a related child, and aims the origin at the knob's nearest end, every press one generation. MUTATION sets inheritance, near-clone to new structure; AFFINITY favours deeper graphs; SYMMETRY favours simple ratios. Every descendant is checked so all operators keep a path to a carrier; mutation, direction, and both constellations save with the patch."
       },
       {
         title: "character and voicing",
@@ -6701,14 +6701,14 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "voices, outputs and presets",
-        body: "≤6 polyphonic voices follow the wider of V/oct and GATE; all outputs track that count. LEFT/RIGHT carry the saturated ±5 V stereo mix; GHOST carries modulators at reduced weight. 25 factory instruments across Keys/Pads/Bass/Leads/Percussion cover all 32 structures, each storing both algorithms and all 51 parameters — loading never inherits from the previous patch."
+        body: "≤6 polyphonic voices follow the wider of V/oct and GATE; all outputs track that count. LEFT/RIGHT carry the saturated ±5 V stereo mix; GHOST carries modulators at reduced weight. 25 factory instruments across Keys/Pads/Bass/Leads/Percussion cover all 32 structures, each storing both algorithms and all 51 parameters, loading never inherits from the previous patch."
       }
     ]
   },
   {
     slug: "figura",
     name: "figura",
-    subtitle: "stereo polyphonic morphing filter — eight 14-pole filters at the corners of a cube, three knobs to move through it",
+    subtitle: "stereo polyphonic morphing filter, eight 14-pole filters at the corners of a cube, three knobs to move through it",
     summary: "A z-plane filter in the E-mu Morpheus lineage: each corner of the cube holds a 14-pole filter able to carry a vowel, an instrument body or a cluster of notches, and MORPH, FREQ and TRANSFORM blend between the eight corners from anywhere inside. Eight cubes cover vowels, bodies, notches, harmonics, bells, breath, earth and fire, with a sand-plate display that draws the filter you are hearing.",
     category: "vcv rack module",
     status: "morphing filter",
@@ -6733,10 +6733,10 @@ export const modules: ModuleSpec[] = [
         size: 40,
         description: [
           "a brass plate dusted with sand, after Chladni's 1787 experiment: each resonance vibrates its own pattern, and sand gathers on the still lines, drawing the filter you hear",
-          "only peaks above the input level move the sand — notches and flat sections leave it alone; the sand drifts into each new figure as you move",
+          "only peaks above the input level move the sand, notches and flat sections leave it alone; the sand drifts into each new figure as you move",
           "shows the first voice's left filter at ~60 Hz. Lit like the panel, so it dims with Rack's room lights",
         ],
-        tip: "sweep MORPH slowly and watch the figure redraw — each cube has its own family of shapes.",
+        tip: "sweep MORPH slowly and watch the figure redraw, each cube has its own family of shapes.",
       },
       {
         id: "cube",
@@ -6759,10 +6759,10 @@ export const modules: ModuleSpec[] = [
         y: 14.4,
         size: 13,
         description: [
-          "moves the left filter down the MORPH axis and the right one up, ≤15% either way — mono in becomes two related filters, widening as you turn up",
+          "moves the left filter down the MORPH axis and the right one up, ≤15% either way, mono in becomes two related filters, widening as you turn up",
           "near MORPH's ends the pair slides back inside the cube instead of clipping, so spread survives at the extremes",
         ],
-        tip: "feed a mono saw and turn STEREO up — the sides diverge into related vowels.",
+        tip: "feed a mono saw and turn STEREO up, the sides diverge into related vowels.",
       },
       {
         id: "drive",
@@ -6772,10 +6772,10 @@ export const modules: ModuleSpec[] = [
         y: 32.3,
         size: 13,
         description: [
-          "saturates the input before the filter. At 0 the path is exactly linear; turning up raises quiet signals, rounds loud ones, adds even-harmonic warmth, holding loudness steady at normal ±5 V — what you hear is colour changing",
+          "saturates the input before the filter. At 0 the path is exactly linear; turning up raises quiet signals, rounds loud ones, adds even-harmonic warmth, holding loudness steady at normal ±5 V, what you hear is colour changing",
           "very hot inputs still come out quieter driven, quiet ones louder. A 5 Hz tracker removes only the DC saturation adds; the input's own offset passes as at 0",
         ],
-        tip: "drive a quiet pluck hard — louder, rounder, warmer, without touching the mixer.",
+        tip: "drive a quiet pluck hard, louder, rounder, warmer, without touching the mixer.",
       },
       {
         id: "mix",
@@ -6786,7 +6786,7 @@ export const modules: ModuleSpec[] = [
         size: 13,
         description: [
           "dry/wet blend: 0 is input untouched, 100% filter only",
-          "linear crossfade smoothed per sample — sweeping never zips",
+          "linear crossfade smoothed per sample, sweeping never zips",
         ],
         tip: "back to 30% to keep a drum's attack while the filter colours the tail.",
       },
@@ -6798,7 +6798,7 @@ export const modules: ModuleSpec[] = [
         y: 46.0,
         size: 13,
         description: [
-          "the cube's first axis — AH to OO on Vox, guitar to cello on Corpus, bell to gong on Metallum — morphing timbre between corner filters",
+          "the cube's first axis, AH to OO on Vox, guitar to cello on Corpus, bell to gong on Metallum, morphing timbre between corner filters",
           "the tooltip names the corners you're between. The collar lights with CV position; knob moves glide ~10 ms so they never click",
         ],
         tip: "patch a slow envelope into MORPH CV and set the knob to the note's starting vowel.",
@@ -6814,7 +6814,7 @@ export const modules: ModuleSpec[] = [
           "the second axis, sliding the whole filter up while keeping shape, by a cube-suited amount: half an octave on Vox, four octaves on Terra",
           "tooltip and collar as on MORPH. Sections pushed above 45% of sample rate by PITCH/V/OCT stop there",
         ],
-        tip: "on Harmonia, FREQ glides the harmonic ladder upward — track with an envelope for rising shimmer.",
+        tip: "on Harmonia, FREQ glides the harmonic ladder upward, track with an envelope for rising shimmer.",
       },
       {
         id: "transform",
@@ -6862,7 +6862,7 @@ export const modules: ModuleSpec[] = [
         x: 12.7,
         y: 64.4,
         size: 10,
-        description: "scales MORPH CV, inverting left of centre. Full: 10 V covers the axis — 10% per volt.",
+        description: "scales MORPH CV, inverting left of centre. Full: 10 V covers the axis, 10% per volt.",
         tip: "full right with ±5 V sweeps the entire axis edge to edge.",
       },
       {
@@ -6872,7 +6872,7 @@ export const modules: ModuleSpec[] = [
         x: 32.1,
         y: 64.4,
         size: 10,
-        description: "scales FREQ CV, inverting left of centre. Full: 10 V covers the axis — 10% per volt.",
+        description: "scales FREQ CV, inverting left of centre. Full: 10 V covers the axis, 10% per volt.",
         tip: "a little filtered noise here keeps a static vowel slowly drifting.",
       },
       {
@@ -6882,7 +6882,7 @@ export const modules: ModuleSpec[] = [
         x: 67.9,
         y: 64.4,
         size: 10,
-        description: "scales TRANSFORM CV, inverting left of centre. Full: 10 V covers the axis — 10% per volt.",
+        description: "scales TRANSFORM CV, inverting left of centre. Full: 10 V covers the axis, 10% per volt.",
         tip: "invert a decay envelope here so a struck sound bows as it dies.",
       },
       {
@@ -6903,7 +6903,7 @@ export const modules: ModuleSpec[] = [
         y: 79.0,
         size: 9,
         voltageRange: "10V = full axis · poly ≤16",
-        description: "adds to MORPH through its amount knob, 10% of axis per volt at full. Polyphonic per voice, unsmoothed — modulation stays as fast as patched.",
+        description: "adds to MORPH through its amount knob, 10% of axis per volt at full. Polyphonic per voice, unsmoothed, modulation stays as fast as patched.",
         tip: "mult one envelope to all three axis CVs at different amounts for one gesture crossing the cube diagonally.",
       },
       {
@@ -6948,7 +6948,7 @@ export const modules: ModuleSpec[] = [
         size: 9,
         voltageRange: "any · poly ≤16",
         description: "left audio input, polyphonic ≤16. Feeds both sides until IN R is patched.",
-        tip: "mono in under polyphonic V/OCT filters once per voice at each pitch — one sound becomes a chord of formants.",
+        tip: "mono in under polyphonic V/OCT filters once per voice at each pitch, one sound becomes a chord of formants.",
       },
       {
         id: "in-r",
@@ -6959,7 +6959,7 @@ export const modules: ModuleSpec[] = [
         size: 9,
         voltageRange: "any · poly ≤16",
         description: "right audio input, polyphonic ≤16. Unpatched takes IN L; bypass keeps that behaviour.",
-        tip: "patch both sides for true stereo — STEREO then spreads two different signals.",
+        tip: "patch both sides for true stereo, STEREO then spreads two different signals.",
       },
       {
         id: "voct",
@@ -6981,7 +6981,7 @@ export const modules: ModuleSpec[] = [
         size: 9,
         voltageRange: "≤11.7V peak · poly ≤16",
         description: "filtered left signal, polyphonic. Exactly linear to 8 V, then soft limiting, never past 11.7 V.",
-        tip: "Metallum and Harmonia touch the limiter at their hottest — that edge is part of their sound.",
+        tip: "Metallum and Harmonia touch the limiter at their hottest, that edge is part of their sound.",
       },
       {
         id: "out-r",
@@ -7008,11 +7008,11 @@ export const modules: ModuleSpec[] = [
     manual: [
       {
         title: "the cube",
-        body: "Each cube holds eight 14-pole filters at its corners; MORPH, FREQ, TRANSFORM are its three axes — anywhere inside blends the corners smoothly. Vox moves AH–OO, man's-to-child's voice, open-to-nasal; the other cubes apply the same axes to bodies, notches, harmonics, bells, breath, earth, fire. Every section keeps its role at every corner, so morphs crossfade each formant with its counterpart rather than sweeping parts in from nowhere."
+        body: "Each cube holds eight 14-pole filters at its corners; MORPH, FREQ, TRANSFORM are its three axes, anywhere inside blends the corners smoothly. Vox moves AH–OO, man's-to-child's voice, open-to-nasal; the other cubes apply the same axes to bodies, notches, harmonics, bells, breath, earth, fire. Every section keeps its role at every corner, so morphs crossfade each formant with its counterpart rather than sweeping parts in from nowhere."
       },
       {
         title: "pitch and tone",
-        body: "PITCH shifts every section together ±4 octaves; V/OCT adds at 1 octave/V for keyboard tracking. EMPHASIS scales all resonances — 4× full right, ¼× full left, as designed at centre — sharpness without loudness change. DRIVE saturates pre-filter with even-harmonic colour at steady loudness, STEREO splits the sides ≤15% along MORPH, MIX crossfades dry to filtered."
+        body: "PITCH shifts every section together ±4 octaves; V/OCT adds at 1 octave/V for keyboard tracking. EMPHASIS scales all resonances, 4× full right, ¼× full left, as designed at centre, sharpness without loudness change. DRIVE saturates pre-filter with even-harmonic colour at steady loudness, STEREO splits the sides ≤15% along MORPH, MIX crossfades dry to filtered."
       },
       {
         title: "modulation",
@@ -7020,18 +7020,18 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "the plate",
-        body: "The display is a brass plate dusted with sand: resonances vibrate their own patterns and sand gathers on the still lines, drawing the filter you hear. Only above-input peaks move the sand — notches leave it alone — and it drifts into each new figure as you move. First voice's left filter; dims with Rack's room lights."
+        body: "The display is a brass plate dusted with sand: resonances vibrate their own patterns and sand gathers on the still lines, drawing the filter you hear. Only above-input peaks move the sand, notches leave it alone, and it drifts into each new figure as you move. First voice's left filter; dims with Rack's room lights."
       },
       {
         title: "voices and levels",
-        body: "Voices follow the widest of IN L, IN R, V/OCT, ≤16; CV inputs are polyphonic too, so each voice can sit at its own cube point. Cubes match loudness on noise within a couple dB except Metallum (4–8 dB lower) and Harmonia (≤6.5 dB) so tall peaks mostly avoid the limiter — though on harmonic sources like saw chords, level still moves with the sweep (≤~14 dB in the widest cube) as narrow peaks land on or between harmonics. Output soft-limits past 8 V, never past 11.7 V; bypass passes dry with IN R falling back to IN L; sections above 45% of sample rate stop there."
+        body: "Voices follow the widest of IN L, IN R, V/OCT, ≤16; CV inputs are polyphonic too, so each voice can sit at its own cube point. Cubes match loudness on noise within a couple dB except Metallum (4–8 dB lower) and Harmonia (≤6.5 dB) so tall peaks mostly avoid the limiter, though on harmonic sources like saw chords, level still moves with the sweep (≤~14 dB in the widest cube) as narrow peaks land on or between harmonics. Output soft-limits past 8 V, never past 11.7 V; bypass passes dry with IN R falling back to IN L; sections above 45% of sample rate stop there."
       }
     ]
   },
   {
     slug: "legion",
     name: "legion",
-    subtitle: "seven-saw super saw that drifts, tears and locks — synchroscope display, stereo spread",
+    subtitle: "seven-saw super saw that drifts, tears and locks, synchroscope display, stereo spread",
     summary: "seven saws per voice on a measured, uneven detune curve whose beating never repeats, pulled apart by drift and feedback or pulled together by coupling. the synchroscope shows poly channel 0 falling in and out of step in slow motion. with drift, coupling and feedback at zero it is a plain late-90s super saw and nothing else.",
     category: "vcv rack module",
     status: "seven-saw oscillator",
@@ -7078,8 +7078,8 @@ export const modules: ModuleSpec[] = [
         x: 84.4,
         y: 13.0,
         size: 14,
-        description: "0 is mono. Turning up pans the side saws out in pairs — each side gets flat and sharp saws.",
-        tip: "full width with high mix is legion's widest image — narrow before stacking voices.",
+        description: "0 is mono. Turning up pans the side saws out in pairs, each side gets flat and sharp saws.",
+        tip: "full width with high mix is legion's widest image, narrow before stacking voices.",
       },
       {
         id: "detune",
@@ -7111,7 +7111,7 @@ export const modules: ModuleSpec[] = [
         x: 15.6,
         y: 46.0,
         size: 14,
-        description: "each saw's pitch wanders independently. Low is old-analog drift; high runs faster and wider to ~60 cents — a swarm. Tooltip reads depth with wander rate.",
+        description: "each saw's pitch wanders independently. Low is old-analog drift; high runs faster and wider to ~60 cents, a swarm. Tooltip reads depth with wander rate.",
         tip: "raise against half-locked coupling to find where they fight.",
       },
       {
@@ -7122,8 +7122,8 @@ export const modules: ModuleSpec[] = [
         y: 45.5,
         size: 14,
         description: [
-          "the saws pull on each other's timing. Centre runs free; clockwise gathers — first nothing, then inner three lock, then five, then all seven into one steady saw. Just past the inner-three lock is the most unstable zone, where groups lock and break",
-          "counter-clockwise pushes apart, thinning and hollowing the sound. Lock points sit at the same positions at every pitch and detune; the lock takes a moment — longer at small detune — while saws drift into place",
+          "the saws pull on each other's timing. Centre runs free; clockwise gathers, first nothing, then inner three lock, then five, then all seven into one steady saw. Just past the inner-three lock is the most unstable zone, where groups lock and break",
+          "counter-clockwise pushes apart, thinning and hollowing the sound. Lock points sit at the same positions at every pitch and detune; the lock takes a moment, longer at small detune, while saws drift into place",
         ],
         tip: "sweep very slowly through the first lock and listen to the beating tear.",
       },
@@ -7134,7 +7134,7 @@ export const modules: ModuleSpec[] = [
         x: 84.4,
         y: 46.0,
         size: 14,
-        description: "output bends saw pitch through a note-following lowpass. To ~60% it roughens and thickens; past that pitch wobbles, and full is rough and unstable — growl, not hiss. The wobble stays centred on the note, and behaviour matches at every sample rate.",
+        description: "output bends saw pitch through a note-following lowpass. To ~60% it roughens and thickens; past that pitch wobbles, and full is rough and unstable, growl, not hiss. The wobble stays centred on the note, and behaviour matches at every sample rate.",
         tip: "push past 60% on a low note and let a slow filter sweep talk.",
       },
       {
@@ -7217,7 +7217,7 @@ export const modules: ModuleSpec[] = [
         y: 79.7,
         size: 10,
         voltageRange: "±5V full sweep",
-        description: "COUPLING CV at 0.2/V, scaled by the trim — coupling runs −100% to +100%. ±5 V sweeps end to end from centre.",
+        description: "COUPLING CV at 0.2/V, scaled by the trim, coupling runs −100% to +100%. ±5 V sweeps end to end from centre.",
         tip: "sweep lock points with a triangle lfo for repeating tear-and-mend.",
       },
       {
@@ -7261,7 +7261,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 10,
         voltageRange: "trigger",
-        description: "a trigger jumps all seven saws to new random phases with a click-free crossfade. Fires past 1 V, re-arms below 0.1 V — an lfo fires once per cycle on the way up; audio-rate triggers work. The menu can zero phases instead, for hard sync with a hard edge.",
+        description: "a trigger jumps all seven saws to new random phases with a click-free crossfade. Fires past 1 V, re-arms below 0.1 V, an lfo fires once per cycle on the way up; audio-rate triggers work. The menu can zero phases instead, for hard sync with a hard edge.",
         tip: "hit with a divided clock to re-scatter every bar.",
       },
       {
@@ -7295,7 +7295,7 @@ export const modules: ModuleSpec[] = [
         size: 10,
         voltageRange: "±10V peaks",
         description: "left stereo audio, engraved + on the panel. The plain super saw sits near ±5 V; aligned peaks can reach ±10 V, softly bent into ±12 V.",
-        tip: "run into a resonant lowpass — saws through a resonant filter is what legion is built for.",
+        tip: "run into a resonant lowpass, saws through a resonant filter is what legion is built for.",
       },
       {
         id: "right-out",
@@ -7306,7 +7306,7 @@ export const modules: ModuleSpec[] = [
         size: 10,
         voltageRange: "±10V peaks",
         description: "right stereo audio, engraved −. Same levels as left: ~±5 V with aligned peaks bent into ±12 V.",
-        tip: "take both outs even in narrow patches — width still moves between them.",
+        tip: "take both outs even in narrow patches, width still moves between them.",
       },
     ],
     contextMenu: [
@@ -7341,22 +7341,22 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "chaos and lock",
-        body: "Three controls pull the saws apart or together. DRIFT wanders each saw to ~60 cents, from analog wobble to swarm. COUPLING gathers clockwise through staged locks — inner three, five, all seven — with the most unstable zone just past the first lock, and pushes apart counter-clockwise. FEEDBACK bends pitch through a note-following lowpass, roughening to ~60% before wobbling into a centred growl. Locks take a moment, longer at small detune; with all three at zero Legion is a plain super saw."
+        body: "Three controls pull the saws apart or together. DRIFT wanders each saw to ~60 cents, from analog wobble to swarm. COUPLING gathers clockwise through staged locks, inner three, five, all seven, with the most unstable zone just past the first lock, and pushes apart counter-clockwise. FEEDBACK bends pitch through a note-following lowpass, roughening to ~60% before wobbling into a centred growl. Locks take a moment, longer at small detune; with all three at zero Legion is a plain super saw."
       },
       {
         title: "reading the screen",
-        body: "The synchroscope shows poly channel 0 like a power-station meter: hub is the centre saw, three rings hold flat-and-sharp pairs least to most detuned, twelve o'clock is in step. Motion slows until the fastest saw takes ≥2 s per lap with relative speeds kept — still dots mean locked, comets mean slipping. FEEDBACK bends all saws equally, showing as the beam losing focus."
+        body: "The synchroscope shows poly channel 0 like a power-station meter: hub is the centre saw, three rings hold flat-and-sharp pairs least to most detuned, twelve o'clock is in step. Motion slows until the fastest saw takes ≥2 s per lap with relative speeds kept, still dots mean locked, comets mean slipping. FEEDBACK bends all saws equally, showing as the beam losing focus."
       },
       {
         title: "patching it",
-        body: "Patch v/oct in, take + and − out into a resonant lowpass — Legion is an oscillator only, and saws through a resonant filter are its purpose. SCATTER re-phases all seven saws per trigger, LOCK gates them into one saw while held, IN STEP reports alignment as 0–10 V. Voice count follows the widest cable, ≤16, each voice its own seven saws."
+        body: "Patch v/oct in, take + and − out into a resonant lowpass, Legion is an oscillator only, and saws through a resonant filter are its purpose. SCATTER re-phases all seven saws per trigger, LOCK gates them into one saw while held, IN STEP reports alignment as 0–10 V. Voice count follows the widest cable, ≤16, each voice its own seven saws."
       }
     ]
   },
   {
     slug: "susurrus",
     name: "susurrus",
-    subtitle: "a held chord whose voices trade places — gliding between its own notes, blooming into vibrato, drifting across the stereo field",
+    subtitle: "a held chord whose voices trade places, gliding between its own notes, blooming into vibrato, drifting across the stereo field",
     summary: "susurrus sits around any polyphonic oscillator: it sends each voice's pitch out, takes the audio back, and fades and pans every voice on its own. Hold a chord and its voices start to trade places one pair at a time, each one blooming into vibrato after it lands. A multi-pen chart recorder draws every glide, landing and bloom as it happens.",
     category: "vcv rack module",
     status: "polyphonic performance processor",
@@ -7382,7 +7382,7 @@ export const modules: ModuleSpec[] = [
         description: [
           "a multi-pen chart recorder drawing the voices. Paper scrolls right to left, height is pitch, ruled in semitones with held chord notes darker",
           "each voice draws its own pen: glides slope, landings flatten, vibrato blooms into waves",
-          "paper advances with the weave, ~14 mm per move — following clocks, slowing while the flock holds. Pan isn't drawn — patch PAN out to see it",
+          "paper advances with the weave, ~14 mm per move, following clocks, slowing while the flock holds. Pan isn't drawn, patch PAN out to see it",
         ],
         tip: "watch a swap cross mid-glide: two slopes make an X, the chord whole again at landing.",
       },
@@ -7395,7 +7395,7 @@ export const modules: ModuleSpec[] = [
         size: 8,
         voltageRange: "1V/OCT · poly ≤16",
         description: "the held chord, polyphonic, ≤16 voices. Everything the weave does starts from these notes.",
-        tip: "drive from MIDI-CV or a polyphonic sequencer and hold — the weave needs held notes to move between.",
+        tip: "drive from MIDI-CV or a polyphonic sequencer and hold, the weave needs held notes to move between.",
       },
       {
         id: "gate-in",
@@ -7416,7 +7416,7 @@ export const modules: ModuleSpec[] = [
         y: 17.4,
         size: 8,
         voltageRange: "any · poly ≤16",
-        description: "the oscillator's polyphonic audio, one channel per voice, so each voice fades and pans independently. Mono cables can't pan per voice, so they pass centred — as does everything while V/OCT and GATE are unpatched.",
+        description: "the oscillator's polyphonic audio, one channel per voice, so each voice fades and pans independently. Mono cables can't pan per voice, so they pass centred, as does everything while V/OCT and GATE are unpatched.",
         tip: "if LEFT/RIGHT sound centred and dry, check this jack carries one channel per voice.",
       },
       {
@@ -7461,7 +7461,7 @@ export const modules: ModuleSpec[] = [
         size: 8,
         voltageRange: "audio · ≤11.7V",
         description: "left half of the stereo mix: every voice faded and panned, summed with 1/sqrt loudness compensation so big chords sit near one note's level. Linear to 8 V, soft-limited, never past 11.7 V.",
-        tip: "sixteen loud voices can still peak well past 10 V — leave headroom downstream.",
+        tip: "sixteen loud voices can still peak well past 10 V, leave headroom downstream.",
       },
       {
         id: "right-out",
@@ -7482,7 +7482,7 @@ export const modules: ModuleSpec[] = [
         y: 38.3,
         size: 8,
         voltageRange: "-5 to +5V · poly ≤16",
-        description: "each voice's stereo place as polyphonic CV, −5 V hard left to +5 V hard right. The chart doesn't draw pan — this is how you see or reuse it.",
+        description: "each voice's stereo place as polyphonic CV, −5 V hard left to +5 V hard right. The chart doesn't draw pan, this is how you see or reuse it.",
         tip: "record alongside the audio to automate a second mix element with the same wandering.",
       },
       {
@@ -7504,7 +7504,7 @@ export const modules: ModuleSpec[] = [
         size: 12,
         description: [
           "each glide's curve. Left is swoop (fast start, slow settle, like analog lag), centre even, right sung (slow to leave, quick middle, soft landing)",
-          "every shape lands exactly on its note at exactly GLIDE time — only the journey changes. The tooltip names the nearest curve",
+          "every shape lands exactly on its note at exactly GLIDE time, only the journey changes. The tooltip names the nearest curve",
         ],
         tip: "sung shapes make wide leaps vocal; swoop keeps short neighbor swaps crisp.",
       },
@@ -7518,10 +7518,10 @@ export const modules: ModuleSpec[] = [
         description: [
           "how voices move through the held chord",
           "SWAP: neighbours trade places. They cross mid-glide and swap stereo sides; the chord is whole at landing",
-          "HANDOFF: the lower voice rises to the upper note while the displaced voice fades out on arrival — no note ever doubles. The next move brings it back",
-          "WANDER: notes trade places freely — any voice can end anywhere while the chord stays whole. Nothing doubles, nothing goes missing",
+          "HANDOFF: the lower voice rises to the upper note while the displaced voice fades out on arrival, no note ever doubles. The next move brings it back",
+          "WANDER: notes trade places freely, any voice can end anywhere while the chord stays whole. Nothing doubles, nothing goes missing",
         ],
-        tip: "handoff is the most transparent weave — harmony never thins or doubles.",
+        tip: "handoff is the most transparent weave, harmony never thins or doubles.",
       },
       {
         id: "bloom",
@@ -7553,7 +7553,7 @@ export const modules: ModuleSpec[] = [
         x: 78.7,
         y: 51.3,
         size: 12,
-        description: "vibrato rate, 0.5–12 Hz. No two voices share a rate — fixed offsets plus slow wander keep them from pulsing together.",
+        description: "vibrato rate, 0.5–12 Hz. No two voices share a rate, fixed offsets plus slow wander keep them from pulsing together.",
         tip: "~5.5 Hz reads as sung vibrato; low rates with high sway circle rather than shake.",
       },
       {
@@ -7568,7 +7568,7 @@ export const modules: ModuleSpec[] = [
           "SELF: a move waits for every voice to land, bloom fully, and hold for the MOVE time. The glide-land-bloom cycle is the rhythm",
           "FREE: moves come at the MOVE rate, each varied randomly (0.6–1.4× the period)",
         ],
-        tip: "self timing with long blooms breathes at its own pace — hold a chord and patch nothing.",
+        tip: "self timing with long blooms breathes at its own pace, hold a chord and patch nothing.",
       },
       {
         id: "glide-cv",
@@ -7601,7 +7601,7 @@ export const modules: ModuleSpec[] = [
         size: 8,
         voltageRange: "0-10V",
         description: "adds to the MODE switch: 0–10 V steps through Swap, Handoff, Wander from the switch position, rounded to whole modes. First channel only.",
-        tip: "sequence with stepped voltages — 0, 5, 10 V from the switch select the three weaves.",
+        tip: "sequence with stepped voltages, 0, 5, 10 V from the switch select the three weaves.",
       },
       {
         id: "bloom-cv",
@@ -7633,7 +7633,7 @@ export const modules: ModuleSpec[] = [
         y: 64.1,
         size: 8,
         voltageRange: "1V/OCT",
-        description: "1 V/oct on vibrato rate — each volt doubles it around the RATE setting. First channel only.",
+        description: "1 V/oct on vibrato rate, each volt doubles it around the RATE setting. First channel only.",
         tip: "track the chord's register so higher voicings shimmer faster, like real strings.",
       },
       {
@@ -7654,7 +7654,7 @@ export const modules: ModuleSpec[] = [
         x: 8.7,
         y: 76.9,
         size: 12,
-        description: "keeps the flock from moving as a block. Each pair starts after a random delay of ≤STAGGER × GLIDE; at 0 everything moves as one. The one knob with no CV jack — the socket below stays empty.",
+        description: "keeps the flock from moving as a block. Each pair starts after a random delay of ≤STAGGER × GLIDE; at 0 everything moves as one. The one knob with no CV jack, the socket below stays empty.",
         tip: "small stagger (~¼) keeps chords whole while moves stop sounding sequenced.",
       },
       {
@@ -7665,7 +7665,7 @@ export const modules: ModuleSpec[] = [
         y: 76.9,
         size: 12,
         description: "throws each gliding voice further in its direction of motion, rightward when rising. An octave or more throws hardest. Voices drift back over HOME time after landing.",
-        tip: "wide intervals with high travel sweep rising lines right — follow with long home for a slow return.",
+        tip: "wide intervals with high travel sweep rising lines right, follow with long home for a slow return.",
       },
       {
         id: "move",
@@ -7687,7 +7687,7 @@ export const modules: ModuleSpec[] = [
         x: 50.7,
         y: 76.9,
         size: 12,
-        description: "how long thrown voices take to drift back after landing, 0.1–8 s. Only matters while TRAVEL is up — no throw, nowhere to come home from.",
+        description: "how long thrown voices take to drift back after landing, 0.1–8 s. Only matters while TRAVEL is up, no throw, nowhere to come home from.",
         tip: "match home to the move rhythm so voices arrive back as the next move starts.",
       },
       {
@@ -7697,8 +7697,8 @@ export const modules: ModuleSpec[] = [
         x: 64.7,
         y: 76.9,
         size: 12,
-        description: "pan wobble at the vibrato's rate, a quarter cycle from the pitch wobble — voices circle rather than shake. Follows the bloom, fading in with the vibrato.",
-        tip: "sway with zero depth circles placement with steady pitch — movement without seasickness.",
+        description: "pan wobble at the vibrato's rate, a quarter cycle from the pitch wobble, voices circle rather than shake. Follows the bloom, fading in with the vibrato.",
+        tip: "sway with zero depth circles placement with steady pitch, movement without seasickness.",
       },
       {
         id: "spread",
@@ -7729,7 +7729,7 @@ export const modules: ModuleSpec[] = [
         y: 89.1,
         size: 8,
         voltageRange: "0-10V",
-        description: "adds to MOVE in any job — hold time, move rate, or clock division. 10 V covers the range; first channel only.",
+        description: "adds to MOVE in any job, hold time, move rate, or clock division. 10 V covers the range; first channel only.",
         tip: "modulate in free mode to drift between stillness and flurries.",
       },
       {
@@ -7783,21 +7783,21 @@ export const modules: ModuleSpec[] = [
         group: "glide",
         label: "glide at a constant rate",
         kind: "toggle",
-        description: "GLIDE becomes time-per-octave instead of time-per-move — small steps beat leaps. The tooltip reads per octave while on."
+        description: "GLIDE becomes time-per-octave instead of time-per-move, small steps beat leaps. The tooltip reads per octave while on."
       }
     ],
     manual: [
       {
         title: "what it does",
-        body: "Susurrus is a polyphonic performance processor around any polyphonic oscillator. It sends each voice's pitch out on V/OCT OUT, takes audio back on AUDIO, and fades and pans every voice independently before summing to LEFT/RIGHT. The name is Latin for a whispering murmur — a wheeling starling flock."
+        body: "Susurrus is a polyphonic performance processor around any polyphonic oscillator. It sends each voice's pitch out on V/OCT OUT, takes audio back on AUDIO, and fades and pans every voice independently before summing to LEFT/RIGHT. The name is Latin for a whispering murmur, a wheeling starling flock."
       },
       {
         title: "the weave",
-        body: "Held chords trade places one pair at a time: SWAP crosses neighbours mid-glide, HANDOFF fades the displaced voice so no note doubles, WANDER lets any voice land anywhere with the chord whole. TIMING rhythms it — SELF waits for land, bloom, and MOVE hold; FREE moves at the MOVE rate — and a patched CLOCK replaces the switch with a 1–16 divider. MOVE TRIG conducts by hand atop everything; STAGGER staggers pair starts by ≤STAGGER × GLIDE."
+        body: "Held chords trade places one pair at a time: SWAP crosses neighbours mid-glide, HANDOFF fades the displaced voice so no note doubles, WANDER lets any voice land anywhere with the chord whole. TIMING rhythms it, SELF waits for land, bloom, and MOVE hold; FREE moves at the MOVE rate, and a patched CLOCK replaces the switch with a 1–16 divider. MOVE TRIG conducts by hand atop everything; STAGGER staggers pair starts by ≤STAGGER × GLIDE."
       },
       {
         title: "glide and vibrato",
-        body: "GLIDE sets every move's length, 0–4 s square-law; SHAPE bends the curve swoop-even-sung without missing landing time. Voices never vibrate while moving — new glides pull it out in ~80 ms — and BLOOM fades it in over 0–4 s, starting slow and wide like a singer. DEPTH runs 0–100 cents, RATE 0.5–12 Hz with no shared rates, so chords never pulse as one."
+        body: "GLIDE sets every move's length, 0–4 s square-law; SHAPE bends the curve swoop-even-sung without missing landing time. Voices never vibrate while moving, new glides pull it out in ~80 ms, and BLOOM fades it in over 0–4 s, starting slow and wide like a singer. DEPTH runs 0–100 cents, RATE 0.5–12 Hz with no shared rates, so chords never pulse as one."
       },
       {
         title: "space",
@@ -7805,7 +7805,7 @@ export const modules: ModuleSpec[] = [
       },
       {
         title: "chords and voices",
-        body: "New chords move each held voice to the nearest new-chord note with least total glide — short slides; the same note on two channels counts once and its voices move together. New voices start on their note, never gliding in from 0 V; in HANDOFF the displaced voice silences before the arrival. The chart draws everything — slope for glide, flat for landing, blooming wave for vibrato — advancing ~14 mm per move."
+        body: "New chords move each held voice to the nearest new-chord note with least total glide, short slides; the same note on two channels counts once and its voices move together. New voices start on their note, never gliding in from 0 V; in HANDOFF the displaced voice silences before the arrival. The chart draws everything, slope for glide, flat for landing, blooming wave for vibrato, advancing ~14 mm per move."
       }
     ]
   },

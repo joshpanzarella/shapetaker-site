@@ -650,7 +650,7 @@ h3 {
   display: none;
 }
 
-/* Scroll-driven card entrance — hidden until .is-revealed is added by scroll tracker */
+/* Scroll-driven card entrance, hidden until .is-revealed is added by scroll tracker */
 .module-explorer .panel-stage,
 .module-explorer .control-readout,
 .module-explorer .module-overview {
@@ -858,7 +858,7 @@ h3 {
   display: none;
 }
 
-/* prospective selection on image panel — teal dot */
+/* prospective selection on image panel, teal dot */
 .rack-panel--image .hotspot:hover::before,
 .rack-panel--image .hotspot:focus-visible::before {
   border-color: rgba(244, 240, 232, 0.95);
@@ -871,7 +871,7 @@ h3 {
   transform: translate(-50%, -50%) scale(1.18);
 }
 
-/* selected control on image panel — purple dot */
+/* selected control on image panel, purple dot */
 .rack-panel--image .hotspot.is-active::before {
   border-color: rgba(244, 240, 232, 0.95);
   background: color-mix(in srgb, var(--focus-purple) 92%, white);
@@ -1004,7 +1004,7 @@ h3 {
   outline: 0;
 }
 
-/* prospective selection — teal */
+/* prospective selection, teal */
 .hotspot:hover::before,
 .hotspot:focus-visible::before {
   border-color: color-mix(in srgb, var(--teal) 86%, var(--palette-graphite-50));
@@ -1024,7 +1024,7 @@ h3 {
   transition: opacity 160ms ease, transform 160ms ease;
 }
 
-/* selected control — purple */
+/* selected control, purple */
 .hotspot.is-active::before {
   border-color: color-mix(in srgb, var(--focus-purple) 90%, var(--palette-graphite-50));
   box-shadow:
@@ -3482,7 +3482,7 @@ h3 {
 }
 
 /* ─────────────────────────────────────────────
-   Engraved label voice — Routed Gothic
+   Engraved label voice, Routed Gothic
    The same lettering routed into the module
    faceplates carries every small label on the
    site. Single-weight font: always 400.
@@ -3566,7 +3566,7 @@ h3 {
 }
 
 /* ─────────────────────────────────────────────
-   Module catalog — the full rack, one panel per
+   Module catalog, the full rack, one panel per
    module, mounted on dark rails like the units
    themselves.
    ───────────────────────────────────────────── */
@@ -3676,7 +3676,7 @@ h3 {
 }
 
 /* ─────────────────────────────────────────────
-   Gallery open button — the alchemical symbol
+   Gallery open button, the alchemical symbol
    flanks step down gracefully as the card
    narrows instead of bleeding past the edges.
    ───────────────────────────────────────────── */
@@ -3721,7 +3721,7 @@ h3 {
 }
 
 /* ─────────────────────────────────────────────
-   Patch walker panel — step text scrolls, the
+   Patch walker panel, step text scrolls, the
    action row stays pinned and unmissable.
    ───────────────────────────────────────────── */
 
