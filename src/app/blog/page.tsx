@@ -27,7 +27,7 @@ export default function Blog() {
 
         <div className="stack-grid" style={{ marginBottom: "2rem" }}>
           {posts.map((post, index) => (
-            <article className="stack-tile" key={post.slug} style={{ display: 'flex', flexDirection: 'column' }}>
+            <article className="stack-tile blog-card" key={post.slug} style={{ display: 'flex', flexDirection: 'column' }}>
               {post.frontmatter.image ? (
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', marginBottom: '1.2rem', clipPath: 'var(--chamfer-sm)', overflow: 'hidden', border: '1px solid var(--line)' }}>
                   <Image
@@ -54,7 +54,7 @@ export default function Blog() {
               <h3 style={{ marginBottom: '0.4rem' }}>{post.frontmatter.title}</h3>
               <span className="eyebrow" style={{ marginBottom: '0.8rem', fontSize: '0.65rem' }}>{post.frontmatter.date}</span>
               <p style={{ flex: 1, marginBottom: '1.2rem' }}>{post.frontmatter.summary}</p>
-              <Link className="inline-link" href={`/blog/${post.slug}`} style={{ marginTop: 'auto' }}>
+              <Link className="inline-link card-stretched-link" href={`/blog/${post.slug}`} aria-label={`read note: ${post.frontmatter.title}`} style={{ marginTop: 'auto' }}>
                 read note
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>

@@ -1946,6 +1946,16 @@ h3 {
   list-style: none;
 }
 
+.blog-card {
+  position: relative;
+}
+
+.blog-card .card-stretched-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
 .blog-post-tags li {
   padding: 0.22rem 0.5rem;
   border: 1px solid var(--line);
