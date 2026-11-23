@@ -168,6 +168,7 @@ body {
   min-width: 320px;
   margin: 0;
   font-family: var(--font-text);
+  font-size: 1.06rem;
   background-color: var(--paper);
   background-image: var(--body-texture);
   background-attachment: scroll;
@@ -3522,7 +3523,7 @@ h3 {
 .eyebrow,
 .overview-eyebrow,
 .readout-kicker {
-  font-size: 0.82rem;
+  font-size: clamp(0.82rem, 0.35rem + 0.6vw, 1rem);
   letter-spacing: 0.14em;
 }
 
