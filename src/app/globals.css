@@ -1975,9 +1975,11 @@ h3 {
   margin-top: 1.05rem;
 }
 
-.blog-figure {
-  margin-top: 1.75rem;
-  margin-bottom: 1.75rem;
+.blog-post-copy .blog-figure {
+  display: inline-block;
+  width: 200px;
+  margin: 0.6rem 1.1rem 0.9rem 0;
+  vertical-align: top;
 }
 
 .blog-figure img {
@@ -1990,9 +1992,112 @@ h3 {
 }
 
 .blog-figure figcaption {
-  margin-top: 0.6rem;
-  font-size: 0.85rem;
+  margin-top: 0.45rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
   color: var(--ink-soft);
+}
+
+.blog-thumb-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+
+.blog-thumb-btn img {
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.blog-thumb-btn:hover img,
+.blog-thumb-btn:focus-visible img {
+  transform: translateY(-2px);
+  box-shadow: var(--surface-shadow-hover);
+}
+
+.blog-thumb-btn:focus-visible {
+  outline: 2px solid var(--text-accent);
+  outline-offset: 2px;
+}
+
+.blog-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(8, 6, 4, 0.88);
+  cursor: zoom-out;
+}
+
+.blog-lightbox__frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  max-width: min(94vw, 1000px);
+  cursor: default;
+}
+
+.blog-lightbox__frame img {
+  max-width: 100%;
+  max-height: 76vh;
+  height: auto;
+  border: 1px solid var(--line);
+  background: var(--surface-card);
+}
+
+.blog-lightbox__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: #f2e9d8;
+}
+
+.blog-lightbox__count {
+  font-family: var(--font-label);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+}
+
+.blog-lightbox__close {
+  padding: 0.35rem 0.7rem;
+  border: 1px solid currentColor;
+  background: none;
+  color: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.blog-lightbox__caption {
+  margin: 0;
+  color: #f2e9d8;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.blog-lightbox__nav {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.blog-lightbox__nav button {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #f2e9d8;
+  background: none;
+  color: #f2e9d8;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.blog-lightbox__close:hover,
+.blog-lightbox__nav button:hover {
+  background: rgba(242, 233, 216, 0.15);
 }
 
 .blog-post-copy h2 {
