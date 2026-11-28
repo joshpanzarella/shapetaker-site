@@ -22,12 +22,6 @@ const features = [
       "Chord packs stored as plain JSON you can freely edit. Hold Y and drop a chord straight onto the piano roll, arrows pick the chord and inversion, R1 switches packs.",
   },
   {
-    icon: VolumeX,
-    title: "panic",
-    description:
-      "A MIDI-panic-style kill switch that stops all sound no matter what is happening. Too loud, too dissonant, all four shoulder buttons at once and it is gone.",
-  },
-  {
     icon: Send,
     title: "throw",
     description:
@@ -38,6 +32,12 @@ const features = [
     title: "stretched samples",
     description:
       "Fit any sample to the duration you choose, measured in steps or bars, while keeping its pitch. No more nudging breaks to length by hand.",
+  },
+  {
+    icon: VolumeX,
+    title: "panic",
+    description:
+      "A MIDI-panic-style kill switch that stops all sound no matter what is happening. Too loud, too dissonant, all four shoulder buttons at once and it is gone.",
   },
 ];
 
