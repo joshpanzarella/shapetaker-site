@@ -34,7 +34,7 @@ export function SiteFooter() {
           <span className="site-footer__col-label">get in touch</span>
           <a href="mailto:shapetakeraudio@gmail.com">shapetakeraudio@gmail.com</a>
           <a href="https://paypal.me/jpanzarella8" target="_blank" rel="noopener noreferrer">
-            tip me on paypal
+            <em>tip me</em>
           </a>
         </div>
       </div>
