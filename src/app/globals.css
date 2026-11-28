@@ -3816,3 +3816,12 @@ h3 {
     animation: none;
   }
 }
+
+/* The download row in the apotheca page's "free, forever." box: no extra gap above the link. */
+.project-availability__actions {
+  margin-top: 0.5rem;
+}
+
+.project-availability__actions .inline-link {
+  margin-top: 0;
+}

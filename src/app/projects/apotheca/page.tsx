@@ -2,6 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, BookOpen, Download, ExternalLink, Music, VolumeX, Send, Waves } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
+import { ApothecaBuildNote } from "@/components/ApothecaDownload";
+import {
+  APOTHECA_IMAGE_URL,
+  APOTHECA_RELEASE_FALLBACK,
+  fetchApothecaRelease,
+} from "@/lib/apotheca-release";
 
 export const metadata = {
   title: "apotheca | shapetaker",
@@ -35,7 +41,9 @@ const features = [
   },
 ];
 
-export default function ApothecaPage() {
+export default async function ApothecaPage() {
+  const release = (await fetchApothecaRelease()) ?? APOTHECA_RELEASE_FALLBACK;
+
   return (
     <main>
       <section className="project-page__hero">
@@ -60,7 +68,7 @@ export default function ApothecaPage() {
             <div className="project-page__actions">
               <Link
                 className="button button--primary"
-                href="https://github.com/joshpanzarella/apotheca/releases/latest/download/apotheca-rg40xxv.img.gz"
+                href={APOTHECA_IMAGE_URL}
               >
                 <Download size={15} aria-hidden="true" />
                 download image
@@ -83,7 +91,7 @@ export default function ApothecaPage() {
                 <BookOpen size={16} aria-hidden="true" />
                 read the manual
               </Link>
-              <span className="project-page__cta-note">v0.827 · 37 MB · etch to microSD</span>
+              <ApothecaBuildNote className="project-page__cta-note" initial={release} />
             </div>
           </div>
         </FadeIn>
@@ -161,24 +169,20 @@ export default function ApothecaPage() {
             <span className="eyebrow">pricing</span>
             <h2>free, forever.</h2>
             <p>
-              Apotheca is free and open source, and always will be.{" "}
-              <Link
-                className="inline-link"
-                href="https://github.com/joshpanzarella/apotheca/releases/latest/download/apotheca-rg40xxv.img.gz"
-              >
-                Download the v0.827 image
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>{" "}
-              (37 MB), etch it to a microSD card, and fire it up, or browse
-              all{" "}
-              <Link
-                className="inline-link"
-                href="https://github.com/joshpanzarella/apotheca/releases"
-              >
-                releases
-              </Link>
-              .
+              Apotheca is free and open source, and always will be. Etch the
+              image to a microSD card and fire it up.
             </p>
+            <div className="project-page__actions project-availability__actions">
+              <Link className="button button--primary" href={APOTHECA_IMAGE_URL}>
+                <Download size={15} aria-hidden="true" />
+                download image
+              </Link>
+              <Link className="inline-link" href="/blog/installing-apotheca">
+                how to install
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+              <ApothecaBuildNote className="project-page__cta-note" initial={release} />
+            </div>
           </div>
         </FadeIn>
       </section>
