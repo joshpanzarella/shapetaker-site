@@ -1,0 +1,56 @@
+---
+title: "Installing Apotheca"
+date: "2026-11-28"
+summary: "how to get Apotheca running on your RG40XXV, in a few steps."
+image: "/blog/apotheca/song.png"
+tags:
+  - handheld
+  - install
+  - guide
+---
+
+I promised installation instructions in the [first post](/blog/introducing-apotheca), so here they are. This is the short version. The full guide, with every step and what to do when things go sideways, lives on GitHub: [INSTALL.md](https://github.com/joshpanzarella/apotheca/blob/main/INSTALL.md).
+
+Quick reminder that Apotheca is still alpha. Expect some rough edges, and please tell me when you hit one.
+
+## Pick your way
+
+There are two ways to run it on the Anbernic RG40XXV:
+
+* **Apotheca's own card (the one I recommend).** You flash a spare microSD card and the handheld boots straight into Apotheca. You get everything: the light around the stick, screen brightness, joining WiFi from inside Apotheca, and its own hotspot. Your stock card stays untouched in a drawer.
+* **The Ports menu of your current firmware.** Apotheca becomes one app among your games. The catch is that the firmware keeps a few things for itself, so no brightness or stick light settings, you join WiFi in the firmware's settings, and there's no hotspot.
+
+## Its own card
+
+1. Grab the image: [apotheca-rg40xxv.img.gz](https://github.com/joshpanzarella/apotheca/raw/main/dist/firmware/apotheca-rg40xxv.img.gz). Don't unzip it.
+2. Flash it onto a **spare** microSD card (8 GB or more, and everything on it gets deleted) with [balenaEtcher](https://etcher.balena.io) or [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
+3. If Windows asks to format a drive afterwards, **say no**.
+4. Put the card in the **first slot (TF1)** and press power.
+5. You'll see the start-up picture with its outer ring of signs turning, then the SONG screen. Don't turn it off during that very first start; it's setting up the card.
+
+Your songs, recordings and settings end up on the card's APOTHECA drive, in the `apotheca` folder. Turn it off with SEL + START, or hold the power key for 2 seconds.
+
+## The Ports menu
+
+1. Grab [Apotheca-port.zip](https://github.com/joshpanzarella/apotheca/raw/main/dist/Apotheca-port.zip) and unzip it.
+2. Copy `Apotheca.sh` and the `apotheca` folder into your firmware's ports folder, next to your other ports.
+3. Start it from Ports. The first time, it asks you to press each button so it learns your handheld. It takes about twenty seconds.
+
+## Once it's running
+
+* Hold **MENU** for a help card of what every button does on the screen you're on (or hold SEL if your firmware keeps MENU).
+* Make a beat: on SONG go to **+ TRACK**, press A, pick DRUMS, press A on its first cell, and start placing hits with A. START plays.
+* There's no save button. Songs save themselves as you go.
+* For sending samples over, turn on **WIFI PAGE** on the SET tab and open the address it shows in a browser. The last four digits are the PIN.
+
+The [manual](https://github.com/joshpanzarella/apotheca/blob/main/docs/manual.md) covers everything else.
+
+## Updating and going back
+
+App updates are one file. Press UPDATE APOTHECA on the WiFi page, or drop the new `apotheca` file into the `apotheca` folder on the card. Every so often a change goes deeper than the app and needs a fresh card image. Flashing wipes the card, so **back up your `apotheca` folder first**.
+
+Going back is easy: the handheld has no storage of its own, so swapping your stock card back in makes it exactly what it was before. If you went the Ports route, just delete Apotheca's folder.
+
+If something goes wrong, the full guide lists which log files to send me. Open an issue on [GitHub](https://github.com/joshpanzarella/apotheca/issues) or reach out however you like.
+
+\- **shapetaker**
